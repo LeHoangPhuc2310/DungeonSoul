@@ -15,7 +15,22 @@ public class EnemyAI : MonoBehaviour
 
     private Rigidbody2D rb;
     private Transform player;
+    private HealthSystem playerHealth;
     private float nextDamageTime;
+    private float slowTimer;
+    private float slowFactor = 1f;
+
+    public float MoveSpeed
+    {
+        get => moveSpeed;
+        set => moveSpeed = Mathf.Max(0.1f, value);
+    }
+
+    public float ContactDamage
+    {
+        get => contactDamage;
+        set => contactDamage = Mathf.Max(0f, value);
+    }
 
     private void Awake()
     {
@@ -30,11 +45,21 @@ public class EnemyAI : MonoBehaviour
     {
         GameObject playerObject = GameObject.FindGameObjectWithTag(playerTag);
         if (playerObject != null)
+        {
             player = playerObject.transform;
+            playerHealth = playerObject.GetComponent<HealthSystem>();
+        }
     }
 
     private void FixedUpdate()
     {
+        if (slowTimer > 0f)
+        {
+            slowTimer -= Time.fixedDeltaTime;
+            if (slowTimer <= 0f)
+                slowFactor = 1f;
+        }
+
         if (player == null)
         {
             rb.linearVelocity = Vector2.zero;
@@ -49,32 +74,28 @@ public class EnemyAI : MonoBehaviour
         }
 
         Vector2 direction = toPlayer.normalized;
-        rb.linearVelocity = direction * moveSpeed;
+        rb.linearVelocity = direction * (moveSpeed * slowFactor);
     }
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (!collision.gameObject.CompareTag(playerTag))
+        if (!collision.gameObject.CompareTag(playerTag) || playerHealth == null)
             return;
 
-        TryDamagePlayer(collision.gameObject);
+        TryDamagePlayer();
     }
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (!other.CompareTag(playerTag))
+        if (!other.CompareTag(playerTag) || playerHealth == null)
             return;
 
-        TryDamagePlayer(other.gameObject);
+        TryDamagePlayer();
     }
 
-    private void TryDamagePlayer(GameObject playerObject)
+    private void TryDamagePlayer()
     {
         if (Time.time < nextDamageTime)
-            return;
-
-        HealthSystem playerHealth = playerObject.GetComponent<HealthSystem>();
-        if (playerHealth == null)
             return;
 
         playerHealth.TakeDamage(contactDamage);
@@ -96,5 +117,11 @@ public class EnemyAI : MonoBehaviour
             enemyCollider = gameObject.AddComponent<CircleCollider2D>();
 
         enemyCollider.isTrigger = false;
+    }
+
+    public void ApplySlow(float factor, float duration)
+    {
+        slowFactor = Mathf.Clamp(factor, 0.1f, 1f);
+        slowTimer = Mathf.Max(slowTimer, duration);
     }
 }

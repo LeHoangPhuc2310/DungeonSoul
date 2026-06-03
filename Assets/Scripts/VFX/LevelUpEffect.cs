@@ -12,8 +12,8 @@ public class LevelUpEffect : MonoBehaviour
     [SerializeField] private Color flashColor = new Color(1f, 1f, 1f, 0.9f);
 
     [Header("Floating Text")]
-    [SerializeField] private float textFloatDuration = 1.0f;
-    [SerializeField] private float textFloatDistance = 1.5f;
+    [SerializeField] private float textFloatDuration = 1.5f;
+    [SerializeField] private float textFloatDistance = 2.0f;
 
     private Canvas flashCanvas;
     private Image flashImage;
@@ -69,10 +69,10 @@ public class LevelUpEffect : MonoBehaviour
 
         TextMeshPro text = floatingTextObject.AddComponent<TextMeshPro>();
         text.alignment = TextAlignmentOptions.Center;
-        text.fontSize = 4f;
+        text.fontSize = 36f;
         text.fontStyle = FontStyles.Bold;
         text.color = Color.yellow;
-        text.text = $"LEVEL UP!\nLV.{currentLevel}\n+{Mathf.RoundToInt(hpIncrease)} HP | +{Mathf.RoundToInt(damageIncrease)} DMG";
+        text.text = $"LEVEL UP! LV.{currentLevel}";
 
         StartCoroutine(AnimateFloatingText(text));
     }

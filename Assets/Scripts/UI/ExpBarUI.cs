@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class ExpBarUI : MonoBehaviour
 {
+    public static ExpBarUI Instance { get; private set; }
+
     [Header("References (Optional)")]
     [SerializeField] private Image expFillImage;
     [SerializeField] private TMP_Text levelText;
@@ -21,18 +23,37 @@ public class ExpBarUI : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
         EnsureUI();
     }
 
+    private void Start()
+    {
+        UpdateBar();
+    }
+
     private void Update()
+    {
+        UpdateBar();
+        flashTimer = Mathf.Max(0f, flashTimer - Time.unscaledDeltaTime);
+    }
+
+    public void UpdateBar()
     {
         ExpSystem expSystem = ExpSystem.Instance;
         if (expSystem == null)
             return;
 
-        float maxExp = Mathf.Max(1f, expSystem.ExpToNextLevel);
-        float ratio = Mathf.Clamp01(expSystem.CurrentExp / maxExp);
-        int level = Mathf.Max(1, expSystem.CurrentLevel);
+        float currentExp = expSystem.CurrentExp;
+        float expToNextLevel = Mathf.Max(1f, expSystem.ExpToNextLevel);
+        int currentLevel = Mathf.Max(1, expSystem.CurrentLevel);
+        float ratio = Mathf.Clamp01(currentExp / expToNextLevel);
 
         if (expFillImage != null)
         {
@@ -42,16 +63,15 @@ public class ExpBarUI : MonoBehaviour
         }
 
         if (levelText != null)
-            levelText.text = $"LV.{level}";
+            levelText.text = "LV." + currentLevel;
 
         if (expText != null)
-            expText.text = $"{Mathf.FloorToInt(expSystem.CurrentExp)} / {Mathf.CeilToInt(maxExp)} EXP";
+            expText.text = Mathf.FloorToInt(currentExp) + " / " + Mathf.CeilToInt(expToNextLevel) + " EXP";
 
-        if (lastKnownLevel > 0 && level > lastKnownLevel)
+        if (lastKnownLevel > 0 && currentLevel > lastKnownLevel)
             flashTimer = flashDuration;
 
-        lastKnownLevel = level;
-        flashTimer = Mathf.Max(0f, flashTimer - Time.unscaledDeltaTime);
+        lastKnownLevel = currentLevel;
     }
 
     private void EnsureUI()
@@ -98,6 +118,18 @@ public class ExpBarUI : MonoBehaviour
 
         if (expFillImage == null)
             expFillImage = GetOrAdd<UnityEngine.UI.Image>(fillRect.gameObject);
+        
+        // Ensure we have a sprite for fillAmount to work
+        if (expFillImage.sprite == null)
+        {
+            Texture2D tex = new Texture2D(2, 2);
+            for (int y = 0; y < 2; y++)
+                for (int x = 0; x < 2; x++)
+                    tex.SetPixel(x, y, Color.white);
+            tex.Apply();
+            expFillImage.sprite = Sprite.Create(tex, new Rect(0, 0, 2, 2), new Vector2(0.5f, 0.5f));
+        }
+
         expFillImage.type = UnityEngine.UI.Image.Type.Filled;
         expFillImage.fillMethod = UnityEngine.UI.Image.FillMethod.Horizontal;
         expFillImage.fillOrigin = (int)UnityEngine.UI.Image.OriginHorizontal.Left;

@@ -14,9 +14,9 @@ public class ChestController : MonoBehaviour
         if (!other.CompareTag("Player"))
             return;
 
-        SkillSelectionUI skillSelectionUI = FindObjectOfType<SkillSelectionUI>(true);
-        if (skillSelectionUI != null)
-            skillSelectionUI.Show();
+        SkillSelectionUI ui = SkillSelectionUI.GetOrFind();
+        if (ui != null)
+            ui.ShowChest(RoomType.Normal);
 
         gameObject.SetActive(false);
     }

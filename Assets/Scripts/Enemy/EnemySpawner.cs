@@ -10,6 +10,15 @@ public class EnemySpawner : MonoBehaviour
     public int minEnemies = 3;
     public int maxEnemies = 5;
     public float spawnDelay = 2f;
+    public List<Vector3> manualSpawnPoints = new List<Vector3>()
+    {
+        new Vector3(0,3,0),
+        new Vector3(3,2,0),
+        new Vector3(-3,2,0),
+        new Vector3(2,-2,0),
+        new Vector3(-2,-2,0)
+    };
+    public bool useManualSpawnPoints = true;
 
     private List<Vector3Int> walkableTiles = new List<Vector3Int>();
     private bool initialSpawnDone = false;
@@ -68,10 +77,23 @@ public class EnemySpawner : MonoBehaviour
 
     public void SpawnEnemy()
     {
-        if (walkableTiles.Count == 0 || enemyPrefab == null) return;
+        if (enemyPrefab == null) return;
 
-        Vector3Int randomTile = walkableTiles[Random.Range(0, walkableTiles.Count)];
-        Vector3 spawnPos = floorTilemap.GetCellCenterWorld(randomTile);
+        Vector3 spawnPos;
+        if (useManualSpawnPoints && manualSpawnPoints.Count > 0)
+        {
+            spawnPos = manualSpawnPoints[Random.Range(0, manualSpawnPoints.Count)];
+        }
+        else if (walkableTiles.Count > 0)
+        {
+            Vector3Int randomTile = walkableTiles[Random.Range(0, walkableTiles.Count)];
+            spawnPos = floorTilemap.GetCellCenterWorld(randomTile);
+        }
+        else
+        {
+            return;
+        }
+
         Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
     }
 }

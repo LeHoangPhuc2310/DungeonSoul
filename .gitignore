@@ -105,3 +105,8 @@ InitTestScene*.unity*
 
 # Auto-generated scenes by play mode tests
 /[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
+
+# Unity recovery / local AI graph cache
+/[Aa]ssets/_Recovery/
+/[Aa]ssets/AI Toolkit/
+/Library/AI.CoreGraph/

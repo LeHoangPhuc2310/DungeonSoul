@@ -43,6 +43,7 @@ public class ExpSystem : MonoBehaviour
 
         currentExp += amount;
         RaiseExpChanged();
+        ExpBarUI.Instance?.UpdateBar();
 
         if (currentExp >= ExpToNextLevel)
             OnLevelUp();
@@ -74,6 +75,8 @@ public class ExpSystem : MonoBehaviour
         Debug.Log("Level Up! Now level " + currentLevel);
         OnLevelUpEvent?.Invoke(currentLevel);
         RaiseExpChanged();
+        ExpBarUI.Instance?.UpdateBar();
+        // Level up = auto stats only. Skill pick comes from chest (see kich ban).
     }
 
     private void CachePlayerStatsComponents()
@@ -100,5 +103,7 @@ public class ExpSystem : MonoBehaviour
     private void RaiseExpChanged()
     {
         OnExpChanged?.Invoke(currentExp, ExpToNextLevel);
+        if (HUDManager.Instance != null)
+            HUDManager.Instance.UpdateExp(currentExp, ExpToNextLevel, currentLevel);
     }
 }

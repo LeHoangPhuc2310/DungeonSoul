@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class AutoAttack : MonoBehaviour
 {
@@ -15,6 +16,10 @@ public class AutoAttack : MonoBehaviour
     [SerializeField] private float critChance = 0f;
     [SerializeField] private float projectileScale = 0.2f;
     [SerializeField] private Color projectileColor = new Color(1f, 0.95f, 0.4f, 1f);
+    [SerializeField] private int initialProjectilePoolSize = 10;
+    [SerializeField] private int maxProjectilePoolSize = 20;
+
+    private Transform projectileRoot;
 
     public float FireInterval
     {
@@ -40,13 +45,36 @@ public class AutoAttack : MonoBehaviour
         set => projectileDamage = Mathf.Max(0f, value);
     }
 
+    public int MultiTargetCount
+    {
+        get => multiTargetCount;
+        set => multiTargetCount = Mathf.Max(1, value);
+    }
+
+    public float BaseFireInterval => baseFireInterval;
+    public float BaseProjectileDamage => baseProjectileDamage;
+
     private static Sprite cachedCircleSprite;
     private float shotCooldown;
+    private float baseFireInterval = 1f;
+    private float baseProjectileDamage = 10f;
+    private int multiTargetCount = 1;
     private Collider2D[] playerColliders;
+    private Transform cachedTransform;
+    private readonly List<Projectile> projectilePool = new List<Projectile>(20);
+    private readonly Collider2D[] enemyResults = new Collider2D[64];
 
     private void Awake()
     {
+        cachedTransform = transform;
         playerColliders = GetComponentsInChildren<Collider2D>();
+        baseFireInterval = fireInterval;
+        baseProjectileDamage = projectileDamage;
+
+        GameObject poolRoot = new GameObject("ProjectilePool");
+        projectileRoot = poolRoot.transform;
+
+        PrewarmProjectilePool();
     }
 
     private void Update()
@@ -59,31 +87,58 @@ public class AutoAttack : MonoBehaviour
         if (nearestEnemy == null)
             return;
 
-        FireProjectile(nearestEnemy.position);
+        int targets = Mathf.Max(1, multiTargetCount);
+        if (targets <= 1)
+        {
+            FireProjectile(nearestEnemy.position);
+        }
+        else
+        {
+            FireAtMultipleTargets(targets);
+        }
+
         shotCooldown = fireInterval;
+    }
+
+    private void FireAtMultipleTargets(int count)
+    {
+        int found = Physics2D.OverlapCircleNonAlloc(cachedTransform.position, attackRadius, enemyResults);
+        int fired = 0;
+        for (int i = 0; i < found && fired < count; i++)
+        {
+            Collider2D col = enemyResults[i];
+            if (col == null || !col.CompareTag(enemyTag))
+                continue;
+            FireProjectile(col.transform.position);
+            fired++;
+        }
     }
 
     private Transform FindNearestEnemy()
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
-        if (enemies == null || enemies.Length == 0)
+        int count = Physics2D.OverlapCircleNonAlloc(cachedTransform.position, attackRadius, enemyResults);
+        if (count <= 0)
             return null;
 
         float closestDistanceSqr = attackRadius * attackRadius;
         Transform closestTarget = null;
-        Vector3 origin = transform.position;
+        Vector3 origin = cachedTransform.position;
 
-        for (int i = 0; i < enemies.Length; i++)
+        for (int i = 0; i < count; i++)
         {
-            GameObject enemy = enemies[i];
-            if (enemy == null || !enemy.activeInHierarchy)
+            Collider2D enemyCollider = enemyResults[i];
+            if (enemyCollider == null)
                 continue;
 
-            float distanceSqr = (enemy.transform.position - origin).sqrMagnitude;
+            Transform enemy = enemyCollider.transform;
+            if (!enemy.gameObject.activeInHierarchy || !enemy.CompareTag(enemyTag))
+                continue;
+
+            float distanceSqr = (enemy.position - origin).sqrMagnitude;
             if (distanceSqr <= closestDistanceSqr)
             {
                 closestDistanceSqr = distanceSqr;
-                closestTarget = enemy.transform;
+                closestTarget = enemy;
             }
         }
 
@@ -92,7 +147,7 @@ public class AutoAttack : MonoBehaviour
 
     private void FireProjectile(Vector3 targetPosition)
     {
-        Vector2 direction = (targetPosition - transform.position);
+        Vector2 direction = (targetPosition - cachedTransform.position);
         if (direction.sqrMagnitude < 0.0001f)
             return;
 
@@ -111,9 +166,61 @@ public class AutoAttack : MonoBehaviour
 
     private void SpawnSingleProjectile(Vector2 direction, Vector2 spawnOffset)
     {
+        Projectile projectile = GetPooledProjectile();
+        if (projectile == null)
+            return;
+
+        Transform projectileTransform = projectile.transform;
+        projectileTransform.position = cachedTransform.position + (Vector3)spawnOffset;
+        projectileTransform.localScale = Vector3.one * projectileScale;
+
+        projectile.ConfigureVisual(GetCircleSprite(), projectileColor, 10);
+        projectile.Initialize(direction * projectileSpeed, projectileLifetime, projectileDamage, this);
+    }
+
+    public void ReturnProjectile(Projectile projectile)
+    {
+        if (projectile == null)
+            return;
+
+        projectile.gameObject.SetActive(false);
+    }
+
+    private void PrewarmProjectilePool()
+    {
+        int count = Mathf.Min(maxProjectilePoolSize, Mathf.Max(0, initialProjectilePoolSize));
+        for (int i = 0; i < count; i++)
+            CreateProjectileObject();
+    }
+
+    private Projectile GetPooledProjectile()
+    {
+        for (int i = 0; i < projectilePool.Count; i++)
+        {
+            Projectile pooled = projectilePool[i];
+            if (pooled != null && !pooled.gameObject.activeSelf)
+            {
+                pooled.gameObject.SetActive(true);
+                return pooled;
+            }
+        }
+
+        if (projectilePool.Count < maxProjectilePoolSize)
+        {
+            Projectile created = CreateProjectileObject();
+            if (created != null)
+                created.gameObject.SetActive(true);
+            return created;
+        }
+
+        return null;
+    }
+
+    private Projectile CreateProjectileObject()
+    {
         GameObject projectileObject = new GameObject("AutoAttackProjectile");
-        projectileObject.transform.position = transform.position + (Vector3)spawnOffset;
-        projectileObject.transform.localScale = Vector3.one * projectileScale;
+        projectileObject.transform.SetParent(projectileRoot);
+        projectileObject.SetActive(false);
 
         SpriteRenderer spriteRenderer = projectileObject.AddComponent<SpriteRenderer>();
         spriteRenderer.sprite = GetCircleSprite();
@@ -129,9 +236,10 @@ public class AutoAttack : MonoBehaviour
         rb.freezeRotation = true;
 
         Projectile projectile = projectileObject.AddComponent<Projectile>();
-        projectile.Initialize(direction * projectileSpeed, projectileLifetime, projectileDamage);
-
+        projectile.CacheComponents();
         IgnorePlayerCollisions(circleCollider);
+        projectilePool.Add(projectile);
+        return projectile;
     }
 
     private void IgnorePlayerCollisions(Collider2D projectileCollider)
