@@ -55,6 +55,12 @@ public class SkillSelectionUI : MonoBehaviour
             return Instance;
 
         Instance = Object.FindAnyObjectByType<SkillSelectionUI>(FindObjectsInactive.Include);
+        if (Instance != null)
+            return Instance;
+
+        // Auto-create if not present in scene
+        GameObject go = new GameObject("SkillSelectionUI");
+        go.AddComponent<SkillSelectionUI>();
         return Instance;
     }
 
@@ -86,8 +92,15 @@ public class SkillSelectionUI : MonoBehaviour
         if (skillCanvas == null)
             skillCanvas = GetComponentInChildren<Canvas>(true);
 
+        // No canvas anywhere — build one at runtime so the panel always works.
         if (skillCanvas == null)
-            return;
+        {
+            GameObject canvasGO = new GameObject("SkillSelectionCanvas");
+            canvasGO.transform.SetParent(transform, false);
+            skillCanvas = canvasGO.AddComponent<Canvas>();
+            canvasGO.AddComponent<UnityEngine.UI.CanvasScaler>().uiScaleMode =
+                UnityEngine.UI.CanvasScaler.ScaleMode.ScaleWithScreenSize;
+        }
 
         skillCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
         skillCanvas.sortingOrder = 200;
@@ -95,6 +108,14 @@ public class SkillSelectionUI : MonoBehaviour
 
         if (skillCanvas.GetComponent<GraphicRaycaster>() == null)
             skillCanvas.gameObject.AddComponent<GraphicRaycaster>();
+
+        // Buttons require an EventSystem to receive clicks
+        if (UnityEngine.EventSystems.EventSystem.current == null)
+        {
+            GameObject esGO = new GameObject("EventSystem");
+            esGO.AddComponent<UnityEngine.EventSystems.EventSystem>();
+            esGO.AddComponent<UnityEngine.EventSystems.StandaloneInputModule>();
+        }
     }
 
     private void OpenPanel(bool useFullChoices, RoomType chestRoom)
@@ -151,7 +172,7 @@ public class SkillSelectionUI : MonoBehaviour
             TMP_Text label = button.GetComponentInChildren<TMP_Text>(true);
             if (label != null)
             {
-                label.color = Color.black;
+                label.color = Color.white;
                 label.text = choice == null ? string.Empty : GetChoiceLabel(choice);
             }
 
@@ -191,6 +212,54 @@ public class SkillSelectionUI : MonoBehaviour
     {
         if (skillButtons == null || skillButtons.Length != 3)
             skillButtons = new Button[3];
+
+        // Build any missing buttons at runtime so the panel works without Inspector wiring.
+        if (skillCanvas == null)
+            return;
+
+        for (int i = 0; i < skillButtons.Length; i++)
+        {
+            if (skillButtons[i] != null)
+                continue;
+
+            skillButtons[i] = BuildRuntimeButton(i);
+        }
+    }
+
+    private Button BuildRuntimeButton(int index)
+    {
+        GameObject buttonGO = new GameObject("SkillButton_" + index, typeof(RectTransform));
+        buttonGO.transform.SetParent(skillCanvas.transform, false);
+
+        RectTransform rt = buttonGO.GetComponent<RectTransform>();
+        float panelW = 300f;
+        float panelH = 120f;
+        float startX = -(panelW + 20f);
+        rt.anchoredPosition = new Vector2(startX + index * (panelW + 20f), 0f);
+        rt.sizeDelta = new Vector2(panelW, panelH);
+        rt.anchorMin = rt.anchorMax = new Vector2(0.5f, 0.5f);
+
+        UnityEngine.UI.Image bg = buttonGO.AddComponent<UnityEngine.UI.Image>();
+        bg.color = new Color(0.15f, 0.15f, 0.2f, 0.97f);
+
+        Button btn = buttonGO.AddComponent<Button>();
+        btn.targetGraphic = bg;
+
+        GameObject textGO = new GameObject("Label", typeof(RectTransform));
+        textGO.transform.SetParent(buttonGO.transform, false);
+        RectTransform textRT = textGO.GetComponent<RectTransform>();
+        textRT.anchorMin = Vector2.zero;
+        textRT.anchorMax = Vector2.one;
+        textRT.offsetMin = new Vector2(8f, 8f);
+        textRT.offsetMax = new Vector2(-8f, -8f);
+
+        TextMeshProUGUI tmp = textGO.AddComponent<TextMeshProUGUI>();
+        tmp.fontSize = 14f;
+        tmp.alignment = TextAlignmentOptions.Center;
+        tmp.color = Color.white;
+        tmp.raycastTarget = false;
+
+        return btn;
     }
 
     private void BuildSkillOnlyChoices(RoomType chestRoom)
@@ -207,6 +276,11 @@ public class SkillSelectionUI : MonoBehaviour
                 skill = pick
             });
         }
+
+        // No SkillData assets found (Resources/SkillData/ folder empty or missing).
+        // Fall back to weapon + passive choices so the chest panel always opens.
+        if (currentChoices.Count == 0)
+            BuildChoices();
     }
 
     private SkillData PickWeightedSkill(RoomType chestRoom)

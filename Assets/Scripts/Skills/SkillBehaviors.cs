@@ -6,17 +6,20 @@ public class SkillBehaviors : MonoBehaviour
 {
     private PlayerSkillHandler handler;
     private HealthSystem health;
+    private PlayerSkillStats stats;
     private Transform cachedTransform;
     private float ghostTimer;
     private float timeFreezeTimer;
     private float dragonStrikeTimer;
     private bool ghostActive;
+    private readonly Collider2D[] iceAuraBuffer = new Collider2D[32];
 
     private void Awake()
     {
         cachedTransform = transform;
         handler = GetComponent<PlayerSkillHandler>();
         health = GetComponent<HealthSystem>();
+        stats = GetComponent<PlayerSkillStats>();
     }
 
     private void Update()
@@ -32,17 +35,12 @@ public class SkillBehaviors : MonoBehaviour
 
     public void OnPlayerDealtDamage(float damage, HealthSystem target)
     {
-        if (handler.HasSkill(SkillType.LifeSteal) && health != null)
-        {
-            PlayerSkillStats stats = GetComponent<PlayerSkillStats>();
-            if (stats != null && stats.LifeStealPercent > 0f)
-                health.Heal(damage * stats.LifeStealPercent);
-        }
+        if (handler.HasSkill(SkillType.LifeSteal) && health != null && stats != null && stats.LifeStealPercent > 0f)
+            health.Heal(damage * stats.LifeStealPercent);
     }
 
     public void OnEnemyKilled(Vector3 position, float maxHp)
     {
-        PlayerSkillStats stats = GetComponent<PlayerSkillStats>();
         if (stats == null)
             return;
 
@@ -142,16 +140,15 @@ public class SkillBehaviors : MonoBehaviour
 
     private void TickIceAura()
     {
-        PlayerSkillStats stats = GetComponent<PlayerSkillStats>();
         if (stats == null || stats.SlowAuraRadius <= 0f)
             return;
 
-        Collider2D[] hits = Physics2D.OverlapCircleAll(cachedTransform.position, stats.SlowAuraRadius);
-        for (int i = 0; i < hits.Length; i++)
+        int count = Physics2D.OverlapCircleNonAlloc(cachedTransform.position, stats.SlowAuraRadius, iceAuraBuffer);
+        for (int i = 0; i < count; i++)
         {
-            if (!hits[i].CompareTag("Enemy"))
+            if (!iceAuraBuffer[i].CompareTag("Enemy"))
                 continue;
-            EnemyAI ai = hits[i].GetComponent<EnemyAI>();
+            EnemyAI ai = iceAuraBuffer[i].GetComponent<EnemyAI>();
             if (ai != null)
                 ai.ApplySlow(stats.SlowAuraStrength, 0.25f);
         }

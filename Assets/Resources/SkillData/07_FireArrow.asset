@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e0d8e52eb103948a439ec2cc61f3ac, type: 3}
   m_Name: 07_FireArrow
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
-  skillName: FireArrow
-  description: Dan gay lua 3 damage/giay
+  skillName: Fire Arrow
+  description: Projectiles apply Burn: 3 dmg/s for 2s. Stack II extends to 3s, Stack III to 4s.
   rarity: 0
   skillType: 6
   value: 3

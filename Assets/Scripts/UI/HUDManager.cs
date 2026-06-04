@@ -111,12 +111,17 @@ public class HUDManager : MonoBehaviour
         if (gameOverCanvas != null)
         {
             gameOverCanvas.SetActive(true);
-            if (gameOverUI != null)
-            {
-                gameOverUI.Setup(score, currentFloor, coins);
-            }
+            gameOverUI?.Setup(score, currentFloor, coins);
         }
-        
+        else if (GameOverUI.Instance != null)
+        {
+            GameOverUI.Instance.Show(score, currentFloor, coins);
+        }
+        else
+        {
+            new GameObject("GameOverUI").AddComponent<GameOverUI>().Show(score, currentFloor, coins);
+        }
+
         Time.timeScale = 0f;
     }
 

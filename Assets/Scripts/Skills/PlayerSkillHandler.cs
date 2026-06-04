@@ -64,12 +64,12 @@ public class PlayerSkillHandler : MonoBehaviour
 
     private void RecalculateAllStats()
     {
-        CacheComponents();
-        if (baseMoveSpeed < 0f && playerController != null)
-            baseMoveSpeed = playerController.MoveSpeed;
-
-        if (playerController != null && baseMoveSpeed >= 0f)
+        if (playerController != null)
+        {
+            if (baseMoveSpeed < 0f)
+                baseMoveSpeed = playerController.MoveSpeed;
             playerController.MoveSpeed = baseMoveSpeed;
+        }
 
         if (autoAttack != null)
         {

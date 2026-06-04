@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e0d8e52eb103948a439ec2cc61f3ac, type: 3}
   m_Name: 19_GhostForm
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
-  skillName: GhostForm
-  description: Vo dich 2.5s moi 15s
+  skillName: Ghost Form
+  description: Become invincible for 2.5s every 15s. Stack II extends invincibility to 3.5s.
   rarity: 2
   skillType: 18
   value: 2.5

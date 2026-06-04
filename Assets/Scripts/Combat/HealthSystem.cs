@@ -60,7 +60,7 @@ public class HealthSystem : MonoBehaviour
         currentHP = Mathf.Max(0f, currentHP - finalDamage);
         HUDManager.SpawnDamageNumber(transform.position, finalDamage);
         if (currentHP <= 0f)
-Die();
+            Die();
     }
 
     public void Heal(float amount)

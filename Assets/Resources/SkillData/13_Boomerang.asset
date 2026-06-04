@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 13_Boomerang
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
   skillName: Boomerang
-  description: Dan quay ve sau max range
+  description: "Coming Soon - Projectiles arc back after reaching max range, hitting enemies a second time at 80% damage."
   rarity: 1
   skillType: 12
   value: 0.8

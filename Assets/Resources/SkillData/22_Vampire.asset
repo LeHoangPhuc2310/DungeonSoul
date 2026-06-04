@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 22_Vampire
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
   skillName: Vampire
-  description: Moi kill hoi 5% HP toi da
+  description: Restore 5% max HP on every kill. Stack II: 8% per kill. Also adds +1 HP regen/s at Stack II.
   rarity: 2
   skillType: 21
   value: 0.05

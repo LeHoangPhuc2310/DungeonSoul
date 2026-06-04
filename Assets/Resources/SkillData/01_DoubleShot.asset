@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e0d8e52eb103948a439ec2cc61f3ac, type: 3}
   m_Name: 01_DoubleShot
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
-  skillName: DoubleShot
-  description: Ban 2 dan song song
+  skillName: Double Shot
+  description: Fire 2 projectiles side by side. Stack II for 3, Stack III for 4.
   rarity: 0
   skillType: 0
   value: 2

@@ -33,15 +33,39 @@ public class ExpBarUI : MonoBehaviour
         EnsureUI();
     }
 
+    private bool subscribed;
+
     private void Start()
     {
+        TrySubscribe();
         UpdateBar();
     }
 
     private void Update()
     {
+        if (!subscribed)
+            TrySubscribe();
+        if (flashTimer > 0f)
+            flashTimer = Mathf.Max(0f, flashTimer - Time.unscaledDeltaTime);
+    }
+
+    private void OnDestroy()
+    {
+        if (subscribed && ExpSystem.Instance != null)
+            ExpSystem.Instance.OnExpChanged -= OnExpChanged;
+    }
+
+    private void TrySubscribe()
+    {
+        if (subscribed || ExpSystem.Instance == null)
+            return;
+        ExpSystem.Instance.OnExpChanged += OnExpChanged;
+        subscribed = true;
+    }
+
+    private void OnExpChanged(float current, float expToNext)
+    {
         UpdateBar();
-        flashTimer = Mathf.Max(0f, flashTimer - Time.unscaledDeltaTime);
     }
 
     public void UpdateBar()
@@ -57,6 +81,15 @@ public class ExpBarUI : MonoBehaviour
 
         if (expFillImage != null)
         {
+            // Re-enforce Filled mode every update — Inspector or Unity serialization
+            // can reset Image.type to Simple, which makes fillAmount have no visual effect.
+            if (expFillImage.type != Image.Type.Filled)
+            {
+                expFillImage.type = Image.Type.Filled;
+                expFillImage.fillMethod = Image.FillMethod.Horizontal;
+                expFillImage.fillOrigin = (int)Image.OriginHorizontal.Left;
+            }
+
             expFillImage.fillAmount = ratio;
             Color baseColor = Color.Lerp(lowExpColor, highExpColor, ratio);
             expFillImage.color = flashTimer > 0f ? Color.Lerp(baseColor, flashColor, flashTimer / flashDuration) : baseColor;
@@ -133,7 +166,7 @@ public class ExpBarUI : MonoBehaviour
         expFillImage.type = UnityEngine.UI.Image.Type.Filled;
         expFillImage.fillMethod = UnityEngine.UI.Image.FillMethod.Horizontal;
         expFillImage.fillOrigin = (int)UnityEngine.UI.Image.OriginHorizontal.Left;
-        expFillImage.fillAmount = 0f;
+        // Do NOT reset fillAmount here — Start() calls UpdateBar() which sets the correct value.
 
         if (levelText == null)
         {

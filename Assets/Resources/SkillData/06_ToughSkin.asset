@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e0d8e52eb103948a439ec2cc61f3ac, type: 3}
   m_Name: 06_ToughSkin
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
-  skillName: ToughSkin
-  description: Giam sat thuong nhan 8%
+  skillName: Tough Skin
+  description: '-8% all damage taken. Stack II: -15%, Stack III: -20%.'
   rarity: 0
   skillType: 5
   value: 0.08

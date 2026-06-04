@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e0d8e52eb103948a439ec2cc61f3ac, type: 3}
   m_Name: 08_SteadyAim
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
-  skillName: SteadyAim
-  description: Tang damage co ban +5
+  skillName: Steady Aim
+  description: +5 flat damage to all projectiles and weapons. Stacks additively per copy.
   rarity: 0
   skillType: 7
   value: 5

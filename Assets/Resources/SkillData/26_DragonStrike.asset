@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e0d8e52eb103948a439ec2cc61f3ac, type: 3}
   m_Name: 26_DragonStrike
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
-  skillName: DragonStrike
-  description: Phong rong lua moi 8s
+  skillName: Dragon Strike
+  description: Call a dragon strike every 8s dealing 150 damage to the nearest enemy. Legendary — one copy only.
   rarity: 3
   skillType: 25
   value: 150

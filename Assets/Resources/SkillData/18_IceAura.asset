@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e0d8e52eb103948a439ec2cc61f3ac, type: 3}
   m_Name: 18_IceAura
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
-  skillName: IceAura
-  description: Lam cham enemy xung quanh 40%
+  skillName: Ice Aura
+  description: Slows all enemies within range 8 by 40% continuously. Stack II increases slow to 60%.
   rarity: 2
   skillType: 17
   value: 0.4

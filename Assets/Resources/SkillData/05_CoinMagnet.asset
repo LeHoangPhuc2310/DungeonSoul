@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e0d8e52eb103948a439ec2cc61f3ac, type: 3}
   m_Name: 05_CoinMagnet
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
-  skillName: CoinMagnet
-  description: Tang pham vi hut xu +3
+  skillName: Coin Magnet
+  description: +3 pickup radius for coins and EXP gems. Stacks to +5, then +7. Also boosts coin drops by 10%.
   rarity: 0
   skillType: 4
   value: 3

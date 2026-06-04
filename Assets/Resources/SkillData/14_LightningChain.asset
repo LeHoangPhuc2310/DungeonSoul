@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e0d8e52eb103948a439ec2cc61f3ac, type: 3}
   m_Name: 14_LightningChain
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
-  skillName: LightningChain
-  description: Crit chain sang 1 enemy
+  skillName: Lightning Chain
+  description: "Coming Soon - Critical hits chain lightning to the nearest enemy for 60% damage."
   rarity: 1
   skillType: 13
   value: 1

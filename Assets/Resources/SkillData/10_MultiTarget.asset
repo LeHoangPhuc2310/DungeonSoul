@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e0d8e52eb103948a439ec2cc61f3ac, type: 3}
   m_Name: 10_MultiTarget
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
-  skillName: MultiTarget
-  description: Ban 2 enemy cung luc
+  skillName: Multi-Target
+  description: Auto-attack fires at 2 enemies simultaneously. Stack II: 3 targets, Stack III: 4 targets.
   rarity: 1
   skillType: 9
   value: 2

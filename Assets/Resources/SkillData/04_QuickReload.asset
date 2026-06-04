@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e0d8e52eb103948a439ec2cc61f3ac, type: 3}
   m_Name: 04_QuickReload
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
-  skillName: QuickReload
-  description: Giam cooldown ban 20%
+  skillName: Quick Reload
+  description: '-20% attack cooldown. Stack II: -35%, Stack III: -50%.'
   rarity: 0
   skillType: 3
   value: 0.2

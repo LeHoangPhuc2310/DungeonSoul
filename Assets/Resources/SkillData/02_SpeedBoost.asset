@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e0d8e52eb103948a439ec2cc61f3ac, type: 3}
   m_Name: 02_SpeedBoost
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
-  skillName: SpeedBoost
-  description: Di chuyen nhanh hon +1.0
+  skillName: Speed Boost
+  description: +1 move speed. Stack II adds +1.5, Stack III adds +2 total over base.
   rarity: 0
   skillType: 1
   value: 1

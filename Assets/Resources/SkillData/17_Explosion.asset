@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 17_Explosion
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
   skillName: Explosion
-  description: Enemy chet phat no radius 2.5
+  description: Kills trigger an explosion (r=2.5) dealing 60% of the enemy's max HP. Stack II widens to r=3.5 at 70%.
   rarity: 2
   skillType: 16
   value: 2.5
