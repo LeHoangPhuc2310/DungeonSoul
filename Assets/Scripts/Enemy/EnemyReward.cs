@@ -11,6 +11,14 @@ public class EnemyReward : MonoBehaviour
     public int ScoreReward => scoreReward;
     public bool IsBoss => isBoss;
 
+    public void Configure(int score, int minCoins, int maxCoins, bool eliteEnemy)
+    {
+        scoreReward = Mathf.Max(1, score);
+        coinMin = Mathf.Max(0, minCoins);
+        coinMax = Mathf.Max(coinMin, maxCoins);
+        isElite = eliteEnemy;
+    }
+
     public int RollCoins()
     {
         int min = coinMin;

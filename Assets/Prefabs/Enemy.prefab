@@ -15,6 +15,9 @@ GameObject:
   - component: {fileID: 6287671076742672071}
   - component: {fileID: 3282510786915906453}
   - component: {fileID: 8991216897406960290}
+  - component: {fileID: 7711223344556677889}
+  - component: {fileID: 8803311782992774225}
+  - component: {fileID: -7492264878523628621}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -156,9 +159,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
   detectionRadius: 6
   moveSpeed: 2
+  stopDistance: 0.75
+  attackRange: 0.95
   contactDamage: 10
   damageInterval: 1.5
   playerTag: Player
+  bobAmplitude: 0.07
+  bobSpeed: 9
 --- !u!61 &3282510786915906453
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -220,3 +227,44 @@ MonoBehaviour:
   dropChance: 0.25
   bonusCoinMin: 1
   bonusCoinMax: 3
+--- !u!114 &7711223344556677889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7177117788238185271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 969a71120f5467544b4bb90e499bbbb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyReward
+  scoreReward: 10
+  coinMin: 3
+  coinMax: 6
+  isElite: 0
+  isBoss: 0
+--- !u!114 &8803311782992774225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7177117788238185271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bfaa989e9662614b8d19b8f73ddde33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyPhysicsSetup
+--- !u!114 &-7492264878523628621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7177117788238185271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c03661f1d257eda4c8b201f79042cde4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemySpriteAnimator

@@ -1,0 +1,1326 @@
+fileFormatVersion: 2
+guid: 7fec8d8cb8453844ab90dbb39929db4a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6258917724599674844
+    second: Arken_0
+  - first:
+      213: -6690858240498866286
+    second: Arken_1
+  - first:
+      213: 5964071460913645919
+    second: Arken_2
+  - first:
+      213: 7332819397647854403
+    second: Arken_3
+  - first:
+      213: -5153627623665511820
+    second: Arken_4
+  - first:
+      213: 1568545460793336824
+    second: Arken_5
+  - first:
+      213: -2244309415759693487
+    second: Arken_6
+  - first:
+      213: 5163800947475853078
+    second: Arken_7
+  - first:
+      213: -2516161725644759397
+    second: Arken_8
+  - first:
+      213: 2751285205645016149
+    second: Arken_9
+  - first:
+      213: -3569568249604836359
+    second: Arken_10
+  - first:
+      213: 7674252224170783897
+    second: Arken_11
+  - first:
+      213: -4518268438309533588
+    second: Arken_12
+  - first:
+      213: 6083033488525857831
+    second: Arken_13
+  - first:
+      213: -2452065994889801772
+    second: Arken_14
+  - first:
+      213: 6252840359100898684
+    second: Arken_15
+  - first:
+      213: -8961478442917405125
+    second: Arken_16
+  - first:
+      213: 3298502558289350663
+    second: Arken_17
+  - first:
+      213: -1498071817887813671
+    second: Arken_18
+  - first:
+      213: -5876574460062586615
+    second: Arken_19
+  - first:
+      213: -1563331074894007697
+    second: Arken_20
+  - first:
+      213: 333297563623444537
+    second: Arken_21
+  - first:
+      213: 6168413027562336715
+    second: Arken_22
+  - first:
+      213: -7742329717426677798
+    second: Arken_23
+  - first:
+      213: -7571020022187962306
+    second: Arken_24
+  - first:
+      213: 23409844234820863
+    second: Arken_25
+  - first:
+      213: -2326568363217118323
+    second: Arken_26
+  - first:
+      213: 8631584078726363681
+    second: Arken_27
+  - first:
+      213: -6126747721035050734
+    second: Arken_28
+  - first:
+      213: 6578551221966777174
+    second: Arken_29
+  - first:
+      213: 4926870941826080459
+    second: Arken_30
+  - first:
+      213: 2386700339602661943
+    second: Arken_31
+  - first:
+      213: 8856469322569055
+    second: Arken_32
+  - first:
+      213: -8840412512508778503
+    second: Arken_33
+  - first:
+      213: 4653222438139456358
+    second: Arken_34
+  - first:
+      213: 6830158724496099458
+    second: Arken_35
+  - first:
+      213: -355794818866646939
+    second: Arken_36
+  - first:
+      213: 8740809557612985038
+    second: Arken_37
+  - first:
+      213: -2388859340124211721
+    second: Arken_38
+  - first:
+      213: 3736701061855711967
+    second: Arken_39
+  - first:
+      213: 1395928512268956970
+    second: Arken_40
+  - first:
+      213: -4400734024280234557
+    second: Arken_41
+  - first:
+      213: -6770146625982531169
+    second: Arken_42
+  - first:
+      213: 7959463861911179675
+    second: Arken_43
+  - first:
+      213: -6070774431312742226
+    second: Arken_44
+  - first:
+      213: 9045997554922235710
+    second: Arken_45
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Arken_0
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 207
+        width: 23
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42817da9d7bd329a0800000000000000
+      internalID: -6258917724599674844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arken_1
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 207
+        width: 23
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 297e19441eb4523a0800000000000000
+      internalID: -6690858240498866286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arken_2
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 207
+        width: 23
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f598dca0563a4c250800000000000000
+      internalID: 5964071460913645919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arken_3
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 207
+        width: 23
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34be4e6246863c560800000000000000
+      internalID: 7332819397647854403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arken_4
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 154
+        width: 23
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 472d6ca3bf2aa78b0800000000000000
+      internalID: -5153627623665511820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arken_5
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 156
+        width: 24
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f363ac39c794c510800000000000000
+      internalID: 1568545460793336824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arken_6
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 155
+        width: 24
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 159349b2a7c9ad0e0800000000000000
+      internalID: -2244309415759693487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arken_7
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 154
+        width: 23
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61faf1d4a9189a740800000000000000
+      internalID: 5163800947475853078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arken_8
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 157
+        width: 23
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9e9281ed3cc41dd0800000000000000
+      internalID: -2516161725644759397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arken_9
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 156
+        width: 23
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55c324e41578e2620800000000000000
+      internalID: 2751285205645016149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arken_10
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 102
+        width: 23
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f37ac0e698567ec0800000000000000
+      internalID: -3569568249604836359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arken_11
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 102
+        width: 23
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 994737aecbb608a60800000000000000
+      internalID: 7674252224170783897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arken_12
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 100
+        width: 23
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6883be4bc2eb41c0800000000000000
+      internalID: -4518268438309533588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arken_13
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 98
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72493608ab64b6450800000000000000
+      internalID: 6083033488525857831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arken_14
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 98
+        width: 27
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4df47c028f288fdd0800000000000000
+      internalID: -2452065994889801772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arken_15
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 97
+        width: 33
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7d5f697d2d86c650800000000000000
+      internalID: 6252840359100898684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arken_16
+      rect:
+        serializedVersion: 2
+        x: 398
+        y: 102
+        width: 33
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3e569b06de62a380800000000000000
+      internalID: -8961478442917405125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arken_17
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 115
+        width: 22
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 700dd8db992a6cd20800000000000000
+      internalID: 3298502558289350663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arken_18
+      rect:
+        serializedVersion: 2
+        x: 474
+        y: 122
+        width: 12
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9dfe5c66e97c53be0800000000000000
+      internalID: -1498071817887813671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arken_19
+      rect:
+        serializedVersion: 2
+        x: 482
+        y: 124
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90926dbf9a6327ea0800000000000000
+      internalID: -5876574460062586615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arken_20
+      rect:
+        serializedVersion: 2
+        x: 482
+        y: 115
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f62fc969baeed4ae0800000000000000
+      internalID: -1563331074894007697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arken_21
+      rect:
+        serializedVersion: 2
+        x: 531
+        y: 123
+        width: 29
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93057444e5c10a400800000000000000
+      internalID: 333297563623444537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arken_22
+      rect:
+        serializedVersion: 2
+        x: 597
+        y: 65
+        width: 20
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc1beb787fa9a9550800000000000000
+      internalID: 6168413027562336715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arken_23
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 101
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad715d28428bd8490800000000000000
+      internalID: -7742329717426677798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arken_24
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 60
+        width: 15
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e30dd1e17655ee690800000000000000
+      internalID: -7571020022187962306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arken_25
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 59
+        width: 15
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ffc1dd9112b235000800000000000000
+      internalID: 23409844234820863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arken_26
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 76
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8b18cc766e56bfd0800000000000000
+      internalID: -2326568363217118323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arken_27
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 58
+        width: 15
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 12af66dccfb89c770800000000000000
+      internalID: 8631584078726363681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arken_28
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 75
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 211954b986b69faa0800000000000000
+      internalID: -6126747721035050734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arken_29
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 55
+        width: 15
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65baa025b75bb4b50800000000000000
+      internalID: 6578551221966777174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arken_30
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 76
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bcedcb59403cf5440800000000000000
+      internalID: 4926870941826080459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arken_31
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 55
+        width: 15
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 732225740534f1120800000000000000
+      internalID: 2386700339602661943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arken_32
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 77
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f559fe379e67f1000800000000000000
+      internalID: 8856469322569055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arken_33
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 55
+        width: 17
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f7eefb88ab805580800000000000000
+      internalID: -8840412512508778503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arken_34
+      rect:
+        serializedVersion: 2
+        x: 347
+        y: 74
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66bed265721939040800000000000000
+      internalID: 4653222438139456358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arken_35
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 59
+        width: 16
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28800251c2999ce50800000000000000
+      internalID: 6830158724496099458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arken_36
+      rect:
+        serializedVersion: 2
+        x: 411
+        y: 72
+        width: 14
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56077805f76ff0bf0800000000000000
+      internalID: -355794818866646939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arken_37
+      rect:
+        serializedVersion: 2
+        x: 469
+        y: 64
+        width: 19
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eca7cda5bf79d4970800000000000000
+      internalID: 8740809557612985038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arken_38
+      rect:
+        serializedVersion: 2
+        x: 475
+        y: 73
+        width: 14
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f5b58d361119ded0800000000000000
+      internalID: -2388859340124211721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arken_39
+      rect:
+        serializedVersion: 2
+        x: 533
+        y: 65
+        width: 20
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd21cbf51dd6bd330800000000000000
+      internalID: 3736701061855711967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arken_40
+      rect:
+        serializedVersion: 2
+        x: 659
+        y: 54
+        width: 23
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2571a106955f5310800000000000000
+      internalID: 1395928512268956970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arken_41
+      rect:
+        serializedVersion: 2
+        x: 723
+        y: 54
+        width: 23
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c52dc398b37de2c0800000000000000
+      internalID: -4400734024280234557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arken_42
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 55
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f997001738b9b02a0800000000000000
+      internalID: -6770146625982531169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arken_43
+      rect:
+        serializedVersion: 2
+        x: 472
+        y: 55
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9156cb1632b57e60800000000000000
+      internalID: 7959463861911179675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arken_44
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 55
+        width: 15
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea8741ea1d640cba0800000000000000
+      internalID: -6070774431312742226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arken_45
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 55
+        width: 15
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e37213439d6d98d70800000000000000
+      internalID: 9045997554922235710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Arken_0: -6258917724599674844
+      Arken_1: -6690858240498866286
+      Arken_10: -3569568249604836359
+      Arken_11: 7674252224170783897
+      Arken_12: -4518268438309533588
+      Arken_13: 6083033488525857831
+      Arken_14: -2452065994889801772
+      Arken_15: 6252840359100898684
+      Arken_16: -8961478442917405125
+      Arken_17: 3298502558289350663
+      Arken_18: -1498071817887813671
+      Arken_19: -5876574460062586615
+      Arken_2: 5964071460913645919
+      Arken_20: -1563331074894007697
+      Arken_21: 333297563623444537
+      Arken_22: 6168413027562336715
+      Arken_23: -7742329717426677798
+      Arken_24: -7571020022187962306
+      Arken_25: 23409844234820863
+      Arken_26: -2326568363217118323
+      Arken_27: 8631584078726363681
+      Arken_28: -6126747721035050734
+      Arken_29: 6578551221966777174
+      Arken_3: 7332819397647854403
+      Arken_30: 4926870941826080459
+      Arken_31: 2386700339602661943
+      Arken_32: 8856469322569055
+      Arken_33: -8840412512508778503
+      Arken_34: 4653222438139456358
+      Arken_35: 6830158724496099458
+      Arken_36: -355794818866646939
+      Arken_37: 8740809557612985038
+      Arken_38: -2388859340124211721
+      Arken_39: 3736701061855711967
+      Arken_4: -5153627623665511820
+      Arken_40: 1395928512268956970
+      Arken_41: -4400734024280234557
+      Arken_42: -6770146625982531169
+      Arken_43: 7959463861911179675
+      Arken_44: -6070774431312742226
+      Arken_45: 9045997554922235710
+      Arken_5: 1568545460793336824
+      Arken_6: -2244309415759693487
+      Arken_7: 5163800947475853078
+      Arken_8: -2516161725644759397
+      Arken_9: 2751285205645016149
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

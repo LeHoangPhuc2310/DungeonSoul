@@ -42,39 +42,76 @@ public class ExpSystem : MonoBehaviour
             return;
 
         currentExp += amount;
+        ProcessLevelUps();
         RaiseExpChanged();
-
-        if (currentExp >= ExpToNextLevel)
-            OnLevelUp();
     }
 
-    private void OnLevelUp()
+    private void ProcessLevelUps()
+    {
+        while (currentExp >= ExpToNextLevel)
+        {
+            currentExp -= ExpToNextLevel;
+            ApplyLevelUp();
+        }
+    }
+
+    private void ApplyLevelUp()
     {
         currentLevel++;
-        currentExp = 0f;
 
         CachePlayerStatsComponents();
 
+        float hpGain = LevelUpMaxHpIncrease;
+        float dmgGain = LevelUpDamageIncrease;
+        if (HeroRunStats.Instance != null)
+        {
+            switch (HeroRunStats.Instance.SelectedHero)
+            {
+                case HeroType.Ranger:
+                    hpGain = 8f;
+                    dmgGain = 3f;
+                    break;
+                case HeroType.Mage:
+                    hpGain = 6f;
+                    dmgGain = 4f;
+                    break;
+            }
+        }
+
         if (playerHealth != null)
         {
-            playerHealth.MaxHP += LevelUpMaxHpIncrease;
-            playerHealth.CurrentHP += LevelUpMaxHpIncrease;
+            playerHealth.MaxHP += hpGain;
+            playerHealth.CurrentHP += hpGain;
         }
 
         if (playerAttack != null)
-            playerAttack.ProjectileDamage += LevelUpDamageIncrease;
+            playerAttack.AddPermanentDamage(dmgGain);
+
+        PlayerSkillHandler skills = PlayerSkillHandler.Instance;
+        if (skills == null)
+        {
+            GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+            if (playerObj != null)
+                skills = playerObj.GetComponent<PlayerSkillHandler>();
+        }
+        if (skills != null)
+            skills.RefreshStats();
 
         LevelUpEffect levelUpEffect = LevelUpEffect.Instance;
         if (levelUpEffect != null)
         {
             Transform target = playerHealth != null ? playerHealth.transform : transform;
-            levelUpEffect.Play(target, currentLevel, LevelUpMaxHpIncrease, LevelUpDamageIncrease);
+            levelUpEffect.Play(target, currentLevel, hpGain, dmgGain);
         }
 
+        AudioManager.PlayLevelUp();
+        AchievementManager.Instance?.OnPlayerLevel(currentLevel);
         Debug.Log("Level Up! Now level " + currentLevel);
         OnLevelUpEvent?.Invoke(currentLevel);
-        RaiseExpChanged();
-        // Level up = auto stats only. Skill pick comes from chest.
+
+        SkillSelectionUI skillUi = SkillSelectionUI.GetOrFind();
+        if (skillUi != null && !skillUi.IsPanelOpen)
+            skillUi.Show();
     }
 
     private void CachePlayerStatsComponents()
@@ -93,15 +130,15 @@ public class ExpSystem : MonoBehaviour
             playerAttack = player.GetComponent<AutoAttack>();
     }
 
-    private static float CalculateExpToNextLevel(int level)
+    public static float CalculateExpToNextLevel(int level)
     {
-        return 100f * Mathf.Pow(Mathf.Max(1, level), 1.5f);
+        int lv = Mathf.Max(1, level);
+        return 260f * Mathf.Pow(lv, 1.62f);
     }
 
     private void RaiseExpChanged()
     {
         OnExpChanged?.Invoke(currentExp, ExpToNextLevel);
-        if (HUDManager.Instance != null)
-            HUDManager.Instance.UpdateExp(currentExp, ExpToNextLevel, currentLevel);
+        HUDManager.Resolve()?.ForceRefreshFromSystems(false);
     }
 }

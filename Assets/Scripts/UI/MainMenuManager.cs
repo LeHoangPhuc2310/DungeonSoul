@@ -62,18 +62,21 @@ public class MainMenuManager : MonoBehaviour
         sub.color = new Color(0.7f, 0.7f, 0.8f, 1f);
         sub.raycastTarget = false;
 
-        // Buttons
-        MakeButton("PLAY",  canvasGO.transform, new Vector2(0f, -30f),  OnPlay);
-        MakeButton("QUIT",  canvasGO.transform, new Vector2(0f, -120f), OnQuit);
+        // Việc chọn nhân vật chuyển sang CharacterSelectScene; MainMenu chỉ còn PLAY/QUIT.
+        MakeButton("PLAY", canvasGO.transform, new Vector2(0f, -60f), OnPlay);
+        MakeButton("QUIT", canvasGO.transform, new Vector2(0f, -160f), OnQuit);
     }
 
     private void OnPlay()
     {
-        // Game scene is expected at build index 1
-        if (SceneManager.sceneCountInBuildSettings > 1)
-            SceneManager.LoadScene(1);
+        // Vào màn chọn nhân vật trước khi vào game.
+        const string selectScene = "CharacterSelectScene";
+        if (Application.CanStreamedLevelBeLoaded(selectScene))
+            SceneManager.LoadScene(selectScene);
+        else if (SceneManager.sceneCountInBuildSettings > 1)
+            SceneManager.LoadScene(1); // dự phòng: scene kế tiếp
         else
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // fallback: reload self
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private void OnQuit()

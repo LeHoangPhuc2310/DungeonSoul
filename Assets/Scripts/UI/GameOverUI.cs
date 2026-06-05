@@ -13,6 +13,7 @@ public class GameOverUI : MonoBehaviour
     [SerializeField] private TMP_Text coinsResultText;
     [SerializeField] private Button playAgainButton;
     [SerializeField] private Button menuButton;
+    [SerializeField] private TMP_Text titleText;
 
     private Canvas canvas;
 
@@ -29,33 +30,97 @@ public class GameOverUI : MonoBehaviour
     private void Start()
     {
         EnsureUI();
+        WireButtons();
     }
 
-    public void Show(int score, int floor, int coins)
+    public void Show(int score, int floor, int coins, bool victory = false)
     {
         EnsureUI();
+        WireButtons();
         if (canvas != null)
             canvas.gameObject.SetActive(true);
-        Setup(score, floor, coins);
+        Setup(score, floor, coins, victory);
     }
 
-    public void Setup(int score, int floor, int coins)
+    public void HidePanel()
+    {
+        Canvas c = canvas != null ? canvas : GetComponent<Canvas>();
+        if (c == null)
+            c = GetComponentInChildren<Canvas>(true);
+        if (c != null)
+            c.gameObject.SetActive(false);
+    }
+
+    public void Setup(int score, int floor, int coins, bool victory = false)
     {
         EnsureUI();
+        ResolveSceneTextReferences();
+
+        if (titleText != null)
+        {
+            titleText.text = victory ? "CHIẾN THẮNG!" : "GAME OVER";
+            titleText.color = victory ? new Color(0.95f, 0.82f, 0.2f, 1f) : new Color(0.95f, 0.25f, 0.25f, 1f);
+        }
+
         if (scoreResultText != null) scoreResultText.text = "Score: " + score;
-        if (floorResultText != null) floorResultText.text = "Floor: " + floor;
-        if (coinsResultText != null) coinsResultText.text = "Coins: " + coins;
+        if (floorResultText != null) floorResultText.text = victory ? "Hoàn thành 10 tầng!" : "Floor: " + floor;
+        if (coinsResultText != null)
+        {
+            int meta = MetaProgression.Instance != null ? MetaProgression.Instance.MetaCoins : 0;
+            coinsResultText.text = "Xu run: " + coins + "  |  Meta: " + meta;
+        }
+
+        AchievementManager.Instance?.OnRunEnded(victory, floor);
+        if (!victory && MetaProgression.Instance != null)
+            MetaProgression.Instance.AddMetaCoins(Mathf.Max(0, coins / 10));
+    }
+
+    private void WireButtons()
+    {
+        if (playAgainButton != null)
+        {
+            playAgainButton.onClick.RemoveListener(PlayAgain);
+            playAgainButton.onClick.AddListener(PlayAgain);
+        }
+
+        if (menuButton != null)
+        {
+            menuButton.onClick.RemoveListener(GoToMenu);
+            menuButton.onClick.AddListener(GoToMenu);
+        }
+    }
+
+    private void ResolveSceneTextReferences()
+    {
+        if (titleText == null)
+        {
+            TMP_Text[] texts = GetComponentsInChildren<TMP_Text>(true);
+            for (int i = 0; i < texts.Length; i++)
+            {
+                if (texts[i].gameObject.name.IndexOf("GameOverTitle", System.StringComparison.OrdinalIgnoreCase) >= 0
+                    || texts[i].gameObject.name.IndexOf("Title", System.StringComparison.OrdinalIgnoreCase) >= 0)
+                {
+                    titleText = texts[i];
+                    break;
+                }
+            }
+        }
     }
 
     private void EnsureUI()
     {
-        if (canvas != null) return;
-
-        // Use an existing canvas on this or parent first
-        canvas = GetComponentInParent<Canvas>();
         if (canvas != null)
         {
-            canvas.gameObject.SetActive(false);
+            ResolveSceneTextReferences();
+            return;
+        }
+
+        canvas = GetComponent<Canvas>();
+        if (canvas == null)
+            canvas = GetComponentInChildren<Canvas>(true);
+        if (canvas != null)
+        {
+            ResolveSceneTextReferences();
             return;
         }
 
@@ -93,8 +158,7 @@ public class GameOverUI : MonoBehaviour
 
         Transform p = panel.transform;
 
-        // Title
-        MakeText("GAME OVER", p, new Vector2(0f, 160f), 46f, new Color(0.95f, 0.25f, 0.25f), FontStyles.Bold);
+        titleText = MakeText("GAME OVER", p, new Vector2(0f, 160f), 46f, new Color(0.95f, 0.25f, 0.25f), FontStyles.Bold);
 
         // Result texts
         scoreResultText = MakeText("Score: 0", p, new Vector2(0f, 80f), 26f, Color.white);
@@ -161,12 +225,33 @@ public class GameOverUI : MonoBehaviour
     public void PlayAgain()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        RunManager.Instance?.ResetForNewRun();
+        HUDManager.Resolve()?.ResetForNewRun();
+        HidePanel();
+        Instance = null;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void GoToMenu()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(0);
+        RunManager.Instance?.ResetForNewRun();
+        HUDManager.Resolve()?.ResetForNewRun();
+        HidePanel();
+        Instance = null;
+
+        // Về MainMenu nếu có, không thì về màn chọn nhân vật.
+        if (Application.CanStreamedLevelBeLoaded("MainMenu"))
+            SceneManager.LoadScene("MainMenu");
+        else if (Application.CanStreamedLevelBeLoaded("CharacterSelectScene"))
+            SceneManager.LoadScene("CharacterSelectScene");
+        else
+            SceneManager.LoadScene(0);
+    }
+
+    private void OnDestroy()
+    {
+        if (Instance == this)
+            Instance = null;
     }
 }

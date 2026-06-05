@@ -1,0 +1,1820 @@
+fileFormatVersion: 2
+guid: b438a5e6aa9961c4db236ad8e89c0ed1
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -9082694100662509790
+    second: Zephyr_0
+  - first:
+      213: 902390041369348162
+    second: Zephyr_1
+  - first:
+      213: -8948466702008791870
+    second: Zephyr_2
+  - first:
+      213: 3303674999271598830
+    second: Zephyr_3
+  - first:
+      213: -3511447345587366141
+    second: Zephyr_4
+  - first:
+      213: -260282287105198194
+    second: Zephyr_5
+  - first:
+      213: 3713031039820849819
+    second: Zephyr_6
+  - first:
+      213: 1709271181192991472
+    second: Zephyr_7
+  - first:
+      213: -6176341300353455936
+    second: Zephyr_8
+  - first:
+      213: -5213926985141957557
+    second: Zephyr_9
+  - first:
+      213: -5085127918615087411
+    second: Zephyr_10
+  - first:
+      213: 5671190446313246114
+    second: Zephyr_11
+  - first:
+      213: -3620971915378497922
+    second: Zephyr_12
+  - first:
+      213: -2080439732199712920
+    second: Zephyr_13
+  - first:
+      213: 8975244050897551535
+    second: Zephyr_14
+  - first:
+      213: -7531879797312470586
+    second: Zephyr_15
+  - first:
+      213: 8837030815993468401
+    second: Zephyr_16
+  - first:
+      213: 8198007799603881916
+    second: Zephyr_17
+  - first:
+      213: -4323154599028890416
+    second: Zephyr_18
+  - first:
+      213: 5331905725849554029
+    second: Zephyr_19
+  - first:
+      213: 8961465980171428756
+    second: Zephyr_20
+  - first:
+      213: 6629677290426764226
+    second: Zephyr_21
+  - first:
+      213: 1278943589213639754
+    second: Zephyr_22
+  - first:
+      213: -8517397548832397482
+    second: Zephyr_23
+  - first:
+      213: 1092746588633434600
+    second: Zephyr_24
+  - first:
+      213: 6172932208308178119
+    second: Zephyr_25
+  - first:
+      213: -8733713965463641367
+    second: Zephyr_26
+  - first:
+      213: 3448312016610442462
+    second: Zephyr_27
+  - first:
+      213: -5466721629929626199
+    second: Zephyr_28
+  - first:
+      213: -3958003399632377442
+    second: Zephyr_29
+  - first:
+      213: -4728648891216187857
+    second: Zephyr_30
+  - first:
+      213: 2927531973086238520
+    second: Zephyr_31
+  - first:
+      213: -5967885062953040865
+    second: Zephyr_32
+  - first:
+      213: 7147790597279732269
+    second: Zephyr_33
+  - first:
+      213: 2944200175111951878
+    second: Zephyr_34
+  - first:
+      213: 1120356713361924006
+    second: Zephyr_35
+  - first:
+      213: -2288489949436456919
+    second: Zephyr_36
+  - first:
+      213: 6365467553095178821
+    second: Zephyr_37
+  - first:
+      213: 9154118345323447019
+    second: Zephyr_38
+  - first:
+      213: 2356961881344512865
+    second: Zephyr_39
+  - first:
+      213: -1589390063496180933
+    second: Zephyr_40
+  - first:
+      213: 550111588969820868
+    second: Zephyr_41
+  - first:
+      213: -4886821721199216093
+    second: Zephyr_42
+  - first:
+      213: -1749205547754141225
+    second: Zephyr_43
+  - first:
+      213: -720362930834792626
+    second: Zephyr_44
+  - first:
+      213: -619996625636887878
+    second: Zephyr_45
+  - first:
+      213: -3012844336526641882
+    second: Zephyr_46
+  - first:
+      213: 8915981939077699102
+    second: Zephyr_47
+  - first:
+      213: -2226980695281402851
+    second: Zephyr_48
+  - first:
+      213: -2959568395481822259
+    second: Zephyr_49
+  - first:
+      213: -7797205249824331018
+    second: Zephyr_50
+  - first:
+      213: -1716549228525362341
+    second: Zephyr_51
+  - first:
+      213: 9105907121257812848
+    second: Zephyr_52
+  - first:
+      213: -8828758996153988639
+    second: Zephyr_53
+  - first:
+      213: 6738888723185970153
+    second: Zephyr_54
+  - first:
+      213: -6349162930330189410
+    second: Zephyr_55
+  - first:
+      213: 4794717905175909576
+    second: Zephyr_56
+  - first:
+      213: 4853442908040407135
+    second: Zephyr_57
+  - first:
+      213: 3880948853656927732
+    second: Zephyr_58
+  - first:
+      213: 1960756304953355386
+    second: Zephyr_59
+  - first:
+      213: 9170652899231462898
+    second: Zephyr_60
+  - first:
+      213: 8076014108264366854
+    second: Zephyr_61
+  - first:
+      213: 1055598844289658881
+    second: Zephyr_62
+  - first:
+      213: 1099306958256495235
+    second: Zephyr_63
+  - first:
+      213: -1864892982171944299
+    second: Zephyr_64
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Zephyr_0
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 207
+        width: 24
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22f997e66d9c3f180800000000000000
+      internalID: -9082694100662509790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_1
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 207
+        width: 24
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2488ba826fee58c00800000000000000
+      internalID: 902390041369348162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_2
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 207
+        width: 24
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ccca5e02f8a0d380800000000000000
+      internalID: -8948466702008791870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_3
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 207
+        width: 24
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eea2ce088e209dd20800000000000000
+      internalID: 3303674999271598830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_4
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 155
+        width: 24
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 307d6ce5e35d44fc0800000000000000
+      internalID: -3511447345587366141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_5
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 157
+        width: 24
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e87b4cf83aa436cf0800000000000000
+      internalID: -260282287105198194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_6
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 156
+        width: 24
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b926588ee06578330800000000000000
+      internalID: 3713031039820849819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_7
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 155
+        width: 24
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f212db451d88b710800000000000000
+      internalID: 1709271181192991472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_8
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 158
+        width: 24
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c8abdc9f4a394aa0800000000000000
+      internalID: -6176341300353455936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_9
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 157
+        width: 24
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4c4ac5180964a7b0800000000000000
+      internalID: -5213926985141957557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_10
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 88
+        width: 24
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc6b685a91ffd69b0800000000000000
+      internalID: -5085127918615087411
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_11
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 88
+        width: 24
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ad0716e9ad14be40800000000000000
+      internalID: 5671190446313246114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_12
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 88
+        width: 24
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e76e23a4a39bfbdc0800000000000000
+      internalID: -3620971915378497922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_13
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 87
+        width: 24
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86790a1161bc023e0800000000000000
+      internalID: -2080439732199712920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_14
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 92
+        width: 26
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa0cf2259e87e8c70800000000000000
+      internalID: 8975244050897551535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_15
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 104
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c1cf3eda33697790800000000000000
+      internalID: -7531879797312470586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_16
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 101
+        width: 8
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f59870e4b073aa70800000000000000
+      internalID: 8837030815993468401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_17
+      rect:
+        serializedVersion: 2
+        x: 347
+        y: 110
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb76549a8ac25c170800000000000000
+      internalID: 8198007799603881916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_18
+      rect:
+        serializedVersion: 2
+        x: 348
+        y: 99
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d469c71cc11104c0800000000000000
+      internalID: -4323154599028890416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_19
+      rect:
+        serializedVersion: 2
+        x: 349
+        y: 105
+        width: 10
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6c422d020cbef940800000000000000
+      internalID: 5331905725849554029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_20
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 107
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 493adde34d58d5c70800000000000000
+      internalID: 8961465980171428756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_21
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 105
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2cb8c5fbe58510c50800000000000000
+      internalID: 6629677290426764226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_22
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 101
+        width: 7
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4497d21b68bfb110800000000000000
+      internalID: 1278943589213639754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_23
+      rect:
+        serializedVersion: 2
+        x: 411
+        y: 111
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 657ef037e002cc980800000000000000
+      internalID: -8517397548832397482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_24
+      rect:
+        serializedVersion: 2
+        x: 413
+        y: 106
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e904059b373a2f00800000000000000
+      internalID: 1092746588633434600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_25
+      rect:
+        serializedVersion: 2
+        x: 465
+        y: 94
+        width: 12
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ccc6ca4329aaa550800000000000000
+      internalID: 6172932208308178119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_26
+      rect:
+        serializedVersion: 2
+        x: 475
+        y: 106
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e2ebaeeb6d9bc680800000000000000
+      internalID: -8733713965463641367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_27
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 106
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: edcb6c8528ddadf20800000000000000
+      internalID: 3448312016610442462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_28
+      rect:
+        serializedVersion: 2
+        x: 529
+        y: 85
+        width: 21
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a5a91a34ad4224b0800000000000000
+      internalID: -5466721629929626199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_29
+      rect:
+        serializedVersion: 2
+        x: 539
+        y: 106
+        width: 16
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e99af11e0e85219c0800000000000000
+      internalID: -3958003399632377442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_30
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 24
+        width: 148
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2ea38b03e6706eb0800000000000000
+      internalID: -4728648891216187857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_31
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 86
+        width: 20
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 837576c91dea0a820800000000000000
+      internalID: 2927531973086238520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_32
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 99
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f14035a8720dd2da0800000000000000
+      internalID: -5967885062953040865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_33
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 93
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d225cb77dad023360800000000000000
+      internalID: 7147790597279732269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_34
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 86
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 606d031d576ebd820800000000000000
+      internalID: 2944200175111951878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_35
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 95
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6af59a1be7e4c8f00800000000000000
+      internalID: 1120356713361924006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_36
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 93
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 920d9c31486ad30e0800000000000000
+      internalID: -2288489949436456919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_37
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 85
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54a538b830fa65850800000000000000
+      internalID: 6365467553095178821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_38
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 95
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be204ec6226f90f70800000000000000
+      internalID: 9154118345323447019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_39
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 85
+        width: 19
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1631da6e75c95b020800000000000000
+      internalID: 2356961881344512865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_40
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 89
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3b46cf782a51f9e0800000000000000
+      internalID: -1589390063496180933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_41
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 90
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c23f57539362a700800000000000000
+      internalID: 550111588969820868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_42
+      rect:
+        serializedVersion: 2
+        x: 414
+        y: 85
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32af14b39858e2cb0800000000000000
+      internalID: -4886821721199216093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_43
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 90
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d9c8fe62d299b7e0800000000000000
+      internalID: -1749205547754141225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_44
+      rect:
+        serializedVersion: 2
+        x: 543
+        y: 84
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4f9b362bb1c006f0800000000000000
+      internalID: -720362930834792626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_45
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 45
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab2f8f69a545567f0800000000000000
+      internalID: -619996625636887878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_46
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 40
+        width: 11
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62538c5e90a3036d0800000000000000
+      internalID: -3012844336526641882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_47
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 44
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e16568ea55eebbb70800000000000000
+      internalID: 8915981939077699102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_48
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 39
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1c79105bdc2811e0800000000000000
+      internalID: -2226980695281402851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_49
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 43
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dcb45da89308de6d0800000000000000
+      internalID: -2959568395481822259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_50
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 38
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6fae86bf223cac390800000000000000
+      internalID: -7797205249824331018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_51
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 43
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b53664242979d28e0800000000000000
+      internalID: -1716549228525362341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_52
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 35
+        width: 14
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0739548184eae5e70800000000000000
+      internalID: 9105907121257812848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_53
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 36
+        width: 19
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e905b24872f97580800000000000000
+      internalID: -8828758996153988639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_54
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 35
+        width: 20
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9eba26ee697558d50800000000000000
+      internalID: 6738888723185970153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_55
+      rect:
+        serializedVersion: 2
+        x: 402
+        y: 33
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e91479444fd33e7a0800000000000000
+      internalID: -6349162930330189410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_56
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 33
+        width: 20
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c4173008824a8240800000000000000
+      internalID: 4794717905175909576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_57
+      rect:
+        serializedVersion: 2
+        x: 466
+        y: 34
+        width: 22
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5823673c94ea5340800000000000000
+      internalID: 4853442908040407135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_58
+      rect:
+        serializedVersion: 2
+        x: 530
+        y: 35
+        width: 22
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4fd3ea59b66ebd530800000000000000
+      internalID: 3880948853656927732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_59
+      rect:
+        serializedVersion: 2
+        x: 594
+        y: 35
+        width: 22
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7c2ad78871063b10800000000000000
+      internalID: 1960756304953355386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_60
+      rect:
+        serializedVersion: 2
+        x: 721
+        y: 24
+        width: 24
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f5f8114934b44f70800000000000000
+      internalID: 9170652899231462898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_61
+      rect:
+        serializedVersion: 2
+        x: 414
+        y: 25
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 603042cfa04c31070800000000000000
+      internalID: 8076014108264366854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_62
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 25
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 100b23b5e8d36ae00800000000000000
+      internalID: 1055598844289658881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_63
+      rect:
+        serializedVersion: 2
+        x: 534
+        y: 25
+        width: 15
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38a5ef9aad5814f00800000000000000
+      internalID: 1099306958256495235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zephyr_64
+      rect:
+        serializedVersion: 2
+        x: 598
+        y: 27
+        width: 15
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59ab58d96b19e16e0800000000000000
+      internalID: -1864892982171944299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Zephyr_0: -9082694100662509790
+      Zephyr_1: 902390041369348162
+      Zephyr_10: -5085127918615087411
+      Zephyr_11: 5671190446313246114
+      Zephyr_12: -3620971915378497922
+      Zephyr_13: -2080439732199712920
+      Zephyr_14: 8975244050897551535
+      Zephyr_15: -7531879797312470586
+      Zephyr_16: 8837030815993468401
+      Zephyr_17: 8198007799603881916
+      Zephyr_18: -4323154599028890416
+      Zephyr_19: 5331905725849554029
+      Zephyr_2: -8948466702008791870
+      Zephyr_20: 8961465980171428756
+      Zephyr_21: 6629677290426764226
+      Zephyr_22: 1278943589213639754
+      Zephyr_23: -8517397548832397482
+      Zephyr_24: 1092746588633434600
+      Zephyr_25: 6172932208308178119
+      Zephyr_26: -8733713965463641367
+      Zephyr_27: 3448312016610442462
+      Zephyr_28: -5466721629929626199
+      Zephyr_29: -3958003399632377442
+      Zephyr_3: 3303674999271598830
+      Zephyr_30: -4728648891216187857
+      Zephyr_31: 2927531973086238520
+      Zephyr_32: -5967885062953040865
+      Zephyr_33: 7147790597279732269
+      Zephyr_34: 2944200175111951878
+      Zephyr_35: 1120356713361924006
+      Zephyr_36: -2288489949436456919
+      Zephyr_37: 6365467553095178821
+      Zephyr_38: 9154118345323447019
+      Zephyr_39: 2356961881344512865
+      Zephyr_4: -3511447345587366141
+      Zephyr_40: -1589390063496180933
+      Zephyr_41: 550111588969820868
+      Zephyr_42: -4886821721199216093
+      Zephyr_43: -1749205547754141225
+      Zephyr_44: -720362930834792626
+      Zephyr_45: -619996625636887878
+      Zephyr_46: -3012844336526641882
+      Zephyr_47: 8915981939077699102
+      Zephyr_48: -2226980695281402851
+      Zephyr_49: -2959568395481822259
+      Zephyr_5: -260282287105198194
+      Zephyr_50: -7797205249824331018
+      Zephyr_51: -1716549228525362341
+      Zephyr_52: 9105907121257812848
+      Zephyr_53: -8828758996153988639
+      Zephyr_54: 6738888723185970153
+      Zephyr_55: -6349162930330189410
+      Zephyr_56: 4794717905175909576
+      Zephyr_57: 4853442908040407135
+      Zephyr_58: 3880948853656927732
+      Zephyr_59: 1960756304953355386
+      Zephyr_6: 3713031039820849819
+      Zephyr_60: 9170652899231462898
+      Zephyr_61: 8076014108264366854
+      Zephyr_62: 1055598844289658881
+      Zephyr_63: 1099306958256495235
+      Zephyr_64: -1864892982171944299
+      Zephyr_7: 1709271181192991472
+      Zephyr_8: -6176341300353455936
+      Zephyr_9: -5213926985141957557
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

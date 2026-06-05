@@ -1,24 +1,41 @@
+// DungeonSoul — EnemyAI.cs — Đuổi player, tấn công cận chiến có animation (không gây sát thương từ xa).
+
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(HealthSystem))]
+[RequireComponent(typeof(EnemyPhysicsSetup))]
 public class EnemyAI : MonoBehaviour
 {
     [Header("Chase")]
-    [SerializeField] private float detectionRadius = 6f;
-    [SerializeField] private float moveSpeed = 2f;
+    [SerializeField] private float detectionRadius = 32f;
+    [SerializeField] private float moveSpeed = 2.2f;
+    [SerializeField] private float stopDistance = 0.48f;
+    [SerializeField] private float meleeRange = 0.52f;
 
-    [Header("Contact Damage")]
-    [SerializeField] private float contactDamage = 10f;
-    [SerializeField] private float damageInterval = 1.5f;
+    [Header("Attack")]
+    [SerializeField] private float contactDamage = 7f;
+    [SerializeField] private float attackCooldown = 1.15f;
     [SerializeField] private string playerTag = "Player";
 
+    [Header("Animation")]
+    [SerializeField] private float bobAmplitude = 0.07f;
+    [SerializeField] private float bobSpeed = 9f;
+
     private Rigidbody2D rb;
+    private SpriteRenderer spriteRenderer;
+    private SimpleSpriteAnimator knightAnimator;
+    private EnemySpriteAnimator kenneyAnimator;
     private Transform player;
     private HealthSystem playerHealth;
-    private float nextDamageTime;
+    private float nextAttackTime;
     private float slowTimer;
     private float slowFactor = 1f;
+    private float playerRefreshTimer;
+    private Vector3 baseScale;
+    private float animPhase;
+    private bool isMoving;
+    private bool isAttacking;
 
     public float MoveSpeed
     {
@@ -32,27 +49,52 @@ public class EnemyAI : MonoBehaviour
         set => contactDamage = Mathf.Max(0f, value);
     }
 
+    public float StopDistance
+    {
+        get => stopDistance;
+        set => stopDistance = Mathf.Max(0.28f, value);
+    }
+
+    public float MeleeRange
+    {
+        get => meleeRange;
+        set => meleeRange = Mathf.Max(0.28f, value);
+    }
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = 0f;
         rb.freezeRotation = true;
-
-        EnsureEnemyCollider();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer == null)
+            spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        baseScale = transform.localScale;
+        if (baseScale.sqrMagnitude < 0.01f)
+            baseScale = Vector3.one;
     }
 
     private void Start()
     {
-        GameObject playerObject = GameObject.FindGameObjectWithTag(playerTag);
-        if (playerObject != null)
-        {
-            player = playerObject.transform;
-            playerHealth = playerObject.GetComponent<HealthSystem>();
-        }
+        CachePlayer();
+        knightAnimator = GetComponent<SimpleSpriteAnimator>();
+        kenneyAnimator = GetComponent<EnemySpriteAnimator>();
+        meleeRange = Mathf.Min(meleeRange, stopDistance + 0.06f);
+    }
+
+    private void Update()
+    {
+        if (kenneyAnimator == null && knightAnimator == null)
+            ApplyWalkAnimation();
     }
 
     private void FixedUpdate()
     {
+        isMoving = false;
+
+        if (isAttacking || (knightAnimator != null && knightAnimator.IsAttacking))
+            return;
+
         if (slowTimer > 0f)
         {
             slowTimer -= Time.fixedDeltaTime;
@@ -60,68 +102,195 @@ public class EnemyAI : MonoBehaviour
                 slowFactor = 1f;
         }
 
+        playerRefreshTimer -= Time.fixedDeltaTime;
+        if (playerRefreshTimer <= 0f)
+        {
+            playerRefreshTimer = 0.75f;
+            if (player == null)
+                CachePlayer();
+        }
+
         if (player == null)
+            return;
+
+        Vector2 toPlayer = (Vector2)player.position - rb.position;
+        float dist = toPlayer.magnitude;
+
+        if (dist > detectionRadius)
+            return;
+
+        if (dist <= meleeRange && Time.time >= nextAttackTime)
         {
-            rb.linearVelocity = Vector2.zero;
+            TryStartAttack(dist);
             return;
         }
 
-        Vector2 toPlayer = player.position - transform.position;
-        if (toPlayer.sqrMagnitude > detectionRadius * detectionRadius)
+        if (dist > stopDistance)
         {
-            rb.linearVelocity = Vector2.zero;
+            Vector2 direction = toPlayer / Mathf.Max(dist, 0.001f);
+            float step = moveSpeed * slowFactor * Time.fixedDeltaTime;
+
+            // Chặn tường: nếu hướng tới player bị tường cản, thử trượt theo X hoặc Y.
+            Vector2 moveDir = ResolveWallSlide(direction, step);
+            Vector2 next = rb.position + moveDir * step;
+
+            if (Vector2.Distance(next, (Vector2)player.position) < stopDistance)
+                next = (Vector2)player.position - direction * stopDistance;
+
+            rb.MovePosition(next);
+            isMoving = moveDir.sqrMagnitude > 0.0001f;
+            UpdateFacing(direction);
+        }
+        else if (dist > 0.01f)
+        {
+            UpdateFacing(toPlayer / dist);
+        }
+
+        kenneyAnimator?.SetMoving(isMoving);
+    }
+
+    private const float WallProbeRadius = 0.22f;
+    private static readonly RaycastHit2D[] wallHits = new RaycastHit2D[4];
+
+    /// <summary>Trả hướng di chuyển sau khi tránh tường: nếu thẳng bị chặn, trượt theo X hoặc Y.</summary>
+    private Vector2 ResolveWallSlide(Vector2 direction, float step)
+    {
+        if (!IsBlocked(direction, step))
+            return direction;
+
+        // Thử trượt ngang (chỉ X) rồi dọc (chỉ Y).
+        Vector2 xOnly = new Vector2(direction.x, 0f).normalized;
+        if (xOnly.sqrMagnitude > 0.001f && !IsBlocked(xOnly, step))
+            return xOnly;
+
+        Vector2 yOnly = new Vector2(0f, direction.y).normalized;
+        if (yOnly.sqrMagnitude > 0.001f && !IsBlocked(yOnly, step))
+            return yOnly;
+
+        return Vector2.zero; // kẹt hẳn — đứng yên frame này.
+    }
+
+    private bool IsBlocked(Vector2 dir, float step)
+    {
+        float dist = step + WallProbeRadius;
+        int count = Physics2D.CircleCastNonAlloc(rb.position, WallProbeRadius, dir, wallHits, dist);
+        for (int i = 0; i < count; i++)
+        {
+            Collider2D col = wallHits[i].collider;
+            // Chỉ chặn bởi tường: collider rắn (không trigger), không phải player/enemy.
+            if (col == null || col.isTrigger)
+                continue;
+            if (col.CompareTag("Player") || col.CompareTag("Enemy"))
+                continue;
+            return true;
+        }
+        return false;
+    }
+
+    private void TryStartAttack(float distToPlayer)
+    {
+        isAttacking = true;
+        isMoving = false;
+
+        if (player != null)
+        {
+            Vector2 toPlayer = (Vector2)player.position - rb.position;
+            if (toPlayer.sqrMagnitude > 0.0001f)
+                UpdateFacing(toPlayer.normalized);
+        }
+
+        if (knightAnimator != null && knightAnimator.PlayAttack(
+                () => DealDamageIfInRange(),
+                () => FinishAttack()))
+            return;
+
+        if (kenneyAnimator != null)
+        {
+            kenneyAnimator.SetMoving(false);
+            DealDamageIfInRange();
+            Invoke(nameof(FinishAttack), 0.35f);
             return;
         }
 
-        Vector2 direction = toPlayer.normalized;
-        rb.linearVelocity = direction * (moveSpeed * slowFactor);
+        DealDamageIfInRange();
+        FinishAttack();
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+    private void DealDamageIfInRange()
     {
-        if (!collision.gameObject.CompareTag(playerTag) || playerHealth == null)
+        if (player == null || playerHealth == null)
             return;
 
-        TryDamagePlayer();
+        float dist = Vector2.Distance(rb.position, player.position);
+        float reach = meleeRange + 0.12f;
+        if (dist <= reach)
+        {
+            playerHealth.TakeDamage(contactDamage);
+            AudioManager.PlayCombatHit();
+        }
     }
 
-    private void OnTriggerStay2D(Collider2D other)
+    private void FinishAttack()
     {
-        if (!other.CompareTag(playerTag) || playerHealth == null)
+        isAttacking = false;
+        nextAttackTime = Time.time + attackCooldown;
+        kenneyAnimator?.SetMoving(false);
+    }
+
+    private void UpdateFacing(Vector2 direction)
+    {
+        if (spriteRenderer == null || Mathf.Abs(direction.x) < 0.05f)
             return;
 
-        TryDamagePlayer();
+        spriteRenderer.flipX = direction.x < 0f;
     }
 
-    private void TryDamagePlayer()
+    private void ApplyWalkAnimation()
     {
-        if (Time.time < nextDamageTime)
+        if (baseScale.sqrMagnitude < 0.01f)
+            baseScale = transform.localScale;
+
+        if (!isMoving)
+        {
+            transform.localScale = Vector3.Lerp(transform.localScale, baseScale, Time.deltaTime * 12f);
+            return;
+        }
+
+        animPhase += Time.deltaTime * bobSpeed;
+        float bob = 1f + Mathf.Sin(animPhase) * bobAmplitude;
+        transform.localScale = baseScale * bob;
+    }
+
+    private void CachePlayer()
+    {
+        GameObject playerObject = GameObject.FindGameObjectWithTag(playerTag);
+        if (playerObject == null)
             return;
 
-        playerHealth.TakeDamage(contactDamage);
-        nextDamageTime = Time.time + damageInterval;
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = new Color(1f, 0.4f, 0.4f, 0.7f);
-        Gizmos.DrawWireSphere(transform.position, detectionRadius);
-    }
-
-    private void EnsureEnemyCollider()
-    {
-        Collider2D enemyCollider = GetComponent<CircleCollider2D>();
-        if (enemyCollider == null)
-            enemyCollider = GetComponent<BoxCollider2D>();
-        if (enemyCollider == null)
-            enemyCollider = gameObject.AddComponent<CircleCollider2D>();
-
-        enemyCollider.isTrigger = false;
+        player = playerObject.transform;
+        playerHealth = playerObject.GetComponent<HealthSystem>();
     }
 
     public void ApplySlow(float factor, float duration)
     {
         slowFactor = Mathf.Clamp(factor, 0.1f, 1f);
         slowTimer = Mathf.Max(slowTimer, duration);
+    }
+
+    public void RefreshBaseScale()
+    {
+        baseScale = transform.localScale;
+        EnemyPhysicsSetup physics = GetComponent<EnemyPhysicsSetup>();
+        physics?.FitColliderToSprite();
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = new Color(1f, 0.4f, 0.4f, 0.7f);
+        Gizmos.DrawWireSphere(transform.position, detectionRadius);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, stopDistance);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, meleeRange);
     }
 }

@@ -1,0 +1,1144 @@
+fileFormatVersion: 2
+guid: b82a928f44d0fac40a0389b39fbb6a8f
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7089314745185648717
+    second: Free Fantasy Keys_0
+  - first:
+      213: 1083954640929271091
+    second: Free Fantasy Keys_1
+  - first:
+      213: -4444255916917436412
+    second: Free Fantasy Keys_2
+  - first:
+      213: 7229328919913314197
+    second: Free Fantasy Keys_3
+  - first:
+      213: -2151029735213909323
+    second: Free Fantasy Keys_4
+  - first:
+      213: 6299709530752967290
+    second: Free Fantasy Keys_5
+  - first:
+      213: -1264743634176534402
+    second: Free Fantasy Keys_6
+  - first:
+      213: -4914700903882055809
+    second: Free Fantasy Keys_7
+  - first:
+      213: -735508966340254590
+    second: Free Fantasy Keys_8
+  - first:
+      213: -5802937397143729508
+    second: Free Fantasy Keys_9
+  - first:
+      213: -6107491072865324739
+    second: Free Fantasy Keys_10
+  - first:
+      213: -2231704689571047278
+    second: Free Fantasy Keys_11
+  - first:
+      213: -1290992353304997762
+    second: Free Fantasy Keys_12
+  - first:
+      213: -1721914210598280544
+    second: Free Fantasy Keys_13
+  - first:
+      213: -7261966026362458863
+    second: Free Fantasy Keys_14
+  - first:
+      213: -6277850215389118156
+    second: Free Fantasy Keys_15
+  - first:
+      213: -7466168101179637287
+    second: Free Fantasy Keys_16
+  - first:
+      213: -6448738066218250708
+    second: Free Fantasy Keys_17
+  - first:
+      213: -5265179717894469505
+    second: Free Fantasy Keys_18
+  - first:
+      213: 2616382627100449839
+    second: Free Fantasy Keys_19
+  - first:
+      213: -2977536907559986573
+    second: Free Fantasy Keys_20
+  - first:
+      213: 8037974736759829462
+    second: Free Fantasy Keys_21
+  - first:
+      213: -3197515608934406655
+    second: Free Fantasy Keys_22
+  - first:
+      213: -1037574256367257263
+    second: Free Fantasy Keys_23
+  - first:
+      213: -9177874477437652110
+    second: Free Fantasy Keys_24
+  - first:
+      213: 1741054017567066143
+    second: Free Fantasy Keys_25
+  - first:
+      213: -5789885760863883756
+    second: Free Fantasy Keys_26
+  - first:
+      213: 402990019156443004
+    second: Free Fantasy Keys_27
+  - first:
+      213: -5307762992591832115
+    second: Free Fantasy Keys_28
+  - first:
+      213: 1480147460692456900
+    second: Free Fantasy Keys_29
+  - first:
+      213: 710815753157355206
+    second: Free Fantasy Keys_30
+  - first:
+      213: 514546786462292659
+    second: Free Fantasy Keys_31
+  - first:
+      213: -929112635811518286
+    second: Free Fantasy Keys_32
+  - first:
+      213: 3772346753307086557
+    second: Free Fantasy Keys_33
+  - first:
+      213: -4180390838220594356
+    second: Free Fantasy Keys_34
+  - first:
+      213: -5727655073879808872
+    second: Free Fantasy Keys_35
+  - first:
+      213: 8836120209250043260
+    second: Free Fantasy Keys_36
+  - first:
+      213: 1809035115107411403
+    second: Free Fantasy Keys_37
+  - first:
+      213: 2552760687713646859
+    second: Free Fantasy Keys_38
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Free Fantasy Keys_0
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 321
+        width: 30
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d40cabf233e426260800000000000000
+      internalID: 7089314745185648717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free Fantasy Keys_1
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 321
+        width: 30
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33da93db00bfa0f00800000000000000
+      internalID: 1083954640929271091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free Fantasy Keys_2
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 320
+        width: 32
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 400553d4ac4d252c0800000000000000
+      internalID: -4444255916917436412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free Fantasy Keys_3
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 321
+        width: 32
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59734eb995cb35460800000000000000
+      internalID: 7229328919913314197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free Fantasy Keys_4
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 322
+        width: 29
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5bab54b3ad10622e0800000000000000
+      internalID: -2151029735213909323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free Fantasy Keys_5
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 321
+        width: 29
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a726ca0e0701d6750800000000000000
+      internalID: 6299709530752967290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free Fantasy Keys_6
+      rect:
+        serializedVersion: 2
+        x: 402
+        y: 323
+        width: 27
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7898f89d5ab27ee0800000000000000
+      internalID: -1264743634176534402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free Fantasy Keys_7
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 259
+        width: 33
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7f91de21997bcbb0800000000000000
+      internalID: -4914700903882055809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free Fantasy Keys_8
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 257
+        width: 32
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 284ac24fd72fac5f0800000000000000
+      internalID: -735508966340254590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free Fantasy Keys_9
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 258
+        width: 24
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9a0b6dbe23d77fa0800000000000000
+      internalID: -5802937397143729508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free Fantasy Keys_10
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 258
+        width: 32
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d313ef46a35dd3ba0800000000000000
+      internalID: -6107491072865324739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free Fantasy Keys_11
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 257
+        width: 36
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2985b8ea8646701e0800000000000000
+      internalID: -2231704689571047278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free Fantasy Keys_12
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 260
+        width: 30
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e70928d6b49751ee0800000000000000
+      internalID: -1290992353304997762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free Fantasy Keys_13
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 258
+        width: 32
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a2a79706288a18e0800000000000000
+      internalID: -1721914210598280544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free Fantasy Keys_14
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 194
+        width: 34
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11de5b3ef50583b90800000000000000
+      internalID: -7261966026362458863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free Fantasy Keys_15
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 195
+        width: 32
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4314f969d7890e8a0800000000000000
+      internalID: -6277850215389118156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free Fantasy Keys_16
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 195
+        width: 27
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d1c5df5ba7d26890800000000000000
+      internalID: -7466168101179637287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free Fantasy Keys_17
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 194
+        width: 30
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2e858945ea7186a0800000000000000
+      internalID: -6448738066218250708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free Fantasy Keys_18
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 195
+        width: 21
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f780f4451f25ee6b0800000000000000
+      internalID: -5265179717894469505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free Fantasy Keys_19
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 193
+        width: 29
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2c53dc13224f4420800000000000000
+      internalID: 2616382627100449839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free Fantasy Keys_20
+      rect:
+        serializedVersion: 2
+        x: 397
+        y: 193
+        width: 38
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37a954f45f9ada6d0800000000000000
+      internalID: -2977536907559986573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free Fantasy Keys_21
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 128
+        width: 32
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d33222af6f9c8f60800000000000000
+      internalID: 8037974736759829462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free Fantasy Keys_22
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 130
+        width: 32
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 106a2bdae7420a3d0800000000000000
+      internalID: -3197515608934406655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free Fantasy Keys_23
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 130
+        width: 20
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 159b32d06bbc991f0800000000000000
+      internalID: -1037574256367257263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free Fantasy Keys_24
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 129
+        width: 30
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 273743b0ac3a1a080800000000000000
+      internalID: -9177874477437652110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free Fantasy Keys_25
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 129
+        width: 34
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f180adb8767792810800000000000000
+      internalID: 1741054017567066143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free Fantasy Keys_26
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 128
+        width: 34
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41ead9d939136afa0800000000000000
+      internalID: -5789885760863883756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free Fantasy Keys_27
+      rect:
+        serializedVersion: 2
+        x: 398
+        y: 129
+        width: 35
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7ff8db8945b79500800000000000000
+      internalID: 402990019156443004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free Fantasy Keys_28
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 66
+        width: 34
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dcb79921ea90756b0800000000000000
+      internalID: -5307762992591832115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free Fantasy Keys_29
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 67
+        width: 35
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c535c9f54a8a8410800000000000000
+      internalID: 1480147460692456900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free Fantasy Keys_30
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 65
+        width: 39
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c622b359235dd900800000000000000
+      internalID: 710815753157355206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free Fantasy Keys_31
+      rect:
+        serializedVersion: 2
+        x: 206
+        y: 64
+        width: 35
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ba576b7399042700800000000000000
+      internalID: 514546786462292659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free Fantasy Keys_32
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 63
+        width: 32
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b8a02afaf02b13f0800000000000000
+      internalID: -929112635811518286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free Fantasy Keys_33
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 67
+        width: 34
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dde8778a2611a5430800000000000000
+      internalID: 3772346753307086557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free Fantasy Keys_34
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 65
+        width: 34
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4360996ea44cf5c0800000000000000
+      internalID: -4180390838220594356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free Fantasy Keys_35
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 2
+        width: 35
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8942e658e084380b0800000000000000
+      internalID: -5727655073879808872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free Fantasy Keys_36
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 1
+        width: 32
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c75cff8b38430aa70800000000000000
+      internalID: 8836120209250043260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free Fantasy Keys_37
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 0
+        width: 34
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc56f2e3adbfa1910800000000000000
+      internalID: 1809035115107411403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free Fantasy Keys_38
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 0
+        width: 31
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b09f0c3025a3d6320800000000000000
+      internalID: 2552760687713646859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Free Fantasy Keys_0: 7089314745185648717
+      Free Fantasy Keys_1: 1083954640929271091
+      Free Fantasy Keys_10: -6107491072865324739
+      Free Fantasy Keys_11: -2231704689571047278
+      Free Fantasy Keys_12: -1290992353304997762
+      Free Fantasy Keys_13: -1721914210598280544
+      Free Fantasy Keys_14: -7261966026362458863
+      Free Fantasy Keys_15: -6277850215389118156
+      Free Fantasy Keys_16: -7466168101179637287
+      Free Fantasy Keys_17: -6448738066218250708
+      Free Fantasy Keys_18: -5265179717894469505
+      Free Fantasy Keys_19: 2616382627100449839
+      Free Fantasy Keys_2: -4444255916917436412
+      Free Fantasy Keys_20: -2977536907559986573
+      Free Fantasy Keys_21: 8037974736759829462
+      Free Fantasy Keys_22: -3197515608934406655
+      Free Fantasy Keys_23: -1037574256367257263
+      Free Fantasy Keys_24: -9177874477437652110
+      Free Fantasy Keys_25: 1741054017567066143
+      Free Fantasy Keys_26: -5789885760863883756
+      Free Fantasy Keys_27: 402990019156443004
+      Free Fantasy Keys_28: -5307762992591832115
+      Free Fantasy Keys_29: 1480147460692456900
+      Free Fantasy Keys_3: 7229328919913314197
+      Free Fantasy Keys_30: 710815753157355206
+      Free Fantasy Keys_31: 514546786462292659
+      Free Fantasy Keys_32: -929112635811518286
+      Free Fantasy Keys_33: 3772346753307086557
+      Free Fantasy Keys_34: -4180390838220594356
+      Free Fantasy Keys_35: -5727655073879808872
+      Free Fantasy Keys_36: 8836120209250043260
+      Free Fantasy Keys_37: 1809035115107411403
+      Free Fantasy Keys_38: 2552760687713646859
+      Free Fantasy Keys_4: -2151029735213909323
+      Free Fantasy Keys_5: 6299709530752967290
+      Free Fantasy Keys_6: -1264743634176534402
+      Free Fantasy Keys_7: -4914700903882055809
+      Free Fantasy Keys_8: -735508966340254590
+      Free Fantasy Keys_9: -5802937397143729508
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

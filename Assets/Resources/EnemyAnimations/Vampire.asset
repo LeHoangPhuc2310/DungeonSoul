@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aff090d7798e1b2469037d904c00074b, type: 3}
+  m_Name: Vampire
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyAnimationSet
+  displayName: Vampire
+  idle:
+  - {fileID: -371990891160990251, guid: 90e8528fa225a1e438cc72b096d046ec, type: 3}
+  - {fileID: -2674972448465584468, guid: 90e8528fa225a1e438cc72b096d046ec, type: 3}
+  - {fileID: 8789874126356521907, guid: 90e8528fa225a1e438cc72b096d046ec, type: 3}
+  - {fileID: -3127965267752196778, guid: 90e8528fa225a1e438cc72b096d046ec, type: 3}
+  - {fileID: -2148743222624937830, guid: 90e8528fa225a1e438cc72b096d046ec, type: 3}
+  - {fileID: -3865281036853105448, guid: 90e8528fa225a1e438cc72b096d046ec, type: 3}
+  move:
+  - {fileID: -2168655384976774199, guid: bb07f91104abf994694b94508b60bbc5, type: 3}
+  - {fileID: 8965175214542997927, guid: bb07f91104abf994694b94508b60bbc5, type: 3}
+  - {fileID: -3738762902930035113, guid: bb07f91104abf994694b94508b60bbc5, type: 3}
+  - {fileID: 2100464449051817614, guid: bb07f91104abf994694b94508b60bbc5, type: 3}
+  - {fileID: -8187684412701654721, guid: bb07f91104abf994694b94508b60bbc5, type: 3}
+  - {fileID: 429374533021563476, guid: bb07f91104abf994694b94508b60bbc5, type: 3}
+  - {fileID: -3659946452370719798, guid: bb07f91104abf994694b94508b60bbc5, type: 3}
+  - {fileID: -5394975323375022170, guid: bb07f91104abf994694b94508b60bbc5, type: 3}
+  hurt:
+  - {fileID: 5383943641330387617, guid: 2e8462bb835111a40ba37e54edaf319c, type: 3}
+  - {fileID: 3201313717820641302, guid: 2e8462bb835111a40ba37e54edaf319c, type: 3}
+  - {fileID: -6389433042752277861, guid: 2e8462bb835111a40ba37e54edaf319c, type: 3}
+  - {fileID: 1173586683966709683, guid: 2e8462bb835111a40ba37e54edaf319c, type: 3}
+  - {fileID: 1299983899940442222, guid: 2e8462bb835111a40ba37e54edaf319c, type: 3}
+  death:
+  - {fileID: -923307111090866757, guid: 7f8a013f26a3c904593aa7d643d49814, type: 3}
+  - {fileID: 8913812048917822411, guid: 7f8a013f26a3c904593aa7d643d49814, type: 3}
+  - {fileID: 4404237878519249409, guid: 7f8a013f26a3c904593aa7d643d49814, type: 3}
+  - {fileID: 920658968894446176, guid: 7f8a013f26a3c904593aa7d643d49814, type: 3}
+  - {fileID: -7350887874683511925, guid: 7f8a013f26a3c904593aa7d643d49814, type: 3}
+  - {fileID: -1279182169951451124, guid: 7f8a013f26a3c904593aa7d643d49814, type: 3}
+  - {fileID: 5956196191719413925, guid: 7f8a013f26a3c904593aa7d643d49814, type: 3}
+  - {fileID: 794094799421589820, guid: 7f8a013f26a3c904593aa7d643d49814, type: 3}
+  - {fileID: -6012288014565241867, guid: 7f8a013f26a3c904593aa7d643d49814, type: 3}
+  - {fileID: -9049025914868024525, guid: 7f8a013f26a3c904593aa7d643d49814, type: 3}
+  - {fileID: 5806025726046563585, guid: 7f8a013f26a3c904593aa7d643d49814, type: 3}
+  - {fileID: 2687168333418352839, guid: 7f8a013f26a3c904593aa7d643d49814, type: 3}
+  - {fileID: -2088022810532382372, guid: 7f8a013f26a3c904593aa7d643d49814, type: 3}
+  - {fileID: -6362477907139459544, guid: 7f8a013f26a3c904593aa7d643d49814, type: 3}
+  idleFps: 8
+  moveFps: 12
+  hurtFps: 12
+  deathFps: 10
+  visualScale: 2.3

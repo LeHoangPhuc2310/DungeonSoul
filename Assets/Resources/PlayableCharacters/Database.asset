@@ -1,0 +1,570 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d18280d401b29145a608e186c7c98a9, type: 3}
+  m_Name: Database
+  m_EditorClassIdentifier: Assembly-CSharp::PlayableCharacterDatabase
+  entries:
+  - id: knight
+    displayName: "Hi\u1EC7p s\u0129"
+    combatClass: 0
+    idle:
+    - {fileID: -2875184811977189179, guid: 0945f965c3f230d448995bc8febd55b2, type: 3}
+    - {fileID: 430275941079362952, guid: 0945f965c3f230d448995bc8febd55b2, type: 3}
+    - {fileID: -2237066767585461515, guid: 0945f965c3f230d448995bc8febd55b2, type: 3}
+    - {fileID: 643102523229453957, guid: 0945f965c3f230d448995bc8febd55b2, type: 3}
+    - {fileID: -6309253860192765453, guid: 0945f965c3f230d448995bc8febd55b2, type: 3}
+    - {fileID: -6520041127165385859, guid: 0945f965c3f230d448995bc8febd55b2, type: 3}
+    walk:
+    - {fileID: -4010647431465188124, guid: 1946770dcbe623d48a72fda5e998bab6, type: 3}
+    - {fileID: -6508145933316665992, guid: 1946770dcbe623d48a72fda5e998bab6, type: 3}
+    - {fileID: -49913018130623038, guid: 1946770dcbe623d48a72fda5e998bab6, type: 3}
+    - {fileID: 239361134242471897, guid: 1946770dcbe623d48a72fda5e998bab6, type: 3}
+    - {fileID: -4407603120092265080, guid: 1946770dcbe623d48a72fda5e998bab6, type: 3}
+    - {fileID: -6974482058892260834, guid: 1946770dcbe623d48a72fda5e998bab6, type: 3}
+    - {fileID: 3126080148506214700, guid: 1946770dcbe623d48a72fda5e998bab6, type: 3}
+    - {fileID: -7098415636228387845, guid: 1946770dcbe623d48a72fda5e998bab6, type: 3}
+    hp: 150
+    damage: 15
+    moveSpeed: 4.5
+    fireRate: 1.2
+    crit: 0.05
+    bonusPositive: "+20% s\xE1t th\u01B0\u01A1ng ch\xE9m"
+    bonusNegative: "-10% t\u1ED1c b\u1EAFn"
+    abilityName: "Cu\u1ED3ng Chi\u1EBFn"
+    abilityDescription: "Tr\u1EE5 v\u1EEFng, s\xE1t th\u01B0\u01A1ng \u1ED5n \u0111\u1ECBnh."
+  - id: swordsman
+    displayName: "Ki\u1EBFm s\u0129"
+    combatClass: 0
+    idle:
+    - {fileID: 5692671443236587484, guid: 648cbb922e93531458baa98cce193b47, type: 3}
+    - {fileID: -7132607124198789229, guid: 648cbb922e93531458baa98cce193b47, type: 3}
+    - {fileID: 1745013774301411547, guid: 648cbb922e93531458baa98cce193b47, type: 3}
+    - {fileID: -3124490933595188275, guid: 648cbb922e93531458baa98cce193b47, type: 3}
+    - {fileID: -2865239502139090261, guid: 648cbb922e93531458baa98cce193b47, type: 3}
+    - {fileID: -6313096847297114484, guid: 648cbb922e93531458baa98cce193b47, type: 3}
+    walk:
+    - {fileID: 7604130918659086260, guid: f85b0bac992b06b489d1e92b0119fb63, type: 3}
+    - {fileID: -7443691771893393131, guid: f85b0bac992b06b489d1e92b0119fb63, type: 3}
+    - {fileID: 2226601912628179809, guid: f85b0bac992b06b489d1e92b0119fb63, type: 3}
+    - {fileID: -2155442161167370524, guid: f85b0bac992b06b489d1e92b0119fb63, type: 3}
+    - {fileID: -2799789011364502902, guid: f85b0bac992b06b489d1e92b0119fb63, type: 3}
+    - {fileID: 5873752323562812573, guid: f85b0bac992b06b489d1e92b0119fb63, type: 3}
+    - {fileID: 5687147656099317281, guid: f85b0bac992b06b489d1e92b0119fb63, type: 3}
+    - {fileID: 2983154578964088267, guid: f85b0bac992b06b489d1e92b0119fb63, type: 3}
+    hp: 140
+    damage: 16
+    moveSpeed: 4.6
+    fireRate: 1.25
+    crit: 0.06
+    bonusPositive: "+18% s\xE1t th\u01B0\u01A1ng"
+    bonusNegative: "-8% m\xE1u"
+    abilityName: "Ph\u1EA3n \u0110\xF2n"
+    abilityDescription: "\u0110\xE1nh nhanh h\u01A1n qu\xE1i th\u01B0\u1EDDng."
+  - id: soldier
+    displayName: "L\xEDnh"
+    combatClass: 0
+    idle:
+    - {fileID: -7978735674136817684, guid: 3ad515f993339454487dd97556684896, type: 3}
+    - {fileID: 8849163925938299382, guid: 3ad515f993339454487dd97556684896, type: 3}
+    - {fileID: -3697785639171859907, guid: 3ad515f993339454487dd97556684896, type: 3}
+    - {fileID: -1830650023417107544, guid: 3ad515f993339454487dd97556684896, type: 3}
+    - {fileID: 5344081390441601760, guid: 3ad515f993339454487dd97556684896, type: 3}
+    - {fileID: 1830586431241935133, guid: 3ad515f993339454487dd97556684896, type: 3}
+    walk:
+    - {fileID: -6369722787752497797, guid: 77c4938d5ff426c42a498c3cb97053b4, type: 3}
+    - {fileID: -4195647796165820189, guid: 77c4938d5ff426c42a498c3cb97053b4, type: 3}
+    - {fileID: -8464097173789389841, guid: 77c4938d5ff426c42a498c3cb97053b4, type: 3}
+    - {fileID: 4675039378008736925, guid: 77c4938d5ff426c42a498c3cb97053b4, type: 3}
+    - {fileID: 8618280867664089372, guid: 77c4938d5ff426c42a498c3cb97053b4, type: 3}
+    - {fileID: 1914519734761289132, guid: 77c4938d5ff426c42a498c3cb97053b4, type: 3}
+    - {fileID: -7471997188321437821, guid: 77c4938d5ff426c42a498c3cb97053b4, type: 3}
+    - {fileID: -1920940785554729860, guid: 77c4938d5ff426c42a498c3cb97053b4, type: 3}
+    hp: 135
+    damage: 14
+    moveSpeed: 4.4
+    fireRate: 1.15
+    crit: 0.04
+    bonusPositive: "+15% gi\xE1p"
+    bonusNegative: "-12% t\u1ED1c ch\u1EA1y"
+    abilityName: "Khi\xEAn S\u1EAFt"
+    abilityDescription: "Ch\u1EADm nh\u01B0ng b\u1EC1n."
+  - id: armored_axeman
+    displayName: "K\u1EF5 s\u0129 r\xECu"
+    combatClass: 0
+    idle:
+    - {fileID: -2178845191466743114, guid: 8a00bb136638bc142b6459f8c734795a, type: 3}
+    - {fileID: 1078176968670180239, guid: 8a00bb136638bc142b6459f8c734795a, type: 3}
+    - {fileID: 3578214576522449303, guid: 8a00bb136638bc142b6459f8c734795a, type: 3}
+    - {fileID: -2650580695442245663, guid: 8a00bb136638bc142b6459f8c734795a, type: 3}
+    - {fileID: -6657341236057548433, guid: 8a00bb136638bc142b6459f8c734795a, type: 3}
+    - {fileID: 6468876805276884591, guid: 8a00bb136638bc142b6459f8c734795a, type: 3}
+    walk:
+    - {fileID: -8447914660797626308, guid: 20d1ac5107618b44ca05e11d542632ad, type: 3}
+    - {fileID: 1367628578751604963, guid: 20d1ac5107618b44ca05e11d542632ad, type: 3}
+    - {fileID: -695169201589041261, guid: 20d1ac5107618b44ca05e11d542632ad, type: 3}
+    - {fileID: -8771700572293867570, guid: 20d1ac5107618b44ca05e11d542632ad, type: 3}
+    - {fileID: -8640714804888212494, guid: 20d1ac5107618b44ca05e11d542632ad, type: 3}
+    - {fileID: -6457578036637937576, guid: 20d1ac5107618b44ca05e11d542632ad, type: 3}
+    - {fileID: -873459255459329539, guid: 20d1ac5107618b44ca05e11d542632ad, type: 3}
+    - {fileID: 3290816050026037430, guid: 20d1ac5107618b44ca05e11d542632ad, type: 3}
+    hp: 160
+    damage: 18
+    moveSpeed: 4
+    fireRate: 1
+    crit: 0.04
+    bonusPositive: "+25% s\xE1t th\u01B0\u01A1ng"
+    bonusNegative: "-15% t\u1ED1c ch\u1EA1y"
+    abilityName: "\u0110\u1EADp M\u1EA1nh"
+    abilityDescription: "M\u1ED7i \u0111\xF2n n\u1EB7ng h\u01A1n."
+  - id: armored_orc
+    displayName: "Orc gi\xE1p"
+    combatClass: 0
+    idle:
+    - {fileID: 4831881393279159307, guid: fc02585bfec628648b977ec1daf71cb6, type: 3}
+    - {fileID: 1239370904390816640, guid: fc02585bfec628648b977ec1daf71cb6, type: 3}
+    - {fileID: 6770455119674635489, guid: fc02585bfec628648b977ec1daf71cb6, type: 3}
+    - {fileID: -4971387667488088697, guid: fc02585bfec628648b977ec1daf71cb6, type: 3}
+    - {fileID: 7578527543553127391, guid: fc02585bfec628648b977ec1daf71cb6, type: 3}
+    - {fileID: -5718758317141224319, guid: fc02585bfec628648b977ec1daf71cb6, type: 3}
+    walk:
+    - {fileID: -6898103378894425911, guid: 82a2ece15a0115e4ba528990c0396558, type: 3}
+    - {fileID: -762050455365909941, guid: 82a2ece15a0115e4ba528990c0396558, type: 3}
+    - {fileID: -8915024875725830076, guid: 82a2ece15a0115e4ba528990c0396558, type: 3}
+    - {fileID: -1627908692142817405, guid: 82a2ece15a0115e4ba528990c0396558, type: 3}
+    - {fileID: 2454549856809964574, guid: 82a2ece15a0115e4ba528990c0396558, type: 3}
+    - {fileID: 4902537866872611890, guid: 82a2ece15a0115e4ba528990c0396558, type: 3}
+    - {fileID: -2152494707372498966, guid: 82a2ece15a0115e4ba528990c0396558, type: 3}
+    - {fileID: -1529676651889661632, guid: 82a2ece15a0115e4ba528990c0396558, type: 3}
+    hp: 170
+    damage: 17
+    moveSpeed: 4.2
+    fireRate: 1.05
+    crit: 0.03
+    bonusPositive: "+22% m\xE1u"
+    bonusNegative: "-10% t\u1ED1c b\u1EAFn"
+    abilityName: "M\xE1u Chi\u1EBFn"
+    abilityDescription: "Tank c\u1EADn chi\u1EBFn."
+  - id: elite_orc
+    displayName: "Orc tinh nhu\u1EC7"
+    combatClass: 0
+    idle:
+    - {fileID: -342681156859825065, guid: f87b28330949a0346b531bc5cb2e0a2b, type: 3}
+    - {fileID: 7182427136695681639, guid: f87b28330949a0346b531bc5cb2e0a2b, type: 3}
+    - {fileID: 6334135343093763509, guid: f87b28330949a0346b531bc5cb2e0a2b, type: 3}
+    - {fileID: -5707147415922792925, guid: f87b28330949a0346b531bc5cb2e0a2b, type: 3}
+    - {fileID: 7825238181998469949, guid: f87b28330949a0346b531bc5cb2e0a2b, type: 3}
+    - {fileID: -5040612050824081324, guid: f87b28330949a0346b531bc5cb2e0a2b, type: 3}
+    walk:
+    - {fileID: 6684747904355862648, guid: 508627934de41a54ba78dd979b739e6d, type: 3}
+    - {fileID: -3645638643408151584, guid: 508627934de41a54ba78dd979b739e6d, type: 3}
+    - {fileID: 2841226476576675175, guid: 508627934de41a54ba78dd979b739e6d, type: 3}
+    - {fileID: 9025902718695436916, guid: 508627934de41a54ba78dd979b739e6d, type: 3}
+    - {fileID: -4233808456839128876, guid: 508627934de41a54ba78dd979b739e6d, type: 3}
+    - {fileID: 3512080809522120508, guid: 508627934de41a54ba78dd979b739e6d, type: 3}
+    - {fileID: -6123898562496948485, guid: 508627934de41a54ba78dd979b739e6d, type: 3}
+    - {fileID: -1119086624804388539, guid: 508627934de41a54ba78dd979b739e6d, type: 3}
+    hp: 155
+    damage: 19
+    moveSpeed: 4.3
+    fireRate: 1.1
+    crit: 0.05
+    bonusPositive: "+20% s\xE1t th\u01B0\u01A1ng"
+    bonusNegative: "-8% m\xE1u"
+    abilityName: "Uy Hi\u1EBFp"
+    abilityDescription: "C\xE2n b\u1EB1ng s\xE1t th\u01B0\u01A1ng/m\xE1u."
+  - id: orc
+    displayName: Orc
+    combatClass: 0
+    idle:
+    - {fileID: 5120410236738981136, guid: a180e64231957ac4b9c27d0324ae2729, type: 3}
+    - {fileID: 1133040411461804861, guid: a180e64231957ac4b9c27d0324ae2729, type: 3}
+    - {fileID: -5096723200824463030, guid: a180e64231957ac4b9c27d0324ae2729, type: 3}
+    - {fileID: -2225174341924067898, guid: a180e64231957ac4b9c27d0324ae2729, type: 3}
+    - {fileID: -8233152129326895834, guid: a180e64231957ac4b9c27d0324ae2729, type: 3}
+    - {fileID: -4010699835880829198, guid: a180e64231957ac4b9c27d0324ae2729, type: 3}
+    walk:
+    - {fileID: 9081233426807069, guid: a500094658ca22e4ebb575c178030504, type: 3}
+    - {fileID: 4372957803809224375, guid: a500094658ca22e4ebb575c178030504, type: 3}
+    - {fileID: -1347736431781377632, guid: a500094658ca22e4ebb575c178030504, type: 3}
+    - {fileID: -5659425469639183808, guid: a500094658ca22e4ebb575c178030504, type: 3}
+    - {fileID: -60962372088672916, guid: a500094658ca22e4ebb575c178030504, type: 3}
+    - {fileID: 3404994825279768155, guid: a500094658ca22e4ebb575c178030504, type: 3}
+    - {fileID: -8575848986319331806, guid: a500094658ca22e4ebb575c178030504, type: 3}
+    - {fileID: -4323655612262110637, guid: a500094658ca22e4ebb575c178030504, type: 3}
+    hp: 145
+    damage: 16
+    moveSpeed: 4.5
+    fireRate: 1.15
+    crit: 0.05
+    bonusPositive: "+15% s\xE1t th\u01B0\u01A1ng"
+    bonusNegative: "-5% t\u1ED1c ch\u1EA1y"
+    abilityName: "Hung H\xE3n"
+    abilityDescription: "L\xEDnh c\u1EADn chi\u1EBFn c\u01A1 b\u1EA3n."
+  - id: knight_templar
+    displayName: "K\u1EF5 s\u0129 th\xE1nh"
+    combatClass: 0
+    idle:
+    - {fileID: 941554769194238170, guid: ed95b62b5d88dca4e8f700e8c7bc5738, type: 3}
+    - {fileID: -247596938127160141, guid: ed95b62b5d88dca4e8f700e8c7bc5738, type: 3}
+    - {fileID: 2066704445689668507, guid: ed95b62b5d88dca4e8f700e8c7bc5738, type: 3}
+    - {fileID: -4408495441092696903, guid: ed95b62b5d88dca4e8f700e8c7bc5738, type: 3}
+    - {fileID: 2450011350353437236, guid: ed95b62b5d88dca4e8f700e8c7bc5738, type: 3}
+    - {fileID: -8802226675324666870, guid: ed95b62b5d88dca4e8f700e8c7bc5738, type: 3}
+    walk:
+    - {fileID: 941554769194238170, guid: ed95b62b5d88dca4e8f700e8c7bc5738, type: 3}
+    - {fileID: -247596938127160141, guid: ed95b62b5d88dca4e8f700e8c7bc5738, type: 3}
+    - {fileID: 2066704445689668507, guid: ed95b62b5d88dca4e8f700e8c7bc5738, type: 3}
+    - {fileID: -4408495441092696903, guid: ed95b62b5d88dca4e8f700e8c7bc5738, type: 3}
+    - {fileID: 2450011350353437236, guid: ed95b62b5d88dca4e8f700e8c7bc5738, type: 3}
+    - {fileID: -8802226675324666870, guid: ed95b62b5d88dca4e8f700e8c7bc5738, type: 3}
+    hp: 165
+    damage: 14
+    moveSpeed: 4.2
+    fireRate: 1
+    crit: 0.03
+    bonusPositive: "+30% m\xE1u"
+    bonusNegative: "-15% s\xE1t th\u01B0\u01A1ng"
+    abilityName: "Th\xE1nh H\u1ED9"
+    abilityDescription: "Si\xEAu tr\u1EE5, s\xE1t th\u01B0\u01A1ng v\u1EEBa."
+  - id: werebear
+    displayName: "G\u1EA5u chi\u1EBFn"
+    combatClass: 0
+    idle:
+    - {fileID: -5004526510767300680, guid: 41817f4514618614eb180fa0d6b20bd3, type: 3}
+    - {fileID: 3609393883403515724, guid: 41817f4514618614eb180fa0d6b20bd3, type: 3}
+    - {fileID: 1387893624940018059, guid: 41817f4514618614eb180fa0d6b20bd3, type: 3}
+    - {fileID: 5336546409777294913, guid: 41817f4514618614eb180fa0d6b20bd3, type: 3}
+    - {fileID: -1768686267006753101, guid: 41817f4514618614eb180fa0d6b20bd3, type: 3}
+    - {fileID: -2699804691739733528, guid: 41817f4514618614eb180fa0d6b20bd3, type: 3}
+    walk:
+    - {fileID: 1174558886763162764, guid: f878a13e65c4dee4ca62c302073c1d41, type: 3}
+    - {fileID: -2315910674107863661, guid: f878a13e65c4dee4ca62c302073c1d41, type: 3}
+    - {fileID: 7851576139567609997, guid: f878a13e65c4dee4ca62c302073c1d41, type: 3}
+    - {fileID: 3573424864928659217, guid: f878a13e65c4dee4ca62c302073c1d41, type: 3}
+    - {fileID: 9144904747891988722, guid: f878a13e65c4dee4ca62c302073c1d41, type: 3}
+    - {fileID: 162461327072422033, guid: f878a13e65c4dee4ca62c302073c1d41, type: 3}
+    - {fileID: 4995179990573881708, guid: f878a13e65c4dee4ca62c302073c1d41, type: 3}
+    - {fileID: 9052491454244285660, guid: f878a13e65c4dee4ca62c302073c1d41, type: 3}
+    hp: 180
+    damage: 20
+    moveSpeed: 3.8
+    fireRate: 0.95
+    crit: 0.04
+    bonusPositive: "+28% s\xE1t th\u01B0\u01A1ng"
+    bonusNegative: "-20% t\u1ED1c ch\u1EA1y"
+    abilityName: "G\u1EA7m R\xFA"
+    abilityDescription: "Ch\u1EADm nh\u01B0ng c\u1EF1c m\u1EA1nh."
+  - id: archer
+    displayName: "Cung th\u1EE7"
+    combatClass: 1
+    idle:
+    - {fileID: 5420657165879536120, guid: 08503b75cd5bed34987a46a32d786321, type: 3}
+    - {fileID: 1175301634001196307, guid: 08503b75cd5bed34987a46a32d786321, type: 3}
+    - {fileID: 997072306785370747, guid: 08503b75cd5bed34987a46a32d786321, type: 3}
+    - {fileID: -8867738644707455821, guid: 08503b75cd5bed34987a46a32d786321, type: 3}
+    - {fileID: -8814955541233353855, guid: 08503b75cd5bed34987a46a32d786321, type: 3}
+    - {fileID: 7477372730292897668, guid: 08503b75cd5bed34987a46a32d786321, type: 3}
+    walk:
+    - {fileID: -2653111961922523269, guid: 449e278e4901a8b47820d17eec9e4acf, type: 3}
+    - {fileID: 1276110046553554427, guid: 449e278e4901a8b47820d17eec9e4acf, type: 3}
+    - {fileID: 6671316223615255954, guid: 449e278e4901a8b47820d17eec9e4acf, type: 3}
+    - {fileID: -7131107602637537101, guid: 449e278e4901a8b47820d17eec9e4acf, type: 3}
+    - {fileID: 7057910378636255025, guid: 449e278e4901a8b47820d17eec9e4acf, type: 3}
+    - {fileID: -326703531548617110, guid: 449e278e4901a8b47820d17eec9e4acf, type: 3}
+    - {fileID: 7613746122174925275, guid: 449e278e4901a8b47820d17eec9e4acf, type: 3}
+    - {fileID: -8952287864160925007, guid: 449e278e4901a8b47820d17eec9e4acf, type: 3}
+    hp: 100
+    damage: 20
+    moveSpeed: 5.5
+    fireRate: 1.8
+    crit: 0.15
+    bonusPositive: "+25% t\u1ED1c b\u1EAFn"
+    bonusNegative: "-25% m\xE1u"
+    abilityName: "M\u01B0a T\xEAn"
+    abilityDescription: "B\u1EAFn nhanh, t\u1EA7m xa."
+  - id: skeleton_archer
+    displayName: "X\u01B0\u01A1ng cung"
+    combatClass: 1
+    idle:
+    - {fileID: -6351682907161248583, guid: eba7feb3f97426045819f1277109e76c, type: 3}
+    - {fileID: -4127314927421442097, guid: eba7feb3f97426045819f1277109e76c, type: 3}
+    - {fileID: -1263314696073233438, guid: eba7feb3f97426045819f1277109e76c, type: 3}
+    - {fileID: 8246794367857864967, guid: eba7feb3f97426045819f1277109e76c, type: 3}
+    - {fileID: 8991973509969698036, guid: eba7feb3f97426045819f1277109e76c, type: 3}
+    - {fileID: -3371768663152145846, guid: eba7feb3f97426045819f1277109e76c, type: 3}
+    walk:
+    - {fileID: 3529585072740049112, guid: 49785c9c2441fd24fad4a7c1af747d1b, type: 3}
+    - {fileID: 1552569696712542236, guid: 49785c9c2441fd24fad4a7c1af747d1b, type: 3}
+    - {fileID: 4004280702128150363, guid: 49785c9c2441fd24fad4a7c1af747d1b, type: 3}
+    - {fileID: -2672155573072289348, guid: 49785c9c2441fd24fad4a7c1af747d1b, type: 3}
+    - {fileID: -5095432870617726702, guid: 49785c9c2441fd24fad4a7c1af747d1b, type: 3}
+    - {fileID: 487595970675031006, guid: 49785c9c2441fd24fad4a7c1af747d1b, type: 3}
+    - {fileID: -6304041728307141930, guid: 49785c9c2441fd24fad4a7c1af747d1b, type: 3}
+    - {fileID: -3530639821347134945, guid: 49785c9c2441fd24fad4a7c1af747d1b, type: 3}
+    hp: 95
+    damage: 19
+    moveSpeed: 5.3
+    fireRate: 1.75
+    crit: 0.14
+    bonusPositive: "+20% ch\xED m\u1EA1ng"
+    bonusNegative: "-20% m\xE1u"
+    abilityName: "Xuy\xEAn Gi\xE1p"
+    abilityDescription: "Crit cao, th\xE2n m\u1ECFng."
+  - id: lancer
+    displayName: "K\u1EF5 s\u0129 th\u01B0\u01A1ng"
+    combatClass: 1
+    idle:
+    - {fileID: 3465079563596065642, guid: a415983115e739341829920a791da0da, type: 3}
+    - {fileID: -528580022642928756, guid: a415983115e739341829920a791da0da, type: 3}
+    - {fileID: 5665906590587508757, guid: a415983115e739341829920a791da0da, type: 3}
+    - {fileID: 8502715288272964498, guid: a415983115e739341829920a791da0da, type: 3}
+    - {fileID: 6256610846622465417, guid: a415983115e739341829920a791da0da, type: 3}
+    - {fileID: -1146278007973776045, guid: a415983115e739341829920a791da0da, type: 3}
+    walk:
+    - {fileID: 3465079563596065642, guid: a415983115e739341829920a791da0da, type: 3}
+    - {fileID: -528580022642928756, guid: a415983115e739341829920a791da0da, type: 3}
+    - {fileID: 5665906590587508757, guid: a415983115e739341829920a791da0da, type: 3}
+    - {fileID: 8502715288272964498, guid: a415983115e739341829920a791da0da, type: 3}
+    - {fileID: 6256610846622465417, guid: a415983115e739341829920a791da0da, type: 3}
+    - {fileID: -1146278007973776045, guid: a415983115e739341829920a791da0da, type: 3}
+    hp: 110
+    damage: 18
+    moveSpeed: 5.6
+    fireRate: 1.6
+    crit: 0.12
+    bonusPositive: "+18% t\u1ED1c ch\u1EA1y"
+    bonusNegative: "-15% m\xE1u"
+    abilityName: "Xung K\xEDch"
+    abilityDescription: "Di chuy\u1EC3n nhanh."
+  - id: orc_rider
+    displayName: "K\u1EF5 Orc"
+    combatClass: 1
+    idle:
+    - {fileID: -6967218827304948987, guid: f85ecee66a2a7ac45b4e29438fabfb10, type: 3}
+    - {fileID: -2582689681796817123, guid: f85ecee66a2a7ac45b4e29438fabfb10, type: 3}
+    - {fileID: 5239070887845672902, guid: f85ecee66a2a7ac45b4e29438fabfb10, type: 3}
+    - {fileID: 8711236559198195290, guid: f85ecee66a2a7ac45b4e29438fabfb10, type: 3}
+    - {fileID: -5612623993386223237, guid: f85ecee66a2a7ac45b4e29438fabfb10, type: 3}
+    - {fileID: -600239269196264424, guid: f85ecee66a2a7ac45b4e29438fabfb10, type: 3}
+    walk:
+    - {fileID: 4762972965759509545, guid: 50dc50b45d8f2d8469540bcc72990975, type: 3}
+    - {fileID: -467496773326053826, guid: 50dc50b45d8f2d8469540bcc72990975, type: 3}
+    - {fileID: -4277353276443176154, guid: 50dc50b45d8f2d8469540bcc72990975, type: 3}
+    - {fileID: 3971616282867014591, guid: 50dc50b45d8f2d8469540bcc72990975, type: 3}
+    - {fileID: 1127462252342030170, guid: 50dc50b45d8f2d8469540bcc72990975, type: 3}
+    - {fileID: 5749074350868987293, guid: 50dc50b45d8f2d8469540bcc72990975, type: 3}
+    - {fileID: -63334707547655146, guid: 50dc50b45d8f2d8469540bcc72990975, type: 3}
+    - {fileID: 3572186884227599840, guid: 50dc50b45d8f2d8469540bcc72990975, type: 3}
+    hp: 120
+    damage: 17
+    moveSpeed: 5.4
+    fireRate: 1.55
+    crit: 0.1
+    bonusPositive: "+15% t\u1ED1c ch\u1EA1y"
+    bonusNegative: "-10% s\xE1t th\u01B0\u01A1ng"
+    abilityName: "K\u1EF5 Binh"
+    abilityDescription: "Linh ho\u1EA1t tr\xEAn map."
+  - id: werewolf
+    displayName: "Ng\u01B0\u1EDDi s\xF3i"
+    combatClass: 1
+    idle:
+    - {fileID: 4565372846758268570, guid: 32ff46cc94c7e4c40a8530b42fc8376c, type: 3}
+    - {fileID: -5431055816626353104, guid: 32ff46cc94c7e4c40a8530b42fc8376c, type: 3}
+    - {fileID: 4981596948431694777, guid: 32ff46cc94c7e4c40a8530b42fc8376c, type: 3}
+    - {fileID: 7992208743141392169, guid: 32ff46cc94c7e4c40a8530b42fc8376c, type: 3}
+    - {fileID: 9217762701747348682, guid: 32ff46cc94c7e4c40a8530b42fc8376c, type: 3}
+    - {fileID: -8424546917131734541, guid: 32ff46cc94c7e4c40a8530b42fc8376c, type: 3}
+    walk:
+    - {fileID: -3701199581462768929, guid: 521d23045fc7fca43a4debb8d2b2a127, type: 3}
+    - {fileID: -7547501532470485945, guid: 521d23045fc7fca43a4debb8d2b2a127, type: 3}
+    - {fileID: -4216219597229827858, guid: 521d23045fc7fca43a4debb8d2b2a127, type: 3}
+    - {fileID: 5448589304762213395, guid: 521d23045fc7fca43a4debb8d2b2a127, type: 3}
+    - {fileID: 1915964264584243621, guid: 521d23045fc7fca43a4debb8d2b2a127, type: 3}
+    - {fileID: 5799248973064564117, guid: 521d23045fc7fca43a4debb8d2b2a127, type: 3}
+    - {fileID: -7661666850059498734, guid: 521d23045fc7fca43a4debb8d2b2a127, type: 3}
+    - {fileID: -6517846222131938427, guid: 521d23045fc7fca43a4debb8d2b2a127, type: 3}
+    hp: 105
+    damage: 21
+    moveSpeed: 5.8
+    fireRate: 1.7
+    crit: 0.13
+    bonusPositive: "+22% s\xE1t th\u01B0\u01A1ng"
+    bonusNegative: "-18% m\xE1u"
+    abilityName: "S\u0103n M\u1ED3i"
+    abilityDescription: "Nhanh v\xE0 hung \xE1c."
+  - id: wizard
+    displayName: "Ph\xE1p s\u01B0"
+    combatClass: 2
+    idle:
+    - {fileID: -5908238798454654921, guid: e4337f2804983c548bd97fb2fb974b86, type: 3}
+    - {fileID: -8063396620519384718, guid: e4337f2804983c548bd97fb2fb974b86, type: 3}
+    - {fileID: -2049506161387598549, guid: e4337f2804983c548bd97fb2fb974b86, type: 3}
+    - {fileID: 8664839956357517539, guid: e4337f2804983c548bd97fb2fb974b86, type: 3}
+    - {fileID: -5703199372606414648, guid: e4337f2804983c548bd97fb2fb974b86, type: 3}
+    - {fileID: -8514182677760930749, guid: e4337f2804983c548bd97fb2fb974b86, type: 3}
+    walk:
+    - {fileID: 6921249545961426555, guid: 63d87726dcdd87142af9e5e5b3a20153, type: 3}
+    - {fileID: -8039139542723693486, guid: 63d87726dcdd87142af9e5e5b3a20153, type: 3}
+    - {fileID: -2643733571158344102, guid: 63d87726dcdd87142af9e5e5b3a20153, type: 3}
+    - {fileID: -4551788642250015871, guid: 63d87726dcdd87142af9e5e5b3a20153, type: 3}
+    - {fileID: 3856358099754469162, guid: 63d87726dcdd87142af9e5e5b3a20153, type: 3}
+    - {fileID: 873294589639306440, guid: 63d87726dcdd87142af9e5e5b3a20153, type: 3}
+    - {fileID: -7769258612669609196, guid: 63d87726dcdd87142af9e5e5b3a20153, type: 3}
+    - {fileID: -7123062331912778819, guid: 63d87726dcdd87142af9e5e5b3a20153, type: 3}
+    hp: 80
+    damage: 28
+    moveSpeed: 4
+    fireRate: 0.9
+    crit: 0.08
+    bonusPositive: "+30% s\xE1t th\u01B0\u01A1ng ph\xE9p"
+    bonusNegative: "-25% m\xE1u"
+    abilityName: "H\u1ECFa C\u1EA7u"
+    abilityDescription: "Burst cao, r\u1EA5t m\u1ECFng."
+  - id: priest
+    displayName: "Th\u1EA7y tu"
+    combatClass: 2
+    idle:
+    - {fileID: -663804655798916631, guid: 965502ab59dc8334fb27e506bf619862, type: 3}
+    - {fileID: -2566524390928899737, guid: 965502ab59dc8334fb27e506bf619862, type: 3}
+    - {fileID: -6762606957532240787, guid: 965502ab59dc8334fb27e506bf619862, type: 3}
+    - {fileID: -8571151364460497435, guid: 965502ab59dc8334fb27e506bf619862, type: 3}
+    - {fileID: 1629379577001740549, guid: 965502ab59dc8334fb27e506bf619862, type: 3}
+    - {fileID: 7521909360438926110, guid: 965502ab59dc8334fb27e506bf619862, type: 3}
+    walk:
+    - {fileID: 2627294696224789840, guid: 13f49f68a4f216146811446cea99032d, type: 3}
+    - {fileID: -7512213230153046130, guid: 13f49f68a4f216146811446cea99032d, type: 3}
+    - {fileID: 830883647339762077, guid: 13f49f68a4f216146811446cea99032d, type: 3}
+    - {fileID: -5092062182813528432, guid: 13f49f68a4f216146811446cea99032d, type: 3}
+    - {fileID: 724282607026121063, guid: 13f49f68a4f216146811446cea99032d, type: 3}
+    - {fileID: -3025515330137168691, guid: 13f49f68a4f216146811446cea99032d, type: 3}
+    - {fileID: -7772827946506075600, guid: 13f49f68a4f216146811446cea99032d, type: 3}
+    - {fileID: 6891665544650684598, guid: 13f49f68a4f216146811446cea99032d, type: 3}
+    hp: 90
+    damage: 22
+    moveSpeed: 4.2
+    fireRate: 1
+    crit: 0.06
+    bonusPositive: "+20% h\u1ED3i m\xE1u skill"
+    bonusNegative: "-15% s\xE1t th\u01B0\u01A1ng"
+    abilityName: "Th\xE1nh Quang"
+    abilityDescription: "S\u1ED1ng s\xF3t t\u1ED1t h\u01A1n mage."
+  - id: skeleton
+    displayName: "B\u1ED9 x\u01B0\u01A1ng"
+    combatClass: 2
+    idle:
+    - {fileID: 303854554312539980, guid: eef5fceff41288145b02c876e6a96c1c, type: 3}
+    - {fileID: -7969776883741174648, guid: eef5fceff41288145b02c876e6a96c1c, type: 3}
+    - {fileID: 2794140543023437591, guid: eef5fceff41288145b02c876e6a96c1c, type: 3}
+    - {fileID: 2312121367507405550, guid: eef5fceff41288145b02c876e6a96c1c, type: 3}
+    - {fileID: 2762021949432706632, guid: eef5fceff41288145b02c876e6a96c1c, type: 3}
+    - {fileID: -7311285497288995999, guid: eef5fceff41288145b02c876e6a96c1c, type: 3}
+    walk:
+    - {fileID: -8276653299294872638, guid: 73c97b0e61349a242b37e10931bf04f1, type: 3}
+    - {fileID: -2309594474776175077, guid: 73c97b0e61349a242b37e10931bf04f1, type: 3}
+    - {fileID: -2011045152696634089, guid: 73c97b0e61349a242b37e10931bf04f1, type: 3}
+    - {fileID: 6886724306193472282, guid: 73c97b0e61349a242b37e10931bf04f1, type: 3}
+    - {fileID: -132369975844778901, guid: 73c97b0e61349a242b37e10931bf04f1, type: 3}
+    - {fileID: 6872141654292099696, guid: 73c97b0e61349a242b37e10931bf04f1, type: 3}
+    - {fileID: 2363418598165148769, guid: 73c97b0e61349a242b37e10931bf04f1, type: 3}
+    - {fileID: -5638730299495421413, guid: 73c97b0e61349a242b37e10931bf04f1, type: 3}
+    hp: 85
+    damage: 24
+    moveSpeed: 4.1
+    fireRate: 0.95
+    crit: 0.07
+    bonusPositive: "+18% s\xE1t th\u01B0\u01A1ng"
+    bonusNegative: "-20% m\xE1u"
+    abilityName: "L\u1EDDi Nguy\u1EC1n"
+    abilityDescription: "S\xE1t th\u01B0\u01A1ng ph\xE9p \u1ED5n."
+  - id: armored_skeleton
+    displayName: "X\u01B0\u01A1ng gi\xE1p"
+    combatClass: 2
+    idle:
+    - {fileID: 5525993030540068286, guid: 85ad217a4a53e6e4ea44090ac0472f9b, type: 3}
+    - {fileID: -8663772317979389850, guid: 85ad217a4a53e6e4ea44090ac0472f9b, type: 3}
+    - {fileID: 5784295752593638801, guid: 85ad217a4a53e6e4ea44090ac0472f9b, type: 3}
+    - {fileID: 4055723317896046259, guid: 85ad217a4a53e6e4ea44090ac0472f9b, type: 3}
+    - {fileID: -2108201621661663137, guid: 85ad217a4a53e6e4ea44090ac0472f9b, type: 3}
+    - {fileID: -3822943416461383560, guid: 85ad217a4a53e6e4ea44090ac0472f9b, type: 3}
+    walk:
+    - {fileID: 2710983885293062031, guid: 44b67555ea7f0974a930b66724f20bbc, type: 3}
+    - {fileID: -7164609891766170607, guid: 44b67555ea7f0974a930b66724f20bbc, type: 3}
+    - {fileID: -5087492703569468959, guid: 44b67555ea7f0974a930b66724f20bbc, type: 3}
+    - {fileID: 8545836266742420685, guid: 44b67555ea7f0974a930b66724f20bbc, type: 3}
+    - {fileID: 6730639908085107963, guid: 44b67555ea7f0974a930b66724f20bbc, type: 3}
+    - {fileID: 7523471475845239554, guid: 44b67555ea7f0974a930b66724f20bbc, type: 3}
+    - {fileID: 710114164894718055, guid: 44b67555ea7f0974a930b66724f20bbc, type: 3}
+    - {fileID: 7448709844730987949, guid: 44b67555ea7f0974a930b66724f20bbc, type: 3}
+    hp: 100
+    damage: 20
+    moveSpeed: 3.9
+    fireRate: 0.85
+    crit: 0.05
+    bonusPositive: "+15% m\xE1u"
+    bonusNegative: "-10% t\u1ED1c b\u1EAFn"
+    abilityName: "Khi\xEAn X\u01B0\u01A1ng"
+    abilityDescription: "Mage tanky h\u01A1n."
+  - id: greatsword_skeleton
+    displayName: "X\u01B0\u01A1ng \u0111\u1EA1i ki\u1EBFm"
+    combatClass: 2
+    idle:
+    - {fileID: -6428129625516625643, guid: d516b21ae0dc35d438147364a045d16d, type: 3}
+    - {fileID: -1739141679505282389, guid: d516b21ae0dc35d438147364a045d16d, type: 3}
+    - {fileID: 2722183116147132835, guid: d516b21ae0dc35d438147364a045d16d, type: 3}
+    - {fileID: 7081699247851482007, guid: d516b21ae0dc35d438147364a045d16d, type: 3}
+    - {fileID: -5806632230471907031, guid: d516b21ae0dc35d438147364a045d16d, type: 3}
+    - {fileID: 5725300520622105212, guid: d516b21ae0dc35d438147364a045d16d, type: 3}
+    walk:
+    - {fileID: -7459603669500001941, guid: b043b0c6ce3ac2c40a8d616a0725a6f2, type: 3}
+    - {fileID: 6166366046247683660, guid: b043b0c6ce3ac2c40a8d616a0725a6f2, type: 3}
+    - {fileID: 3137527998565041634, guid: b043b0c6ce3ac2c40a8d616a0725a6f2, type: 3}
+    - {fileID: 7628613798529611405, guid: b043b0c6ce3ac2c40a8d616a0725a6f2, type: 3}
+    - {fileID: 9211441226706313983, guid: b043b0c6ce3ac2c40a8d616a0725a6f2, type: 3}
+    - {fileID: -4387257990158484384, guid: b043b0c6ce3ac2c40a8d616a0725a6f2, type: 3}
+    - {fileID: 4897232894672810715, guid: b043b0c6ce3ac2c40a8d616a0725a6f2, type: 3}
+    - {fileID: 770206704810081102, guid: b043b0c6ce3ac2c40a8d616a0725a6f2, type: 3}
+    - {fileID: -1877230367031352636, guid: b043b0c6ce3ac2c40a8d616a0725a6f2, type: 3}
+    hp: 95
+    damage: 26
+    moveSpeed: 4
+    fireRate: 0.88
+    crit: 0.06
+    bonusPositive: "+25% s\xE1t th\u01B0\u01A1ng"
+    bonusNegative: "-22% m\xE1u"
+    abilityName: "\u0110\u1EA1i Ki\u1EBFm"
+    abilityDescription: "S\xE1t th\u01B0\u01A1ng c\u1EF1c cao."
+  - id: slime
+    displayName: Slime
+    combatClass: 2
+    idle:
+    - {fileID: -7854738478779454800, guid: 43057567c21142d45b12b6646ffda474, type: 3}
+    - {fileID: 7952265997143392756, guid: 43057567c21142d45b12b6646ffda474, type: 3}
+    - {fileID: 6747045714855932814, guid: 43057567c21142d45b12b6646ffda474, type: 3}
+    - {fileID: -3550793042933452877, guid: 43057567c21142d45b12b6646ffda474, type: 3}
+    - {fileID: -6526498319472173233, guid: 43057567c21142d45b12b6646ffda474, type: 3}
+    - {fileID: -4731837845194634399, guid: 43057567c21142d45b12b6646ffda474, type: 3}
+    walk:
+    - {fileID: 5206410529515300821, guid: f8fd0f9c7ef33b54497f7a11ed9868a5, type: 3}
+    - {fileID: -4769286158386316315, guid: f8fd0f9c7ef33b54497f7a11ed9868a5, type: 3}
+    - {fileID: 758772031894452607, guid: f8fd0f9c7ef33b54497f7a11ed9868a5, type: 3}
+    - {fileID: 248328245031164167, guid: f8fd0f9c7ef33b54497f7a11ed9868a5, type: 3}
+    - {fileID: -1401900189905677965, guid: f8fd0f9c7ef33b54497f7a11ed9868a5, type: 3}
+    - {fileID: -187391309203046983, guid: f8fd0f9c7ef33b54497f7a11ed9868a5, type: 3}
+    hp: 70
+    damage: 30
+    moveSpeed: 4.8
+    fireRate: 1.1
+    crit: 0.1
+    bonusPositive: "+35% s\xE1t th\u01B0\u01A1ng"
+    bonusNegative: "-35% m\xE1u"
+    abilityName: "Nh\u1EA7y Nh\u1EE5a"
+    abilityDescription: "Glass cannon \u2014 c\u1EF1c m\u1ECFng."

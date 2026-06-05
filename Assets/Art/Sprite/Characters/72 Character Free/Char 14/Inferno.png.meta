@@ -1,0 +1,1924 @@
+fileFormatVersion: 2
+guid: f7bb5e13a4e861a48badbde25ed33920
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6182518920641396402
+    second: Inferno_0
+  - first:
+      213: -5177094369417895351
+    second: Inferno_1
+  - first:
+      213: 5679943500211035177
+    second: Inferno_2
+  - first:
+      213: 62090992082583121
+    second: Inferno_3
+  - first:
+      213: -1899875160496276325
+    second: Inferno_4
+  - first:
+      213: 1197541171698379145
+    second: Inferno_5
+  - first:
+      213: 7536509806751648093
+    second: Inferno_6
+  - first:
+      213: 8557230632616874076
+    second: Inferno_7
+  - first:
+      213: 1044337954785444655
+    second: Inferno_8
+  - first:
+      213: 1954676156212089071
+    second: Inferno_9
+  - first:
+      213: 1904901327904571479
+    second: Inferno_10
+  - first:
+      213: -7093517652365421799
+    second: Inferno_11
+  - first:
+      213: 8196426873564509850
+    second: Inferno_12
+  - first:
+      213: 8413613307394880876
+    second: Inferno_13
+  - first:
+      213: 2833222310183179659
+    second: Inferno_14
+  - first:
+      213: -8803776117129950472
+    second: Inferno_15
+  - first:
+      213: 5319789565086236357
+    second: Inferno_16
+  - first:
+      213: -6269191128851079835
+    second: Inferno_17
+  - first:
+      213: -1385020671661625837
+    second: Inferno_18
+  - first:
+      213: -9203797876422042178
+    second: Inferno_19
+  - first:
+      213: -9083422215435846817
+    second: Inferno_20
+  - first:
+      213: 7304579253596082280
+    second: Inferno_21
+  - first:
+      213: 8256889642719507306
+    second: Inferno_22
+  - first:
+      213: -1355560623391158129
+    second: Inferno_23
+  - first:
+      213: 978017739620861386
+    second: Inferno_24
+  - first:
+      213: 5661212256153906188
+    second: Inferno_25
+  - first:
+      213: -2198972102422492656
+    second: Inferno_26
+  - first:
+      213: 6110920598130356718
+    second: Inferno_27
+  - first:
+      213: -4115289132480178071
+    second: Inferno_28
+  - first:
+      213: 450417554753562944
+    second: Inferno_29
+  - first:
+      213: -1054755626719617980
+    second: Inferno_30
+  - first:
+      213: -6044129962114552264
+    second: Inferno_31
+  - first:
+      213: 5834590315988081064
+    second: Inferno_32
+  - first:
+      213: -6436360945851617962
+    second: Inferno_33
+  - first:
+      213: 4733405032936957732
+    second: Inferno_34
+  - first:
+      213: -4965305336099862264
+    second: Inferno_35
+  - first:
+      213: -3366380166375183366
+    second: Inferno_36
+  - first:
+      213: -7368578874016096867
+    second: Inferno_37
+  - first:
+      213: -636741859572112939
+    second: Inferno_38
+  - first:
+      213: -6460422775036517982
+    second: Inferno_39
+  - first:
+      213: 6963401480014574296
+    second: Inferno_40
+  - first:
+      213: -7971325114500227874
+    second: Inferno_41
+  - first:
+      213: -8376759155197419481
+    second: Inferno_42
+  - first:
+      213: -7298865377661970620
+    second: Inferno_43
+  - first:
+      213: 2501226304984761911
+    second: Inferno_44
+  - first:
+      213: -3409905220015881740
+    second: Inferno_45
+  - first:
+      213: 6245907917785535304
+    second: Inferno_46
+  - first:
+      213: 6518903574691135756
+    second: Inferno_47
+  - first:
+      213: 7167132751989210960
+    second: Inferno_48
+  - first:
+      213: 112180002915476149
+    second: Inferno_49
+  - first:
+      213: 750650945688805235
+    second: Inferno_50
+  - first:
+      213: 1359142951451559670
+    second: Inferno_51
+  - first:
+      213: 8548500128307138609
+    second: Inferno_52
+  - first:
+      213: 6943774961189471998
+    second: Inferno_53
+  - first:
+      213: -3559847249565161869
+    second: Inferno_54
+  - first:
+      213: -217607678920439187
+    second: Inferno_55
+  - first:
+      213: 4103941214016189593
+    second: Inferno_56
+  - first:
+      213: 4531401293947473086
+    second: Inferno_57
+  - first:
+      213: 5117141921875017725
+    second: Inferno_58
+  - first:
+      213: 2619653103122283657
+    second: Inferno_59
+  - first:
+      213: 476114086224196386
+    second: Inferno_60
+  - first:
+      213: -5265549695490595844
+    second: Inferno_61
+  - first:
+      213: 2990519200345311635
+    second: Inferno_62
+  - first:
+      213: 6494327233349497066
+    second: Inferno_63
+  - first:
+      213: 6414207761310882554
+    second: Inferno_64
+  - first:
+      213: 4906454499462398347
+    second: Inferno_65
+  - first:
+      213: 90615746697599418
+    second: Inferno_66
+  - first:
+      213: -4900996635854245300
+    second: Inferno_67
+  - first:
+      213: 2985322405700706126
+    second: Inferno_68
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Inferno_0
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 207
+        width: 25
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e41c90e4cc7433aa0800000000000000
+      internalID: -6182518920641396402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_1
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 207
+        width: 25
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 942eb26b9144728b0800000000000000
+      internalID: -5177094369417895351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_2
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 207
+        width: 25
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92c1e52158633de40800000000000000
+      internalID: 5679943500211035177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_3
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 207
+        width: 25
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15e75d6ad679cd000800000000000000
+      internalID: 62090992082583121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_4
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 151
+        width: 25
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9cf7058b9942a5e0800000000000000
+      internalID: -1899875160496276325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_5
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 153
+        width: 25
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 989acfec9558e9010800000000000000
+      internalID: 1197541171698379145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_6
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 152
+        width: 25
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d590ea53dbf079860800000000000000
+      internalID: 7536509806751648093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_7
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 151
+        width: 25
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5058361ce361c670800000000000000
+      internalID: 8557230632616874076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_8
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 154
+        width: 25
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f23c17436db3e7e00800000000000000
+      internalID: 1044337954785444655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_9
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 153
+        width: 25
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe092f59b97602b10800000000000000
+      internalID: 1954676156212089071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_10
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 49
+        width: 25
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7500ce54aa19f6a10800000000000000
+      internalID: 1904901327904571479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_11
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 102
+        width: 25
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 913dbca3743ce8d90800000000000000
+      internalID: -7093517652365421799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_12
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 102
+        width: 25
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a963742a0de8fb170800000000000000
+      internalID: 8196426873564509850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_13
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 101
+        width: 26
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6575c0d9b823c470800000000000000
+      internalID: 8413613307394880876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_14
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 106
+        width: 24
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b851e281ea0a15720800000000000000
+      internalID: 2833222310183179659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_15
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 104
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8fac6601444b2d580800000000000000
+      internalID: -8803776117129950472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_16
+      rect:
+        serializedVersion: 2
+        x: 279
+        y: 100
+        width: 22
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ce7bca8c60b3d940800000000000000
+      internalID: 5319789565086236357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_17
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 119
+        width: 11
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56d1dc742eb5ff8a0800000000000000
+      internalID: -6269191128851079835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_18
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 103
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31e290b890b67cce0800000000000000
+      internalID: -1385020671661625837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_19
+      rect:
+        serializedVersion: 2
+        x: 338
+        y: 113
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ebd9e5f589a854080800000000000000
+      internalID: -9203797876422042178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_20
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 118
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5bfd000f9331f180800000000000000
+      internalID: -9083422215435846817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_21
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 107
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 860584c31241f5560800000000000000
+      internalID: 7304579253596082280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_22
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 115
+        width: 9
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a63f5e7126d569270800000000000000
+      internalID: 8256889642719507306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_23
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 100
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f80534b8bc4103de0800000000000000
+      internalID: -1355560623391158129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_24
+      rect:
+        serializedVersion: 2
+        x: 348
+        y: 124
+        width: 11
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac5c122d3fd929d00800000000000000
+      internalID: 978017739620861386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_25
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 113
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0c24267d8aa09e40800000000000000
+      internalID: 5661212256153906188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_26
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 119
+        width: 10
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01a0d14068eab71e0800000000000000
+      internalID: -2198972102422492656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_27
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 109
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee17d2e28e95ec450800000000000000
+      internalID: 6110920598130356718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_28
+      rect:
+        serializedVersion: 2
+        x: 356
+        y: 104
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9685e76765e83e6c0800000000000000
+      internalID: -4115289132480178071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_29
+      rect:
+        serializedVersion: 2
+        x: 357
+        y: 121
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 049afaf2164304600800000000000000
+      internalID: 450417554753562944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_30
+      rect:
+        serializedVersion: 2
+        x: 402
+        y: 107
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44c58888851cc51f0800000000000000
+      internalID: -1054755626719617980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_31
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 119
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83eedd792dfee1ca0800000000000000
+      internalID: -6044129962114552264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_32
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 115
+        width: 9
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a9576abaf0a8f050800000000000000
+      internalID: 5834590315988081064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_33
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 99
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65d215032d37da6a0800000000000000
+      internalID: -6436360945851617962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_34
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 125
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 427e04e7cce60b140800000000000000
+      internalID: 4733405032936957732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_35
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 109
+        width: 14
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8098a68aa11b71bb0800000000000000
+      internalID: -4965305336099862264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_36
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 120
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: afb694413173841d0800000000000000
+      internalID: -3366380166375183366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_37
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 99
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9d92d2fd8c8db990800000000000000
+      internalID: -7368578874016096867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_38
+      rect:
+        serializedVersion: 2
+        x: 421
+        y: 104
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d1259ef6a6d927f0800000000000000
+      internalID: -636741859572112939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_39
+      rect:
+        serializedVersion: 2
+        x: 466
+        y: 108
+        width: 14
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a1ea1307b7f756a0800000000000000
+      internalID: -6460422775036517982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_40
+      rect:
+        serializedVersion: 2
+        x: 466
+        y: 119
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d2b2bc90c8f2a060800000000000000
+      internalID: 6963401480014574296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_41
+      rect:
+        serializedVersion: 2
+        x: 471
+        y: 99
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: edc5011da0a206190800000000000000
+      internalID: -7971325114500227874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_42
+      rect:
+        serializedVersion: 2
+        x: 479
+        y: 104
+        width: 14
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 720e4792ee5cfbb80800000000000000
+      internalID: -8376759155197419481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_43
+      rect:
+        serializedVersion: 2
+        x: 530
+        y: 108
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4479f0d2c9835ba90800000000000000
+      internalID: -7298865377661970620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_44
+      rect:
+        serializedVersion: 2
+        x: 530
+        y: 120
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 736ca73821426b220800000000000000
+      internalID: 2501226304984761911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_45
+      rect:
+        serializedVersion: 2
+        x: 535
+        y: 98
+        width: 87
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f10433d4459da0d0800000000000000
+      internalID: -3409905220015881740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_46
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 98
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8431863b82ceda650800000000000000
+      internalID: 6245907917785535304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_47
+      rect:
+        serializedVersion: 2
+        x: 659
+        y: 38
+        width: 84
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c014d76334cc77a50800000000000000
+      internalID: 6518903574691135756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_48
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 56
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05f726cc345c67360800000000000000
+      internalID: 7167132751989210960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_49
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 48
+        width: 12
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b2eda84e1b8e8100800000000000000
+      internalID: 112180002915476149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_50
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 55
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37f9718de09da6a00800000000000000
+      internalID: 750650945688805235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_51
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 47
+        width: 12
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f60f343055acd210800000000000000
+      internalID: 1359142951451559670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_52
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 56
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 130d026239f52a670800000000000000
+      internalID: 8548500128307138609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_53
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 48
+        width: 12
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef643f9998e3d5060800000000000000
+      internalID: 6943774961189471998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_54
+      rect:
+        serializedVersion: 2
+        x: 279
+        y: 56
+        width: 8
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 376640399c1e89ec0800000000000000
+      internalID: -3559847249565161869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_55
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 49
+        width: 12
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6acc8d08f6eafcf0800000000000000
+      internalID: -217607678920439187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_56
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 48
+        width: 19
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99435806ac024f830800000000000000
+      internalID: 4103941214016189593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_57
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 50
+        width: 21
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ebc0c7ce775c2ee30800000000000000
+      internalID: 4531401293947473086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_58
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 39
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dffbe96577db30740800000000000000
+      internalID: 5117141921875017725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_59
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 51
+        width: 22
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98c7a562e90ea5420800000000000000
+      internalID: 2619653103122283657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_60
+      rect:
+        serializedVersion: 2
+        x: 473
+        y: 48
+        width: 17
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 223f3f52d3f7b9600800000000000000
+      internalID: 476114086224196386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_61
+      rect:
+        serializedVersion: 2
+        x: 476
+        y: 39
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf3ed1533720de6b0800000000000000
+      internalID: -5265549695490595844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_62
+      rect:
+        serializedVersion: 2
+        x: 532
+        y: 52
+        width: 23
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39941964e55708920800000000000000
+      internalID: 2990519200345311635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_63
+      rect:
+        serializedVersion: 2
+        x: 537
+        y: 49
+        width: 17
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae031f6d53c702a50800000000000000
+      internalID: 6494327233349497066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_64
+      rect:
+        serializedVersion: 2
+        x: 537
+        y: 39
+        width: 15
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: afa1d7899f7d30950800000000000000
+      internalID: 6414207761310882554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_65
+      rect:
+        serializedVersion: 2
+        x: 596
+        y: 56
+        width: 23
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b81c21b2f5a371440800000000000000
+      internalID: 4906454499462398347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_66
+      rect:
+        serializedVersion: 2
+        x: 597
+        y: 49
+        width: 21
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab997f0aa8ee14100800000000000000
+      internalID: 90615746697599418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_67
+      rect:
+        serializedVersion: 2
+        x: 601
+        y: 39
+        width: 15
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c42f58ab6892cfbb0800000000000000
+      internalID: -4900996635854245300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inferno_68
+      rect:
+        serializedVersion: 2
+        x: 723
+        y: 38
+        width: 25
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4f1ecb39eefd6920800000000000000
+      internalID: 2985322405700706126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Inferno_0: -6182518920641396402
+      Inferno_1: -5177094369417895351
+      Inferno_10: 1904901327904571479
+      Inferno_11: -7093517652365421799
+      Inferno_12: 8196426873564509850
+      Inferno_13: 8413613307394880876
+      Inferno_14: 2833222310183179659
+      Inferno_15: -8803776117129950472
+      Inferno_16: 5319789565086236357
+      Inferno_17: -6269191128851079835
+      Inferno_18: -1385020671661625837
+      Inferno_19: -9203797876422042178
+      Inferno_2: 5679943500211035177
+      Inferno_20: -9083422215435846817
+      Inferno_21: 7304579253596082280
+      Inferno_22: 8256889642719507306
+      Inferno_23: -1355560623391158129
+      Inferno_24: 978017739620861386
+      Inferno_25: 5661212256153906188
+      Inferno_26: -2198972102422492656
+      Inferno_27: 6110920598130356718
+      Inferno_28: -4115289132480178071
+      Inferno_29: 450417554753562944
+      Inferno_3: 62090992082583121
+      Inferno_30: -1054755626719617980
+      Inferno_31: -6044129962114552264
+      Inferno_32: 5834590315988081064
+      Inferno_33: -6436360945851617962
+      Inferno_34: 4733405032936957732
+      Inferno_35: -4965305336099862264
+      Inferno_36: -3366380166375183366
+      Inferno_37: -7368578874016096867
+      Inferno_38: -636741859572112939
+      Inferno_39: -6460422775036517982
+      Inferno_4: -1899875160496276325
+      Inferno_40: 6963401480014574296
+      Inferno_41: -7971325114500227874
+      Inferno_42: -8376759155197419481
+      Inferno_43: -7298865377661970620
+      Inferno_44: 2501226304984761911
+      Inferno_45: -3409905220015881740
+      Inferno_46: 6245907917785535304
+      Inferno_47: 6518903574691135756
+      Inferno_48: 7167132751989210960
+      Inferno_49: 112180002915476149
+      Inferno_5: 1197541171698379145
+      Inferno_50: 750650945688805235
+      Inferno_51: 1359142951451559670
+      Inferno_52: 8548500128307138609
+      Inferno_53: 6943774961189471998
+      Inferno_54: -3559847249565161869
+      Inferno_55: -217607678920439187
+      Inferno_56: 4103941214016189593
+      Inferno_57: 4531401293947473086
+      Inferno_58: 5117141921875017725
+      Inferno_59: 2619653103122283657
+      Inferno_6: 7536509806751648093
+      Inferno_60: 476114086224196386
+      Inferno_61: -5265549695490595844
+      Inferno_62: 2990519200345311635
+      Inferno_63: 6494327233349497066
+      Inferno_64: 6414207761310882554
+      Inferno_65: 4906454499462398347
+      Inferno_66: 90615746697599418
+      Inferno_67: -4900996635854245300
+      Inferno_68: 2985322405700706126
+      Inferno_7: 8557230632616874076
+      Inferno_8: 1044337954785444655
+      Inferno_9: 1954676156212089071
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

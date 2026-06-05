@@ -1,0 +1,1586 @@
+fileFormatVersion: 2
+guid: bd3713fd09a3fbc48ab68b6b510e5cd0
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2194194875746858208
+    second: Cyra_0
+  - first:
+      213: -6283926229028798324
+    second: Cyra_1
+  - first:
+      213: 7965530006496777290
+    second: Cyra_2
+  - first:
+      213: 1917158271137620592
+    second: Cyra_3
+  - first:
+      213: -4571032569848763988
+    second: Cyra_4
+  - first:
+      213: -4522397519160420552
+    second: Cyra_5
+  - first:
+      213: 3294701749807616113
+    second: Cyra_6
+  - first:
+      213: 4673933654440605312
+    second: Cyra_7
+  - first:
+      213: -1762333576766327868
+    second: Cyra_8
+  - first:
+      213: -7113819328811016472
+    second: Cyra_9
+  - first:
+      213: -9110410136656451625
+    second: Cyra_10
+  - first:
+      213: -6338438205772751187
+    second: Cyra_11
+  - first:
+      213: 8851186725366752881
+    second: Cyra_12
+  - first:
+      213: 4114254852026891136
+    second: Cyra_13
+  - first:
+      213: 890079673975181312
+    second: Cyra_14
+  - first:
+      213: -6338531832163557853
+    second: Cyra_15
+  - first:
+      213: 8352069439856346224
+    second: Cyra_16
+  - first:
+      213: -4648984914076036132
+    second: Cyra_17
+  - first:
+      213: 6014388116280354989
+    second: Cyra_18
+  - first:
+      213: -5106485148839645055
+    second: Cyra_19
+  - first:
+      213: 595431230239135212
+    second: Cyra_20
+  - first:
+      213: 5655742878586294425
+    second: Cyra_21
+  - first:
+      213: 2752904213288019330
+    second: Cyra_22
+  - first:
+      213: 3846901617326625830
+    second: Cyra_23
+  - first:
+      213: 4249802378786822074
+    second: Cyra_24
+  - first:
+      213: 221171273244067299
+    second: Cyra_25
+  - first:
+      213: 1328809419594901801
+    second: Cyra_26
+  - first:
+      213: -720168654852869258
+    second: Cyra_27
+  - first:
+      213: -6219175550032315523
+    second: Cyra_28
+  - first:
+      213: -3772257026969146990
+    second: Cyra_29
+  - first:
+      213: 9081828611017493735
+    second: Cyra_30
+  - first:
+      213: 6475285139589364606
+    second: Cyra_31
+  - first:
+      213: 85447790462361557
+    second: Cyra_32
+  - first:
+      213: 6342969080603032751
+    second: Cyra_33
+  - first:
+      213: 3729106075379218003
+    second: Cyra_34
+  - first:
+      213: 5323895147348958301
+    second: Cyra_35
+  - first:
+      213: -5995545305556319989
+    second: Cyra_36
+  - first:
+      213: -6350624485295167452
+    second: Cyra_37
+  - first:
+      213: -6382610924579849477
+    second: Cyra_38
+  - first:
+      213: -2171662184308300487
+    second: Cyra_39
+  - first:
+      213: 8553022474230255231
+    second: Cyra_40
+  - first:
+      213: -1581758574347250468
+    second: Cyra_41
+  - first:
+      213: -6108550680385843955
+    second: Cyra_42
+  - first:
+      213: 6180145783178124544
+    second: Cyra_43
+  - first:
+      213: 6788052714523783620
+    second: Cyra_44
+  - first:
+      213: 4568896594634796817
+    second: Cyra_45
+  - first:
+      213: 7997650924423753933
+    second: Cyra_46
+  - first:
+      213: -1443252642835999288
+    second: Cyra_47
+  - first:
+      213: 1789132069916752640
+    second: Cyra_48
+  - first:
+      213: -8329847431379348523
+    second: Cyra_49
+  - first:
+      213: -7738004045201858877
+    second: Cyra_50
+  - first:
+      213: 2571033238273708207
+    second: Cyra_51
+  - first:
+      213: -3195834983443395880
+    second: Cyra_52
+  - first:
+      213: 5377638261135537947
+    second: Cyra_53
+  - first:
+      213: 8663132639081406683
+    second: Cyra_54
+  - first:
+      213: 879297073085783889
+    second: Cyra_55
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Cyra_0
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 207
+        width: 22
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e4bfd83d98537e10800000000000000
+      internalID: 2194194875746858208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cyra_1
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 207
+        width: 22
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c808afb63620bc8a0800000000000000
+      internalID: -6283926229028798324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cyra_2
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 207
+        width: 22
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4494f4765f3b8e60800000000000000
+      internalID: 7965530006496777290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cyra_3
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 207
+        width: 22
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0722c514a4d1b9a10800000000000000
+      internalID: 1917158271137620592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cyra_4
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 157
+        width: 22
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca96c69981e6090c0800000000000000
+      internalID: -4571032569848763988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cyra_5
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 159
+        width: 24
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 837d551ca673d31c0800000000000000
+      internalID: -4522397519160420552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cyra_6
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 158
+        width: 24
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 170142e09c129bd20800000000000000
+      internalID: 3294701749807616113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cyra_7
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 157
+        width: 22
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 086fca825e52dd040800000000000000
+      internalID: 4673933654440605312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cyra_8
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 160
+        width: 22
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c3791df2feea87e0800000000000000
+      internalID: -1762333576766327868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cyra_9
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 159
+        width: 22
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ee59e5d203a64d90800000000000000
+      internalID: -7113819328811016472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cyra_10
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 105
+        width: 22
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d7697eef32519180800000000000000
+      internalID: -9110410136656451625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cyra_11
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 105
+        width: 22
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dae962ac8085908a0800000000000000
+      internalID: -6338438205772751187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cyra_12
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 105
+        width: 22
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 176632e5e6bb5da70800000000000000
+      internalID: 8851186725366752881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cyra_13
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 104
+        width: 22
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08b7d7a5df4c81930800000000000000
+      internalID: 4114254852026891136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cyra_14
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 109
+        width: 23
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00016156fb23a5c00800000000000000
+      internalID: 890079673975181312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cyra_15
+      rect:
+        serializedVersion: 2
+        x: 338
+        y: 121
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32e9262b1e20908a0800000000000000
+      internalID: -6338531832163557853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cyra_16
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 118
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 074880687e288e370800000000000000
+      internalID: 8352069439856346224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cyra_17
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 122
+        width: 10
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd3195e1adc7b7fb0800000000000000
+      internalID: -4648984914076036132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cyra_18
+      rect:
+        serializedVersion: 2
+        x: 356
+        y: 124
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da8a83c4026677350800000000000000
+      internalID: 6014388116280354989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cyra_19
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 122
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 180fa9cffce1229b0800000000000000
+      internalID: -5106485148839645055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cyra_20
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 118
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce5d3969c85634800800000000000000
+      internalID: 595431230239135212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cyra_21
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 125
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 990d413ce2c3d7e40800000000000000
+      internalID: 5655742878586294425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cyra_22
+      rect:
+        serializedVersion: 2
+        x: 465
+        y: 107
+        width: 24
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28565b5ebc7443620800000000000000
+      internalID: 2752904213288019330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cyra_23
+      rect:
+        serializedVersion: 2
+        x: 529
+        y: 102
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62411a2a3a0f26530800000000000000
+      internalID: 3846901617326625830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cyra_24
+      rect:
+        serializedVersion: 2
+        x: 530
+        y: 123
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab7d2314fb45afa30800000000000000
+      internalID: 4249802378786822074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cyra_25
+      rect:
+        serializedVersion: 2
+        x: 594
+        y: 41
+        width: 148
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e5cb38e912c11300800000000000000
+      internalID: 221171273244067299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cyra_26
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 103
+        width: 20
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 929a5257021e07210800000000000000
+      internalID: 1328809419594901801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cyra_27
+      rect:
+        serializedVersion: 2
+        x: 338
+        y: 116
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 673bf1d8c627106f0800000000000000
+      internalID: -720168654852869258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cyra_28
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 110
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7b7780b9cc01b9a0800000000000000
+      internalID: -6219175550032315523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cyra_29
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 103
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2996802683046abc0800000000000000
+      internalID: -3772257026969146990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cyra_30
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 116
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ec4dae0103290e70800000000000000
+      internalID: 9081828611017493735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cyra_31
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 112
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7bf694e685dcd950800000000000000
+      internalID: 6475285139589364606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cyra_32
+      rect:
+        serializedVersion: 2
+        x: 402
+        y: 110
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5dfd95d00529f2100800000000000000
+      internalID: 85447790462361557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cyra_33
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 102
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fac31a6b5c0c60850800000000000000
+      internalID: 6342969080603032751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cyra_34
+      rect:
+        serializedVersion: 2
+        x: 414
+        y: 112
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 356bab8c73270c330800000000000000
+      internalID: 3729106075379218003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cyra_35
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 102
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5c1927ed6642e940800000000000000
+      internalID: 5323895147348958301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cyra_36
+      rect:
+        serializedVersion: 2
+        x: 291
+        y: 106
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b010e837f4b8bcca0800000000000000
+      internalID: -5995545305556319989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cyra_37
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 107
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 428651c7dac0ed7a0800000000000000
+      internalID: -6350624485295167452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cyra_38
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 102
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bfaf3ec3e296c67a0800000000000000
+      internalID: -6382610924579849477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cyra_39
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 107
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 935a724dfb4bcd1e0800000000000000
+      internalID: -2171662184308300487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cyra_40
+      rect:
+        serializedVersion: 2
+        x: 545
+        y: 101
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7e4d6cdf9072b670800000000000000
+      internalID: 8553022474230255231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cyra_41
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 44
+        width: 11
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd49a9705f67c0ae0800000000000000
+      internalID: -1581758574347250468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cyra_42
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 44
+        width: 13
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0d812b45811a3ba0800000000000000
+      internalID: -6108550680385843955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cyra_43
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 44
+        width: 13
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00dd57298d944c550800000000000000
+      internalID: 6180145783178124544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cyra_44
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 44
+        width: 13
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c1f0ddaaf1043e50800000000000000
+      internalID: 6788052714523783620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cyra_45
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 44
+        width: 15
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11fe2baee3bf76f30800000000000000
+      internalID: 4568896594634796817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cyra_46
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 44
+        width: 17
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc03ad3742d5dfe60800000000000000
+      internalID: 7997650924423753933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cyra_47
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 44
+        width: 20
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c5dd963e5988fbe0800000000000000
+      internalID: -1443252642835999288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cyra_48
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 42
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00bb5ab632644d810800000000000000
+      internalID: 1789132069916752640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cyra_49
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 51
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d31f6305ef666c80800000000000000
+      internalID: -8329847431379348523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cyra_50
+      rect:
+        serializedVersion: 2
+        x: 475
+        y: 42
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ce153f81561d9490800000000000000
+      internalID: -7738004045201858877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cyra_51
+      rect:
+        serializedVersion: 2
+        x: 532
+        y: 52
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa0d609bb152ea320800000000000000
+      internalID: 2571033238273708207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cyra_52
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 42
+        width: 15
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8da071bc30d16a3d0800000000000000
+      internalID: -3195834983443395880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cyra_53
+      rect:
+        serializedVersion: 2
+        x: 596
+        y: 52
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b17788da18531aa40800000000000000
+      internalID: 5377638261135537947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cyra_54
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 42
+        width: 15
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd02a8a6c31a93870800000000000000
+      internalID: 8663132639081406683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cyra_55
+      rect:
+        serializedVersion: 2
+        x: 723
+        y: 41
+        width: 22
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15f915d7704e33c00800000000000000
+      internalID: 879297073085783889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Cyra_0: 2194194875746858208
+      Cyra_1: -6283926229028798324
+      Cyra_10: -9110410136656451625
+      Cyra_11: -6338438205772751187
+      Cyra_12: 8851186725366752881
+      Cyra_13: 4114254852026891136
+      Cyra_14: 890079673975181312
+      Cyra_15: -6338531832163557853
+      Cyra_16: 8352069439856346224
+      Cyra_17: -4648984914076036132
+      Cyra_18: 6014388116280354989
+      Cyra_19: -5106485148839645055
+      Cyra_2: 7965530006496777290
+      Cyra_20: 595431230239135212
+      Cyra_21: 5655742878586294425
+      Cyra_22: 2752904213288019330
+      Cyra_23: 3846901617326625830
+      Cyra_24: 4249802378786822074
+      Cyra_25: 221171273244067299
+      Cyra_26: 1328809419594901801
+      Cyra_27: -720168654852869258
+      Cyra_28: -6219175550032315523
+      Cyra_29: -3772257026969146990
+      Cyra_3: 1917158271137620592
+      Cyra_30: 9081828611017493735
+      Cyra_31: 6475285139589364606
+      Cyra_32: 85447790462361557
+      Cyra_33: 6342969080603032751
+      Cyra_34: 3729106075379218003
+      Cyra_35: 5323895147348958301
+      Cyra_36: -5995545305556319989
+      Cyra_37: -6350624485295167452
+      Cyra_38: -6382610924579849477
+      Cyra_39: -2171662184308300487
+      Cyra_4: -4571032569848763988
+      Cyra_40: 8553022474230255231
+      Cyra_41: -1581758574347250468
+      Cyra_42: -6108550680385843955
+      Cyra_43: 6180145783178124544
+      Cyra_44: 6788052714523783620
+      Cyra_45: 4568896594634796817
+      Cyra_46: 7997650924423753933
+      Cyra_47: -1443252642835999288
+      Cyra_48: 1789132069916752640
+      Cyra_49: -8329847431379348523
+      Cyra_5: -4522397519160420552
+      Cyra_50: -7738004045201858877
+      Cyra_51: 2571033238273708207
+      Cyra_52: -3195834983443395880
+      Cyra_53: 5377638261135537947
+      Cyra_54: 8663132639081406683
+      Cyra_55: 879297073085783889
+      Cyra_6: 3294701749807616113
+      Cyra_7: 4673933654440605312
+      Cyra_8: -1762333576766327868
+      Cyra_9: -7113819328811016472
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

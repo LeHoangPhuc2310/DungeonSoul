@@ -9,7 +9,7 @@ public class LevelUpEffect : MonoBehaviour
 
     [Header("Screen Flash")]
     [SerializeField] private float screenFlashDuration = 0.2f;
-    [SerializeField] private Color flashColor = new Color(1f, 1f, 1f, 0.9f);
+    [SerializeField] private Color flashColor = new Color(1f, 1f, 1f, 0.35f);
 
     [Header("Floating Text")]
     [SerializeField] private float textFloatDuration = 1.5f;
@@ -69,7 +69,7 @@ public class LevelUpEffect : MonoBehaviour
 
         TextMeshPro text = floatingTextObject.AddComponent<TextMeshPro>();
         text.alignment = TextAlignmentOptions.Center;
-        text.fontSize = 36f;
+        text.fontSize = 5f;
         text.fontStyle = FontStyles.Bold;
         text.color = Color.yellow;
         text.text = $"LEVEL UP! LV.{currentLevel}";
@@ -167,8 +167,8 @@ public class LevelUpEffect : MonoBehaviour
 
             CanvasScaler scaler = canvasObject.GetComponent<CanvasScaler>();
             scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
-            scaler.referenceResolution = new Vector2(1920f, 1080f);
-            scaler.matchWidthOrHeight = 0.5f;
+            scaler.referenceResolution = new Vector2(1080f, 1920f);
+            scaler.matchWidthOrHeight = 0.4f;
         }
 
         RectTransform canvasRect = flashCanvas.transform as RectTransform;

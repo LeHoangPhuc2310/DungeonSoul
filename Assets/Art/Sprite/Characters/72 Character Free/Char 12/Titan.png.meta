@@ -1,0 +1,1196 @@
+fileFormatVersion: 2
+guid: ed61508b0cead6242acb6987420a9ef4
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3614886355409227001
+    second: Titan_0
+  - first:
+      213: -4786924096935219584
+    second: Titan_1
+  - first:
+      213: 1534819890833817418
+    second: Titan_2
+  - first:
+      213: 3559306650266253008
+    second: Titan_3
+  - first:
+      213: -4402022995283673677
+    second: Titan_4
+  - first:
+      213: -2478952906099007658
+    second: Titan_5
+  - first:
+      213: 7062141111336871292
+    second: Titan_6
+  - first:
+      213: -3730277794973062419
+    second: Titan_7
+  - first:
+      213: 3560311087374992338
+    second: Titan_8
+  - first:
+      213: -5086276107418981882
+    second: Titan_9
+  - first:
+      213: 2014706806836052228
+    second: Titan_10
+  - first:
+      213: -6753217450218598969
+    second: Titan_11
+  - first:
+      213: 8410733233625489220
+    second: Titan_12
+  - first:
+      213: -3713441854223086861
+    second: Titan_13
+  - first:
+      213: 7585896749196907463
+    second: Titan_14
+  - first:
+      213: 7716017356648718001
+    second: Titan_15
+  - first:
+      213: 5678636121105972602
+    second: Titan_16
+  - first:
+      213: -6270434430407400633
+    second: Titan_17
+  - first:
+      213: -6745829686260159196
+    second: Titan_18
+  - first:
+      213: -742961106381943216
+    second: Titan_19
+  - first:
+      213: -2710133036947863417
+    second: Titan_20
+  - first:
+      213: -3541328291452448019
+    second: Titan_21
+  - first:
+      213: -9221060084513778353
+    second: Titan_22
+  - first:
+      213: 2075375490565523855
+    second: Titan_23
+  - first:
+      213: -4721898977802033529
+    second: Titan_24
+  - first:
+      213: 5493262947732404959
+    second: Titan_25
+  - first:
+      213: -8324721413245285223
+    second: Titan_26
+  - first:
+      213: -3053955010383270994
+    second: Titan_27
+  - first:
+      213: -5440310967425891041
+    second: Titan_28
+  - first:
+      213: 2155041145778620766
+    second: Titan_29
+  - first:
+      213: -6427447588765850274
+    second: Titan_30
+  - first:
+      213: 269321187379407102
+    second: Titan_31
+  - first:
+      213: 1871526321117719398
+    second: Titan_32
+  - first:
+      213: -27691608522518530
+    second: Titan_33
+  - first:
+      213: 8883188078071991218
+    second: Titan_34
+  - first:
+      213: 787435906990418870
+    second: Titan_35
+  - first:
+      213: -6874716724902827210
+    second: Titan_36
+  - first:
+      213: -2609232791660802743
+    second: Titan_37
+  - first:
+      213: -6444433303507373386
+    second: Titan_38
+  - first:
+      213: -7607103118590278315
+    second: Titan_39
+  - first:
+      213: 508870268384283559
+    second: Titan_40
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Titan_0
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 207
+        width: 21
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7033d62230855ddc0800000000000000
+      internalID: -3614886355409227001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Titan_1
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 207
+        width: 21
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08e2b6365ed619db0800000000000000
+      internalID: -4786924096935219584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Titan_2
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 207
+        width: 21
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4f7a531f86cc4510800000000000000
+      internalID: 1534819890833817418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Titan_3
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 207
+        width: 21
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d63ec75a82356130800000000000000
+      internalID: 3559306650266253008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Titan_4
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 157
+        width: 21
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3bdf301a86fd8e2c0800000000000000
+      internalID: -4402022995283673677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Titan_5
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 159
+        width: 23
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65fdb09477df89dd0800000000000000
+      internalID: -2478952906099007658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Titan_6
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 158
+        width: 23
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c75aae68ce3c10260800000000000000
+      internalID: 7062141111336871292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Titan_7
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 157
+        width: 21
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dea6a1dfb146b3cc0800000000000000
+      internalID: -3730277794973062419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Titan_8
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 160
+        width: 21
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d30fd41214c86130800000000000000
+      internalID: 3560311087374992338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Titan_9
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 159
+        width: 21
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60a2cbb14dae969b0800000000000000
+      internalID: -5086276107418981882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Titan_10
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 106
+        width: 21
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 401460c9a2da5fb10800000000000000
+      internalID: 2014706806836052228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Titan_11
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 106
+        width: 21
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7cd40c45280c742a0800000000000000
+      internalID: -6753217450218598969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Titan_12
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 104
+        width: 21
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44fd1d2605de8b470800000000000000
+      internalID: 8410733233625489220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Titan_13
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 102
+        width: 25
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3fa07f8ee44377cc0800000000000000
+      internalID: -3713441854223086861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Titan_14
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 102
+        width: 27
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c31caec6e4864960800000000000000
+      internalID: 7585896749196907463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Titan_15
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 101
+        width: 30
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1be9bc797ecc41b60800000000000000
+      internalID: 7716017356648718001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Titan_16
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 106
+        width: 33
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7d393727719ece40800000000000000
+      internalID: 5678636121105972602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Titan_17
+      rect:
+        serializedVersion: 2
+        x: 463
+        y: 119
+        width: 28
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74320349b11faf8a0800000000000000
+      internalID: -6270434430407400633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Titan_18
+      rect:
+        serializedVersion: 2
+        x: 483
+        y: 119
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42dad2b24aff162a0800000000000000
+      internalID: -6745829686260159196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Titan_19
+      rect:
+        serializedVersion: 2
+        x: 532
+        y: 128
+        width: 83
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05e4c246fc870b5f0800000000000000
+      internalID: -742961106381943216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Titan_20
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 105
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7880cae9c5ca36ad0800000000000000
+      internalID: -2710133036947863417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Titan_21
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 52
+        width: 12
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de29fe28eacaadec0800000000000000
+      internalID: -3541328291452448019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Titan_22
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 76
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f45d50a55b6380080800000000000000
+      internalID: -9221060084513778353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Titan_23
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 52
+        width: 11
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f89c5ba43073dcc10800000000000000
+      internalID: 2075375490565523855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Titan_24
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 75
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78664dab5e1787eb0800000000000000
+      internalID: -4721898977802033529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Titan_25
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 52
+        width: 12
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fdab761eb8dfb3c40800000000000000
+      internalID: 5493262947732404959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Titan_26
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 76
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99c4d6d1bf5a87c80800000000000000
+      internalID: -8324721413245285223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Titan_27
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 52
+        width: 12
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eaba41e391c2e95d0800000000000000
+      internalID: -3053955010383270994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Titan_28
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 52
+        width: 15
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f150be6cff12084b0800000000000000
+      internalID: -5440310967425891041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Titan_29
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 52
+        width: 16
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e594c72118e38ed10800000000000000
+      internalID: 2155041145778620766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Titan_30
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 56
+        width: 9
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e55ab2bd87e1dc6a0800000000000000
+      internalID: -6427447588765850274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Titan_31
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 60
+        width: 17
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef86c386132dcb300800000000000000
+      internalID: 269321187379407102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Titan_32
+      rect:
+        serializedVersion: 2
+        x: 413
+        y: 52
+        width: 11
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66be306f54ff8f910800000000000000
+      internalID: 1871526321117719398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Titan_33
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 61
+        width: 19
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eff81c6f0ae9d9ff0800000000000000
+      internalID: -27691608522518530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Titan_34
+      rect:
+        serializedVersion: 2
+        x: 473
+        y: 52
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2bb477aed7c674b70800000000000000
+      internalID: 8883188078071991218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Titan_35
+      rect:
+        serializedVersion: 2
+        x: 534
+        y: 62
+        width: 19
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6bb2d8f09c88dea00800000000000000
+      internalID: 787435906990418870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Titan_36
+      rect:
+        serializedVersion: 2
+        x: 537
+        y: 52
+        width: 15
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63beab000991890a0800000000000000
+      internalID: -6874716724902827210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Titan_37
+      rect:
+        serializedVersion: 2
+        x: 598
+        y: 62
+        width: 19
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94dc1cca9942acbd0800000000000000
+      internalID: -2609232791660802743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Titan_38
+      rect:
+        serializedVersion: 2
+        x: 601
+        y: 52
+        width: 15
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b2feb5fd06c096a0800000000000000
+      internalID: -6444433303507373386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Titan_39
+      rect:
+        serializedVersion: 2
+        x: 661
+        y: 51
+        width: 21
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55509ae84042e6690800000000000000
+      internalID: -7607103118590278315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Titan_40
+      rect:
+        serializedVersion: 2
+        x: 725
+        y: 51
+        width: 21
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ab8dcf10dedf0700800000000000000
+      internalID: 508870268384283559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Titan_0: -3614886355409227001
+      Titan_1: -4786924096935219584
+      Titan_10: 2014706806836052228
+      Titan_11: -6753217450218598969
+      Titan_12: 8410733233625489220
+      Titan_13: -3713441854223086861
+      Titan_14: 7585896749196907463
+      Titan_15: 7716017356648718001
+      Titan_16: 5678636121105972602
+      Titan_17: -6270434430407400633
+      Titan_18: -6745829686260159196
+      Titan_19: -742961106381943216
+      Titan_2: 1534819890833817418
+      Titan_20: -2710133036947863417
+      Titan_21: -3541328291452448019
+      Titan_22: -9221060084513778353
+      Titan_23: 2075375490565523855
+      Titan_24: -4721898977802033529
+      Titan_25: 5493262947732404959
+      Titan_26: -8324721413245285223
+      Titan_27: -3053955010383270994
+      Titan_28: -5440310967425891041
+      Titan_29: 2155041145778620766
+      Titan_3: 3559306650266253008
+      Titan_30: -6427447588765850274
+      Titan_31: 269321187379407102
+      Titan_32: 1871526321117719398
+      Titan_33: -27691608522518530
+      Titan_34: 8883188078071991218
+      Titan_35: 787435906990418870
+      Titan_36: -6874716724902827210
+      Titan_37: -2609232791660802743
+      Titan_38: -6444433303507373386
+      Titan_39: -7607103118590278315
+      Titan_4: -4402022995283673677
+      Titan_40: 508870268384283559
+      Titan_5: -2478952906099007658
+      Titan_6: 7062141111336871292
+      Titan_7: -3730277794973062419
+      Titan_8: 3560311087374992338
+      Titan_9: -5086276107418981882
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,1716 @@
+fileFormatVersion: 2
+guid: f4e677f0fc477e048a60c9d71d75c955
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1386857876736495645
+    second: Ragnar_0
+  - first:
+      213: 1456879747765034094
+    second: Ragnar_1
+  - first:
+      213: 4638359528763436308
+    second: Ragnar_2
+  - first:
+      213: -7423154222634446436
+    second: Ragnar_3
+  - first:
+      213: 2455284453796858524
+    second: Ragnar_4
+  - first:
+      213: -6488971531603053868
+    second: Ragnar_5
+  - first:
+      213: 3917721360195691774
+    second: Ragnar_6
+  - first:
+      213: 281480960189699584
+    second: Ragnar_7
+  - first:
+      213: 3286748680727891531
+    second: Ragnar_8
+  - first:
+      213: -7690705322942001469
+    second: Ragnar_9
+  - first:
+      213: -3663725083659831504
+    second: Ragnar_10
+  - first:
+      213: -4240765296210809179
+    second: Ragnar_11
+  - first:
+      213: 6007847568725926919
+    second: Ragnar_12
+  - first:
+      213: 4266253546492172570
+    second: Ragnar_13
+  - first:
+      213: -3840679924570284242
+    second: Ragnar_14
+  - first:
+      213: -313870251471775504
+    second: Ragnar_15
+  - first:
+      213: 3413270830063686610
+    second: Ragnar_16
+  - first:
+      213: 5516451488124463266
+    second: Ragnar_17
+  - first:
+      213: 712461835375658166
+    second: Ragnar_18
+  - first:
+      213: 4848758445545769983
+    second: Ragnar_19
+  - first:
+      213: -8429269161845542701
+    second: Ragnar_20
+  - first:
+      213: 4288723131076548690
+    second: Ragnar_21
+  - first:
+      213: -3548515459668347738
+    second: Ragnar_22
+  - first:
+      213: -3604148487676444520
+    second: Ragnar_23
+  - first:
+      213: -4620447244258229171
+    second: Ragnar_24
+  - first:
+      213: 301860980308112582
+    second: Ragnar_25
+  - first:
+      213: -245912713157445863
+    second: Ragnar_26
+  - first:
+      213: -5713910633501244878
+    second: Ragnar_27
+  - first:
+      213: 6869001816808514352
+    second: Ragnar_28
+  - first:
+      213: 4959456238046551639
+    second: Ragnar_29
+  - first:
+      213: -7278639508078547670
+    second: Ragnar_30
+  - first:
+      213: 2518616758644201371
+    second: Ragnar_31
+  - first:
+      213: -6618935813433957692
+    second: Ragnar_32
+  - first:
+      213: -5311394398766974883
+    second: Ragnar_33
+  - first:
+      213: 3195517104248386085
+    second: Ragnar_34
+  - first:
+      213: -7740459196050529416
+    second: Ragnar_35
+  - first:
+      213: -7077919977863711536
+    second: Ragnar_36
+  - first:
+      213: -233613785994392365
+    second: Ragnar_37
+  - first:
+      213: -5540688528527882449
+    second: Ragnar_38
+  - first:
+      213: 8345794413622063744
+    second: Ragnar_39
+  - first:
+      213: -175702800153694443
+    second: Ragnar_40
+  - first:
+      213: 6280714663322191407
+    second: Ragnar_41
+  - first:
+      213: 6107844089954572521
+    second: Ragnar_42
+  - first:
+      213: 4166212336576611919
+    second: Ragnar_43
+  - first:
+      213: 6752107117369866639
+    second: Ragnar_44
+  - first:
+      213: -4148478794442838481
+    second: Ragnar_45
+  - first:
+      213: 7870224472140306655
+    second: Ragnar_46
+  - first:
+      213: -4118988815554661979
+    second: Ragnar_47
+  - first:
+      213: 8834314413559975094
+    second: Ragnar_48
+  - first:
+      213: -2006436807681494041
+    second: Ragnar_49
+  - first:
+      213: 3258227248923188108
+    second: Ragnar_50
+  - first:
+      213: 6456984186526677792
+    second: Ragnar_51
+  - first:
+      213: 209064530051801449
+    second: Ragnar_52
+  - first:
+      213: 298991868850316402
+    second: Ragnar_53
+  - first:
+      213: -7284384537221310741
+    second: Ragnar_54
+  - first:
+      213: 3784352960290512637
+    second: Ragnar_55
+  - first:
+      213: 260998782550621819
+    second: Ragnar_56
+  - first:
+      213: -6232247652949688862
+    second: Ragnar_57
+  - first:
+      213: 7415090644588307463
+    second: Ragnar_58
+  - first:
+      213: -6322886081824550809
+    second: Ragnar_59
+  - first:
+      213: -8867099444731934707
+    second: Ragnar_60
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Ragnar_0
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 207
+        width: 25
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d10d4d814eb1f3310800000000000000
+      internalID: 1386857876736495645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ragnar_1
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 207
+        width: 25
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6cdef56960e73410800000000000000
+      internalID: 1456879747765034094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ragnar_2
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 207
+        width: 25
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41d2e749a63ce5040800000000000000
+      internalID: 4638359528763436308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ragnar_3
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 207
+        width: 25
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c91dee66098abf890800000000000000
+      internalID: -7423154222634446436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ragnar_4
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 154
+        width: 25
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9ac91bb33ce21220800000000000000
+      internalID: 2455284453796858524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ragnar_5
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 156
+        width: 25
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d27d25a5ca82f5a0800000000000000
+      internalID: -6488971531603053868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ragnar_6
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 155
+        width: 25
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef4ac63f1da8e5630800000000000000
+      internalID: 3917721360195691774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ragnar_7
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 154
+        width: 25
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0069423217508e300800000000000000
+      internalID: 281480960189699584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ragnar_8
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 157
+        width: 25
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4e05ccd280ec9d20800000000000000
+      internalID: 3286748680727891531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ragnar_9
+      rect:
+        serializedVersion: 2
+        x: 338
+        y: 156
+        width: 25
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ce06d18140254590800000000000000
+      internalID: -7690705322942001469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ragnar_10
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 94
+        width: 25
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03774c99275d72dc0800000000000000
+      internalID: -3663725083659831504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ragnar_11
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 94
+        width: 25
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5aeec8f7e66c525c0800000000000000
+      internalID: -4240765296210809179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ragnar_12
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 94
+        width: 25
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7046a966889206350800000000000000
+      internalID: 6007847568725926919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ragnar_13
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 93
+        width: 25
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a199a683ff6c43b30800000000000000
+      internalID: 4266253546492172570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ragnar_14
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 98
+        width: 23
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2f930815f923bac0800000000000000
+      internalID: -3840679924570284242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ragnar_15
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 107
+        width: 14
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f856735ba8e4abf0800000000000000
+      internalID: -313870251471775504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ragnar_16
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 113
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d316245cbf5e5f20800000000000000
+      internalID: 3413270830063686610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ragnar_17
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 110
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a8655aa66f5e8c40800000000000000
+      internalID: 5516451488124463266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ragnar_18
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 107
+        width: 8
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b4c695b34c23e900800000000000000
+      internalID: 712461835375658166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ragnar_19
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 116
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ffb4e6ccd104a4340800000000000000
+      internalID: 4848758445545769983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ragnar_20
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 110
+        width: 13
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d0ba048b58350b80800000000000000
+      internalID: -8429269161845542701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ragnar_21
+      rect:
+        serializedVersion: 2
+        x: 357
+        y: 113
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25891df07fa948b30800000000000000
+      internalID: 4288723131076548690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ragnar_22
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 111
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a47c728df321cec0800000000000000
+      internalID: -3548515459668347738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ragnar_23
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 107
+        width: 7
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 890c84acb0e7bfdc0800000000000000
+      internalID: -3604148487676444520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ragnar_24
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 112
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d444e8626bfd0efb0800000000000000
+      internalID: -4620447244258229171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ragnar_25
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 96
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c4f0d656fc603400800000000000000
+      internalID: 301860980308112582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ragnar_26
+      rect:
+        serializedVersion: 2
+        x: 531
+        y: 91
+        width: 28
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9177f76b0b7569cf0800000000000000
+      internalID: -245912713157445863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ragnar_27
+      rect:
+        serializedVersion: 2
+        x: 531
+        y: 112
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 232c4db6d8c14b0b0800000000000000
+      internalID: -5713910633501244878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ragnar_28
+      rect:
+        serializedVersion: 2
+        x: 595
+        y: 30
+        width: 148
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 033626442c8935f50800000000000000
+      internalID: 6869001816808514352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ragnar_29
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 92
+        width: 20
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75e1cd31c2783d440800000000000000
+      internalID: 4959456238046551639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ragnar_30
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 105
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2daad86ee31dfa90800000000000000
+      internalID: -7278639508078547670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ragnar_31
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 99
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b975558099ce3f220800000000000000
+      internalID: 2518616758644201371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ragnar_32
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 92
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c2682142f0d424a0800000000000000
+      internalID: -6618935813433957692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ragnar_33
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 105
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d58be7f6fe22a46b0800000000000000
+      internalID: -5311394398766974883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ragnar_34
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 101
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 522f86030e1c85c20800000000000000
+      internalID: 3195517104248386085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ragnar_35
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 99
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 873a0053f5d549490800000000000000
+      internalID: -7740459196050529416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ragnar_36
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 91
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d4fac2d74d26cd90800000000000000
+      internalID: -7077919977863711536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ragnar_37
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 101
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3dc8b27df7902ccf0800000000000000
+      internalID: -233613785994392365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ragnar_38
+      rect:
+        serializedVersion: 2
+        x: 471
+        y: 91
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f27830e93258b13b0800000000000000
+      internalID: -5540688528527882449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ragnar_39
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 95
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 082f1602dc732d370800000000000000
+      internalID: 8345794413622063744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ragnar_40
+      rect:
+        serializedVersion: 2
+        x: 356
+        y: 96
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51f2cc2fb37cf8df0800000000000000
+      internalID: -175702800153694443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ragnar_41
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 91
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2608eaa5b4992750800000000000000
+      internalID: 6280714663322191407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ragnar_42
+      rect:
+        serializedVersion: 2
+        x: 421
+        y: 96
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e8163dc6db63c450800000000000000
+      internalID: 6107844089954572521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ragnar_43
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 90
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f46cf7ceb0c51d930800000000000000
+      internalID: 4166212336576611919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ragnar_44
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 52
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f89b73826ad44bd50800000000000000
+      internalID: 6752107117369866639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ragnar_45
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 49
+        width: 18
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2e6efa1484ad66c0800000000000000
+      internalID: -4148478794442838481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ragnar_46
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 48
+        width: 19
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd8528c8577a83d60800000000000000
+      internalID: 7870224472140306655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ragnar_47
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 48
+        width: 19
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a1be0fde7966d6c0800000000000000
+      internalID: -4118988815554661979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ragnar_48
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 48
+        width: 19
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6bc0b56272ac99a70800000000000000
+      internalID: 8834314413559975094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ragnar_49
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 51
+        width: 20
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e330ed9a54b724e0800000000000000
+      internalID: -2006436807681494041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ragnar_50
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 33
+        width: 10
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8b90998b6c873d20800000000000000
+      internalID: 3258227248923188108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ragnar_51
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 50
+        width: 20
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02bbc3638e0db9950800000000000000
+      internalID: 6456984186526677792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ragnar_52
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 31
+        width: 15
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9612fd8151fb6e200800000000000000
+      internalID: 209064530051801449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ragnar_53
+      rect:
+        serializedVersion: 2
+        x: 469
+        y: 40
+        width: 20
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 274ad85458b362400800000000000000
+      internalID: 298991868850316402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ragnar_54
+      rect:
+        serializedVersion: 2
+        x: 472
+        y: 51
+        width: 20
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be653939bdaa8ea90800000000000000
+      internalID: -7284384537221310741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ragnar_55
+      rect:
+        serializedVersion: 2
+        x: 533
+        y: 41
+        width: 23
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dfe50de87f8b48430800000000000000
+      internalID: 3784352960290512637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ragnar_56
+      rect:
+        serializedVersion: 2
+        x: 597
+        y: 41
+        width: 23
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7e3db882014f9300800000000000000
+      internalID: 260998782550621819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ragnar_57
+      rect:
+        serializedVersion: 2
+        x: 724
+        y: 30
+        width: 25
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2edfbad87cb9289a0800000000000000
+      internalID: -6232247652949688862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ragnar_58
+      rect:
+        serializedVersion: 2
+        x: 475
+        y: 31
+        width: 13
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 704220887a1b7e660800000000000000
+      internalID: 7415090644588307463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ragnar_59
+      rect:
+        serializedVersion: 2
+        x: 537
+        y: 31
+        width: 15
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7601691db989048a0800000000000000
+      internalID: -6322886081824550809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ragnar_60
+      rect:
+        serializedVersion: 2
+        x: 601
+        y: 31
+        width: 15
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0880b0f80cb1f480800000000000000
+      internalID: -8867099444731934707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Ragnar_0: 1386857876736495645
+      Ragnar_1: 1456879747765034094
+      Ragnar_10: -3663725083659831504
+      Ragnar_11: -4240765296210809179
+      Ragnar_12: 6007847568725926919
+      Ragnar_13: 4266253546492172570
+      Ragnar_14: -3840679924570284242
+      Ragnar_15: -313870251471775504
+      Ragnar_16: 3413270830063686610
+      Ragnar_17: 5516451488124463266
+      Ragnar_18: 712461835375658166
+      Ragnar_19: 4848758445545769983
+      Ragnar_2: 4638359528763436308
+      Ragnar_20: -8429269161845542701
+      Ragnar_21: 4288723131076548690
+      Ragnar_22: -3548515459668347738
+      Ragnar_23: -3604148487676444520
+      Ragnar_24: -4620447244258229171
+      Ragnar_25: 301860980308112582
+      Ragnar_26: -245912713157445863
+      Ragnar_27: -5713910633501244878
+      Ragnar_28: 6869001816808514352
+      Ragnar_29: 4959456238046551639
+      Ragnar_3: -7423154222634446436
+      Ragnar_30: -7278639508078547670
+      Ragnar_31: 2518616758644201371
+      Ragnar_32: -6618935813433957692
+      Ragnar_33: -5311394398766974883
+      Ragnar_34: 3195517104248386085
+      Ragnar_35: -7740459196050529416
+      Ragnar_36: -7077919977863711536
+      Ragnar_37: -233613785994392365
+      Ragnar_38: -5540688528527882449
+      Ragnar_39: 8345794413622063744
+      Ragnar_4: 2455284453796858524
+      Ragnar_40: -175702800153694443
+      Ragnar_41: 6280714663322191407
+      Ragnar_42: 6107844089954572521
+      Ragnar_43: 4166212336576611919
+      Ragnar_44: 6752107117369866639
+      Ragnar_45: -4148478794442838481
+      Ragnar_46: 7870224472140306655
+      Ragnar_47: -4118988815554661979
+      Ragnar_48: 8834314413559975094
+      Ragnar_49: -2006436807681494041
+      Ragnar_5: -6488971531603053868
+      Ragnar_50: 3258227248923188108
+      Ragnar_51: 6456984186526677792
+      Ragnar_52: 209064530051801449
+      Ragnar_53: 298991868850316402
+      Ragnar_54: -7284384537221310741
+      Ragnar_55: 3784352960290512637
+      Ragnar_56: 260998782550621819
+      Ragnar_57: -6232247652949688862
+      Ragnar_58: 7415090644588307463
+      Ragnar_59: -6322886081824550809
+      Ragnar_6: 3917721360195691774
+      Ragnar_60: -8867099444731934707
+      Ragnar_7: 281480960189699584
+      Ragnar_8: 3286748680727891531
+      Ragnar_9: -7690705322942001469
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

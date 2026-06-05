@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf102b8e56bc2a844a9b72b2c6c0a7d9, type: 3}
+  m_Name: ArtSpriteSet
+  m_EditorClassIdentifier: Assembly-CSharp::ArtSpriteSet
+  enemyGrunt: {fileID: 1385343551, guid: 8dc93bf7bf62fd749b386cf9c4d0dfd4, type: 3}
+  enemyRunner: {fileID: -1412187708, guid: c260b738f32644f4e9103ea153eebe8a, type: 3}
+  enemyBrute: {fileID: 1193930778, guid: 24ad0f9b181886c4dabbcace1aea7030, type: 3}
+  enemyElite: {fileID: 1595676518, guid: 1a033ce3e25d47441a089f656b138c9e, type: 3}
+  chest: {fileID: 1937377049, guid: ecece915b32e4384f9eebcaa278d0c0c, type: 3}
+  heroWarrior: {fileID: 165949943, guid: 83ec229e92a11424ca9a7171815001bf, type: 3}
+  heroRanger: {fileID: -1529804063, guid: fa433b69be0d2914684b2348a8824633, type: 3}
+  heroMage: {fileID: 1582992049, guid: 058b43826cdb2234fb1c0335a3d13fe1, type: 3}
+  weaponDagger: {fileID: 1727126548, guid: 21e5fdfc90f37a84ea0e11b8d2fdbdc2, type: 3}
+  weaponShortSword: {fileID: -1468962900, guid: ec1408d1794c8b742bf746064b6e035d, type: 3}
+  weaponCurvedBlade: {fileID: 864785274, guid: c433cf395bebffb429f515a816e19eaa, type: 3}
+  weaponBroadsword: {fileID: 454031022, guid: bf608e3af1f86fd4cb4bc6a61e70653a, type: 3}
+  weaponGreatsword: {fileID: -1129194894, guid: 23dbb04fbabb1934f89a916589655a36, type: 3}
+  weaponHammer: {fileID: 1801658345, guid: e4f4fe3bab132a544922a43b0248dcea, type: 3}
+  weaponBattleAxe: {fileID: -689658709, guid: 41eae61347b92a843a26d5bfc67b2d3a, type: 3}
+  weaponWoodAxe: {fileID: -537290363, guid: c714b6c06713e9f479e167453fd2f073, type: 3}
+  weaponStaffPurple: {fileID: -1973527350, guid: e186dd5bf55e22d4ab7e26b8cfc1c743, type: 3}
+  weaponStaffBlue: {fileID: -473759576, guid: 3e2e5f5810e3ec144b1a4a14d7cd3757, type: 3}
+  weaponSpear: {fileID: 2044629709, guid: e698919afb9f11b458f99538df6f2f1b, type: 3}

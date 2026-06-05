@@ -1,3 +1,5 @@
+// DungeonSoul — RoomManager.cs — Loại phòng, shop/heal, meta regen (dungeon mode).
+
 using UnityEngine;
 
 public enum RoomType
@@ -25,6 +27,8 @@ public class RoomManager : MonoBehaviour
     public int CurrentRoomIndex => currentRoomIndex;
     public int RoomsPerFloor => roomsPerFloor;
 
+    private bool waveMode;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -32,12 +36,29 @@ public class RoomManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+
         Instance = this;
+    }
+
+    private void OnEnable()
+    {
+        EventBus.OnRoomCleared += HandleRoomCleared;
+    }
+
+    private void OnDisable()
+    {
+        EventBus.OnRoomCleared -= HandleRoomCleared;
     }
 
     private void Start()
     {
-        EnterNextRoom();
+        if (!waveMode)
+            EnterNextRoom();
+    }
+
+    public void SetWaveMode(bool enabled)
+    {
+        waveMode = enabled;
     }
 
     public void EnterNextRoom()
@@ -52,8 +73,8 @@ public class RoomManager : MonoBehaviour
         ApplyRoomType(CurrentRoomType);
         currentRoomIndex++;
 
-        if (HUDManager.Instance != null && FloorManager.Instance != null)
-            HUDManager.Instance.UpdateFloor(FloorManager.Instance.CurrentFloor);
+        if (HUDManager.Resolve() != null && FloorManager.Instance != null)
+            HUDManager.Resolve().UpdateFloor(FloorManager.Instance.CurrentFloor);
     }
 
     public void OnRoomCleared()
@@ -61,7 +82,21 @@ public class RoomManager : MonoBehaviour
         if (CurrentRoomType == RoomType.Boss)
             FloorManager.Instance?.NextFloor();
 
-        EnterNextRoom();
+        if (!waveMode)
+            EnterNextRoom();
+    }
+
+    private void HandleRoomCleared(RoomType type)
+    {
+        float flatHeal = MetaRunModifiers.Instance != null ? MetaRunModifiers.Instance.RoomHealAmount : 0f;
+        if (flatHeal > 0f)
+            HealPlayerFlat(flatHeal);
+
+        if (type == RoomType.Curse)
+            DamagePlayer(0.1f);
+
+        if (type == RoomType.Mystery && Random.value < 0.5f)
+            SkillSelectionUI.GetOrFind()?.ShowChest(RoomType.Treasure);
     }
 
     private static RoomType RollRoomType(int roomIndex)
@@ -93,7 +128,13 @@ public class RoomManager : MonoBehaviour
                 SkillSelectionUI.GetOrFind()?.ShowChest(RoomType.Treasure);
                 break;
             case RoomType.Shop:
-                Debug.Log("[Room] Shop room — hook MetaShop UI here.");
+                MetaShopUI.Instance?.Show();
+                break;
+            case RoomType.Forge:
+                SkillSelectionUI.GetOrFind()?.Show();
+                break;
+            case RoomType.Challenge:
+                HUDManager.Resolve()?.ShowWaveAnnouncement("THỬ THÁCH — quái mạnh hơn!");
                 break;
         }
 
@@ -108,5 +149,24 @@ public class RoomManager : MonoBehaviour
         HealthSystem hs = player.GetComponent<HealthSystem>();
         if (hs != null)
             hs.Heal(hs.MaxHP * percent);
+    }
+
+    private static void HealPlayerFlat(float amount)
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player == null)
+            return;
+        HealthSystem hs = player.GetComponent<HealthSystem>();
+        hs?.Heal(amount);
+    }
+
+    private static void DamagePlayer(float percentMax)
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player == null)
+            return;
+        HealthSystem hs = player.GetComponent<HealthSystem>();
+        if (hs != null)
+            hs.TakeDamage(hs.MaxHP * percentMax);
     }
 }

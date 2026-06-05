@@ -88,17 +88,22 @@ public class Projectile : MonoBehaviour
         if (enemyHealth != null)
         {
             float finalDamage = damage;
+            bool isCrit = false;
             PlayerSkillStats stats = PlayerSkillHandler.Instance != null
                 ? PlayerSkillHandler.Instance.GetComponent<PlayerSkillStats>()
                 : null;
 
             if (stats != null && stats.CritChance > 0f && Random.value < stats.CritChance)
+            {
                 finalDamage *= stats.CritMultiplier;
+                isCrit = true;
+            }
 
             if (stats != null && hitEnemyIds.Count > 1)
                 finalDamage *= 1f - stats.PierceDamageFalloff;
 
-            enemyHealth.TakeDamage(finalDamage);
+            enemyHealth.TakeDamage(finalDamage, isCrit);
+            PlayHitVfx(other.transform.position, stats, isCrit);
 
             if (stats != null && stats.FireDotDuration > 0f)
             {
@@ -122,6 +127,14 @@ public class Projectile : MonoBehaviour
         }
 
         Release();
+    }
+
+    private static void PlayHitVfx(Vector3 worldPos, PlayerSkillStats stats, bool isCrit)
+    {
+        // Chỉ hiện VFX cho đòn ĐẶC BIỆT (chí mạng) để tránh rối khi bắn liên tục.
+        // Đòn thường không VFX — chỉ có số sát thương là đủ phản hồi.
+        if (isCrit)
+            EffectLibrary.Play(EffectKind.CritImpact, worldPos, 0.9f, new Color(1f, 0.85f, 0.4f, 1f), 26f, 24);
     }
 
     private static SkillBehaviors FindPlayerBehaviors()

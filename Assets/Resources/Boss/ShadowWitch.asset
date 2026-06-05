@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdf3b98d1520e39448b74cbe4f349909, type: 3}
+  m_Name: ShadowWitch
+  m_EditorClassIdentifier: Assembly-CSharp::BossData
+  bossName: Shadow Witch
+  floorGate: 9
+  totalHP: 1800
+  coinReward: 150
+  scoreReward: 800
+  projectileDamageResist: 0
+  weakToMagic: 0
+  phases:
+  - hpThreshold: 0.66
+    speedMultiplier: 1.1
+    damageMultiplier: 1
+    abilities:
+    - abilityName: Spiral
+      type: 4
+      cooldown: 4
+      damageMultiplier: 1
+      aoeRadius: 2
+      spawnCount: 0
+      dashSpeedMultiplier: 2
+      dashDuration: 0.6
+  - hpThreshold: 0.33
+    speedMultiplier: 1.2
+    damageMultiplier: 1
+    abilities:
+    - abilityName: Clones
+      type: 5
+      cooldown: 6
+      damageMultiplier: 1
+      aoeRadius: 2
+      spawnCount: 2
+      dashSpeedMultiplier: 2
+      dashDuration: 0.6
+  - hpThreshold: 0.01
+    speedMultiplier: 1.5
+    damageMultiplier: 1
+    abilities:
+    - abilityName: Teleport
+      type: 6
+      cooldown: 3.5
+      damageMultiplier: 1
+      aoeRadius: 2
+      spawnCount: 0
+      dashSpeedMultiplier: 2
+      dashDuration: 0.6

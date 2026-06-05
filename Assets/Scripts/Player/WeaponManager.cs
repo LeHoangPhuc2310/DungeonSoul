@@ -87,6 +87,7 @@ public class WeaponManager : MonoBehaviour
             existing.baseCooldown *= 0.95f;
             TryEvolve(existing);
             UpdateHud();
+            RefreshPlayerWeaponVisual();
             return true;
         }
 
@@ -105,6 +106,7 @@ public class WeaponManager : MonoBehaviour
         ApplyWeaponPreset(slot, type);
         activeWeapons.Add(slot);
         UpdateHud();
+        RefreshPlayerWeaponVisual();
         return true;
     }
 
@@ -327,13 +329,24 @@ public class WeaponManager : MonoBehaviour
 
     private void UpdateHud()
     {
-        if (HUDManager.Instance == null)
+        HUDManager hud = HUDManager.Resolve();
+        if (hud == null)
             return;
 
         List<WeaponType> weapons = new List<WeaponType>(activeWeapons.Count);
         for (int i = 0; i < activeWeapons.Count; i++)
             weapons.Add(activeWeapons[i].weaponType);
 
-        HUDManager.Instance.UpdateWeaponSlots(weapons, unlockedSlots);
+        hud.UpdateWeaponSlots(weapons, unlockedSlots);
+    }
+
+    private static void RefreshPlayerWeaponVisual()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player == null)
+            return;
+
+        PlayerWeaponVisual visual = player.GetComponent<PlayerWeaponVisual>();
+        visual?.RefreshFromLoadout();
     }
 }

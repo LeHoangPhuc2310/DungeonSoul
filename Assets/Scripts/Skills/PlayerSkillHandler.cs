@@ -46,6 +46,8 @@ public class PlayerSkillHandler : MonoBehaviour
 
     public bool HasSkill(SkillType type) => GetStack(type) > 0;
 
+    public void RefreshStats() => RecalculateAllStats();
+
     public void ApplySkill(SkillData skill)
     {
         if (skill == null)
@@ -57,9 +59,20 @@ public class PlayerSkillHandler : MonoBehaviour
         CacheComponents();
         activeSkills.Add(skill);
         RecalculateAllStats();
+        PlaySkillAcquireVfx(skill.skillType);
 
         if (SkillsPanelUI.Instance != null)
-            SkillsPanelUI.Instance.AddSkill(skill);
+            SkillsPanelUI.Instance.AddOrUpdateSkill(skill);
+    }
+
+    private void PlaySkillAcquireVfx(SkillType type)
+    {
+        Transform t = transform;
+        if (t == null)
+            return;
+
+        SkillVfxLibrary.PlayForSkill(type, t.position, 1.25f);
+        AudioManager.PlayUiTap();
     }
 
     private void RecalculateAllStats()
@@ -158,10 +171,56 @@ public class PlayerSkillHandler : MonoBehaviour
                 healthSystem.AddRegen(stack >= 2 ? 1.5f : 1f);
         });
 
+        ApplyStackedSkill(SkillType.FireArrow, (stack, value) =>
+        {
+            if (autoAttack != null)
+                autoAttack.ProjectileDamage += stack * Mathf.Max(1f, value);
+        });
+
+        ApplyStackedSkill(SkillType.PiercingArrow, (stack, value) =>
+        {
+            if (autoAttack != null)
+                autoAttack.ProjectileDamage += stack * 2f;
+        });
+
+        ApplyStackedSkill(SkillType.TwinArrows, (stack, value) =>
+        {
+            if (autoAttack != null)
+                autoAttack.ProjectileDamage += stack * 3f;
+        });
+
+        ApplyStackedSkill(SkillType.ExplosiveRounds, (stack, value) =>
+        {
+            if (autoAttack != null)
+                autoAttack.ProjectileDamage += stack * 4f;
+        });
+
+        ApplyLegendaryDamageBonuses();
+
         if (skillStats != null)
             skillStats.Recalculate(this);
         if (autoAttack != null && skillStats != null)
             autoAttack.CritChance = skillStats.CritChance;
+
+        PlayerStatsUI.NotifyChanged();
+    }
+
+    private void ApplyLegendaryDamageBonuses()
+    {
+        if (autoAttack == null)
+            return;
+
+        int deathMark = GetStack(SkillType.DeathMark);
+        if (deathMark > 0)
+            autoAttack.ProjectileDamage += deathMark * 5f;
+
+        int dragon = GetStack(SkillType.DragonStrike);
+        if (dragon > 0)
+            autoAttack.ProjectileDamage *= 1f + dragon * 0.1f;
+
+        int soul = GetStack(SkillType.SoulHarvest);
+        if (soul > 0)
+            autoAttack.ProjectileDamage += soul * 4f;
     }
 
     private static bool IsLegendary(SkillType type)

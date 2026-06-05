@@ -57,8 +57,22 @@ public class MetaProgression : MonoBehaviour
     public float GetBonusMaxHp() => VitalLevel * 20f;
     public float GetBonusDamageMultiplier() => 1f + PowerLevel * 0.15f;
 
+    public void SpendMetaCoins(int amount)
+    {
+        if (amount <= 0)
+            return;
+        MetaCoins = Mathf.Max(0, MetaCoins - amount);
+        Save();
+    }
+
     public void ApplyToPlayer()
     {
+        if (MetaShopManager.Instance != null)
+        {
+            MetaShopManager.Instance.ApplyAllUpgrades();
+            return;
+        }
+
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player == null)
             return;

@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab47446db11806248bb8baa4cefd8707, type: 3}
+  m_Name: DungeonPackSpriteSet
+  m_EditorClassIdentifier: Assembly-CSharp::DungeonPackSpriteSet
+  hpBarFrame: {fileID: -3151580320864077615, guid: bdf946d0f6c2cf041befd8b464700309, type: 3}
+  hpBarFill: {fileID: -8320274673405449417, guid: c0c229cbb71bd7e42b66b44111bff582, type: 3}
+  expBarFrame: {fileID: 6413232049668327145, guid: e4ea93b8fba965d429b5438ea192af39, type: 3}
+  expBarFill: {fileID: -7221421578520146698, guid: bfdafbb78e158d24eaf1542d343f6c3f, type: 3}
+  chestClosed: {fileID: -2723989452440442212, guid: 7cef98546c6d3fd4da689e5e7a270f2b, type: 3}
+  coinCommon: {fileID: 4840735777579599281, guid: a59c82725b57ff64d948d07f28d62f13, type: 3}
+  coinRare: {fileID: -8347557189489763941, guid: bc639286af2c89e4092efc689575a017, type: 3}
+  coinSpin:
+  - {fileID: 4840735777579599281, guid: a59c82725b57ff64d948d07f28d62f13, type: 3}
+  - {fileID: 3501689478382954987, guid: bb66bd0af65da0040888d4b96615d1c6, type: 3}
+  - {fileID: -5185680815138586352, guid: 869d58f69b7c19248b5f896a96a2be83, type: 3}
+  - {fileID: -8347557189489763941, guid: bc639286af2c89e4092efc689575a017, type: 3}
+  heroWarrior: {fileID: -4052810538847602026, guid: 14f447392e540e34f96b930f2d1600b2, type: 3}
+  heroRanger: {fileID: 6509488204361239518, guid: 2908d1c813560bc45a45eed2d1a05d41, type: 3}
+  heroMage: {fileID: -2557970002436067677, guid: ab6d5a77ac240324f9853d90b18d80d2, type: 3}

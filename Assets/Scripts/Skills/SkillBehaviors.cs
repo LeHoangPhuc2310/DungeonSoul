@@ -11,6 +11,7 @@ public class SkillBehaviors : MonoBehaviour
     private float ghostTimer;
     private float timeFreezeTimer;
     private float dragonStrikeTimer;
+    private float iceAuraVfxTimer;
     private bool ghostActive;
     private readonly Collider2D[] iceAuraBuffer = new Collider2D[32];
 
@@ -45,17 +46,24 @@ public class SkillBehaviors : MonoBehaviour
             return;
 
         if (stats.ExplosionOnKillRadius > 0f)
+        {
             ExplodeAt(position, stats.ExplosionOnKillRadius, maxHp * stats.ExplosionOnKillDamageRatio);
+            HeroKnightVfx.PlayExplosion(position, stats.ExplosionOnKillRadius);
+        }
 
         if (handler.HasSkill(SkillType.Vampire) && health != null)
         {
             int stack = handler.GetStack(SkillType.Vampire);
             float healPct = stack >= 2 ? 0.08f : 0.05f;
             health.Heal(health.MaxHP * healPct);
+            HeroKnightVfx.PlayHeal(health.transform.position);
         }
 
         if (handler.HasSkill(SkillType.SoulHarvest) && Random.value < 0.3f)
+        {
+            // Bỏ VFX nổ Arcane (gây vòng tròn to kẹt giữa map) — chỉ giữ orb linh hồn để nhặt.
             SpawnSoulOrb(position);
+        }
     }
 
     private void TickGhostForm()
@@ -72,6 +80,8 @@ public class SkillBehaviors : MonoBehaviour
         {
             ghostActive = true;
             ghostTimer = 0f;
+            SkillVfxLibrary.Play(SkillVfxStyle.Arcane, cachedTransform.position, 1.35f,
+                new Color(0.7f, 0.55f, 1f, 0.85f), 21);
             StartCoroutine(GhostRoutine(duration));
         }
     }
@@ -96,6 +106,8 @@ public class SkillBehaviors : MonoBehaviour
             return;
 
         timeFreezeTimer = 0f;
+        SkillVfxLibrary.Play(SkillVfxStyle.Ice, cachedTransform.position, 1.4f,
+            new Color(0.55f, 0.85f, 1f, 1f), 22);
         StartCoroutine(FreezeAllEnemies(2.5f));
     }
 
@@ -135,13 +147,27 @@ public class SkillBehaviors : MonoBehaviour
 
         HealthSystem hs = target.GetComponent<HealthSystem>();
         if (hs != null)
+        {
             hs.TakeDamage(150f);
+            SkillVfxLibrary.Play(SkillVfxStyle.Fire, target.position, 1.3f, new Color(1f, 0.4f, 0.2f, 1f), 26);
+            AudioManager.PlayBossAttack();
+        }
     }
 
     private void TickIceAura()
     {
         if (stats == null || stats.SlowAuraRadius <= 0f)
             return;
+
+        iceAuraVfxTimer += Time.deltaTime;
+        if (iceAuraVfxTimer >= 4f)
+        {
+            iceAuraVfxTimer = 0f;
+            // Aura nhỏ gọn, mờ — chỉ gợi ý phạm vi, không choáng màn hình.
+            SkillVfxLibrary.Play(SkillVfxStyle.Ice, cachedTransform.position,
+                Mathf.Min(stats.SlowAuraRadius * 0.5f, 1.3f),
+                new Color(0.55f, 0.9f, 1f, 0.45f), 18);
+        }
 
         int count = Physics2D.OverlapCircleNonAlloc(cachedTransform.position, stats.SlowAuraRadius, iceAuraBuffer);
         for (int i = 0; i < count; i++)

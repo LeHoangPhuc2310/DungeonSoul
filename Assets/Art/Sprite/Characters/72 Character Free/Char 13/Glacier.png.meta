@@ -1,0 +1,858 @@
+fileFormatVersion: 2
+guid: 8c02cfa12add94646b71bfa4f3f8d728
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7903766365626947452
+    second: Glacier_0
+  - first:
+      213: -7146078770186214042
+    second: Glacier_1
+  - first:
+      213: -9030154738605648676
+    second: Glacier_2
+  - first:
+      213: 8781499943009343335
+    second: Glacier_3
+  - first:
+      213: 7933500836388712797
+    second: Glacier_4
+  - first:
+      213: 329234785170219758
+    second: Glacier_5
+  - first:
+      213: -6540207345191027306
+    second: Glacier_6
+  - first:
+      213: -3408847144730461823
+    second: Glacier_7
+  - first:
+      213: -6571142426894219078
+    second: Glacier_8
+  - first:
+      213: -5944205152690673329
+    second: Glacier_9
+  - first:
+      213: -6298950138404998173
+    second: Glacier_10
+  - first:
+      213: -6834532389276038957
+    second: Glacier_11
+  - first:
+      213: 4170014501088286298
+    second: Glacier_12
+  - first:
+      213: 7067992533849238859
+    second: Glacier_13
+  - first:
+      213: -1707843017523731031
+    second: Glacier_14
+  - first:
+      213: 5852455017628205247
+    second: Glacier_15
+  - first:
+      213: -816289923442301182
+    second: Glacier_16
+  - first:
+      213: 1707185305026910289
+    second: Glacier_17
+  - first:
+      213: 6569949136792586448
+    second: Glacier_18
+  - first:
+      213: -6235832927122867237
+    second: Glacier_19
+  - first:
+      213: 7082581745487764473
+    second: Glacier_20
+  - first:
+      213: -4354398089390829583
+    second: Glacier_21
+  - first:
+      213: -3353236979340351372
+    second: Glacier_22
+  - first:
+      213: 3940630432167707269
+    second: Glacier_23
+  - first:
+      213: 835927165838635334
+    second: Glacier_24
+  - first:
+      213: 6016284083585629609
+    second: Glacier_25
+  - first:
+      213: -1496737891811180820
+    second: Glacier_26
+  - first:
+      213: -7521607487430710056
+    second: Glacier_27
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Glacier_0
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 207
+        width: 22
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 488202dcd5e205290800000000000000
+      internalID: -7903766365626947452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Glacier_1
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 207
+        width: 22
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6652716583704dc90800000000000000
+      internalID: -7146078770186214042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Glacier_2
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 207
+        width: 22
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd4999aeb127ea280800000000000000
+      internalID: -9030154738605648676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Glacier_3
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 207
+        width: 22
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7675f2afba72ed970800000000000000
+      internalID: 8781499943009343335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Glacier_4
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 31
+        width: 28
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d51b63a2af4791e60800000000000000
+      internalID: 7933500836388712797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Glacier_5
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 142
+        width: 22
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee2e5c1fa4da19400800000000000000
+      internalID: 329234785170219758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Glacier_6
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 95
+        width: 25
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69dfc7032148c35a0800000000000000
+      internalID: -6540207345191027306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Glacier_7
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 94
+        width: 25
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1897cbc259751b0d0800000000000000
+      internalID: -3408847144730461823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Glacier_8
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 94
+        width: 24
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab8c87437cc9ec4a0800000000000000
+      internalID: -6571142426894219078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Glacier_9
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 95
+        width: 24
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4963d948e0f18da0800000000000000
+      internalID: -5944205152690673329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Glacier_10
+      rect:
+        serializedVersion: 2
+        x: 338
+        y: 92
+        width: 24
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e3f87ee832a598a0800000000000000
+      internalID: -6298950138404998173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Glacier_11
+      rect:
+        serializedVersion: 2
+        x: 411
+        y: 92
+        width: 15
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d8cc4bb00dd621a0800000000000000
+      internalID: -6834532389276038957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Glacier_12
+      rect:
+        serializedVersion: 2
+        x: 461
+        y: 36
+        width: 32
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a565895581eded930800000000000000
+      internalID: 4170014501088286298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Glacier_13
+      rect:
+        serializedVersion: 2
+        x: 539
+        y: 92
+        width: 15
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4d623ff2cd861260800000000000000
+      internalID: 7067992533849238859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Glacier_14
+      rect:
+        serializedVersion: 2
+        x: 603
+        y: 102
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a5ed58f2d58c48e0800000000000000
+      internalID: -1707843017523731031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Glacier_15
+      rect:
+        serializedVersion: 2
+        x: 603
+        y: 92
+        width: 15
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb08ea5b4d8183150800000000000000
+      internalID: 5852455017628205247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Glacier_16
+      rect:
+        serializedVersion: 2
+        x: 605
+        y: 114
+        width: 12
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 207ad77b3a4fba4f0800000000000000
+      internalID: -816289923442301182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Glacier_17
+      rect:
+        serializedVersion: 2
+        x: 661
+        y: 91
+        width: 22
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15855e76df321b710800000000000000
+      internalID: 1707185305026910289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Glacier_18
+      rect:
+        serializedVersion: 2
+        x: 725
+        y: 91
+        width: 22
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d808ea4ee52d2b50800000000000000
+      internalID: 6569949136792586448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Glacier_19
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 30
+        width: 29
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bdb382cddfed579a0800000000000000
+      internalID: -6235832927122867237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Glacier_20
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 30
+        width: 31
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9fbd67882926a4260800000000000000
+      internalID: 7082581745487764473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Glacier_21
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 32
+        width: 32
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ff483f12021293c0800000000000000
+      internalID: -4354398089390829583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Glacier_22
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 32
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 478e6b6cbb8e671d0800000000000000
+      internalID: -3353236979340351372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Glacier_23
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 32
+        width: 29
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 582437cef7eefa630800000000000000
+      internalID: 3940630432167707269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Glacier_24
+      rect:
+        serializedVersion: 2
+        x: 398
+        y: 34
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64139e1145fc99b00800000000000000
+      internalID: 835927165838635334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Glacier_25
+      rect:
+        serializedVersion: 2
+        x: 525
+        y: 35
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ad35f59f722e7350800000000000000
+      internalID: 6016284083585629609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Glacier_26
+      rect:
+        serializedVersion: 2
+        x: 593
+        y: 38
+        width: 19
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cee3ab441d48a3be0800000000000000
+      internalID: -1496737891811180820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Glacier_27
+      rect:
+        serializedVersion: 2
+        x: 662
+        y: 42
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8dc26c367d1ed9790800000000000000
+      internalID: -7521607487430710056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Glacier_0: -7903766365626947452
+      Glacier_1: -7146078770186214042
+      Glacier_10: -6298950138404998173
+      Glacier_11: -6834532389276038957
+      Glacier_12: 4170014501088286298
+      Glacier_13: 7067992533849238859
+      Glacier_14: -1707843017523731031
+      Glacier_15: 5852455017628205247
+      Glacier_16: -816289923442301182
+      Glacier_17: 1707185305026910289
+      Glacier_18: 6569949136792586448
+      Glacier_19: -6235832927122867237
+      Glacier_2: -9030154738605648676
+      Glacier_20: 7082581745487764473
+      Glacier_21: -4354398089390829583
+      Glacier_22: -3353236979340351372
+      Glacier_23: 3940630432167707269
+      Glacier_24: 835927165838635334
+      Glacier_25: 6016284083585629609
+      Glacier_26: -1496737891811180820
+      Glacier_27: -7521607487430710056
+      Glacier_3: 8781499943009343335
+      Glacier_4: 7933500836388712797
+      Glacier_5: 329234785170219758
+      Glacier_6: -6540207345191027306
+      Glacier_7: -3408847144730461823
+      Glacier_8: -6571142426894219078
+      Glacier_9: -5944205152690673329
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

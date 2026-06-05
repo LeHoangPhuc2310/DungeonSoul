@@ -2,6 +2,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(CircleCollider2D))]
 [RequireComponent(typeof(SpriteRenderer))]
+[RequireComponent(typeof(CoinPickupAnimator))]
 public class ExpGem : MonoBehaviour
 {
     public enum GemRarity
@@ -13,16 +14,21 @@ public class ExpGem : MonoBehaviour
     [SerializeField] private GemRarity rarity = GemRarity.Common;
     [SerializeField] private float collectRadius = 3f;
     [SerializeField] private float moveSpeed = 7f;
+    [SerializeField] private float coinWorldSize = GameScale.ExpGemSize;
 
+    private float expValue = 10f;
     private Transform player;
     private CircleCollider2D collectCollider;
     private SpriteRenderer spriteRenderer;
+    private CoinPickupAnimator coinAnimator;
 
     private void Awake()
     {
         collectCollider = GetComponent<CircleCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        coinAnimator = GetComponent<CoinPickupAnimator>();
         collectCollider.isTrigger = true;
+        spriteRenderer.sortingOrder = 12;
     }
 
     private void Start()
@@ -53,16 +59,21 @@ public class ExpGem : MonoBehaviour
         if (!other.CompareTag("Player"))
             return;
 
-        float exp = rarity == GemRarity.Rare ? 30f : 10f;
         if (ExpSystem.Instance != null)
-            ExpSystem.Instance.AddExp(exp);
+        {
+            ExpSystem.Instance.AddExp(expValue);
+            AudioManager.PlayCoinCollect();
+        }
 
         Destroy(gameObject);
     }
 
-    public void Initialize(GemRarity gemRarity)
+    public void Initialize(GemRarity gemRarity, float expAmount = -1f)
     {
         rarity = gemRarity;
+        expValue = expAmount > 0f
+            ? expAmount
+            : (rarity == GemRarity.Rare ? 22f : 10f);
         ApplyVisual();
     }
 
@@ -71,10 +82,14 @@ public class ExpGem : MonoBehaviour
         if (spriteRenderer == null)
             return;
 
-        if (spriteRenderer.sprite == null)
-            spriteRenderer.sprite = WeaponVisualLibrary.GetCircleSprite();
-        spriteRenderer.color = rarity == GemRarity.Rare ? new Color(0.2f, 0.55f, 1f, 1f) : new Color(0.2f, 1f, 0.3f, 1f);
-        transform.localScale = Vector3.one * (rarity == GemRarity.Rare ? 0.2f : 0.16f);
+        if (WorldPickupVisual.TrySetupSpinningCoin(gameObject, coinWorldSize, rarity == GemRarity.Rare))
+            return;
+
+        spriteRenderer.sprite = WeaponVisualLibrary.GetCircleSprite();
+        spriteRenderer.color = rarity == GemRarity.Rare
+            ? new Color(0.2f, 0.55f, 1f, 1f)
+            : new Color(1f, 0.85f, 0.15f, 1f);
+        transform.localScale = Vector3.one * (rarity == GemRarity.Rare ? GameScale.ExpGemSize * 1.15f : GameScale.ExpGemSize);
     }
 }
 
@@ -122,7 +137,8 @@ public static class WeaponVisualLibrary
             }
         }
         texture.Apply();
-        circleSprite = Sprite.Create(texture, new Rect(0f, 0f, size, size), new Vector2(0.5f, 0.5f), size);
+        const float pixelsPerUnit = 10f;
+        circleSprite = Sprite.Create(texture, new Rect(0f, 0f, size, size), new Vector2(0.5f, 0.5f), pixelsPerUnit);
         return circleSprite;
     }
 }

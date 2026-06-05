@@ -1,0 +1,1846 @@
+fileFormatVersion: 2
+guid: d05ccd6252895104d84ac6bb1cdb38bc
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8228854804498162642
+    second: Brom_0
+  - first:
+      213: 216478451542475498
+    second: Brom_1
+  - first:
+      213: -3008950353534590362
+    second: Brom_2
+  - first:
+      213: 716440562481406999
+    second: Brom_3
+  - first:
+      213: -1921081432823426479
+    second: Brom_4
+  - first:
+      213: 4093170245770212905
+    second: Brom_5
+  - first:
+      213: 6045754929990921406
+    second: Brom_6
+  - first:
+      213: 7250260820878338551
+    second: Brom_7
+  - first:
+      213: -1538555258887269161
+    second: Brom_8
+  - first:
+      213: -4518254993544513394
+    second: Brom_9
+  - first:
+      213: 9053586081739924035
+    second: Brom_10
+  - first:
+      213: -2672020731986964970
+    second: Brom_11
+  - first:
+      213: -2848769723194281903
+    second: Brom_12
+  - first:
+      213: -4786310118971982173
+    second: Brom_13
+  - first:
+      213: 2046594941682196336
+    second: Brom_14
+  - first:
+      213: 1393186298084867274
+    second: Brom_15
+  - first:
+      213: -4270473870802181614
+    second: Brom_16
+  - first:
+      213: 5906513955404047013
+    second: Brom_17
+  - first:
+      213: -570326644114746967
+    second: Brom_18
+  - first:
+      213: -1414345111539275672
+    second: Brom_19
+  - first:
+      213: 9104408447470859856
+    second: Brom_20
+  - first:
+      213: 6772127941886423380
+    second: Brom_21
+  - first:
+      213: 2766259656050472951
+    second: Brom_22
+  - first:
+      213: 6770462927101728552
+    second: Brom_23
+  - first:
+      213: -5458454831797719924
+    second: Brom_24
+  - first:
+      213: -744363356043398173
+    second: Brom_25
+  - first:
+      213: -2711922362775036701
+    second: Brom_26
+  - first:
+      213: 5872390284666236677
+    second: Brom_27
+  - first:
+      213: -8366617609502862150
+    second: Brom_28
+  - first:
+      213: 5365039885296026653
+    second: Brom_29
+  - first:
+      213: -6400792043169903034
+    second: Brom_30
+  - first:
+      213: -3166004618600310759
+    second: Brom_31
+  - first:
+      213: -1436527632348435025
+    second: Brom_32
+  - first:
+      213: -8297790564847945303
+    second: Brom_33
+  - first:
+      213: 8460077208090921339
+    second: Brom_34
+  - first:
+      213: 4906708834509772713
+    second: Brom_35
+  - first:
+      213: -4956330469666432998
+    second: Brom_36
+  - first:
+      213: 7331991138094222054
+    second: Brom_37
+  - first:
+      213: 5794403790607849824
+    second: Brom_38
+  - first:
+      213: -1999702644043594321
+    second: Brom_39
+  - first:
+      213: -1792108239144134895
+    second: Brom_40
+  - first:
+      213: 8222831660922848994
+    second: Brom_41
+  - first:
+      213: -175396248943463592
+    second: Brom_42
+  - first:
+      213: -7573344077101942152
+    second: Brom_43
+  - first:
+      213: 1172504211109752269
+    second: Brom_44
+  - first:
+      213: 3437865736198128627
+    second: Brom_45
+  - first:
+      213: -3987535209013124057
+    second: Brom_46
+  - first:
+      213: -3715779841877255678
+    second: Brom_47
+  - first:
+      213: -3117757732635123599
+    second: Brom_48
+  - first:
+      213: -2857177932981517235
+    second: Brom_49
+  - first:
+      213: 6476397477125200065
+    second: Brom_50
+  - first:
+      213: -8804580632098499631
+    second: Brom_51
+  - first:
+      213: -7092996949396803972
+    second: Brom_52
+  - first:
+      213: 8793139350394913846
+    second: Brom_53
+  - first:
+      213: -4543746553756137333
+    second: Brom_54
+  - first:
+      213: 6501607607757950856
+    second: Brom_55
+  - first:
+      213: 9113775467169732741
+    second: Brom_56
+  - first:
+      213: -6675965912099370200
+    second: Brom_57
+  - first:
+      213: 7896942319723917621
+    second: Brom_58
+  - first:
+      213: -302661926084776542
+    second: Brom_59
+  - first:
+      213: -3729025961375214412
+    second: Brom_60
+  - first:
+      213: 6653287488385408138
+    second: Brom_61
+  - first:
+      213: 8814541880702562922
+    second: Brom_62
+  - first:
+      213: 2789559451331254930
+    second: Brom_63
+  - first:
+      213: -6916737428549029492
+    second: Brom_64
+  - first:
+      213: 2177487533498654477
+    second: Brom_65
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Brom_0
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 207
+        width: 23
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d3216aa8d3c23270800000000000000
+      internalID: 8228854804498162642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_1
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 207
+        width: 23
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae247b53106110300800000000000000
+      internalID: 216478451542475498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_2
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 207
+        width: 23
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 662e8c6789f0e36d0800000000000000
+      internalID: -3008950353534590362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_3
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 207
+        width: 23
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 714a26d45ee41f900800000000000000
+      internalID: 716440562481406999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_4
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 151
+        width: 23
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15216fb7d92f655e0800000000000000
+      internalID: -1921081432823426479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_5
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 153
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 926f458e6acddc830800000000000000
+      internalID: 4093170245770212905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_6
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 152
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ebcec29b316d6e350800000000000000
+      internalID: 6045754929990921406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_7
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 151
+        width: 23
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f9a2659dc91e9460800000000000000
+      internalID: 7250260820878338551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_8
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 154
+        width: 23
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d417b6c424f5aae0800000000000000
+      internalID: -1538555258887269161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_9
+      rect:
+        serializedVersion: 2
+        x: 338
+        y: 153
+        width: 23
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e88f429a50feb41c0800000000000000
+      internalID: -4518254993544513394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_10
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 92
+        width: 23
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3426789c29cc4ad70800000000000000
+      internalID: 9053586081739924035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_11
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 92
+        width: 23
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61e007d1d431bead0800000000000000
+      internalID: -2672020731986964970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_12
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 92
+        width: 23
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 150fd1ab7032778d0800000000000000
+      internalID: -2848769723194281903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_13
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 91
+        width: 24
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ae31d54e4c939db0800000000000000
+      internalID: -4786310118971982173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_14
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 96
+        width: 23
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07f14129147f66c10800000000000000
+      internalID: 2046594941682196336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_15
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 90
+        width: 20
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: acc3a438e87955310800000000000000
+      internalID: 1393186298084867274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_16
+      rect:
+        serializedVersion: 2
+        x: 285
+        y: 114
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 212af34f3aa3cb4c0800000000000000
+      internalID: -4270473870802181614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_17
+      rect:
+        serializedVersion: 2
+        x: 290
+        y: 93
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a2eebcf52728f150800000000000000
+      internalID: 5906513955404047013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_18
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 108
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a1999b50fac518f0800000000000000
+      internalID: -570326644114746967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_19
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 103
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86824e45d9c3f5ce0800000000000000
+      internalID: -1414345111539275672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_20
+      rect:
+        serializedVersion: 2
+        x: 338
+        y: 105
+        width: 12
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 056f099ee3b595e70800000000000000
+      internalID: 9104408447470859856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_21
+      rect:
+        serializedVersion: 2
+        x: 338
+        y: 97
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45133ad9b7e6bfd50800000000000000
+      internalID: 6772127941886423380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_22
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 90
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f7f16b308ab36620800000000000000
+      internalID: 2766259656050472951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_23
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 114
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82799d6292485fd50800000000000000
+      internalID: 6770462927101728552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_24
+      rect:
+        serializedVersion: 2
+        x: 349
+        y: 103
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8cae28204caf34b0800000000000000
+      internalID: -5458454831797719924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_25
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 109
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e33733b87d7ba5f0800000000000000
+      internalID: -744363356043398173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_26
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 99
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ec1b5cbaf05d5ad0800000000000000
+      internalID: -2711922362775036701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_27
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 94
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50f6cf3c9dbee7150800000000000000
+      internalID: 5872390284666236677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_28
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 109
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab4dd06cc9dc3eb80800000000000000
+      internalID: -8366617609502862150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_29
+      rect:
+        serializedVersion: 2
+        x: 402
+        y: 105
+        width: 12
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d144fd8b953747a40800000000000000
+      internalID: 5365039885296026653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_30
+      rect:
+        serializedVersion: 2
+        x: 402
+        y: 97
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64e06b1bc81db27a0800000000000000
+      internalID: -6400792043169903034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_31
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 89
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9181517d2971014d0800000000000000
+      internalID: -3166004618600310759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_32
+      rect:
+        serializedVersion: 2
+        x: 413
+        y: 110
+        width: 10
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fada6dbbabd601ce0800000000000000
+      internalID: -1436527632348435025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_33
+      rect:
+        serializedVersion: 2
+        x: 413
+        y: 99
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a976a1e17358dc80800000000000000
+      internalID: -8297790564847945303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_34
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 89
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7943a8b56b386570800000000000000
+      internalID: 8460077208090921339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_35
+      rect:
+        serializedVersion: 2
+        x: 419
+        y: 94
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a7d93920b1281440800000000000000
+      internalID: 4906708834509772713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_36
+      rect:
+        serializedVersion: 2
+        x: 463
+        y: 109
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a18561692b3973bb0800000000000000
+      internalID: -4956330469666432998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_37
+      rect:
+        serializedVersion: 2
+        x: 466
+        y: 98
+        width: 12
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ea0b62f71770c560800000000000000
+      internalID: 7331991138094222054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_38
+      rect:
+        serializedVersion: 2
+        x: 469
+        y: 89
+        width: 19
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0699b582c8bd96050800000000000000
+      internalID: 5794403790607849824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_39
+      rect:
+        serializedVersion: 2
+        x: 477
+        y: 110
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa54f554a01af34e0800000000000000
+      internalID: -1999702644043594321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_40
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 110
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11753ce2d072127e0800000000000000
+      internalID: -1792108239144134895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_41
+      rect:
+        serializedVersion: 2
+        x: 530
+        y: 98
+        width: 12
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e6442544dd5d1270800000000000000
+      internalID: 8222831660922848994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_42
+      rect:
+        serializedVersion: 2
+        x: 533
+        y: 88
+        width: 82
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 853f9c67a0ed09df0800000000000000
+      internalID: -175396248943463592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_43
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 88
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87ab78aefa316e690800000000000000
+      internalID: -7573344077101942152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_44
+      rect:
+        serializedVersion: 2
+        x: 657
+        y: 28
+        width: 23
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dcda8d82e52954010800000000000000
+      internalID: 1172504211109752269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_45
+      rect:
+        serializedVersion: 2
+        x: 721
+        y: 28
+        width: 23
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f383972ca0c5bf20800000000000000
+      internalID: 3437865736198128627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_46
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 31
+        width: 14
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 724e861badd69a8c0800000000000000
+      internalID: -3987535209013124057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_47
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 31
+        width: 14
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20a595dbbe5ee6cc0800000000000000
+      internalID: -3715779841877255678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_48
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 53
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1706e8a5cdf7bb4d0800000000000000
+      internalID: -3117757732635123599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_49
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 31
+        width: 12
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d444d84dec34958d0800000000000000
+      internalID: -2857177932981517235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_50
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 53
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c898482139c0e950800000000000000
+      internalID: 6476397477125200065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_51
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 31
+        width: 13
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d31c735098dfc580800000000000000
+      internalID: -8804580632098499631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_52
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 54
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7e2646dadc909d90800000000000000
+      internalID: -7092996949396803972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_53
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 31
+        width: 14
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6344cc0b6a1870a70800000000000000
+      internalID: 8793139350394913846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_54
+      rect:
+        serializedVersion: 2
+        x: 338
+        y: 45
+        width: 9
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b88c5f9459e51f0c0800000000000000
+      internalID: -4543746553756137333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_55
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 31
+        width: 16
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88fc3691ca95a3a50800000000000000
+      internalID: 6501607607757950856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_56
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 53
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58852532082aa7e70800000000000000
+      internalID: 9113775467169732741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_57
+      rect:
+        serializedVersion: 2
+        x: 402
+        y: 44
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82b43bcaf543a53a0800000000000000
+      internalID: -6675965912099370200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_58
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 31
+        width: 16
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 531b4e23333979d60800000000000000
+      internalID: 7896942319723917621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_59
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 29
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ad6ea0f49abccbf0800000000000000
+      internalID: -302661926084776542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_60
+      rect:
+        serializedVersion: 2
+        x: 466
+        y: 38
+        width: 21
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b4550635a6df3cc0800000000000000
+      internalID: -3729025961375214412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_61
+      rect:
+        serializedVersion: 2
+        x: 471
+        y: 29
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8c53c558b9355c50800000000000000
+      internalID: 6653287488385408138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_62
+      rect:
+        serializedVersion: 2
+        x: 530
+        y: 39
+        width: 21
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a627419932b835a70800000000000000
+      internalID: 8814541880702562922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_63
+      rect:
+        serializedVersion: 2
+        x: 535
+        y: 29
+        width: 15
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29ade609a8186b620800000000000000
+      internalID: 2789559451331254930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_64
+      rect:
+        serializedVersion: 2
+        x: 594
+        y: 39
+        width: 21
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c81bfa684ffc200a0800000000000000
+      internalID: -6916737428549029492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brom_65
+      rect:
+        serializedVersion: 2
+        x: 599
+        y: 29
+        width: 15
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0f5709ff5df73e10800000000000000
+      internalID: 2177487533498654477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Brom_0: 8228854804498162642
+      Brom_1: 216478451542475498
+      Brom_10: 9053586081739924035
+      Brom_11: -2672020731986964970
+      Brom_12: -2848769723194281903
+      Brom_13: -4786310118971982173
+      Brom_14: 2046594941682196336
+      Brom_15: 1393186298084867274
+      Brom_16: -4270473870802181614
+      Brom_17: 5906513955404047013
+      Brom_18: -570326644114746967
+      Brom_19: -1414345111539275672
+      Brom_2: -3008950353534590362
+      Brom_20: 9104408447470859856
+      Brom_21: 6772127941886423380
+      Brom_22: 2766259656050472951
+      Brom_23: 6770462927101728552
+      Brom_24: -5458454831797719924
+      Brom_25: -744363356043398173
+      Brom_26: -2711922362775036701
+      Brom_27: 5872390284666236677
+      Brom_28: -8366617609502862150
+      Brom_29: 5365039885296026653
+      Brom_3: 716440562481406999
+      Brom_30: -6400792043169903034
+      Brom_31: -3166004618600310759
+      Brom_32: -1436527632348435025
+      Brom_33: -8297790564847945303
+      Brom_34: 8460077208090921339
+      Brom_35: 4906708834509772713
+      Brom_36: -4956330469666432998
+      Brom_37: 7331991138094222054
+      Brom_38: 5794403790607849824
+      Brom_39: -1999702644043594321
+      Brom_4: -1921081432823426479
+      Brom_40: -1792108239144134895
+      Brom_41: 8222831660922848994
+      Brom_42: -175396248943463592
+      Brom_43: -7573344077101942152
+      Brom_44: 1172504211109752269
+      Brom_45: 3437865736198128627
+      Brom_46: -3987535209013124057
+      Brom_47: -3715779841877255678
+      Brom_48: -3117757732635123599
+      Brom_49: -2857177932981517235
+      Brom_5: 4093170245770212905
+      Brom_50: 6476397477125200065
+      Brom_51: -8804580632098499631
+      Brom_52: -7092996949396803972
+      Brom_53: 8793139350394913846
+      Brom_54: -4543746553756137333
+      Brom_55: 6501607607757950856
+      Brom_56: 9113775467169732741
+      Brom_57: -6675965912099370200
+      Brom_58: 7896942319723917621
+      Brom_59: -302661926084776542
+      Brom_6: 6045754929990921406
+      Brom_60: -3729025961375214412
+      Brom_61: 6653287488385408138
+      Brom_62: 8814541880702562922
+      Brom_63: 2789559451331254930
+      Brom_64: -6916737428549029492
+      Brom_65: 2177487533498654477
+      Brom_7: 7250260820878338551
+      Brom_8: -1538555258887269161
+      Brom_9: -4518254993544513394
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,962 @@
+fileFormatVersion: 2
+guid: 345b6981f04f80e4aac9fb9fc3fe73a8
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4057456359941657001
+    second: Golem1_Death_full_0
+  - first:
+      213: -8502705850332345365
+    second: Golem1_Death_full_1
+  - first:
+      213: -3537033087100185663
+    second: Golem1_Death_full_2
+  - first:
+      213: -3480845696242766990
+    second: Golem1_Death_full_3
+  - first:
+      213: -6916052394963699074
+    second: Golem1_Death_full_4
+  - first:
+      213: 7317411529123977142
+    second: Golem1_Death_full_5
+  - first:
+      213: 342260644018360595
+    second: Golem1_Death_full_6
+  - first:
+      213: 2753216367215849671
+    second: Golem1_Death_full_7
+  - first:
+      213: 6166077853207979193
+    second: Golem1_Death_full_8
+  - first:
+      213: 5578385258775282228
+    second: Golem1_Death_full_9
+  - first:
+      213: 7504790914477931105
+    second: Golem1_Death_full_10
+  - first:
+      213: 6054016736088399911
+    second: Golem1_Death_full_11
+  - first:
+      213: -4978135298114523506
+    second: Golem1_Death_full_12
+  - first:
+      213: -2135948391200664714
+    second: Golem1_Death_full_13
+  - first:
+      213: -9837886979264924
+    second: Golem1_Death_full_14
+  - first:
+      213: 6270266339577646333
+    second: Golem1_Death_full_15
+  - first:
+      213: 2273532853710711893
+    second: Golem1_Death_full_16
+  - first:
+      213: -1579418426707464127
+    second: Golem1_Death_full_17
+  - first:
+      213: -3638434423189381499
+    second: Golem1_Death_full_18
+  - first:
+      213: 6268296671026625384
+    second: Golem1_Death_full_19
+  - first:
+      213: 5872733759530944406
+    second: Golem1_Death_full_20
+  - first:
+      213: 1387519641687408528
+    second: Golem1_Death_full_21
+  - first:
+      213: 1381091015589742630
+    second: Golem1_Death_full_22
+  - first:
+      213: 5451408573486347281
+    second: Golem1_Death_full_23
+  - first:
+      213: -8446064996716196693
+    second: Golem1_Death_full_24
+  - first:
+      213: -3951553589547937640
+    second: Golem1_Death_full_25
+  - first:
+      213: -2711822388703116539
+    second: Golem1_Death_full_26
+  - first:
+      213: -5040667846588149543
+    second: Golem1_Death_full_27
+  - first:
+      213: 4021200644915045242
+    second: Golem1_Death_full_28
+  - first:
+      213: 3094929736803630850
+    second: Golem1_Death_full_29
+  - first:
+      213: -2172802228118969947
+    second: Golem1_Death_full_30
+  - first:
+      213: 6927387279190921172
+    second: Golem1_Death_full_31
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Golem1_Death_full_0
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 428
+        width: 48
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75e270e10f401b7c0800000000000000
+      internalID: -4057456359941657001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Golem1_Death_full_1
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 428
+        width: 48
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: beb0e411412500a80800000000000000
+      internalID: -8502705850332345365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Golem1_Death_full_2
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 428
+        width: 48
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c31794b52fe9eec0800000000000000
+      internalID: -3537033087100185663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Golem1_Death_full_3
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 428
+        width: 48
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27ba085184d81bfc0800000000000000
+      internalID: -3480845696242766990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Golem1_Death_full_4
+      rect:
+        serializedVersion: 2
+        x: 552
+        y: 428
+        width: 48
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7af2365dfe3500a0800000000000000
+      internalID: -6916052394963699074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Golem1_Death_full_5
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 428
+        width: 48
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b758c4340bac8560800000000000000
+      internalID: 7317411529123977142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Golem1_Death_full_6
+      rect:
+        serializedVersion: 2
+        x: 808
+        y: 428
+        width: 48
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3119f4b0e34ffb400800000000000000
+      internalID: 342260644018360595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Golem1_Death_full_7
+      rect:
+        serializedVersion: 2
+        x: 936
+        y: 428
+        width: 48
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c031b5e2b3653620800000000000000
+      internalID: 2753216367215849671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Golem1_Death_full_8
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 300
+        width: 48
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b46dd1632f429550800000000000000
+      internalID: 6166077853207979193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Golem1_Death_full_9
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 300
+        width: 48
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 432839956d76a6d40800000000000000
+      internalID: 5578385258775282228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Golem1_Death_full_10
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 300
+        width: 48
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16a390b139f562860800000000000000
+      internalID: 7504790914477931105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Golem1_Death_full_11
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 300
+        width: 48
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 720a1da5520340450800000000000000
+      internalID: 6054016736088399911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Golem1_Death_full_12
+      rect:
+        serializedVersion: 2
+        x: 552
+        y: 300
+        width: 48
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8eec08525c1aeab0800000000000000
+      internalID: -4978135298114523506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Golem1_Death_full_13
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 300
+        width: 48
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 673dae341469b52e0800000000000000
+      internalID: -2135948391200664714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Golem1_Death_full_14
+      rect:
+        serializedVersion: 2
+        x: 808
+        y: 300
+        width: 48
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46ea2417e7c0ddff0800000000000000
+      internalID: -9837886979264924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Golem1_Death_full_15
+      rect:
+        serializedVersion: 2
+        x: 936
+        y: 300
+        width: 48
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dfc4d99b306740750800000000000000
+      internalID: 6270266339577646333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Golem1_Death_full_16
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 172
+        width: 45
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55c6b92b5163d8f10800000000000000
+      internalID: 2273532853710711893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Golem1_Death_full_17
+      rect:
+        serializedVersion: 2
+        x: 169
+        y: 172
+        width: 45
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 140356c1f47c41ae0800000000000000
+      internalID: -1579418426707464127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Golem1_Death_full_18
+      rect:
+        serializedVersion: 2
+        x: 297
+        y: 172
+        width: 45
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58e5e3b5b2fa18dc0800000000000000
+      internalID: -3638434423189381499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Golem1_Death_full_19
+      rect:
+        serializedVersion: 2
+        x: 425
+        y: 172
+        width: 45
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86b3e478c967df650800000000000000
+      internalID: 6268296671026625384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Golem1_Death_full_20
+      rect:
+        serializedVersion: 2
+        x: 553
+        y: 172
+        width: 45
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 697494d3d34208150800000000000000
+      internalID: 5872733759530944406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Golem1_Death_full_21
+      rect:
+        serializedVersion: 2
+        x: 681
+        y: 172
+        width: 45
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09fb7a143c5714310800000000000000
+      internalID: 1387519641687408528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Golem1_Death_full_22
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 172
+        width: 45
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 628c5ba16fe9a2310800000000000000
+      internalID: 1381091015589742630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Golem1_Death_full_23
+      rect:
+        serializedVersion: 2
+        x: 937
+        y: 172
+        width: 45
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1143c2cf63b47ab40800000000000000
+      internalID: 5451408573486347281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Golem1_Death_full_24
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 44
+        width: 45
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bacced872ac89ca80800000000000000
+      internalID: -8446064996716196693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Golem1_Death_full_25
+      rect:
+        serializedVersion: 2
+        x: 169
+        y: 44
+        width: 45
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 890531052f24929c0800000000000000
+      internalID: -3951553589547937640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Golem1_Death_full_26
+      rect:
+        serializedVersion: 2
+        x: 297
+        y: 44
+        width: 45
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5034663c7ebad5ad0800000000000000
+      internalID: -2711822388703116539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Golem1_Death_full_27
+      rect:
+        serializedVersion: 2
+        x: 425
+        y: 44
+        width: 45
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d05165dc43fb0ab0800000000000000
+      internalID: -5040667846588149543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Golem1_Death_full_28
+      rect:
+        serializedVersion: 2
+        x: 553
+        y: 44
+        width: 45
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a73abba6eac2ec730800000000000000
+      internalID: 4021200644915045242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Golem1_Death_full_29
+      rect:
+        serializedVersion: 2
+        x: 681
+        y: 44
+        width: 45
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20f39fea23663fa20800000000000000
+      internalID: 3094929736803630850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Golem1_Death_full_30
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 44
+        width: 45
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a1aac1b2e7a8d1e0800000000000000
+      internalID: -2172802228118969947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Golem1_Death_full_31
+      rect:
+        serializedVersion: 2
+        x: 937
+        y: 44
+        width: 45
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4df0cbd0706032060800000000000000
+      internalID: 6927387279190921172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Golem1_Death_full_0: -4057456359941657001
+      Golem1_Death_full_1: -8502705850332345365
+      Golem1_Death_full_10: 7504790914477931105
+      Golem1_Death_full_11: 6054016736088399911
+      Golem1_Death_full_12: -4978135298114523506
+      Golem1_Death_full_13: -2135948391200664714
+      Golem1_Death_full_14: -9837886979264924
+      Golem1_Death_full_15: 6270266339577646333
+      Golem1_Death_full_16: 2273532853710711893
+      Golem1_Death_full_17: -1579418426707464127
+      Golem1_Death_full_18: -3638434423189381499
+      Golem1_Death_full_19: 6268296671026625384
+      Golem1_Death_full_2: -3537033087100185663
+      Golem1_Death_full_20: 5872733759530944406
+      Golem1_Death_full_21: 1387519641687408528
+      Golem1_Death_full_22: 1381091015589742630
+      Golem1_Death_full_23: 5451408573486347281
+      Golem1_Death_full_24: -8446064996716196693
+      Golem1_Death_full_25: -3951553589547937640
+      Golem1_Death_full_26: -2711822388703116539
+      Golem1_Death_full_27: -5040667846588149543
+      Golem1_Death_full_28: 4021200644915045242
+      Golem1_Death_full_29: 3094929736803630850
+      Golem1_Death_full_3: -3480845696242766990
+      Golem1_Death_full_30: -2172802228118969947
+      Golem1_Death_full_31: 6927387279190921172
+      Golem1_Death_full_4: -6916052394963699074
+      Golem1_Death_full_5: 7317411529123977142
+      Golem1_Death_full_6: 342260644018360595
+      Golem1_Death_full_7: 2753216367215849671
+      Golem1_Death_full_8: 6166077853207979193
+      Golem1_Death_full_9: 5578385258775282228
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

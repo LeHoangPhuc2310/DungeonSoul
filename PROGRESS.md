@@ -1,112 +1,91 @@
-# Dungeon Soul — Tiến độ code vs Kịch bản
+# Dungeon Soul — Tiến độ vs Kịch bản (docx)
 
-Cập nhật sau phiên code gần nhất. Dùng file này để biết **đã xong phần nào** và **cần gắn gì trong Unity Editor**.
-
----
-
-## Đã làm trong code (session này)
-
-| Hệ thống | File mới / sửa | Trạng thái |
-|----------|----------------|------------|
-| **28 Skill (runtime)** | `PlayerSkillHandler`, `PlayerSkillStats`, `SkillBehaviors` | Stack 1–3 + legendary tick (Ghost, TimeFreeze, DragonStrike, IceAura, Vampire, SoulHarvest, Explosion on kill) |
-| **Crit / Pierce / DOT** | `Projectile`, `BurnDebuff` | Crit, pierce falloff, fire DOT |
-| **Multi-target bắn** | `AutoAttack` | `MultiTargetCount` |
-| **Loot xu** | `LootDrop`, `CoinPickup`, `EnemyReward` | Drop coin + score khi enemy chết |
-| **Meta xu (lưu máy)** | `MetaProgression` | PlayerPrefs: meta coins, Vital/Power upgrade |
-| **Kết thúc run** | `RunManager` | Chuyển xu run → meta khi chết/thắng boss tầng 10 |
-| **Phòng dungeon** | `RoomManager`, `RoomType` | Roll loại phòng, healing/treasure hook |
-| **Boss phase** | `BossController` | 3 phase theo % HP |
-| **Rương theo độ hiếm** | `SkillSelectionUI.ShowChest` | Weight theo Normal / Elite / Treasure |
-| **Enemy** | `EnemyAI` (MoveSpeed/ContactDamage public) | Cho boss phase |
+Cập nhật: tích hợp **mobile**, **meta 11 upgrade**, **boss**, **BSP dungeon (tùy chọn)**, **wave arena (mặc định)**.
 
 ---
 
-## Đã có từ trước (giữ nguyên)
+## Chạy nhanh trong Unity (1 lần)
 
-- Di chuyển player, auto attack, projectile pool  
-- EXP / level up, `ExpBarUI`, `LevelUpEffect`  
-- `WeaponManager` + evolution (12 weapon types)  
-- `PassiveItemManager`  
-- `EnemyWaveManager` + `SurvivalTimer` (chế độ survival horde)  
-- `EnemySpawner` + `ChestController` (chế độ clear phòng)  
-- `HUDManager` (HP, wave, timer, DPS, combo, slots)  
+Menu: **`DungeonSoul → Setup → Full Project Setup (Mobile + GDD)`**
+
+Sau đó trong scene chính:
+
+1. Chọn object **GameManagers** → component **Game Run Bootstrap**
+   - **Wave Arena** — chơi như hiện tại (đợt 1–10, boss 3/6/9/10, thắng tầng 10).
+   - **Procedural Dungeon** — cần gán **Dungeon Generator** + tilemap Floor/Wall.
+2. Player tag `Player`: `PlayerController`, `HealthSystem`, `AutoAttack`, `WeaponManager`, `PlayerSkillHandler`, `PlayerWeaponVisual`.
+3. **Enemy prefab** tag `Enemy`: `HealthSystem`, `EnemyAI`, `EnemyReward`, `EnemyPhysicsSetup`.
+4. Play — joystick + safe area tự áp dụng.
 
 ---
 
-## Chưa làm / cần bạn gắn trong Unity
+## Đã làm trong code
 
-### Bắt buộc để chạy scene
+| Hệ thống | Mô tả |
+|----------|--------|
+| **GameRunBootstrap** | Tạo manager, mobile 60 FPS, chọn Wave / Dungeon |
+| **MetaRunModifiers** | 11 meta: HP, dmg, ASPD, move, starter skill, coin, regen phòng, độ hiếm skill, loot, forge reroll, weapon CD |
+| **RoomClearBridge** | Diệt quái → `RoomController` clear; boss → EventBus |
+| **EnemyAliveTracker** | Đếm quái (không `FindGameObjectsWithTag` mỗi frame) |
+| **Boss** | 4 boss data, phase, HP bar, red chest, wave 3/6/9/10 |
+| **Dungeon BSP** | `DungeonGenerator`, `DungeonRunController`, `RoomController`, minimap |
+| **RoomManager** | 10 loại phòng; wave mode tắt auto-roll |
+| **HUD** | EXP, xu/score, skill panel, weapon slots màu, victory |
+| **Hero 3 class** | Warrior / Ranger / Mage + menu chọn |
+| **Art** | Tiles enemy, chest `0089`, hero/weapon |
+| **Font** | Times New Roman SDF (menu Fonts) |
+| **Mobile** | Portrait wizard, safe area, multitouch, sleep off |
 
-1. **Player** (tag `Player`):
-   - `PlayerController`, `HealthSystem`, `AutoAttack`, `WeaponManager`, `ExpSystem`
-   - `PlayerSkillHandler`, `PlayerSkillStats`, `SkillBehaviors` (tự add nếu thiếu)
-   - `Rigidbody2D` + collider
+---
 
-2. **Managers** (empty GameObject `GameManagers`):
-   - `RunManager`
-   - `MetaProgression` (DontDestroyOnLoad)
-   - `HUDManager` (+ canvas con nếu chưa có)
-   - `SkillSelectionUI` + canvas 3 nút
-   - `ExpSystem`, `FloorManager` (tùy mode)
-   - **Chọn 1 mode spawn:**
-     - Survival: `EnemyWaveManager` + `SurvivalTimer`
-     - Room: `EnemySpawner` + `RoomManager` + tilemap
+## Luồng chơi
 
-3. **Enemy prefab**:
-   - Tag `Enemy`
-   - `HealthSystem`, `EnemyAI`, `EnemyReward`, `LootDrop` (tùy chọn)
-   - Boss: thêm `BossController`, tick **Is Boss** trên `EnemyReward`
+### Wave Arena (khuyên dùng — đã test)
 
-4. **Skill assets**:
-   - `Assets/Resources/SkillData/*.asset` (28 skill) — chạy menu Editor `CreateAllSkills` nếu thiếu
+```
+Spawn wave → diệt hết → rương → chọn skill → wave tiếp
+Boss wave 3,6,9,10 → thắng boss → skill (trừ wave boss không rương thường)
+Wave 10 + boss → Victory
+```
 
-5. **Chest**:
-   - `ChestController` + trigger; gọi `Show()` hoặc `ShowChest(RoomType.Elite)`
+### Procedural Dungeon (beta)
 
-### Chưa có code (theo kịch bản docx)
+```
+GameRunBootstrap → ProceduralDungeon → Generate map → Room triggers
+Vào phòng → spawn quái → clear → chest / heal
+```
 
-| Tính năng kịch bản | Ghi chú |
-|--------------------|---------|
-| Main Menu / Tutorial | Chưa có scene UI |
-| 12 vũ khí đủ passive/special | Chỉ enum + `WeaponManager` cơ bản |
-| 8 giáp + 8 nhẫn equip | Chưa inventory |
-| 8 enemy + 4 elite khác biệt AI | 1 prefab chung + AI chase |
-| 10 tầng × 10 loại phòng layout | `RoomManager` chỉ logic, chưa gen map |
-| Meta Shop UI | `MetaProgression` API only |
-| Daily Challenge, Ads, IAP | Chưa |
-| Game Over / Victory screen đẹp | Chỉ text HUD + log |
+---
+
+## Meta shop (11 upgrade)
+
+`MetaShopManager` + UI — mua bằng meta xu (lưu `PlayerPrefs` / `MetaProgression`).
+
+Hiệu lực khi vào run: **MetaRunModifiers.ApplyAtRunStart()** (tự gọi từ bootstrap).
+
+---
+
+## Chưa đủ theo docx đầy đủ
+
+| Tính năng | Trạng thái |
+|-----------|------------|
+| 8 skill behavior đặc biệt (boomerang, chain lightning…) | Phần lớn stat modifier |
+| 12 vũ khí + 8 giáp + 8 nhẫn inventory | WeaponManager cơ bản; chưa inventory đầy đủ |
+| Tutorial scene, daily, ads/IAP | Chưa |
+| 10 tầng layout tilemap cố định | BSP có; layout GDD từng tầng chưa |
 | NG+ / Ascension | Chưa |
 
 ---
 
-## Gợi ý thứ tự làm tiếp trong Unity
+## Build mobile
 
-1. Gắn components bảng trên → Play → kill enemy → thấy **Coins/Score** tăng.  
-2. Mở rương / level up → chọn skill → kiểm tra stack (chọn cùng skill 2–3 lần).  
-3. Thêm `MetaProgression` + `RunManager` → chết → xu meta lưu (`PlayerPrefs`).  
-4. Boss prefab + `BossController` → HP bar / announcement phase.  
-5. Tắt `EnemyWaveManager` nếu muốn pure dungeon: bật `RoomManager` + `EnemySpawner`.  
-
----
-
-## Skill chưa có hiệu ứng riêng (chỉ stack stat / TODO)
-
-`Boomerang`, `LightningChain`, `PoisonCloud`, `ExplosiveRounds`, `BladeStorm`, `TwinArrows`, `DeathMark`, `MirrorImage` — cần thêm VFX/projectile behavior sau.
+1. `DungeonSoul → Setup → Configure Mobile Player Settings`
+2. **File → Build Settings** → Android hoặc iOS
+3. Orientation: **Portrait**
+4. Test trên máy: notch → **MobileSafeArea** chỉnh canvas HUD
 
 ---
 
-## File script mới
+## File tham chiếu kịch bản
 
-```
-Assets/Scripts/Skills/PlayerSkillStats.cs
-Assets/Scripts/Skills/SkillBehaviors.cs
-Assets/Scripts/Enemy/EnemyReward.cs
-Assets/Scripts/Enemy/BossController.cs
-Assets/Scripts/Managers/MetaProgression.cs
-Assets/Scripts/Managers/RunManager.cs
-Assets/Scripts/Managers/RoomManager.cs
-```
-
----
-
-*Kịch bản gốc: `Downloads/DungeonSoul-Kichban-DayDu.docx`*
+Kịch bản gốc: `DungeonSoul-Kichban-DayDu.docx` (ngoài repo). Logic wave/boss/meta bám `PROGRESS` + code trong `Assets/Scripts/`.

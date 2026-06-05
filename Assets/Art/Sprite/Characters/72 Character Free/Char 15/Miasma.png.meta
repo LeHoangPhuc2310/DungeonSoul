@@ -1,0 +1,1404 @@
+fileFormatVersion: 2
+guid: 76efc433876ca6e409b370e731b07dcb
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4185317532896631343
+    second: Miasma_0
+  - first:
+      213: -3728368822931843914
+    second: Miasma_1
+  - first:
+      213: 4075511892505630520
+    second: Miasma_2
+  - first:
+      213: 4796031009852914472
+    second: Miasma_3
+  - first:
+      213: 8551767788993999228
+    second: Miasma_4
+  - first:
+      213: -7871516377620614074
+    second: Miasma_5
+  - first:
+      213: -754179157228442565
+    second: Miasma_6
+  - first:
+      213: 7508429465128809997
+    second: Miasma_7
+  - first:
+      213: 8526807842425864958
+    second: Miasma_8
+  - first:
+      213: 9209765547479230002
+    second: Miasma_9
+  - first:
+      213: -1858647699142702827
+    second: Miasma_10
+  - first:
+      213: 9079453801574598145
+    second: Miasma_11
+  - first:
+      213: -721493507641213402
+    second: Miasma_12
+  - first:
+      213: -2947736243264359080
+    second: Miasma_13
+  - first:
+      213: -1049118789797625599
+    second: Miasma_14
+  - first:
+      213: 1321301242178844857
+    second: Miasma_15
+  - first:
+      213: -4625528199365252005
+    second: Miasma_16
+  - first:
+      213: -8351771052242574198
+    second: Miasma_17
+  - first:
+      213: -6100147137466714632
+    second: Miasma_18
+  - first:
+      213: -3504734588349992504
+    second: Miasma_19
+  - first:
+      213: 2553491698870009190
+    second: Miasma_20
+  - first:
+      213: -1452239018523593586
+    second: Miasma_21
+  - first:
+      213: 2386935815480897102
+    second: Miasma_22
+  - first:
+      213: 1744580905592211832
+    second: Miasma_23
+  - first:
+      213: -5183257548368321478
+    second: Miasma_24
+  - first:
+      213: 3508180959058109656
+    second: Miasma_25
+  - first:
+      213: -2908776107649853150
+    second: Miasma_26
+  - first:
+      213: -4125147265584515597
+    second: Miasma_27
+  - first:
+      213: -2257639810713514934
+    second: Miasma_28
+  - first:
+      213: 1660045454784451533
+    second: Miasma_29
+  - first:
+      213: -6474311101068821356
+    second: Miasma_30
+  - first:
+      213: 5643201669957924765
+    second: Miasma_31
+  - first:
+      213: 5472994027308676476
+    second: Miasma_32
+  - first:
+      213: 8081292443360028927
+    second: Miasma_33
+  - first:
+      213: -804474223818713953
+    second: Miasma_34
+  - first:
+      213: 5901706130761813610
+    second: Miasma_35
+  - first:
+      213: -8180460464621440146
+    second: Miasma_36
+  - first:
+      213: -4481424722550303881
+    second: Miasma_37
+  - first:
+      213: -629301561783461131
+    second: Miasma_38
+  - first:
+      213: 497486471909190112
+    second: Miasma_39
+  - first:
+      213: 6190970250296005357
+    second: Miasma_40
+  - first:
+      213: 2267991763666228700
+    second: Miasma_41
+  - first:
+      213: 6331471998219777863
+    second: Miasma_42
+  - first:
+      213: 3397304921104410387
+    second: Miasma_43
+  - first:
+      213: 6369108692594254526
+    second: Miasma_44
+  - first:
+      213: -4731484795926802378
+    second: Miasma_45
+  - first:
+      213: -6677277809470858871
+    second: Miasma_46
+  - first:
+      213: -6239117481197223527
+    second: Miasma_47
+  - first:
+      213: 9744681045360679
+    second: Miasma_48
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Miasma_0
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 207
+        width: 25
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d56b7be0e3cae5c0800000000000000
+      internalID: -4185317532896631343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Miasma_1
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 207
+        width: 25
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b4918d2f4c224cc0800000000000000
+      internalID: -3728368822931843914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Miasma_2
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 207
+        width: 25
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8379da629702f8830800000000000000
+      internalID: 4075511892505630520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Miasma_3
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 207
+        width: 25
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82b7a020bccee8240800000000000000
+      internalID: 4796031009852914472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Miasma_4
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 154
+        width: 25
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c717d90be7bfda670800000000000000
+      internalID: 8551767788993999228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Miasma_5
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 156
+        width: 26
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 644f0444f81c2c290800000000000000
+      internalID: -7871516377620614074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Miasma_6
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 155
+        width: 26
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3c25646d0e9885f0800000000000000
+      internalID: -754179157228442565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Miasma_7
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 154
+        width: 25
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d06341231dc433860800000000000000
+      internalID: 7508429465128809997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Miasma_8
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 157
+        width: 25
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef20fc34e8e455670800000000000000
+      internalID: 8526807842425864958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Miasma_9
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 156
+        width: 25
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 236612258f8afcf70800000000000000
+      internalID: 9209765547479230002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Miasma_10
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 47
+        width: 25
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5198002e3c1c436e0800000000000000
+      internalID: -1858647699142702827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Miasma_11
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 92
+        width: 25
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1068c65a023b00e70800000000000000
+      internalID: 9079453801574598145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Miasma_12
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 92
+        width: 25
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62e7b493a7dbcf5f0800000000000000
+      internalID: -721493507641213402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Miasma_13
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 91
+        width: 25
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 855fea821898717d0800000000000000
+      internalID: -2947736243264359080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Miasma_14
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 96
+        width: 23
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 101cce6e408c071f0800000000000000
+      internalID: -1049118789797625599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Miasma_15
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 103
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b83a5daa74365210800000000000000
+      internalID: 1321301242178844857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Miasma_16
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 105
+        width: 8
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5c284a1c92decfb0800000000000000
+      internalID: -4625528199365252005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Miasma_17
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 103
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a84e0b14a7c881c80800000000000000
+      internalID: -8351771052242574198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Miasma_18
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 109
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f53ea99f7ce75ba0800000000000000
+      internalID: -6100147137466714632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Miasma_19
+      rect:
+        serializedVersion: 2
+        x: 356
+        y: 99
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c1bf55f57eac5fc0800000000000000
+      internalID: -3504734588349992504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Miasma_20
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 97
+        width: 10
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66d3e00db23df6320800000000000000
+      internalID: 2553491698870009190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Miasma_21
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 105
+        width: 19
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8470f39e4c98dbe0800000000000000
+      internalID: -1452239018523593586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Miasma_22
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 99
+        width: 13
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4e65674a79102120800000000000000
+      internalID: 2386935815480897102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Miasma_23
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 94
+        width: 24
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 879c0c7271ff53810800000000000000
+      internalID: 1744580905592211832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Miasma_24
+      rect:
+        serializedVersion: 2
+        x: 532
+        y: 98
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a34e42ac8be5118b0800000000000000
+      internalID: -5183257548368321478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Miasma_25
+      rect:
+        serializedVersion: 2
+        x: 537
+        y: 88
+        width: 82
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d4a270ceff8fa030800000000000000
+      internalID: 3508180959058109656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Miasma_26
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 28
+        width: 85
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 229136c9a83f1a7d0800000000000000
+      internalID: -2908776107649853150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Miasma_27
+      rect:
+        serializedVersion: 2
+        x: 279
+        y: 90
+        width: 23
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f539acfa6880c6c0800000000000000
+      internalID: -4125147265584515597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Miasma_28
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 97
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4c04abbd804ba0e0800000000000000
+      internalID: -2257639810713514934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Miasma_29
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 90
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc3dd6bbb8aa90710800000000000000
+      internalID: 1660045454784451533
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Miasma_30
+      rect:
+        serializedVersion: 2
+        x: 358
+        y: 94
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49cbc6f1b50a626a0800000000000000
+      internalID: -6474311101068821356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Miasma_31
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 89
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d97bbb5150ea05e40800000000000000
+      internalID: 5643201669957924765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Miasma_32
+      rect:
+        serializedVersion: 2
+        x: 419
+        y: 89
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c757197121bf3fb40800000000000000
+      internalID: 5472994027308676476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Miasma_33
+      rect:
+        serializedVersion: 2
+        x: 423
+        y: 94
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff8e58429a4862070800000000000000
+      internalID: 8081292443360028927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Miasma_34
+      rect:
+        serializedVersion: 2
+        x: 473
+        y: 89
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f94d35aa4fee5d4f0800000000000000
+      internalID: -804474223818713953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Miasma_35
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 46
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6e8dc4157217e150800000000000000
+      internalID: 5901706130761813610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Miasma_36
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 45
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e63bc13ac8a297e80800000000000000
+      internalID: -8180460464621440146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Miasma_37
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 45
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7735cbc55f7cec1c0800000000000000
+      internalID: -4481424722550303881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Miasma_38
+      rect:
+        serializedVersion: 2
+        x: 286
+        y: 45
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5fa5c4150954447f0800000000000000
+      internalID: -629301561783461131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Miasma_39
+      rect:
+        serializedVersion: 2
+        x: 349
+        y: 40
+        width: 15
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e9a5b67f4d67e600800000000000000
+      internalID: 497486471909190112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Miasma_40
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 37
+        width: 20
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de297e734aebae550800000000000000
+      internalID: 6190970250296005357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Miasma_41
+      rect:
+        serializedVersion: 2
+        x: 469
+        y: 38
+        width: 23
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd556d22e76897f10800000000000000
+      internalID: 2267991763666228700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Miasma_42
+      rect:
+        serializedVersion: 2
+        x: 533
+        y: 39
+        width: 23
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 747f83f9c38edd750800000000000000
+      internalID: 6331471998219777863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Miasma_43
+      rect:
+        serializedVersion: 2
+        x: 597
+        y: 39
+        width: 23
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3176d1873d6a52f20800000000000000
+      internalID: 3397304921104410387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Miasma_44
+      rect:
+        serializedVersion: 2
+        x: 724
+        y: 28
+        width: 25
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb2eee56c9e936850800000000000000
+      internalID: 6369108692594254526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Miasma_45
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 29
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6301f9685a3665eb0800000000000000
+      internalID: -4731484795926802378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Miasma_46
+      rect:
+        serializedVersion: 2
+        x: 478
+        y: 29
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98914e3c53b8553a0800000000000000
+      internalID: -6677277809470858871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Miasma_47
+      rect:
+        serializedVersion: 2
+        x: 539
+        y: 29
+        width: 15
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9914f4505b33a69a0800000000000000
+      internalID: -6239117481197223527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Miasma_48
+      rect:
+        serializedVersion: 2
+        x: 603
+        y: 29
+        width: 15
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 720882c5cbe922000800000000000000
+      internalID: 9744681045360679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Miasma_0: -4185317532896631343
+      Miasma_1: -3728368822931843914
+      Miasma_10: -1858647699142702827
+      Miasma_11: 9079453801574598145
+      Miasma_12: -721493507641213402
+      Miasma_13: -2947736243264359080
+      Miasma_14: -1049118789797625599
+      Miasma_15: 1321301242178844857
+      Miasma_16: -4625528199365252005
+      Miasma_17: -8351771052242574198
+      Miasma_18: -6100147137466714632
+      Miasma_19: -3504734588349992504
+      Miasma_2: 4075511892505630520
+      Miasma_20: 2553491698870009190
+      Miasma_21: -1452239018523593586
+      Miasma_22: 2386935815480897102
+      Miasma_23: 1744580905592211832
+      Miasma_24: -5183257548368321478
+      Miasma_25: 3508180959058109656
+      Miasma_26: -2908776107649853150
+      Miasma_27: -4125147265584515597
+      Miasma_28: -2257639810713514934
+      Miasma_29: 1660045454784451533
+      Miasma_3: 4796031009852914472
+      Miasma_30: -6474311101068821356
+      Miasma_31: 5643201669957924765
+      Miasma_32: 5472994027308676476
+      Miasma_33: 8081292443360028927
+      Miasma_34: -804474223818713953
+      Miasma_35: 5901706130761813610
+      Miasma_36: -8180460464621440146
+      Miasma_37: -4481424722550303881
+      Miasma_38: -629301561783461131
+      Miasma_39: 497486471909190112
+      Miasma_4: 8551767788993999228
+      Miasma_40: 6190970250296005357
+      Miasma_41: 2267991763666228700
+      Miasma_42: 6331471998219777863
+      Miasma_43: 3397304921104410387
+      Miasma_44: 6369108692594254526
+      Miasma_45: -4731484795926802378
+      Miasma_46: -6677277809470858871
+      Miasma_47: -6239117481197223527
+      Miasma_48: 9744681045360679
+      Miasma_5: -7871516377620614074
+      Miasma_6: -754179157228442565
+      Miasma_7: 7508429465128809997
+      Miasma_8: 8526807842425864958
+      Miasma_9: 9209765547479230002
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

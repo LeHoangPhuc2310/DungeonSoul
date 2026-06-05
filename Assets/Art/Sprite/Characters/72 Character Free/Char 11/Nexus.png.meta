@@ -1,0 +1,1248 @@
+fileFormatVersion: 2
+guid: 7b6a7c2ec0e38cf4abb4ee626c93efb8
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1416092188172044404
+    second: Nexus_0
+  - first:
+      213: 3808729254612194293
+    second: Nexus_1
+  - first:
+      213: 408822107303324296
+    second: Nexus_2
+  - first:
+      213: 4225519964274628224
+    second: Nexus_3
+  - first:
+      213: -440077532282330800
+    second: Nexus_4
+  - first:
+      213: 1366220540601393383
+    second: Nexus_5
+  - first:
+      213: -2813658744101573786
+    second: Nexus_6
+  - first:
+      213: 7479878278124117764
+    second: Nexus_7
+  - first:
+      213: 6324484809048603574
+    second: Nexus_8
+  - first:
+      213: 514914875909465450
+    second: Nexus_9
+  - first:
+      213: 3814090883395796027
+    second: Nexus_10
+  - first:
+      213: -4772081099487243776
+    second: Nexus_11
+  - first:
+      213: -3865583726096940115
+    second: Nexus_12
+  - first:
+      213: -8706646939921699181
+    second: Nexus_13
+  - first:
+      213: 496842238730194549
+    second: Nexus_14
+  - first:
+      213: -8121988677238947575
+    second: Nexus_15
+  - first:
+      213: 1240071502212985661
+    second: Nexus_16
+  - first:
+      213: -1377276437350248934
+    second: Nexus_17
+  - first:
+      213: -3694287727509439688
+    second: Nexus_18
+  - first:
+      213: 5202447996552295947
+    second: Nexus_19
+  - first:
+      213: 7530271659060291719
+    second: Nexus_20
+  - first:
+      213: 6003698179629765344
+    second: Nexus_21
+  - first:
+      213: -94830812116707135
+    second: Nexus_22
+  - first:
+      213: 4630405248760214795
+    second: Nexus_23
+  - first:
+      213: 2780670218992714270
+    second: Nexus_24
+  - first:
+      213: -1721907971754883684
+    second: Nexus_25
+  - first:
+      213: -6495320943909834950
+    second: Nexus_26
+  - first:
+      213: 7227222391325689187
+    second: Nexus_27
+  - first:
+      213: 7615039301781320690
+    second: Nexus_28
+  - first:
+      213: 1643484584829361557
+    second: Nexus_29
+  - first:
+      213: -1757381004198981548
+    second: Nexus_30
+  - first:
+      213: 5122792109604465822
+    second: Nexus_31
+  - first:
+      213: 7578184059710852
+    second: Nexus_32
+  - first:
+      213: 4717709241396505117
+    second: Nexus_33
+  - first:
+      213: -2581048720960275257
+    second: Nexus_34
+  - first:
+      213: 2085909050725331271
+    second: Nexus_35
+  - first:
+      213: 588838796059951355
+    second: Nexus_36
+  - first:
+      213: 4354836855603399209
+    second: Nexus_37
+  - first:
+      213: -5312348111918843736
+    second: Nexus_38
+  - first:
+      213: 7734771738711283130
+    second: Nexus_39
+  - first:
+      213: 3174899740093367827
+    second: Nexus_40
+  - first:
+      213: -2756087112745575392
+    second: Nexus_41
+  - first:
+      213: 2809582238636798114
+    second: Nexus_42
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Nexus_0
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 207
+        width: 19
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4784335a758f6a310800000000000000
+      internalID: 1416092188172044404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nexus_1
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 207
+        width: 19
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f35ccad3135bd430800000000000000
+      internalID: 3808729254612194293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nexus_2
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 207
+        width: 19
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88a24226a8d6ca500800000000000000
+      internalID: 408822107303324296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nexus_3
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 207
+        width: 19
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08619ed050014aa30800000000000000
+      internalID: 4225519964274628224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nexus_4
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 154
+        width: 19
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0516ea6e0d784e9f0800000000000000
+      internalID: -440077532282330800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nexus_5
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 156
+        width: 23
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e06367d75ac5f210800000000000000
+      internalID: 1366220540601393383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nexus_6
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 155
+        width: 23
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66b67a69740e3f8d0800000000000000
+      internalID: -2813658744101573786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nexus_7
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 154
+        width: 19
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40f9fb2f9adddc760800000000000000
+      internalID: 7479878278124117764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nexus_8
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 156
+        width: 19
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6bb32bedc6515c750800000000000000
+      internalID: 6324484809048603574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nexus_9
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 155
+        width: 19
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a65e52cf958552700800000000000000
+      internalID: 514914875909465450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nexus_10
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 124
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3cbcd5537f5ee430800000000000000
+      internalID: 3814090883395796027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nexus_11
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 120
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00215b9068926cdb0800000000000000
+      internalID: -4772081099487243776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nexus_12
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 119
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da30674f410ba5ac0800000000000000
+      internalID: -3865583726096940115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nexus_13
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 119
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39ea939ecb6cb2780800000000000000
+      internalID: -8706646939921699181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nexus_14
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 101
+        width: 12
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57e4cec326325e600800000000000000
+      internalID: 496842238730194549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nexus_15
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 101
+        width: 13
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9018d678456e84f80800000000000000
+      internalID: -8121988677238947575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nexus_16
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 117
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d337d79067e953110800000000000000
+      internalID: 1240071502212985661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nexus_17
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 110
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1e093a906ee2ece0800000000000000
+      internalID: -1377276437350248934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nexus_18
+      rect:
+        serializedVersion: 2
+        x: 411
+        y: 110
+        width: 12
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83bf6bf82e04bbcc0800000000000000
+      internalID: -3694287727509439688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nexus_19
+      rect:
+        serializedVersion: 2
+        x: 411
+        y: 101
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0631fc93eec23840800000000000000
+      internalID: 5202447996552295947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nexus_20
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 102
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 788ea744d26e08860800000000000000
+      internalID: 7530271659060291719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nexus_21
+      rect:
+        serializedVersion: 2
+        x: 472
+        y: 122
+        width: 13
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e2dd777fab615350800000000000000
+      internalID: 6003698179629765344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nexus_22
+      rect:
+        serializedVersion: 2
+        x: 473
+        y: 111
+        width: 14
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c8950af0e71faef0800000000000000
+      internalID: -94830812116707135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nexus_23
+      rect:
+        serializedVersion: 2
+        x: 475
+        y: 101
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b05f4727a01824040800000000000000
+      internalID: 4630405248760214795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nexus_24
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 123
+        width: 14
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e128190e4dce69620800000000000000
+      internalID: 2780670218992714270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nexus_25
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 101
+        width: 15
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9503af92dd8a18e0800000000000000
+      internalID: -1721907971754883684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nexus_26
+      rect:
+        serializedVersion: 2
+        x: 537
+        y: 112
+        width: 14
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3f6914e30cfbd5a0800000000000000
+      internalID: -6495320943909834950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nexus_27
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 123
+        width: 14
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36587b339704c4460800000000000000
+      internalID: 7227222391325689187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nexus_28
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 101
+        width: 15
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f3705516ed0ea960800000000000000
+      internalID: 7615039301781320690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nexus_29
+      rect:
+        serializedVersion: 2
+        x: 601
+        y: 112
+        width: 14
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59d9598b584dec610800000000000000
+      internalID: 1643484584829361557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nexus_30
+      rect:
+        serializedVersion: 2
+        x: 661
+        y: 100
+        width: 19
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45053b5a9478c97e0800000000000000
+      internalID: -1757381004198981548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nexus_31
+      rect:
+        serializedVersion: 2
+        x: 725
+        y: 100
+        width: 19
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9ce52f2840d71740800000000000000
+      internalID: 5122792109604465822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nexus_32
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 39
+        width: 19
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48debe8715cea1000800000000000000
+      internalID: 7578184059710852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nexus_33
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 38
+        width: 27
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1a240f3f8ba87140800000000000000
+      internalID: 4717709241396505117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nexus_34
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 38
+        width: 31
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ccbf2ffcd54e2cd0800000000000000
+      internalID: -2581048720960275257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nexus_35
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 40
+        width: 33
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7417142ea33a2fc10800000000000000
+      internalID: 2085909050725331271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nexus_36
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 41
+        width: 34
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf04f15e3c9fb2800800000000000000
+      internalID: 588838796059951355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nexus_37
+      rect:
+        serializedVersion: 2
+        x: 338
+        y: 41
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92a05091c0d7f6c30800000000000000
+      internalID: 4354836855603399209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nexus_38
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 40
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a83cd9c98fb646b0800000000000000
+      internalID: -5312348111918843736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nexus_39
+      rect:
+        serializedVersion: 2
+        x: 464
+        y: 40
+        width: 32
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab5dd907aed675b60800000000000000
+      internalID: 7734771738711283130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nexus_40
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 41
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 316ceb50e728f0c20800000000000000
+      internalID: 3174899740093367827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nexus_41
+      rect:
+        serializedVersion: 2
+        x: 596
+        y: 46
+        width: 22
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02c94c29f5960c9d0800000000000000
+      internalID: -2756087112745575392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nexus_42
+      rect:
+        serializedVersion: 2
+        x: 665
+        y: 50
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a071350924adf620800000000000000
+      internalID: 2809582238636798114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Nexus_0: 1416092188172044404
+      Nexus_1: 3808729254612194293
+      Nexus_10: 3814090883395796027
+      Nexus_11: -4772081099487243776
+      Nexus_12: -3865583726096940115
+      Nexus_13: -8706646939921699181
+      Nexus_14: 496842238730194549
+      Nexus_15: -8121988677238947575
+      Nexus_16: 1240071502212985661
+      Nexus_17: -1377276437350248934
+      Nexus_18: -3694287727509439688
+      Nexus_19: 5202447996552295947
+      Nexus_2: 408822107303324296
+      Nexus_20: 7530271659060291719
+      Nexus_21: 6003698179629765344
+      Nexus_22: -94830812116707135
+      Nexus_23: 4630405248760214795
+      Nexus_24: 2780670218992714270
+      Nexus_25: -1721907971754883684
+      Nexus_26: -6495320943909834950
+      Nexus_27: 7227222391325689187
+      Nexus_28: 7615039301781320690
+      Nexus_29: 1643484584829361557
+      Nexus_3: 4225519964274628224
+      Nexus_30: -1757381004198981548
+      Nexus_31: 5122792109604465822
+      Nexus_32: 7578184059710852
+      Nexus_33: 4717709241396505117
+      Nexus_34: -2581048720960275257
+      Nexus_35: 2085909050725331271
+      Nexus_36: 588838796059951355
+      Nexus_37: 4354836855603399209
+      Nexus_38: -5312348111918843736
+      Nexus_39: 7734771738711283130
+      Nexus_4: -440077532282330800
+      Nexus_40: 3174899740093367827
+      Nexus_41: -2756087112745575392
+      Nexus_42: 2809582238636798114
+      Nexus_5: 1366220540601393383
+      Nexus_6: -2813658744101573786
+      Nexus_7: 7479878278124117764
+      Nexus_8: 6324484809048603574
+      Nexus_9: 514914875909465450
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

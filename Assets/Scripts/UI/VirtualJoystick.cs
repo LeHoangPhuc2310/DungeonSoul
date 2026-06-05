@@ -30,10 +30,19 @@ public class VirtualJoystick : MonoBehaviour
 
     private void Start()
     {
+        EnsureBuilt(showOnDesktop);
+    }
+
+    public void EnsureBuilt(bool showOnDesktop = false)
+    {
+        if (GetComponentInChildren<JoystickTouchArea>() != null)
+            return;
+
+        this.showOnDesktop = showOnDesktop;
 #if UNITY_ANDROID || UNITY_IOS
         BuildUI();
 #else
-        if (showOnDesktop)
+        if (this.showOnDesktop)
             BuildUI();
 #endif
     }
@@ -64,7 +73,7 @@ public class VirtualJoystick : MonoBehaviour
         canvas.sortingOrder = 500;
         CanvasScaler scaler = canvasGO.AddComponent<CanvasScaler>();
         scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
-        scaler.referenceResolution = new Vector2(1920f, 1080f);
+        scaler.referenceResolution = new Vector2(1080f, 1920f);
         scaler.matchWidthOrHeight = 0.5f;
         canvasGO.AddComponent<GraphicRaycaster>();
 

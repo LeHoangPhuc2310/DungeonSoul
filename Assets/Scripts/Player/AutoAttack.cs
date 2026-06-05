@@ -1,8 +1,11 @@
+using System;
 using UnityEngine;
 using System.Collections.Generic;
 
 public class AutoAttack : MonoBehaviour
 {
+    public event Action<Vector2> OnProjectileFired;
+    public Vector2 LastAimDirection { get; private set; } = Vector2.right;
     [Header("Targeting")]
     [SerializeField] private float attackRadius = 8f;
     [SerializeField] private string enemyTag = "Enemy";
@@ -45,6 +48,27 @@ public class AutoAttack : MonoBehaviour
         set => projectileDamage = Mathf.Max(0f, value);
     }
 
+    public void SetProjectileVisualScale(float scale)
+    {
+        projectileScale = Mathf.Max(0.05f, scale);
+    }
+
+    public void AddPermanentDamage(float amount)
+    {
+        float bonus = Mathf.Max(0f, amount);
+        baseProjectileDamage += bonus;
+        projectileDamage += bonus;
+    }
+
+    public void ApplyHeroBaseStats(float damage, float shotsPerSecond, float crit)
+    {
+        baseProjectileDamage = Mathf.Max(0f, damage);
+        projectileDamage = baseProjectileDamage;
+        baseFireInterval = 1f / Mathf.Max(0.1f, shotsPerSecond);
+        fireInterval = baseFireInterval;
+        critChance = Mathf.Clamp01(crit);
+    }
+
     public int MultiTargetCount
     {
         get => multiTargetCount;
@@ -61,6 +85,35 @@ public class AutoAttack : MonoBehaviour
     private int multiTargetCount = 1;
     private Collider2D[] playerColliders;
     private Transform cachedTransform;
+    private PlayerController cachedPlayer;
+    private PlayerWeaponVisual cachedWeaponVisual;
+
+    /// <summary>Điểm xuất phát đạn: ưu tiên đầu mũi vũ khí → tâm hình nhân vật → transform.</summary>
+    private Vector3 FireOrigin
+    {
+        get
+        {
+            if (cachedWeaponVisual == null)
+                cachedWeaponVisual = GetComponent<PlayerWeaponVisual>();
+            if (cachedWeaponVisual != null)
+                return cachedWeaponVisual.MuzzleWorldPosition;
+
+            if (cachedPlayer == null)
+                cachedPlayer = GetComponent<PlayerController>();
+            return cachedPlayer != null ? cachedPlayer.MuzzlePosition : cachedTransform.position;
+        }
+    }
+
+    /// <summary>Tâm để TÌM địch (luôn dùng tâm hình player, không phải mũi súng).</summary>
+    private Vector3 SearchCenter
+    {
+        get
+        {
+            if (cachedPlayer == null)
+                cachedPlayer = GetComponent<PlayerController>();
+            return cachedPlayer != null ? cachedPlayer.MuzzlePosition : cachedTransform.position;
+        }
+    }
     private readonly List<Projectile> projectilePool = new List<Projectile>(20);
     private readonly Collider2D[] enemyResults = new Collider2D[64];
 
@@ -102,7 +155,7 @@ public class AutoAttack : MonoBehaviour
 
     private void FireAtMultipleTargets(int count)
     {
-        int found = Physics2D.OverlapCircleNonAlloc(cachedTransform.position, attackRadius, enemyResults);
+        int found = Physics2D.OverlapCircleNonAlloc(SearchCenter, attackRadius, enemyResults);
         int fired = 0;
         for (int i = 0; i < found && fired < count; i++)
         {
@@ -116,13 +169,13 @@ public class AutoAttack : MonoBehaviour
 
     private Transform FindNearestEnemy()
     {
-        int count = Physics2D.OverlapCircleNonAlloc(cachedTransform.position, attackRadius, enemyResults);
+        Vector3 origin = SearchCenter;
+        int count = Physics2D.OverlapCircleNonAlloc(origin, attackRadius, enemyResults);
         if (count <= 0)
             return null;
 
         float closestDistanceSqr = attackRadius * attackRadius;
         Transform closestTarget = null;
-        Vector3 origin = cachedTransform.position;
 
         for (int i = 0; i < count; i++)
         {
@@ -147,34 +200,46 @@ public class AutoAttack : MonoBehaviour
 
     private void FireProjectile(Vector3 targetPosition)
     {
-        Vector2 direction = (targetPosition - cachedTransform.position);
+        Vector3 origin = FireOrigin;
+        Vector2 direction = (targetPosition - origin);
         if (direction.sqrMagnitude < 0.0001f)
             return;
 
         direction.Normalize();
+        LastAimDirection = direction;
+        OnProjectileFired?.Invoke(direction);
+
         int shotCount = Mathf.Max(1, projectileCount);
         float spacing = projectileScale * 1.5f;
         Vector2 perpendicular = new Vector2(-direction.y, direction.x);
+
+        bool isRanger = HeroRunStats.Instance != null && HeroRunStats.Instance.SelectedHero == HeroType.Ranger;
+        if (isRanger)
+            AudioManager.PlayArrowShot();
+        else
+            AudioManager.PlaySwordSwing();
 
         for (int i = 0; i < shotCount; i++)
         {
             float centerOffset = i - (shotCount - 1) * 0.5f;
             Vector2 spawnOffset = perpendicular * (centerOffset * spacing);
-            SpawnSingleProjectile(direction, spawnOffset);
+            SpawnSingleProjectile(origin, direction, spawnOffset, isRanger);
         }
     }
 
-    private void SpawnSingleProjectile(Vector2 direction, Vector2 spawnOffset)
+    private void SpawnSingleProjectile(Vector3 origin, Vector2 direction, Vector2 spawnOffset, bool useArrowSprite)
     {
         Projectile projectile = GetPooledProjectile();
         if (projectile == null)
             return;
 
         Transform projectileTransform = projectile.transform;
-        projectileTransform.position = cachedTransform.position + (Vector3)spawnOffset;
+        projectileTransform.position = origin + (Vector3)spawnOffset;
         projectileTransform.localScale = Vector3.one * projectileScale;
 
-        projectile.ConfigureVisual(GetCircleSprite(), projectileColor, 10);
+        Sprite visual = useArrowSprite ? GetArrowSprite() : GetCircleSprite();
+        Color tint = useArrowSprite ? Color.white : projectileColor;
+        projectile.ConfigureVisual(visual, tint, 10);
         projectile.Initialize(direction * projectileSpeed, projectileLifetime, projectileDamage, this);
     }
 
@@ -253,6 +318,17 @@ public class AutoAttack : MonoBehaviour
             if (playerCollider != null)
                 Physics2D.IgnoreCollision(projectileCollider, playerCollider, true);
         }
+    }
+
+    private static Sprite cachedArrowSprite;
+
+    private static Sprite GetArrowSprite()
+    {
+        if (cachedArrowSprite != null)
+            return cachedArrowSprite;
+
+        cachedArrowSprite = HeroKnightLibrary.GetArrowProjectileSprite();
+        return cachedArrowSprite != null ? cachedArrowSprite : GetCircleSprite();
     }
 
     private static Sprite GetCircleSprite()

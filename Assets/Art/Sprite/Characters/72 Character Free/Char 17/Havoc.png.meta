@@ -1,0 +1,1560 @@
+fileFormatVersion: 2
+guid: 937b1ee1af5d6554caeacc48a905b548
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1194896347150507140
+    second: Havoc_0
+  - first:
+      213: 1096954576749726555
+    second: Havoc_1
+  - first:
+      213: 452369889907343452
+    second: Havoc_2
+  - first:
+      213: -9149709919270695947
+    second: Havoc_3
+  - first:
+      213: 7328679598750781839
+    second: Havoc_4
+  - first:
+      213: -5640981633463603654
+    second: Havoc_5
+  - first:
+      213: -6103798924673421696
+    second: Havoc_6
+  - first:
+      213: -4815699449269887853
+    second: Havoc_7
+  - first:
+      213: 1813371613364166410
+    second: Havoc_8
+  - first:
+      213: 5512207248675936655
+    second: Havoc_9
+  - first:
+      213: -4210537945417647739
+    second: Havoc_10
+  - first:
+      213: -7816980930385267110
+    second: Havoc_11
+  - first:
+      213: -4058000798723499091
+    second: Havoc_12
+  - first:
+      213: 5996061466509251740
+    second: Havoc_13
+  - first:
+      213: 1644504165282382152
+    second: Havoc_14
+  - first:
+      213: 7687982716470650327
+    second: Havoc_15
+  - first:
+      213: -1847003766495849051
+    second: Havoc_16
+  - first:
+      213: -8395474866244907305
+    second: Havoc_17
+  - first:
+      213: 2703892073569165467
+    second: Havoc_18
+  - first:
+      213: 2359637059300750687
+    second: Havoc_19
+  - first:
+      213: -5956708412261037618
+    second: Havoc_20
+  - first:
+      213: -8218948366914487448
+    second: Havoc_21
+  - first:
+      213: 6300739271905024514
+    second: Havoc_22
+  - first:
+      213: 3807405511259240110
+    second: Havoc_23
+  - first:
+      213: -4499190710760309558
+    second: Havoc_24
+  - first:
+      213: 7059578217830623181
+    second: Havoc_25
+  - first:
+      213: -23822926477345866
+    second: Havoc_26
+  - first:
+      213: 4836879860808942060
+    second: Havoc_27
+  - first:
+      213: 235016811042444729
+    second: Havoc_28
+  - first:
+      213: -859149490577075041
+    second: Havoc_29
+  - first:
+      213: 6514076520271401421
+    second: Havoc_30
+  - first:
+      213: -3593737097575917137
+    second: Havoc_31
+  - first:
+      213: -5347494600917683565
+    second: Havoc_32
+  - first:
+      213: 6369274487536756001
+    second: Havoc_33
+  - first:
+      213: 6720954238649797739
+    second: Havoc_34
+  - first:
+      213: 7818418191660677982
+    second: Havoc_35
+  - first:
+      213: 5634075835582535612
+    second: Havoc_36
+  - first:
+      213: -3452721134684145346
+    second: Havoc_37
+  - first:
+      213: -1702355466254316020
+    second: Havoc_38
+  - first:
+      213: 4748882260817179381
+    second: Havoc_39
+  - first:
+      213: -7696719592244999019
+    second: Havoc_40
+  - first:
+      213: 3213026805418369304
+    second: Havoc_41
+  - first:
+      213: 5026584661584251426
+    second: Havoc_42
+  - first:
+      213: 7373845591343189653
+    second: Havoc_43
+  - first:
+      213: 5116418254937003984
+    second: Havoc_44
+  - first:
+      213: 8681884325237281206
+    second: Havoc_45
+  - first:
+      213: -2474770598937507795
+    second: Havoc_46
+  - first:
+      213: -2149363000914363972
+    second: Havoc_47
+  - first:
+      213: 4984177819373929785
+    second: Havoc_48
+  - first:
+      213: 4020457452612590833
+    second: Havoc_49
+  - first:
+      213: 459753991846585947
+    second: Havoc_50
+  - first:
+      213: -4369434440378153026
+    second: Havoc_51
+  - first:
+      213: 2277112593120283447
+    second: Havoc_52
+  - first:
+      213: -1460701194955845419
+    second: Havoc_53
+  - first:
+      213: -2954686803175137050
+    second: Havoc_54
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Havoc_0
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 207
+        width: 23
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48c515b95ef159010800000000000000
+      internalID: 1194896347150507140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Havoc_1
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 207
+        width: 23
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5b08e9206a293f00800000000000000
+      internalID: 1096954576749726555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Havoc_2
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 207
+        width: 23
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c508203a404274600800000000000000
+      internalID: 452369889907343452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Havoc_3
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 207
+        width: 23
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5fb80004e43b50180800000000000000
+      internalID: -9149709919270695947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Havoc_4
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 155
+        width: 23
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f81513c1443b4b560800000000000000
+      internalID: 7328679598750781839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Havoc_5
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 157
+        width: 25
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3e26e0771537b1b0800000000000000
+      internalID: -5640981633463603654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Havoc_6
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 156
+        width: 25
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08eed62a733fa4ba0800000000000000
+      internalID: -6103798924673421696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Havoc_7
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 155
+        width: 23
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39c59359dd23b2db0800000000000000
+      internalID: -4815699449269887853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Havoc_8
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 158
+        width: 23
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0f195cefd36a2910800000000000000
+      internalID: 1813371613364166410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Havoc_9
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 157
+        width: 23
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8999a9a94b4f7c40800000000000000
+      internalID: 5512207248675936655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Havoc_10
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 102
+        width: 23
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 589f31a0c0a2195c0800000000000000
+      internalID: -4210537945417647739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Havoc_11
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 56
+        width: 23
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a56326c8241848390800000000000000
+      internalID: -7816980930385267110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Havoc_12
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 102
+        width: 23
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dab95d516c51fa7c0800000000000000
+      internalID: -4058000798723499091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Havoc_13
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 55
+        width: 69
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9411b2a22a463350800000000000000
+      internalID: 5996061466509251740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Havoc_14
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 106
+        width: 23
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8418e4b43d372d610800000000000000
+      internalID: 1644504165282382152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Havoc_15
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 118
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d563964c8331ba60800000000000000
+      internalID: 7687982716470650327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Havoc_16
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 115
+        width: 9
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a5d4373cdf1e56e0800000000000000
+      internalID: -1847003766495849051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Havoc_17
+      rect:
+        serializedVersion: 2
+        x: 348
+        y: 124
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7de80cc17184d7b80800000000000000
+      internalID: -8395474866244907305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Havoc_18
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 119
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b90a51cd387268520800000000000000
+      internalID: 2703892073569165467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Havoc_19
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 119
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f55f77e476d1fb020800000000000000
+      internalID: 2359637059300750687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Havoc_20
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 115
+        width: 18
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec989905245855da0800000000000000
+      internalID: -5956708412261037618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Havoc_21
+      rect:
+        serializedVersion: 2
+        x: 463
+        y: 119
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86bf8c2910e60fd80800000000000000
+      internalID: -8218948366914487448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Havoc_22
+      rect:
+        serializedVersion: 2
+        x: 464
+        y: 104
+        width: 24
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20a904c2cf8b07750800000000000000
+      internalID: 6300739271905024514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Havoc_23
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 120
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea6b876d32f96d430800000000000000
+      internalID: 3807405511259240110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Havoc_24
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 108
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: accf464e2e9af81c0800000000000000
+      internalID: -4499190710760309558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Havoc_25
+      rect:
+        serializedVersion: 2
+        x: 533
+        y: 98
+        width: 82
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc721e16cf8a8f160800000000000000
+      internalID: 7059578217830623181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Havoc_26
+      rect:
+        serializedVersion: 2
+        x: 657
+        y: 38
+        width: 23
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6bbbec1bc2d5baff0800000000000000
+      internalID: -23822926477345866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Havoc_27
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 100
+        width: 19
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce102c44b9c002340800000000000000
+      internalID: 4836879860808942060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Havoc_28
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 113
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b51e626b82f24300800000000000000
+      internalID: 235016811042444729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Havoc_29
+      rect:
+        serializedVersion: 2
+        x: 338
+        y: 107
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f94123d1710b314f0800000000000000
+      internalID: -859149490577075041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Havoc_30
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 100
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc15d760516a66a50800000000000000
+      internalID: 6514076520271401421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Havoc_31
+      rect:
+        serializedVersion: 2
+        x: 349
+        y: 113
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa918d2762b702ec0800000000000000
+      internalID: -3593737097575917137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Havoc_32
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 109
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3927bf12ef1e9c5b0800000000000000
+      internalID: -5347494600917683565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Havoc_33
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 107
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 125269a8665346850800000000000000
+      internalID: 6369274487536756001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Havoc_34
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 107
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6c806a5540a54d50800000000000000
+      internalID: 6720954238649797739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Havoc_35
+      rect:
+        serializedVersion: 2
+        x: 413
+        y: 109
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5bf26bebe9908c60800000000000000
+      internalID: 7818418191660677982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Havoc_36
+      rect:
+        serializedVersion: 2
+        x: 469
+        y: 99
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb752813f12403e40800000000000000
+      internalID: 5634075835582535612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Havoc_37
+      rect:
+        serializedVersion: 2
+        x: 721
+        y: 38
+        width: 23
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e39faaadb687510d0800000000000000
+      internalID: -3452721134684145346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Havoc_38
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 104
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0e877019b40068e0800000000000000
+      internalID: -1702355466254316020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Havoc_39
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 99
+        width: 19
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f2792c614b67e140800000000000000
+      internalID: 4748882260817179381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Havoc_40
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 52
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59c82705f42cf2590800000000000000
+      internalID: -7696719592244999019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Havoc_41
+      rect:
+        serializedVersion: 2
+        x: 347
+        y: 48
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81125ce2bd6f69c20800000000000000
+      internalID: 3213026805418369304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Havoc_42
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 52
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22a08232e1402c540800000000000000
+      internalID: 5026584661584251426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Havoc_43
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 52
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59e479c3f79255660800000000000000
+      internalID: 7373845591343189653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Havoc_44
+      rect:
+        serializedVersion: 2
+        x: 474
+        y: 53
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d718df7b4b210740800000000000000
+      internalID: 5116418254937003984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Havoc_45
+      rect:
+        serializedVersion: 2
+        x: 481
+        y: 53
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b1dcc29bcf3c7870800000000000000
+      internalID: 8681884325237281206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Havoc_46
+      rect:
+        serializedVersion: 2
+        x: 533
+        y: 54
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d28cfbd8049d7add0800000000000000
+      internalID: -2474770598937507795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Havoc_47
+      rect:
+        serializedVersion: 2
+        x: 535
+        y: 39
+        width: 15
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb9b12d0dbdeb22e0800000000000000
+      internalID: -2149363000914363972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Havoc_48
+      rect:
+        serializedVersion: 2
+        x: 545
+        y: 54
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9350a25c15b5b2540800000000000000
+      internalID: 4984177819373929785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Havoc_49
+      rect:
+        serializedVersion: 2
+        x: 595
+        y: 49
+        width: 19
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1fc9b8970c88bc730800000000000000
+      internalID: 4020457452612590833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Havoc_50
+      rect:
+        serializedVersion: 2
+        x: 601
+        y: 59
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b566518d1df516600800000000000000
+      internalID: 459753991846585947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Havoc_51
+      rect:
+        serializedVersion: 2
+        x: 609
+        y: 54
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb707e7d686ac53c0800000000000000
+      internalID: -4369434440378153026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Havoc_52
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 40
+        width: 12
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73bc08ab6dde99f10800000000000000
+      internalID: 2277112593120283447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Havoc_53
+      rect:
+        serializedVersion: 2
+        x: 474
+        y: 39
+        width: 12
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d01ba7900c8abbe0800000000000000
+      internalID: -1460701194955845419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Havoc_54
+      rect:
+        serializedVersion: 2
+        x: 599
+        y: 39
+        width: 15
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e02632d108def6d0800000000000000
+      internalID: -2954686803175137050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Havoc_0: 1194896347150507140
+      Havoc_1: 1096954576749726555
+      Havoc_10: -4210537945417647739
+      Havoc_11: -7816980930385267110
+      Havoc_12: -4058000798723499091
+      Havoc_13: 5996061466509251740
+      Havoc_14: 1644504165282382152
+      Havoc_15: 7687982716470650327
+      Havoc_16: -1847003766495849051
+      Havoc_17: -8395474866244907305
+      Havoc_18: 2703892073569165467
+      Havoc_19: 2359637059300750687
+      Havoc_2: 452369889907343452
+      Havoc_20: -5956708412261037618
+      Havoc_21: -8218948366914487448
+      Havoc_22: 6300739271905024514
+      Havoc_23: 3807405511259240110
+      Havoc_24: -4499190710760309558
+      Havoc_25: 7059578217830623181
+      Havoc_26: -23822926477345866
+      Havoc_27: 4836879860808942060
+      Havoc_28: 235016811042444729
+      Havoc_29: -859149490577075041
+      Havoc_3: -9149709919270695947
+      Havoc_30: 6514076520271401421
+      Havoc_31: -3593737097575917137
+      Havoc_32: -5347494600917683565
+      Havoc_33: 6369274487536756001
+      Havoc_34: 6720954238649797739
+      Havoc_35: 7818418191660677982
+      Havoc_36: 5634075835582535612
+      Havoc_37: -3452721134684145346
+      Havoc_38: -1702355466254316020
+      Havoc_39: 4748882260817179381
+      Havoc_4: 7328679598750781839
+      Havoc_40: -7696719592244999019
+      Havoc_41: 3213026805418369304
+      Havoc_42: 5026584661584251426
+      Havoc_43: 7373845591343189653
+      Havoc_44: 5116418254937003984
+      Havoc_45: 8681884325237281206
+      Havoc_46: -2474770598937507795
+      Havoc_47: -2149363000914363972
+      Havoc_48: 4984177819373929785
+      Havoc_49: 4020457452612590833
+      Havoc_5: -5640981633463603654
+      Havoc_50: 459753991846585947
+      Havoc_51: -4369434440378153026
+      Havoc_52: 2277112593120283447
+      Havoc_53: -1460701194955845419
+      Havoc_54: -2954686803175137050
+      Havoc_6: -6103798924673421696
+      Havoc_7: -4815699449269887853
+      Havoc_8: 1813371613364166410
+      Havoc_9: 5512207248675936655
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

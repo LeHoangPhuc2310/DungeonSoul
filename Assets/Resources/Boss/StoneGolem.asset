@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdf3b98d1520e39448b74cbe4f349909, type: 3}
+  m_Name: StoneGolem
+  m_EditorClassIdentifier: Assembly-CSharp::BossData
+  bossName: Stone Golem
+  floorGate: 6
+  totalHP: 1200
+  coinReward: 120
+  scoreReward: 600
+  projectileDamageResist: 0.5
+  weakToMagic: 0
+  phases:
+  - hpThreshold: 0.66
+    speedMultiplier: 0.8
+    damageMultiplier: 1
+    abilities:
+    - abilityName: Slam
+      type: 1
+      cooldown: 5
+      damageMultiplier: 1.2
+      aoeRadius: 3.2
+      spawnCount: 0
+      dashSpeedMultiplier: 2
+      dashDuration: 0.6
+  - hpThreshold: 0.33
+    speedMultiplier: 1
+    damageMultiplier: 1
+    abilities:
+    - abilityName: Quake
+      type: 1
+      cooldown: 4
+      damageMultiplier: 1.5
+      aoeRadius: 4
+      spawnCount: 0
+      dashSpeedMultiplier: 2
+      dashDuration: 0.6
+  - hpThreshold: 0.01
+    speedMultiplier: 1.2
+    damageMultiplier: 1
+    abilities:
+    - abilityName: Spawn
+      type: 2
+      cooldown: 7
+      damageMultiplier: 1
+      aoeRadius: 2
+      spawnCount: 2
+      dashSpeedMultiplier: 2
+      dashDuration: 0.6

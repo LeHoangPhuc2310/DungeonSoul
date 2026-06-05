@@ -8,6 +8,9 @@ public class RunManager : MonoBehaviour
     private int runScore;
     private bool runActive = true;
 
+    public int RunScore => runScore;
+    public int RunCoins => runCoins;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -28,6 +31,7 @@ public class RunManager : MonoBehaviour
         if (!runActive || amount <= 0)
             return;
         runCoins += amount;
+        HUDManager.Resolve()?.ForceRefreshFromSystems(false);
     }
 
     public void AddRunScore(int amount)
@@ -35,6 +39,7 @@ public class RunManager : MonoBehaviour
         if (!runActive || amount <= 0)
             return;
         runScore += amount;
+        HUDManager.Resolve()?.ForceRefreshFromSystems(false);
     }
 
     public void OnBossDefeated()
@@ -45,16 +50,22 @@ public class RunManager : MonoBehaviour
 
     public void EndRun(bool victory)
     {
-        if (!runActive)
-            return;
-
+        bool firstEnd = runActive;
         runActive = false;
-        MetaProgression.Instance?.AddMetaCoins(runCoins);
+
+        if (firstEnd)
+            MetaProgression.Instance?.AddMetaCoins(runCoins);
 
         string result = victory ? "VICTORY" : "GAME OVER";
         Debug.Log($"[Run] {result} | Score={runScore} | Coins saved to meta={runCoins}");
 
-        if (HUDManager.Instance != null)
-            HUDManager.Instance.ShowRunResult(victory, runScore, runCoins);
+        HUDManager.Resolve()?.ShowRunResult(victory, runScore, runCoins);
+    }
+
+    public void ResetForNewRun()
+    {
+        runActive = true;
+        runCoins = 0;
+        runScore = 0;
     }
 }

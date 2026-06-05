@@ -1,0 +1,1638 @@
+fileFormatVersion: 2
+guid: 0e5b8a80d566e5d44b76f1c1733e52c7
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 212180009385581222
+    second: PoisonBoom_0
+  - first:
+      213: -7077034912897702668
+    second: PoisonBoom_1
+  - first:
+      213: 4987756246801854048
+    second: PoisonBoom_2
+  - first:
+      213: 8660418099702372719
+    second: PoisonBoom_3
+  - first:
+      213: 6571460185107842356
+    second: PoisonBoom_4
+  - first:
+      213: -4430710766189446231
+    second: PoisonBoom_5
+  - first:
+      213: -7878769988652735438
+    second: PoisonBoom_6
+  - first:
+      213: 8726140829540663487
+    second: PoisonBoom_7
+  - first:
+      213: -6060981102702212343
+    second: PoisonBoom_8
+  - first:
+      213: 2548960015330498235
+    second: PoisonBoom_9
+  - first:
+      213: -1480298791884136740
+    second: PoisonBoom_10
+  - first:
+      213: -1142340815985868242
+    second: PoisonBoom_11
+  - first:
+      213: -4279532794353835218
+    second: PoisonBoom_12
+  - first:
+      213: -8682181454894754260
+    second: PoisonBoom_13
+  - first:
+      213: -7963707120555102419
+    second: PoisonBoom_14
+  - first:
+      213: 5944064793439068673
+    second: PoisonBoom_15
+  - first:
+      213: 7590326672324806010
+    second: PoisonBoom_16
+  - first:
+      213: 1593991753668320650
+    second: PoisonBoom_17
+  - first:
+      213: -3839941361732793555
+    second: PoisonBoom_18
+  - first:
+      213: -7276751706385704437
+    second: PoisonBoom_19
+  - first:
+      213: 6928097909623477799
+    second: PoisonBoom_20
+  - first:
+      213: 442435274529378170
+    second: PoisonBoom_21
+  - first:
+      213: -5006103427948928441
+    second: PoisonBoom_22
+  - first:
+      213: -5179699017751951595
+    second: PoisonBoom_23
+  - first:
+      213: 2326939252017382866
+    second: PoisonBoom_24
+  - first:
+      213: -630303624805469883
+    second: PoisonBoom_25
+  - first:
+      213: 2471641386845634224
+    second: PoisonBoom_26
+  - first:
+      213: 3312013871469198901
+    second: PoisonBoom_27
+  - first:
+      213: -518231703480522358
+    second: PoisonBoom_28
+  - first:
+      213: 4205245768804672905
+    second: PoisonBoom_29
+  - first:
+      213: 3176030421699327057
+    second: PoisonBoom_30
+  - first:
+      213: 3658217176048767651
+    second: PoisonBoom_31
+  - first:
+      213: -6493573026615473947
+    second: PoisonBoom_32
+  - first:
+      213: -515895593337044122
+    second: PoisonBoom_33
+  - first:
+      213: 2133897825375624561
+    second: PoisonBoom_34
+  - first:
+      213: -8389709569783225023
+    second: PoisonBoom_35
+  - first:
+      213: 1372704287557064023
+    second: PoisonBoom_36
+  - first:
+      213: 3524675914677361669
+    second: PoisonBoom_37
+  - first:
+      213: 7007064220035606819
+    second: PoisonBoom_38
+  - first:
+      213: 3065768209052297519
+    second: PoisonBoom_39
+  - first:
+      213: -2931089392054741606
+    second: PoisonBoom_40
+  - first:
+      213: 8085098157595600727
+    second: PoisonBoom_41
+  - first:
+      213: 9220624932184899817
+    second: PoisonBoom_42
+  - first:
+      213: -4986988052918382370
+    second: PoisonBoom_43
+  - first:
+      213: -1194491557130845709
+    second: PoisonBoom_44
+  - first:
+      213: -8711600160134592694
+    second: PoisonBoom_45
+  - first:
+      213: -7214369811655601168
+    second: PoisonBoom_46
+  - first:
+      213: -6329013174711882692
+    second: PoisonBoom_47
+  - first:
+      213: 3229580883607625926
+    second: PoisonBoom_48
+  - first:
+      213: 5555226202412456446
+    second: PoisonBoom_49
+  - first:
+      213: -5572194617374894427
+    second: PoisonBoom_50
+  - first:
+      213: -6637565603817643530
+    second: PoisonBoom_51
+  - first:
+      213: -8597231819344409466
+    second: PoisonBoom_52
+  - first:
+      213: -4145139354395624718
+    second: PoisonBoom_53
+  - first:
+      213: -8652617811244843523
+    second: PoisonBoom_54
+  - first:
+      213: -4176010484291483513
+    second: PoisonBoom_55
+  - first:
+      213: 6308543174695829090
+    second: PoisonBoom_56
+  - first:
+      213: -4730525771399535093
+    second: PoisonBoom_57
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: PoisonBoom_0
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 44
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6aaddd72890d1f200800000000000000
+      internalID: 212180009385581222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PoisonBoom_1
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 44
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f4e1b11e3259cd90800000000000000
+      internalID: -7077034912897702668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PoisonBoom_2
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 47
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06e2cd451e1183540800000000000000
+      internalID: 4987756246801854048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PoisonBoom_3
+      rect:
+        serializedVersion: 2
+        x: 411
+        y: 46
+        width: 6
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f699f17706cff2870800000000000000
+      internalID: 8660418099702372719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PoisonBoom_4
+      rect:
+        serializedVersion: 2
+        x: 457
+        y: 48
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 435c9f4a834823b50800000000000000
+      internalID: 6571460185107842356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PoisonBoom_5
+      rect:
+        serializedVersion: 2
+        x: 476
+        y: 54
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ab77c67804f282c0800000000000000
+      internalID: -4430710766189446231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PoisonBoom_6
+      rect:
+        serializedVersion: 2
+        x: 493
+        y: 48
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2346857507cf8a290800000000000000
+      internalID: -7878769988652735438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PoisonBoom_7
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 20
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb0cdc4f9da791970800000000000000
+      internalID: 8726140829540663487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PoisonBoom_8
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 36
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90b441facc113eba0800000000000000
+      internalID: -6060981102702212343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PoisonBoom_9
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 39
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb6d27401a9bf5320800000000000000
+      internalID: 2548960015330498235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PoisonBoom_10
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 36
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cde5e4c771ce47be0800000000000000
+      internalID: -1480298791884136740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PoisonBoom_11
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 40
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e228bba84179520f0800000000000000
+      internalID: -1142340815985868242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PoisonBoom_12
+      rect:
+        serializedVersion: 2
+        x: 229
+        y: 40
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e23a7e3f89b0c94c0800000000000000
+      internalID: -4279532794353835218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PoisonBoom_13
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 40
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c26938987f1b28780800000000000000
+      internalID: -8682181454894754260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PoisonBoom_14
+      rect:
+        serializedVersion: 2
+        x: 293
+        y: 40
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2f6010419a3b7190800000000000000
+      internalID: -7963707120555102419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PoisonBoom_15
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 42
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10267d6cf6f8d7250800000000000000
+      internalID: 5944064793439068673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PoisonBoom_16
+      rect:
+        serializedVersion: 2
+        x: 359
+        y: 42
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a75c719a4e1465960800000000000000
+      internalID: 7590326672324806010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PoisonBoom_17
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 42
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8d5d4cfd0ffe1610800000000000000
+      internalID: 1593991753668320650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PoisonBoom_18
+      rect:
+        serializedVersion: 2
+        x: 423
+        y: 42
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2b46972da9c5bac0800000000000000
+      internalID: -3839941361732793555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PoisonBoom_19
+      rect:
+        serializedVersion: 2
+        x: 465
+        y: 40
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0a992e70e8c30b90800000000000000
+      internalID: -7276751706385704437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PoisonBoom_20
+      rect:
+        serializedVersion: 2
+        x: 476
+        y: 46
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 726db38975c852060800000000000000
+      internalID: 6928097909623477799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PoisonBoom_21
+      rect:
+        serializedVersion: 2
+        x: 485
+        y: 40
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7f0d6eb988d32600800000000000000
+      internalID: 442435274529378170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PoisonBoom_22
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 25
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7422d3ca47fb68ab0800000000000000
+      internalID: -5006103427948928441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PoisonBoom_23
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 29
+        width: 12
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5178473cf230e18b0800000000000000
+      internalID: -5179699017751951595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PoisonBoom_24
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 20
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d5c86acbe2fa4020800000000000000
+      internalID: 2326939252017382866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PoisonBoom_25
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 20
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54134d65136b047f0800000000000000
+      internalID: -630303624805469883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PoisonBoom_26
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 29
+        width: 12
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0be761bfeb80d4220800000000000000
+      internalID: 2471641386845634224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PoisonBoom_27
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 28
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53e761c7113a6fd20800000000000000
+      internalID: 3312013871469198901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PoisonBoom_28
+      rect:
+        serializedVersion: 2
+        x: 233
+        y: 28
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a89a2bae20fdec8f0800000000000000
+      internalID: -518231703480522358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PoisonBoom_29
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 28
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98521d21fb80c5a30800000000000000
+      internalID: 4205245768804672905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PoisonBoom_30
+      rect:
+        serializedVersion: 2
+        x: 297
+        y: 28
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 154f83957d6831c20800000000000000
+      internalID: 3176030421699327057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PoisonBoom_31
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 29
+        width: 12
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a29e99b32994c230800000000000000
+      internalID: 3658217176048767651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PoisonBoom_32
+      rect:
+        serializedVersion: 2
+        x: 364
+        y: 29
+        width: 12
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e8c6899cb132e5a0800000000000000
+      internalID: -6493573026615473947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PoisonBoom_33
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 30
+        width: 14
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 663c4f1f0bb27d8f0800000000000000
+      internalID: -515895593337044122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PoisonBoom_34
+      rect:
+        serializedVersion: 2
+        x: 427
+        y: 30
+        width: 14
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17d1e7c24c02d9d10800000000000000
+      internalID: 2133897825375624561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PoisonBoom_35
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 30
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 145206cc893c19b80800000000000000
+      internalID: -8389709569783225023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PoisonBoom_36
+      rect:
+        serializedVersion: 2
+        x: 459
+        y: 30
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7559e71d643dc0310800000000000000
+      internalID: 1372704287557064023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PoisonBoom_37
+      rect:
+        serializedVersion: 2
+        x: 491
+        y: 30
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50c18b2e11a2ae030800000000000000
+      internalID: 3524675914677361669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PoisonBoom_38
+      rect:
+        serializedVersion: 2
+        x: 499
+        y: 30
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 329629978c71e3160800000000000000
+      internalID: 7007064220035606819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PoisonBoom_39
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 15
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f296f3861fbcb8a20800000000000000
+      internalID: 3065768209052297519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PoisonBoom_40
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 16
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9559ad3abda257d0800000000000000
+      internalID: -2931089392054741606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PoisonBoom_41
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 12
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 757a6a900f9043070800000000000000
+      internalID: 8085098157595600727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PoisonBoom_42
+      rect:
+        serializedVersion: 2
+        x: 229
+        y: 16
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e0cdf9d58d36ff70800000000000000
+      internalID: 9220624932184899817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PoisonBoom_43
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 16
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed0deaeb9c8aacab0800000000000000
+      internalID: -4986988052918382370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PoisonBoom_44
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 12
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f1430ae1405c6fe0800000000000000
+      internalID: -1194491557130845709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PoisonBoom_45
+      rect:
+        serializedVersion: 2
+        x: 293
+        y: 16
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4701f57fcd2a1780800000000000000
+      internalID: -8711600160134592694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PoisonBoom_46
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 14
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f357f131e861eb90800000000000000
+      internalID: -7214369811655601168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PoisonBoom_47
+      rect:
+        serializedVersion: 2
+        x: 359
+        y: 14
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3ce786dc04da28a0800000000000000
+      internalID: -6329013174711882692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PoisonBoom_48
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 14
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c023dcd3b6c1dc20800000000000000
+      internalID: 3229580883607625926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PoisonBoom_49
+      rect:
+        serializedVersion: 2
+        x: 411
+        y: 6
+        width: 6
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef99cb95cc0281d40800000000000000
+      internalID: 5555226202412456446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PoisonBoom_50
+      rect:
+        serializedVersion: 2
+        x: 423
+        y: 14
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a6960ca4869ba2b0800000000000000
+      internalID: -5572194617374894427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PoisonBoom_51
+      rect:
+        serializedVersion: 2
+        x: 465
+        y: 20
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f1291b2041a2e3a0800000000000000
+      internalID: -6637565603817643530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PoisonBoom_52
+      rect:
+        serializedVersion: 2
+        x: 475
+        y: 14
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68c8a4cd53f70b880800000000000000
+      internalID: -8597231819344409466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PoisonBoom_53
+      rect:
+        serializedVersion: 2
+        x: 485
+        y: 20
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2fab1c418b18976c0800000000000000
+      internalID: -4145139354395624718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PoisonBoom_54
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 7
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dfd7887b1f9bbe780800000000000000
+      internalID: -8652617811244843523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PoisonBoom_55
+      rect:
+        serializedVersion: 2
+        x: 457
+        y: 12
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 788cf790794db06c0800000000000000
+      internalID: -4176010484291483513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PoisonBoom_56
+      rect:
+        serializedVersion: 2
+        x: 475
+        y: 6
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26eb5f1e7927c8750800000000000000
+      internalID: 6308543174695829090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PoisonBoom_57
+      rect:
+        serializedVersion: 2
+        x: 493
+        y: 12
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0666e2dfdbc95eb0800000000000000
+      internalID: -4730525771399535093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      PoisonBoom_0: 212180009385581222
+      PoisonBoom_1: -7077034912897702668
+      PoisonBoom_10: -1480298791884136740
+      PoisonBoom_11: -1142340815985868242
+      PoisonBoom_12: -4279532794353835218
+      PoisonBoom_13: -8682181454894754260
+      PoisonBoom_14: -7963707120555102419
+      PoisonBoom_15: 5944064793439068673
+      PoisonBoom_16: 7590326672324806010
+      PoisonBoom_17: 1593991753668320650
+      PoisonBoom_18: -3839941361732793555
+      PoisonBoom_19: -7276751706385704437
+      PoisonBoom_2: 4987756246801854048
+      PoisonBoom_20: 6928097909623477799
+      PoisonBoom_21: 442435274529378170
+      PoisonBoom_22: -5006103427948928441
+      PoisonBoom_23: -5179699017751951595
+      PoisonBoom_24: 2326939252017382866
+      PoisonBoom_25: -630303624805469883
+      PoisonBoom_26: 2471641386845634224
+      PoisonBoom_27: 3312013871469198901
+      PoisonBoom_28: -518231703480522358
+      PoisonBoom_29: 4205245768804672905
+      PoisonBoom_3: 8660418099702372719
+      PoisonBoom_30: 3176030421699327057
+      PoisonBoom_31: 3658217176048767651
+      PoisonBoom_32: -6493573026615473947
+      PoisonBoom_33: -515895593337044122
+      PoisonBoom_34: 2133897825375624561
+      PoisonBoom_35: -8389709569783225023
+      PoisonBoom_36: 1372704287557064023
+      PoisonBoom_37: 3524675914677361669
+      PoisonBoom_38: 7007064220035606819
+      PoisonBoom_39: 3065768209052297519
+      PoisonBoom_4: 6571460185107842356
+      PoisonBoom_40: -2931089392054741606
+      PoisonBoom_41: 8085098157595600727
+      PoisonBoom_42: 9220624932184899817
+      PoisonBoom_43: -4986988052918382370
+      PoisonBoom_44: -1194491557130845709
+      PoisonBoom_45: -8711600160134592694
+      PoisonBoom_46: -7214369811655601168
+      PoisonBoom_47: -6329013174711882692
+      PoisonBoom_48: 3229580883607625926
+      PoisonBoom_49: 5555226202412456446
+      PoisonBoom_5: -4430710766189446231
+      PoisonBoom_50: -5572194617374894427
+      PoisonBoom_51: -6637565603817643530
+      PoisonBoom_52: -8597231819344409466
+      PoisonBoom_53: -4145139354395624718
+      PoisonBoom_54: -8652617811244843523
+      PoisonBoom_55: -4176010484291483513
+      PoisonBoom_56: 6308543174695829090
+      PoisonBoom_57: -4730525771399535093
+      PoisonBoom_6: -7878769988652735438
+      PoisonBoom_7: 8726140829540663487
+      PoisonBoom_8: -6060981102702212343
+      PoisonBoom_9: 2548960015330498235
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

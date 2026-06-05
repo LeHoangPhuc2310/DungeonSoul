@@ -1,0 +1,159 @@
+// DungeonSoul — SkillVfxLibrary.cs — Hiệu ứng kỹ năng từ Effects Pack 14 (Assets2 → Resources/EffectsPack14).
+
+using System.Collections.Generic;
+using UnityEngine;
+
+public enum SkillVfxStyle
+{
+    Fire = 1,
+    Ice = 2,
+    Lightning = 3,
+    Poison = 4,
+    Arcane = 5,
+    Slash = 6
+}
+
+public static class SkillVfxLibrary
+{
+    private static readonly Dictionary<int, Sprite[]> cache = new Dictionary<int, Sprite[]>();
+
+    public static Sprite[] GetFrames(SkillVfxStyle style)
+    {
+        int folder = (int)style;
+        if (cache.TryGetValue(folder, out Sprite[] cached) && cached != null && cached.Length > 0)
+            return cached;
+
+        Sprite[] loaded = LoadFolder(folder);
+        cache[folder] = loaded;
+        return loaded;
+    }
+
+    public static void Play(SkillVfxStyle style, Vector3 worldPos, float scale = 1.2f, Color? tint = null, int sortingOrder = 23)
+    {
+        Sprite[] frames = GetFrames(style);
+
+        // Fallback sang EffectLibrary (Assets/Art/Sprite/Effect) nếu EffectsPack14 trống.
+        if (frames == null || frames.Length == 0)
+        {
+            EffectLibrary.Play(MapToEffectKind(style), worldPos, scale, tint, 20f, sortingOrder);
+            return;
+        }
+
+        Color color = tint ?? Color.white;
+        GameObject go = new GameObject("SkillVfx_" + style);
+        go.transform.position = worldPos;
+        SpriteRenderer sr = go.AddComponent<SpriteRenderer>();
+        sr.sprite = frames[0];
+        sr.color = color;
+        sr.sortingOrder = sortingOrder;
+        go.AddComponent<HeroKnightVfxRunner>().Begin(frames, 18f, scale);
+    }
+
+    private static EffectKind MapToEffectKind(SkillVfxStyle style)
+    {
+        switch (style)
+        {
+            case SkillVfxStyle.Fire: return EffectKind.FireExplosion;
+            case SkillVfxStyle.Ice: return EffectKind.IceExplosion;
+            case SkillVfxStyle.Poison: return EffectKind.PoisonBoom;
+            case SkillVfxStyle.Lightning: return EffectKind.BlueExplosion;
+            case SkillVfxStyle.Arcane: return EffectKind.BlueExplosion;
+            default: return EffectKind.HitImpact;
+        }
+    }
+
+    public static void PlayForSkill(SkillType type, Vector3 worldPos, float scale = 1.15f)
+    {
+        SkillVfxStyle style = MapSkill(type);
+        Color tint = TintFor(style);
+        Play(style, worldPos, scale, tint);
+    }
+
+    public static SkillVfxStyle MapSkill(SkillType type)
+    {
+        switch (type)
+        {
+            case SkillType.FireArrow:
+            case SkillType.ExplosiveRounds:
+            case SkillType.Explosion:
+            case SkillType.DragonStrike:
+                return SkillVfxStyle.Fire;
+            case SkillType.IceAura:
+            case SkillType.TimeFreeze:
+                return SkillVfxStyle.Ice;
+            case SkillType.LightningChain:
+                return SkillVfxStyle.Lightning;
+            case SkillType.PoisonCloud:
+                return SkillVfxStyle.Poison;
+            case SkillType.GhostForm:
+            case SkillType.SoulHarvest:
+            case SkillType.MirrorImage:
+            case SkillType.Vampire:
+                return SkillVfxStyle.Arcane;
+            case SkillType.BladeStorm:
+            case SkillType.CriticalHit:
+            case SkillType.DeathMark:
+                return SkillVfxStyle.Slash;
+            default:
+                return SkillVfxStyle.Slash;
+        }
+    }
+
+    private static Color TintFor(SkillVfxStyle style)
+    {
+        return style switch
+        {
+            SkillVfxStyle.Fire => new Color(1f, 0.65f, 0.35f, 1f),
+            SkillVfxStyle.Ice => new Color(0.65f, 0.9f, 1f, 1f),
+            SkillVfxStyle.Lightning => new Color(0.85f, 0.9f, 1f, 1f),
+            SkillVfxStyle.Poison => new Color(0.55f, 1f, 0.45f, 1f),
+            SkillVfxStyle.Arcane => new Color(0.75f, 0.55f, 1f, 1f),
+            _ => Color.white
+        };
+    }
+
+    private static Sprite[] LoadFolder(int folderIndex)
+    {
+        string resourcesPath = $"EffectsPack14/{folderIndex}";
+        Sprite[] fromResources = Resources.LoadAll<Sprite>(resourcesPath);
+        if (fromResources != null && fromResources.Length > 0)
+            return SortNumeric(fromResources);
+
+#if UNITY_EDITOR
+        string assetPath = $"Assets/Resources/EffectsPack14/{folderIndex}";
+        string[] guids = UnityEditor.AssetDatabase.FindAssets("t:Sprite", new[] { assetPath });
+        if (guids != null && guids.Length > 0)
+        {
+            List<Sprite> list = new List<Sprite>(guids.Length);
+            for (int i = 0; i < guids.Length; i++)
+            {
+                string path = UnityEditor.AssetDatabase.GUIDToAssetPath(guids[i]);
+                Sprite s = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>(path);
+                if (s != null)
+                    list.Add(s);
+            }
+
+            if (list.Count > 0)
+                return SortNumeric(list.ToArray());
+        }
+#endif
+
+        return System.Array.Empty<Sprite>();
+    }
+
+    private static Sprite[] SortNumeric(Sprite[] sprites)
+    {
+        System.Array.Sort(sprites, (a, b) => FrameNumber(a.name).CompareTo(FrameNumber(b.name)));
+        return sprites;
+    }
+
+    private static int FrameNumber(string name)
+    {
+        if (string.IsNullOrEmpty(name))
+            return 0;
+        int dot = name.LastIndexOf('.');
+        if (dot > 0)
+            name = name.Substring(0, dot);
+        return int.TryParse(name, out int n) ? n : 0;
+    }
+}
