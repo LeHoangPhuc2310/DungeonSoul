@@ -36,7 +36,7 @@ public class SkillBehaviors : MonoBehaviour
 
     public void OnPlayerDealtDamage(float damage, HealthSystem target)
     {
-        if (handler.HasSkill(SkillType.LifeSteal) && health != null && stats != null && stats.LifeStealPercent > 0f)
+        if (health != null && stats != null && stats.LifeStealPercent > 0f)
             health.Heal(damage * stats.LifeStealPercent);
     }
 

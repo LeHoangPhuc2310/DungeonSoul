@@ -14,6 +14,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private int extraEnemiesPerTwoWaves = 1;
     public float spawnDelay = 2f;
     [SerializeField] private float minDistanceFromPlayer = 2.5f;
+    [Tooltip("0 = tự động theo camera — quái spawn trong vùng nhìn thấy.")]
+    [SerializeField] private float maxDistanceFromPlayer = 0f;
     [SerializeField] private bool requireInteriorTile = true;
 
     public List<Vector3> manualSpawnPoints = new List<Vector3>()
@@ -209,6 +211,23 @@ public class EnemySpawner : MonoBehaviour
         return true;
     }
 
+    private float MaxSpawnDistance =>
+        maxDistanceFromPlayer > 0f
+            ? maxDistanceFromPlayer
+            : GameScale.GetSpawnMaxDistanceFromPlayer(0.88f);
+
+    private bool IsWithinSpawnDistance(Vector3 pos, Transform player)
+    {
+        if (player == null)
+            return true;
+
+        float max = MaxSpawnDistance;
+        if (max <= 0f)
+            return true;
+
+        return Vector2.Distance(pos, player.position) <= max;
+    }
+
     private Vector3 PickSpawnPosition()
     {
         if (useManualSpawnPoints && manualSpawnPoints.Count > 0)
@@ -238,8 +257,12 @@ public class EnemySpawner : MonoBehaviour
             if (!IsValidSpawnWorldPosition(point))
                 continue;
 
-            if (player != null && Vector2.Distance(point, player.position) < minDistanceFromPlayer)
-                continue;
+            if (player != null)
+            {
+                float dist = Vector2.Distance(point, player.position);
+                if (dist < minDistanceFromPlayer || !IsWithinSpawnDistance(point, player))
+                    continue;
+            }
 
             valid.Add(point);
         }
@@ -257,7 +280,11 @@ public class EnemySpawner : MonoBehaviour
             if (!IsValidSpawnWorldPosition(pos))
                 continue;
 
-            if (player == null || Vector2.Distance(pos, player.position) >= minDistanceFromPlayer)
+            if (player == null)
+                return pos;
+
+            float dist = Vector2.Distance(pos, player.position);
+            if (dist >= minDistanceFromPlayer && IsWithinSpawnDistance(pos, player))
                 return pos;
         }
 

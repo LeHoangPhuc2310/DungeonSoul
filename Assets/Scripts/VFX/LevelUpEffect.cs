@@ -51,7 +51,7 @@ public class LevelUpEffect : MonoBehaviour
         float elapsed = 0f;
         while (elapsed < screenFlashDuration)
         {
-            elapsed += Time.deltaTime;
+            elapsed += Time.unscaledDeltaTime;
             float t = Mathf.Clamp01(elapsed / screenFlashDuration);
             Color color = flashColor;
             color.a = Mathf.Lerp(flashColor.a, 0f, t);

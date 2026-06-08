@@ -121,7 +121,12 @@ public class HeroRunStats : MonoBehaviour
         PlayerWeaponVisual weaponVisual = player.GetComponent<PlayerWeaponVisual>();
         if (weaponVisual == null)
             weaponVisual = player.AddComponent<PlayerWeaponVisual>();
-        weaponVisual.RefreshFromLoadout();
+
+        PlayableCharacterEntry selected = PlayableCharacterCatalog.GetSelected();
+        if (selected != null && selected.HasAttackAnimation)
+            weaponVisual.SetOverlayEnabled(false);
+        else
+            weaponVisual.RefreshFromLoadout();
 
         if (GameplayPresentation.Instance != null)
             GameplayPresentation.Instance.ApplyPlayerScale();

@@ -112,6 +112,13 @@ public class Projectile : MonoBehaviour
                     burn = other.gameObject.AddComponent<BurnDebuff>();
                 burn.Apply(stats.FireDotDamage, stats.FireDotDuration);
             }
+            else if (stats != null && stats.PassiveBurnChance > 0f && Random.value < stats.PassiveBurnChance)
+            {
+                BurnDebuff burn = other.GetComponent<BurnDebuff>();
+                if (burn == null)
+                    burn = other.gameObject.AddComponent<BurnDebuff>();
+                burn.Apply(4f, 2.5f);
+            }
 
             SkillBehaviors behaviors = FindPlayerBehaviors();
             behaviors?.OnPlayerDealtDamage(finalDamage, enemyHealth);
@@ -147,6 +154,8 @@ public class Projectile : MonoBehaviour
     {
         if (!isActiveProjectile)
             return;
+
+        transform.rotation = Quaternion.identity;
 
         isActiveProjectile = false;
         velocity = Vector2.zero;

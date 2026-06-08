@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class HUDManager : MonoBehaviour
@@ -60,6 +61,11 @@ public class HUDManager : MonoBehaviour
     private static Sprite uiWhiteSprite;
     private GameObject weaponBarRoot;
     private readonly List<Image> weaponSlotImages = new List<Image>();
+    private readonly List<HudHoverTooltip> weaponSlotTooltips = new List<HudHoverTooltip>();
+    private GameObject passiveBarRoot;
+    private readonly List<Image> passiveSlotImages = new List<Image>();
+    private readonly List<TMP_Text> passiveLevelLabels = new List<TMP_Text>();
+    private readonly List<HudHoverTooltip> passiveSlotTooltips = new List<HudHoverTooltip>();
 
     private const float ScoreFontSize = 28f;
     private const float CoinsFontSize = 28f;
@@ -359,6 +365,8 @@ public class HUDManager : MonoBehaviour
         if (Camera.main != null && Camera.main.GetComponent<GameplayPresentation>() == null)
             Camera.main.gameObject.AddComponent<GameplayPresentation>();
 
+        EnsureEventSystemForHover();
+
         if (Object.FindAnyObjectByType<VirtualJoystick>() == null)
         {
             GameObject joy = new GameObject("VirtualJoystick");
@@ -369,6 +377,16 @@ public class HUDManager : MonoBehaviour
         HUDManager hud = Object.FindAnyObjectByType<HUDManager>();
         if (hud != null && hud.GetComponent<HudPauseButton>() == null)
             hud.gameObject.AddComponent<HudPauseButton>();
+    }
+
+    private static void EnsureEventSystemForHover()
+    {
+        if (EventSystem.current != null)
+            return;
+
+        GameObject es = new GameObject("EventSystem");
+        es.AddComponent<EventSystem>();
+        es.AddComponent<StandaloneInputModule>();
     }
 
     private void ResolveReferences()
@@ -606,7 +624,7 @@ public class HUDManager : MonoBehaviour
                 ConfigureBarBackground(hpBg, HpBarBg);
         }
 
-        ApplyDungeonPackHudArt(hpBar, expBar);
+        ApplyGuiHudArt(hpBar, expBar);
 
         if (hpFillImage != null)
         {
@@ -655,11 +673,32 @@ public class HUDManager : MonoBehaviour
         }
     }
 
-    private void ApplyDungeonPackHudArt(Transform hpBar, Transform expBar)
+    private void ApplyGuiHudArt(Transform hpBar, Transform expBar)
     {
-        // Intentionally left blank: the HP/EXP bars use clean solid-colour fills
-        // (see ConfigureBarBackground / ApplyBarFillRatio). Themed dungeon-pack frame
-        // sprites made the bars look broken/segmented, so they are no longer applied.
+        if (!GuiArtLibrary.HasPack)
+            return;
+
+        if (hpBar != null)
+        {
+            Image hpBg = hpBar.GetComponent<Image>();
+            if (GuiArtLibrary.ApplyBarFrame(hpBg, GuiArtLibrary.HpBarFrame) && hpFillImage != null)
+            {
+                RectTransform fillRt = hpFillImage.rectTransform;
+                fillRt.offsetMin = new Vector2(10f, 6f);
+                fillRt.offsetMax = new Vector2(-10f, -6f);
+            }
+        }
+
+        if (expBar != null)
+        {
+            Image expBg = expBar.GetComponent<Image>();
+            if (GuiArtLibrary.ApplyBarFrame(expBg, GuiArtLibrary.ExpBarFrame) && expFillImage != null)
+            {
+                RectTransform fillRt = expFillImage.rectTransform;
+                fillRt.offsetMin = new Vector2(8f, 5f);
+                fillRt.offsetMax = new Vector2(-8f, -5f);
+            }
+        }
     }
 
     private void EnsurePlayerStatsPanel(Transform topLeft)
@@ -692,6 +731,7 @@ public class HUDManager : MonoBehaviour
 
     private static void StyleTmpLabel(TMP_Text text, float size, FontStyles style, Color color, TextAlignmentOptions align)
     {
+        GameUIFont.ApplyHud(text, size);
         text.fontSize = size;
         text.fontSizeMin = size;
         text.fontSizeMax = size;
@@ -1087,7 +1127,7 @@ public class HUDManager : MonoBehaviour
         if (floorText != null && FloorManager.Instance != null)
             floorText.text = "TẦNG " + FloorManager.Instance.CurrentFloor + " / 10";
     }
-    public void UpdateWeaponSlots(List<WeaponType> weapons, int maxSlots)
+    public void UpdateWeaponSlots(IReadOnlyList<WeaponManager.WeaponSlot> activeSlots, int maxSlots)
     {
         if (!Application.isPlaying)
             return;
@@ -1101,24 +1141,29 @@ public class HUDManager : MonoBehaviour
             if (slot == null)
                 continue;
 
-            if (i < weapons.Count)
+            HudHoverTooltip tooltip = i < weaponSlotTooltips.Count ? weaponSlotTooltips[i] : null;
+
+            if (activeSlots != null && i < activeSlots.Count)
             {
-                Sprite icon = ArtSpriteLibrary.GetWeaponSprite(weapons[i]);
+                WeaponManager.WeaponSlot weaponSlot = activeSlots[i];
+                Sprite icon = GameIconLibrary.WeaponSprite(weaponSlot.weaponType);
                 if (icon != null)
                 {
                     slot.sprite = icon;
-                    slot.color = ArtSpriteLibrary.GetWeaponTint(weapons[i]);
+                    slot.color = GameIconLibrary.WeaponTint(weaponSlot.weaponType);
                     slot.preserveAspect = true;
                 }
                 else
-                    slot.color = GetWeaponSlotColor(weapons[i]);
+                    slot.color = GetWeaponSlotColor(weaponSlot.weaponType);
                 slot.enabled = true;
+                tooltip?.ConfigureWeapon(weaponSlot.weaponType, weaponSlot.copies, weaponSlot.evolved);
             }
             else
             {
                 slot.sprite = GetUiWhiteSprite();
                 slot.color = new Color(0.15f, 0.16f, 0.22f, 0.75f);
                 slot.enabled = true;
+                tooltip?.ConfigureEmpty();
             }
         }
     }
@@ -1132,11 +1177,14 @@ public class HUDManager : MonoBehaviour
             Destroy(weaponBarRoot);
 
         weaponSlotImages.Clear();
+        weaponSlotTooltips.Clear();
         Canvas canvas = GetComponentInParent<Canvas>();
         if (canvas == null)
             canvas = GetComponent<Canvas>();
         if (canvas == null)
             return;
+
+        SkillTooltipUI.GetOrCreate(canvas);
 
         weaponBarRoot = new GameObject("WeaponBar");
         weaponBarRoot.transform.SetParent(canvas.transform, false);
@@ -1163,7 +1211,12 @@ public class HUDManager : MonoBehaviour
             img.sprite = GetUiWhiteSprite();
             img.type = Image.Type.Sliced;
             img.color = new Color(0.15f, 0.16f, 0.22f, 0.75f);
+            img.raycastTarget = true;
             weaponSlotImages.Add(img);
+
+            HudHoverTooltip hover = slotGo.AddComponent<HudHoverTooltip>();
+            hover.ConfigureEmpty();
+            weaponSlotTooltips.Add(hover);
         }
     }
 
@@ -1192,7 +1245,130 @@ public class HUDManager : MonoBehaviour
                 return new Color(0.75f, 0.7f, 0.65f);
         }
     }
-    public void UpdatePassiveSlots(IReadOnlyList<PassiveItem> passives, int maxSlots) {}
+    public void UpdatePassiveSlots(IReadOnlyList<PassivePick> passives, int maxSlots)
+    {
+        if (!Application.isPlaying)
+            return;
+
+        maxSlots = Mathf.Clamp(maxSlots, 1, 6);
+        EnsurePassiveBar(maxSlots);
+
+        for (int i = 0; i < passiveSlotImages.Count; i++)
+        {
+            Image slot = passiveSlotImages[i];
+            TMP_Text levelLabel = i < passiveLevelLabels.Count ? passiveLevelLabels[i] : null;
+            HudHoverTooltip tooltip = i < passiveSlotTooltips.Count ? passiveSlotTooltips[i] : null;
+
+            if (passives != null && i < passives.Count && passives[i]?.data != null)
+            {
+                PassivePick pick = passives[i];
+                Sprite icon = GameIconLibrary.PassiveSprite(pick.data);
+                if (icon != null)
+                {
+                    slot.sprite = icon;
+                    slot.color = GameIconLibrary.PassiveTint(pick.data);
+                    slot.preserveAspect = true;
+                }
+                else
+                {
+                    slot.sprite = GetUiWhiteSprite();
+                    slot.color = GameIconLibrary.PassiveTint(pick.data);
+                }
+
+                slot.enabled = true;
+                if (levelLabel != null)
+                {
+                    levelLabel.text = pick.level.ToString();
+                    levelLabel.enabled = true;
+                }
+
+                tooltip?.ConfigurePassive(pick.data, pick.level);
+            }
+            else
+            {
+                slot.sprite = GetUiWhiteSprite();
+                slot.color = new Color(0.12f, 0.13f, 0.18f, 0.55f);
+                slot.enabled = true;
+                if (levelLabel != null)
+                {
+                    levelLabel.text = string.Empty;
+                    levelLabel.enabled = false;
+                }
+
+                tooltip?.ConfigureEmpty();
+            }
+        }
+    }
+
+    private void EnsurePassiveBar(int maxSlots)
+    {
+        if (passiveBarRoot != null && passiveSlotImages.Count == maxSlots)
+            return;
+
+        if (passiveBarRoot != null)
+            Destroy(passiveBarRoot);
+
+        passiveSlotImages.Clear();
+        passiveLevelLabels.Clear();
+        passiveSlotTooltips.Clear();
+
+        Canvas canvas = GetComponentInParent<Canvas>();
+        if (canvas == null)
+            canvas = GetComponent<Canvas>();
+        if (canvas == null)
+            return;
+
+        SkillTooltipUI.GetOrCreate(canvas);
+
+        passiveBarRoot = new GameObject("PassiveBar");
+        passiveBarRoot.transform.SetParent(canvas.transform, false);
+        RectTransform barRt = passiveBarRoot.AddComponent<RectTransform>();
+        barRt.anchorMin = new Vector2(0f, 0f);
+        barRt.anchorMax = new Vector2(0f, 0f);
+        barRt.pivot = new Vector2(0f, 0f);
+        barRt.anchoredPosition = new Vector2(12f, 38f);
+        barRt.sizeDelta = new Vector2(maxSlots * 36f + 8f, 34f);
+
+        HorizontalLayoutGroup layout = passiveBarRoot.AddComponent<HorizontalLayoutGroup>();
+        layout.spacing = 4f;
+        layout.childAlignment = TextAnchor.MiddleLeft;
+        layout.childControlWidth = false;
+        layout.childControlHeight = false;
+
+        for (int i = 0; i < maxSlots; i++)
+        {
+            GameObject slotGo = new GameObject("PassiveSlot" + i);
+            slotGo.transform.SetParent(passiveBarRoot.transform, false);
+            RectTransform rt = slotGo.AddComponent<RectTransform>();
+            rt.sizeDelta = new Vector2(32f, 32f);
+            Image img = slotGo.AddComponent<Image>();
+            img.sprite = GetUiWhiteSprite();
+            img.type = Image.Type.Sliced;
+            img.color = new Color(0.12f, 0.13f, 0.18f, 0.55f);
+            img.raycastTarget = true;
+            passiveSlotImages.Add(img);
+
+            GameObject lvlGo = new GameObject("Level", typeof(RectTransform), typeof(TextMeshProUGUI));
+            lvlGo.transform.SetParent(slotGo.transform, false);
+            RectTransform lrt = lvlGo.GetComponent<RectTransform>();
+            lrt.anchorMin = new Vector2(1f, 0f);
+            lrt.anchorMax = new Vector2(1f, 0f);
+            lrt.pivot = new Vector2(1f, 0f);
+            lrt.anchoredPosition = new Vector2(-2f, 2f);
+            lrt.sizeDelta = new Vector2(18f, 14f);
+            TMP_Text lvl = lvlGo.GetComponent<TextMeshProUGUI>();
+            GameUIFont.Apply(lvl, GameUIFont.Role.CardStack);
+            lvl.fontSize = 11f;
+            lvl.color = Color.white;
+            lvl.alignment = TextAlignmentOptions.BottomRight;
+            lvl.raycastTarget = false;
+            passiveLevelLabels.Add(lvl);
+
+            HudHoverTooltip hover = slotGo.AddComponent<HudHoverTooltip>();
+            hover.ConfigureEmpty();
+            passiveSlotTooltips.Add(hover);
+        }
+    }
     public void RegisterEnemyKilled(int s, int c)
     {
         RunManager run = FindRunManager();

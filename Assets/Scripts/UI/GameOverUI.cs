@@ -16,6 +16,13 @@ public class GameOverUI : MonoBehaviour
     [SerializeField] private TMP_Text titleText;
 
     private Canvas canvas;
+    private Transform statsColumn;     // cột Player Stats bên trái
+    private TMP_Text heroLevelText;    // "Anh hùng / LEVEL N" giữa
+    private TMP_Text bossInfoText;     // tên boss + cấp bên phải
+    private Image heroIconImage;       // icon nhân vật
+    private Image bossIconImage;       // icon boss/vũ khí
+    private readonly System.Collections.Generic.List<TMP_Text> statValueLabels =
+        new System.Collections.Generic.List<TMP_Text>();
 
     private void Awake()
     {
@@ -58,8 +65,8 @@ public class GameOverUI : MonoBehaviour
 
         if (titleText != null)
         {
-            titleText.text = victory ? "CHIẾN THẮNG!" : "GAME OVER";
-            titleText.color = victory ? new Color(0.95f, 0.82f, 0.2f, 1f) : new Color(0.95f, 0.25f, 0.25f, 1f);
+            titleText.text = victory ? "CHIẾN THẮNG" : "THẤT BẠI";
+            titleText.color = victory ? new Color(0.95f, 0.82f, 0.2f, 1f) : new Color(0.95f, 0.2f, 0.2f, 1f);
         }
 
         if (scoreResultText != null) scoreResultText.text = "Score: " + score;
@@ -67,12 +74,108 @@ public class GameOverUI : MonoBehaviour
         if (coinsResultText != null)
         {
             int meta = MetaProgression.Instance != null ? MetaProgression.Instance.MetaCoins : 0;
-            coinsResultText.text = "Xu run: " + coins + "  |  Meta: " + meta;
+            coinsResultText.text = "Xu: " + coins + "  |  Meta: " + meta;
         }
+
+        FillPlayerStats();
+        FillHeroAndBoss(floor);
 
         AchievementManager.Instance?.OnRunEnded(victory, floor);
         if (!victory && MetaProgression.Instance != null)
             MetaProgression.Instance.AddMetaCoins(Mathf.Max(0, coins / 10));
+    }
+
+    /// <summary>Điền danh sách chỉ số người chơi (kiểu Player Stats của KnightFall).</summary>
+    private void FillPlayerStats()
+    {
+        if (statsColumn == null)
+            return;
+
+        // Xoá dòng cũ.
+        for (int i = statsColumn.childCount - 1; i >= 0; i--)
+        {
+            Transform c = statsColumn.GetChild(i);
+            if (c.name.StartsWith("Stat_"))
+                Destroy(c.gameObject);
+        }
+        statValueLabels.Clear();
+
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        AutoAttack atk = player != null ? player.GetComponent<AutoAttack>() : null;
+        HealthSystem hs = player != null ? player.GetComponent<HealthSystem>() : null;
+        PlayerSkillStats st = player != null ? player.GetComponent<PlayerSkillStats>() : null;
+        PlayerController pc = player != null ? player.GetComponent<PlayerController>() : null;
+
+        float dmg = atk != null ? atk.ProjectileDamage : 0f;
+        float aspd = atk != null && atk.FireInterval > 0.01f ? 1f / atk.FireInterval : 0f;
+        float crit = st != null ? st.CritChance * 100f : 0f;
+        float critDmg = st != null ? st.CritMultiplier * 100f : 200f;
+        float maxHp = hs != null ? hs.MaxHP : 0f;
+        float lifeSteal = st != null ? st.LifeStealPercent * 100f : 0f;
+        float move = pc != null ? pc.MoveSpeed : 0f;
+        float coinBonus = st != null ? st.CoinDropBonus * 100f : 100f;
+
+        AddStatRow("Sát thương", Mathf.RoundToInt(dmg).ToString());
+        AddStatRow("Tốc độ tấn công", aspd.ToString("0.0") + "/s");
+        AddStatRow("Tỷ lệ chí mạng", Mathf.RoundToInt(crit) + "%");
+        AddStatRow("Sát thương chí mạng", Mathf.RoundToInt(critDmg) + "%");
+        AddStatRow("Máu tối đa", Mathf.RoundToInt(maxHp).ToString());
+        AddStatRow("Hút máu", Mathf.RoundToInt(lifeSteal) + "%");
+        AddStatRow("Tốc độ di chuyển", move.ToString("0.0"));
+        AddStatRow("Thu nhập vàng", Mathf.RoundToInt(coinBonus) + "%");
+    }
+
+    private int statRowIndex;
+
+    private void AddStatRow(string label, string value)
+    {
+        if (statValueLabels.Count == 0)
+            statRowIndex = 0;
+
+        float y = 220f - statRowIndex * 42f;
+        statRowIndex++;
+
+        TMP_Text l = MakeText(label, statsColumn, new Vector2(-30f, y), 20f, new Color(0.82f, 0.85f, 0.92f));
+        l.alignment = TextAlignmentOptions.Left;
+        l.rectTransform.sizeDelta = new Vector2(280f, 32f);
+        l.gameObject.name = "Stat_L";
+
+        TMP_Text v = MakeText(value, statsColumn, new Vector2(160f, y), 20f, new Color(0.55f, 1f, 0.55f), FontStyles.Bold);
+        v.alignment = TextAlignmentOptions.Right;
+        v.rectTransform.sizeDelta = new Vector2(120f, 32f);
+        v.gameObject.name = "Stat_V";
+        statValueLabels.Add(v);
+    }
+
+    private void FillHeroAndBoss(int floor)
+    {
+        HeroType hero = HeroRunStats.Instance != null ? HeroRunStats.Instance.SelectedHero : HeroType.Warrior;
+        int level = ExpSystem.Instance != null ? ExpSystem.Instance.CurrentLevel : 1;
+
+        if (heroLevelText != null)
+            heroLevelText.text = HeroRunStats.GetDisplayName(hero) + "\nLEVEL " + level;
+
+        if (heroIconImage != null)
+        {
+            Sprite[] frames = HeroKnightLibrary.GetHeroIdleFrames(hero);
+            Sprite s = frames != null && frames.Length > 0 ? frames[0] : CharacterArtLibrary.GetHeroSprite(hero);
+            if (s != null) { heroIconImage.sprite = s; heroIconImage.enabled = true; }
+        }
+
+        // Boss gần nhất theo tầng.
+        string bossName = floor >= 10 ? "Dragon Lord" : floor >= 9 ? "Shadow Witch" : floor >= 6 ? "Stone Golem" : "Goblin King";
+        if (bossInfoText != null)
+            bossInfoText.text = bossName + "\n" + floor;
+
+        if (bossIconImage != null)
+        {
+            Sprite[] bframes = HeroKnightLibrary.GetBossIdleFrames(bossName);
+            if (bframes != null && bframes.Length > 0)
+            {
+                bossIconImage.sprite = bframes[0];
+                bossIconImage.enabled = true;
+            }
+        }
     }
 
     private void WireButtons()
@@ -143,31 +246,78 @@ public class GameOverUI : MonoBehaviour
             esGO.AddComponent<UnityEngine.EventSystems.StandaloneInputModule>();
         }
 
-        // Dark overlay
+        // Nền tối phủ kín.
         GameObject overlay = MakeRect("Overlay", canvasGO.transform, Vector2.zero, Vector2.zero);
         RectTransform overlayRT = overlay.GetComponent<RectTransform>();
         overlayRT.anchorMin = Vector2.zero;
         overlayRT.anchorMax = Vector2.one;
         overlayRT.offsetMin = overlayRT.offsetMax = Vector2.zero;
-        overlay.AddComponent<Image>().color = new Color(0f, 0f, 0f, 0.78f);
+        overlay.AddComponent<Image>().color = new Color(0.02f, 0.02f, 0.04f, 0.92f);
 
-        // Panel
-        GameObject panel = MakeRect("Panel", canvasGO.transform, new Vector2(520f, 420f), Vector2.zero);
+        // Panel chính rộng (kiểu KnightFall).
+        GameObject panel = MakeRect("Panel", canvasGO.transform, new Vector2(1280f, 760f), Vector2.zero);
         panel.GetComponent<RectTransform>().anchorMin = panel.GetComponent<RectTransform>().anchorMax = new Vector2(0.5f, 0.5f);
-        panel.AddComponent<Image>().color = new Color(0.08f, 0.08f, 0.14f, 0.98f);
-
+        Image panelImg = panel.AddComponent<Image>();
+        if (!GuiArtLibrary.ApplyPanel(panelImg, GuiArtLibrary.MenuPanel))
+            panelImg.color = new Color(0.06f, 0.06f, 0.1f, 0.97f);
         Transform p = panel.transform;
 
-        titleText = MakeText("GAME OVER", p, new Vector2(0f, 160f), 46f, new Color(0.95f, 0.25f, 0.25f), FontStyles.Bold);
+        // Tiêu đề lớn trên cùng.
+        titleText = MakeText("THẤT BẠI", p, new Vector2(0f, 320f), 64f, new Color(0.95f, 0.2f, 0.2f), FontStyles.Bold);
+        RectTransform titleRt = titleText.rectTransform;
+        titleRt.sizeDelta = new Vector2(800f, 90f);
 
-        // Result texts
-        scoreResultText = MakeText("Score: 0", p, new Vector2(0f, 80f), 26f, Color.white);
-        floorResultText = MakeText("Floor: 0", p, new Vector2(0f, 36f), 26f, Color.white);
-        coinsResultText = MakeText("Coins: 0", p, new Vector2(0f, -8f), 26f, Color.white);
+        // --- Cột Player Stats bên trái ---
+        GameObject statsPanel = MakeRect("StatsPanel", p, new Vector2(420f, 600f), new Vector2(-410f, -40f));
+        statsPanel.AddComponent<Image>().color = new Color(0.03f, 0.03f, 0.06f, 0.95f);
+        MakeText("Player Stats", statsPanel.transform, new Vector2(0f, 270f), 30f, Color.white, FontStyles.Bold);
+        statsColumn = statsPanel.transform;
 
-        // Buttons
-        playAgainButton = MakeButton("PLAY AGAIN", p, new Vector2(-95f, -140f), PlayAgain);
-        menuButton      = MakeButton("MENU",       p, new Vector2(95f,  -140f), GoToMenu);
+        // --- Giữa: Anh hùng + LEVEL + icon ---
+        heroIconImage = MakeIcon("HeroIcon", p, new Vector2(60f, -90f), new Vector2(150f, 150f));
+        heroLevelText = MakeText("Anh hùng\nLEVEL 1", p, new Vector2(60f, 120f), 30f, new Color(0.92f, 0.92f, 1f), FontStyles.Bold);
+        heroLevelText.rectTransform.sizeDelta = new Vector2(360f, 120f);
+
+        // --- Phải: Boss + cấp + icon ---
+        bossIconImage = MakeIcon("BossIcon", p, new Vector2(440f, 200f), new Vector2(110f, 110f));
+        bossInfoText = MakeText("Inferno\n5", p, new Vector2(440f, 120f), 28f, new Color(0.95f, 0.92f, 0.85f), FontStyles.Bold);
+        bossInfoText.rectTransform.sizeDelta = new Vector2(320f, 110f);
+
+        // Result text (gộp score/floor/xu) đặt giữa-dưới.
+        scoreResultText = MakeText("Score: 0", p, new Vector2(60f, -250f), 24f, new Color(0.85f, 0.88f, 0.95f));
+        floorResultText = MakeText("Floor: 0", p, new Vector2(60f, -285f), 24f, new Color(0.85f, 0.88f, 0.95f));
+        coinsResultText = MakeText("Xu: 0", p, new Vector2(60f, -320f), 24f, new Color(1f, 0.85f, 0.35f));
+
+        // Nút dưới.
+        playAgainButton = MakeButton("Chơi lại!", p, new Vector2(-150f, -340f), PlayAgain);
+        menuButton      = MakeButton("Thoát",     p, new Vector2(150f,  -340f), GoToMenu);
+        TintButton(playAgainButton, new Color(0.55f, 0.16f, 0.18f, 1f));
+        TintButton(menuButton, new Color(0.55f, 0.16f, 0.18f, 1f));
+    }
+
+    private static Image MakeIcon(string name, Transform parent, Vector2 pos, Vector2 size)
+    {
+        GameObject go = MakeRect(name, parent, size, pos);
+        GameObject frame = MakeRect("Frame", go.transform, Vector2.zero, Vector2.zero);
+        RectTransform frt = frame.GetComponent<RectTransform>();
+        frt.anchorMin = Vector2.zero; frt.anchorMax = Vector2.one; frt.offsetMin = frt.offsetMax = Vector2.zero;
+        frame.AddComponent<Image>().color = new Color(0.12f, 0.13f, 0.2f, 1f);
+
+        GameObject inner = MakeRect("Img", go.transform, Vector2.zero, Vector2.zero);
+        RectTransform irt = inner.GetComponent<RectTransform>();
+        irt.anchorMin = Vector2.zero; irt.anchorMax = Vector2.one;
+        irt.offsetMin = new Vector2(8f, 8f); irt.offsetMax = new Vector2(-8f, -8f);
+        Image img = inner.AddComponent<Image>();
+        img.preserveAspect = true;
+        img.raycastTarget = false;
+        return img;
+    }
+
+    private static void TintButton(Button btn, Color color)
+    {
+        if (btn == null) return;
+        Image bg = btn.targetGraphic as Image;
+        if (bg != null) bg.color = color;
     }
 
     // ── Helpers ──────────────────────────────────────────────────────────────
@@ -200,7 +350,11 @@ public class GameOverUI : MonoBehaviour
     {
         GameObject go = MakeRect(label, parent, new Vector2(170f, 58f), pos);
         Image bg = go.AddComponent<Image>();
-        bg.color = new Color(0.18f, 0.18f, 0.32f, 1f);
+        Sprite guiBtn = label.Contains("lại", System.StringComparison.OrdinalIgnoreCase)
+            ? GuiArtLibrary.ButtonPrimary
+            : GuiArtLibrary.ButtonDanger;
+        if (!GuiArtLibrary.ApplyButton(bg, guiBtn, new Color(0.18f, 0.18f, 0.32f, 1f)))
+            bg.color = new Color(0.18f, 0.18f, 0.32f, 1f);
         Button btn = go.AddComponent<Button>();
         btn.targetGraphic = bg;
         ColorBlock cb = btn.colors;

@@ -100,8 +100,19 @@ public static class GameIconLibrary
 
     // ---------------- WEAPON ----------------
 
-    public static Sprite WeaponSprite(WeaponType type) => ArtSpriteLibrary.GetWeaponSprite(type);
-    public static Color WeaponTint(WeaponType type) => ArtSpriteLibrary.GetWeaponTint(type);
+    public static Sprite WeaponSprite(WeaponType type)
+    {
+        // Ưu tiên icon vũ khí thật từ Assets/Art/Sprite/Weapon.
+        Sprite s = WeaponIconLibrary.GetWeapon(type);
+        return s != null ? s : ArtSpriteLibrary.GetWeaponSprite(type);
+    }
+
+    public static Color WeaponTint(WeaponType type)
+    {
+        return WeaponIconLibrary.GetWeapon(type) != null
+            ? WeaponIconLibrary.Tint(type)
+            : ArtSpriteLibrary.GetWeaponTint(type);
+    }
 
     // ---------------- PASSIVE ----------------
 
@@ -136,11 +147,57 @@ public static class GameIconLibrary
         }
     }
 
-    public static Sprite PassiveSprite(PassiveItem item)
+    public static Sprite PassiveSprite(PassiveItemData item)
     {
         if (item != null && item.icon != null)
             return item.icon;
-        PassiveItemType t = item != null ? item.itemType : PassiveItemType.Spinach;
-        return ArtSpriteLibrary.LoadTile(PassiveTile(t));
+        return ArtSpriteLibrary.LoadTile(PassiveTileByStat(item != null ? item.statModifierType : PassiveStatModifierType.Damage));
+    }
+
+    public static Color PassiveTint(PassiveItemData item)
+    {
+        if (item == null)
+            return Color.white;
+        return PassiveTintByStat(item.statModifierType);
+    }
+
+    public static int PassiveTileByStat(PassiveStatModifierType type)
+    {
+        switch (type)
+        {
+            case PassiveStatModifierType.Defense: return 105;
+            case PassiveStatModifierType.HP: return 29;
+            case PassiveStatModifierType.MoveSpeed: return 131;
+            case PassiveStatModifierType.Damage: return 106;
+            case PassiveStatModifierType.CooldownReduction: return 129;
+            case PassiveStatModifierType.ExpGain: return 89;
+            case PassiveStatModifierType.CritChance: return 118;
+            case PassiveStatModifierType.Magnet: return 89;
+            case PassiveStatModifierType.BurnChance: return 129;
+            case PassiveStatModifierType.LifeSteal: return 103;
+            case PassiveStatModifierType.ProjectileCount: return 107;
+            case PassiveStatModifierType.Revive: return 89;
+            default: return 106;
+        }
+    }
+
+    public static Color PassiveTintByStat(PassiveStatModifierType type)
+    {
+        switch (type)
+        {
+            case PassiveStatModifierType.Defense: return new Color(0.8f, 0.85f, 0.95f);
+            case PassiveStatModifierType.HP: return new Color(1f, 0.45f, 0.5f);
+            case PassiveStatModifierType.MoveSpeed: return new Color(0.85f, 0.95f, 1f);
+            case PassiveStatModifierType.Damage: return new Color(0.7f, 1f, 0.5f);
+            case PassiveStatModifierType.CooldownReduction: return new Color(0.85f, 0.7f, 1f);
+            case PassiveStatModifierType.ExpGain: return new Color(1f, 0.85f, 0.35f);
+            case PassiveStatModifierType.CritChance: return new Color(1f, 0.55f, 0.35f);
+            case PassiveStatModifierType.Magnet: return new Color(1f, 0.85f, 0.35f);
+            case PassiveStatModifierType.BurnChance: return new Color(1f, 0.55f, 0.3f);
+            case PassiveStatModifierType.LifeSteal: return new Color(1f, 0.5f, 0.55f);
+            case PassiveStatModifierType.ProjectileCount: return new Color(0.5f, 0.9f, 1f);
+            case PassiveStatModifierType.Revive: return new Color(0.95f, 0.72f, 0.15f);
+            default: return Color.white;
+        }
     }
 }

@@ -13,6 +13,7 @@ public class HealthSystem : MonoBehaviour
     private bool invulnerable;
     private float skillFlatReduction;
     private float skillPercentReduction;
+    private float passivePercentReduction;
     private float baseRegen;
     private float skillRegen;
 
@@ -59,7 +60,7 @@ public class HealthSystem : MonoBehaviour
             return;
 
         float afterFlat = Mathf.Max(0f, amount - flatDamageReduction - skillFlatReduction);
-        float finalDamage = afterFlat * (1f - Mathf.Clamp01(damageReductionPercent + skillPercentReduction));
+        float finalDamage = afterFlat * (1f - Mathf.Clamp01(damageReductionPercent + skillPercentReduction + passivePercentReduction));
         finalDamage *= GetBossDamageMultiplier();
         if (finalDamage <= 0f)
             return;
@@ -94,6 +95,12 @@ public class HealthSystem : MonoBehaviour
         skillPercentReduction = 0f;
         skillRegen = 0f;
         hpRegenPerSecond = baseRegen;
+    }
+
+    /// <summary>Giảm sát thương nhận từ passive (không reset khi skill recalculate).</summary>
+    public void SetPassiveDamageReduction(float percent)
+    {
+        passivePercentReduction = Mathf.Clamp01(percent);
     }
 
     public void AddRegen(float amountPerSecond)
@@ -162,6 +169,13 @@ public class HealthSystem : MonoBehaviour
         }
         else if (isPlayer || CompareTag("Player"))
         {
+            if (PassiveItemManager.Instance != null && PassiveItemManager.Instance.TryConsumeRevive())
+            {
+                CurrentHP = MaxHP * 0.5f;
+                HUDManager.Resolve()?.UpdateHp();
+                return;
+            }
+
             if (RunManager.Instance != null)
                 RunManager.Instance.EndRun(false);
             else

@@ -34,6 +34,17 @@ public class RunManager : MonoBehaviour
         HUDManager.Resolve()?.ForceRefreshFromSystems(false);
     }
 
+    /// <summary>Trừ coin trong run (reroll, v.v.). Trả về false nếu không đủ.</summary>
+    public bool TrySpendRunCoins(int amount)
+    {
+        if (!runActive || amount <= 0 || runCoins < amount)
+            return false;
+
+        runCoins -= amount;
+        HUDManager.Resolve()?.ForceRefreshFromSystems(false);
+        return true;
+    }
+
     public void AddRunScore(int amount)
     {
         if (!runActive || amount <= 0)

@@ -139,7 +139,7 @@ public static class ItchWebGLBuild
             return;
         }
 
-        ZipFile.CreateFromDirectory(OutputFolder, ZipPath, CompressionLevel.Optimal, false);
+        ZipFile.CreateFromDirectory(OutputFolder, ZipPath, System.IO.Compression.CompressionLevel.Optimal, false);
         Debug.Log("[ItchWebGLBuild] Created " + ZipPath);
     }
 }

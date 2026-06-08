@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64e9800759b1c6f4789e7ef29f201aba, type: 3}
+  m_Name: GuiSpriteSet
+  m_EditorClassIdentifier: Assembly-CSharp::GuiSpriteSet
+  hpBarFrame: {fileID: -595158496127015518, guid: 2a43d85b75f32814aae03f924e8bfc98, type: 3}
+  expBarFrame: {fileID: 7291096671700317025, guid: 2a43d85b75f32814aae03f924e8bfc98, type: 3}
+  menuPanel: {fileID: 3049377349421197636, guid: f112e2637dda0a2478edfbc423ac2794, type: 3}
+  dialogPanel: {fileID: 1806066430021436774, guid: 2f358f80a4e0a2941b40afb3c22cfd13, type: 3}
+  buttonPrimary: {fileID: 3225184591424570320, guid: 132cfbc9210f5ae4ab551eb74cc3a510, type: 3}
+  buttonSecondary: {fileID: -7372890312848100230, guid: c4390e6acdfe50a4585fa586205f654c, type: 3}
+  buttonDanger: {fileID: -7678165008345409460, guid: 4317e65eeae06eb44a6fc9ad64cb2222, type: 3}
+  iconPause: {fileID: -2221733252617904021, guid: ed01421a1399b6e4d93ab4dfe5f73dfd, type: 3}
+  iconPlay: {fileID: 8852647133500591483, guid: 5d4fc465ad59226429aa779b074cf37d, type: 3}
+  iconClose: {fileID: -6777926685511261956, guid: 6d0456db80e47cb44a4d57a60e6de7b4, type: 3}
+  iconSettings: {fileID: 7046017652296936350, guid: 7eb2b501484edf949876542de6d49e82, type: 3}
+  iconBack: {fileID: 6096727470340092608, guid: bc75e1e1b12933649af2746f13feeb0f, type: 3}
+  cardCommon: {fileID: -4918692148815387521, guid: 30cc74a4d1ada1c43804ed09b27e1528, type: 3}
+  cardRare: {fileID: -6235563062059304735, guid: 67dfccb1ecdeb7b4787754a1a51dc744, type: 3}
+  cardEpic: {fileID: -5980121781298439847, guid: 37eb1dc7652508e468d6086d5449f2a0, type: 3}
+  cardLegendary: {fileID: 3694359086940086616, guid: 3dec31ed32b9da6428af0bcf3f32c588, type: 3}
+  cardWarrior: {fileID: 663931780452081430, guid: 5db6936396cbebe49afcebfb5b1d27a0, type: 3}
+  cardRanger: {fileID: -6235563062059304735, guid: 67dfccb1ecdeb7b4787754a1a51dc744, type: 3}
+  cardMage: {fileID: -5980121781298439847, guid: 37eb1dc7652508e468d6086d5449f2a0, type: 3}
+  cardSelected: {fileID: 3694359086940086616, guid: 3dec31ed32b9da6428af0bcf3f32c588, type: 3}
+  cardWeaponBow: {fileID: 7541434453626541510, guid: 7fd4cedfd67da38479d8393684d76323, type: 3}
+  cardWeaponStaff: {fileID: 2399598386581122229, guid: ffa88a5485da41c4c953ecc2e1db3fd0, type: 3}
+  cardWeaponBlade: {fileID: 5441915626502683602, guid: 1c5319abbf2b2de44b22cc9a2e5b54ef, type: 3}
+  cardWeaponHoly: {fileID: 3817212800811449068, guid: 251eba5cc49be494288929e8038800f2, type: 3}
+  cardWeaponThunder: {fileID: 2713103610476550546, guid: 4872aba585aa5fd46a9b4fa25eee1476, type: 3}

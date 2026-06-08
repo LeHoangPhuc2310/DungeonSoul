@@ -32,23 +32,28 @@ public class HudPauseButton : MonoBehaviour
         LayoutPauseButton(rt);
 
         Image bg = go.AddComponent<Image>();
-        bg.color = new Color(0.12f, 0.14f, 0.22f, 0.9f);
+        if (!GuiArtLibrary.ApplyIcon(bg, GuiArtLibrary.IconPause))
+            bg.color = new Color(0.12f, 0.14f, 0.22f, 0.9f);
+
         Button btn = go.AddComponent<Button>();
         btn.targetGraphic = bg;
         btn.onClick.AddListener(OnPause);
 
-        GameObject textGO = new GameObject("Icon", typeof(RectTransform));
-        textGO.transform.SetParent(go.transform, false);
-        RectTransform trt = textGO.GetComponent<RectTransform>();
-        trt.anchorMin = Vector2.zero;
-        trt.anchorMax = Vector2.one;
-        trt.offsetMin = trt.offsetMax = Vector2.zero;
-        var tmp = textGO.AddComponent<TMPro.TextMeshProUGUI>();
-        tmp.text = "II";
-        tmp.fontSize = 28f;
-        tmp.alignment = TMPro.TextAlignmentOptions.Center;
-        tmp.color = Color.white;
-        tmp.raycastTarget = false;
+        if (GuiArtLibrary.IconPause == null)
+        {
+            GameObject textGO = new GameObject("Icon", typeof(RectTransform));
+            textGO.transform.SetParent(go.transform, false);
+            RectTransform trt = textGO.GetComponent<RectTransform>();
+            trt.anchorMin = Vector2.zero;
+            trt.anchorMax = Vector2.one;
+            trt.offsetMin = trt.offsetMax = Vector2.zero;
+            var tmp = textGO.AddComponent<TMPro.TextMeshProUGUI>();
+            tmp.text = "II";
+            tmp.fontSize = 28f;
+            tmp.alignment = TMPro.TextAlignmentOptions.Center;
+            tmp.color = Color.white;
+            tmp.raycastTarget = false;
+        }
     }
 
     private static void LayoutPauseButton(RectTransform rt)

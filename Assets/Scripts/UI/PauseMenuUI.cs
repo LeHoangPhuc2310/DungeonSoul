@@ -129,9 +129,12 @@ public class PauseMenuUI : MonoBehaviour
         frameRt.anchoredPosition = Vector2.zero;
         frameRt.sizeDelta = new Vector2(760f, 880f);
         Image frameImg = frame.AddComponent<Image>();
-        frameImg.sprite = GetWhiteSprite();
-        frameImg.type = Image.Type.Simple;
-        frameImg.color = PanelBorder;
+        if (!GuiArtLibrary.ApplyPanel(frameImg, GuiArtLibrary.MenuPanel))
+        {
+            frameImg.sprite = GetWhiteSprite();
+            frameImg.type = Image.Type.Simple;
+            frameImg.color = PanelBorder;
+        }
 
         GameObject panel = new GameObject("Panel", typeof(RectTransform));
         panel.transform.SetParent(frame.transform, false);
@@ -141,9 +144,12 @@ public class PauseMenuUI : MonoBehaviour
         panelRt.offsetMin = new Vector2(3f, 3f);
         panelRt.offsetMax = new Vector2(-3f, -3f);
         Image panelImg = panel.AddComponent<Image>();
-        panelImg.sprite = GetWhiteSprite();
-        panelImg.type = Image.Type.Simple;
-        panelImg.color = PanelBg;
+        if (!GuiArtLibrary.ApplyPanel(panelImg, GuiArtLibrary.DialogPanel))
+        {
+            panelImg.sprite = GetWhiteSprite();
+            panelImg.type = Image.Type.Simple;
+            panelImg.color = PanelBg;
+        }
 
         VerticalLayoutGroup vlg = panel.AddComponent<VerticalLayoutGroup>();
         vlg.padding = new RectOffset(40, 40, 36, 36);
@@ -234,18 +240,22 @@ public class PauseMenuUI : MonoBehaviour
         v.childForceExpandWidth = true;
         v.childForceExpandHeight = false;
 
-        ActionBtn(section.transform, "TIẾP TỤC", Resume, BtnPrimary, 78f, 32f);
-        ActionBtn(section.transform, "CỬA HÀNG", OpenMetaShop, BtnSecondary, 70f, 28f);
-        ActionBtn(section.transform, "VỀ MENU", QuitToScene, BtnDanger, 70f, 28f);
+        ActionBtn(section.transform, "TIẾP TỤC", Resume, GuiArtLibrary.ButtonPrimary, BtnPrimary, 78f, 32f);
+        ActionBtn(section.transform, "CỬA HÀNG", OpenMetaShop, GuiArtLibrary.ButtonSecondary, BtnSecondary, 70f, 28f);
+        ActionBtn(section.transform, "VỀ MENU", QuitToScene, GuiArtLibrary.ButtonDanger, BtnDanger, 70f, 28f);
     }
 
-    private void ActionBtn(Transform parent, string label, UnityEngine.Events.UnityAction action, Color bgColor, float height, float fontSize)
+    private void ActionBtn(Transform parent, string label, UnityEngine.Events.UnityAction action, Sprite guiSprite,
+        Color bgColor, float height, float fontSize)
     {
         GameObject go = Block(parent, height);
         Image bg = go.AddComponent<Image>();
-        bg.sprite = GetWhiteSprite();
-        bg.type = Image.Type.Simple;
-        bg.color = bgColor;
+        if (!GuiArtLibrary.ApplyButton(bg, guiSprite, bgColor))
+        {
+            bg.sprite = GetWhiteSprite();
+            bg.type = Image.Type.Simple;
+            bg.color = bgColor;
+        }
 
         Button btn = go.AddComponent<Button>();
         btn.targetGraphic = bg;

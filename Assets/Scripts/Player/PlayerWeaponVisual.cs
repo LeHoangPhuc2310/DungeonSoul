@@ -37,20 +37,79 @@ public class PlayerWeaponVisual : MonoBehaviour
         }
     }
 
+    private Coroutine swingRoutine;
+    private bool overlayEnabled = true;
+
+    public bool IsOverlayVisible => overlayEnabled && weaponSprite != null && weaponSprite.enabled;
+
+    public void SetOverlayEnabled(bool enabled)
+    {
+        overlayEnabled = enabled;
+        if (weaponPivot != null)
+            weaponPivot.gameObject.SetActive(enabled);
+        if (weaponSprite != null)
+            weaponSprite.enabled = enabled;
+    }
+
     private void Awake()
     {
         autoAttack = GetComponent<AutoAttack>();
-        bodySprite = GetComponent<SpriteRenderer>();
-        if (bodySprite == null)
-            bodySprite = GetComponentInChildren<SpriteRenderer>();
+        ResolveBodySprite();
         BuildWeaponHierarchy();
         autoAttack.OnProjectileFired += HandleFired;
+        autoAttack.OnMeleeSwing += HandleMeleeSwing;
+    }
+
+    private void ResolveBodySprite()
+    {
+        Transform heroBody = transform.Find("HeroBody");
+        if (heroBody != null)
+        {
+            SpriteRenderer heroSr = heroBody.GetComponent<SpriteRenderer>();
+            if (heroSr != null)
+            {
+                bodySprite = heroSr;
+                return;
+            }
+        }
+
+        bodySprite = GetComponentInChildren<SpriteRenderer>();
     }
 
     private void OnDestroy()
     {
         if (autoAttack != null)
+        {
             autoAttack.OnProjectileFired -= HandleFired;
+            autoAttack.OnMeleeSwing -= HandleMeleeSwing;
+        }
+    }
+
+    private void HandleMeleeSwing(Vector2 direction)
+    {
+        if (weaponPivot == null)
+            return;
+        if (swingRoutine != null)
+            StopCoroutine(swingRoutine);
+        swingRoutine = StartCoroutine(SwingArc());
+    }
+
+    private System.Collections.IEnumerator SwingArc()
+    {
+        // Vung vũ khí: xoay nhanh một cung quanh hướng nhắm rồi trả về.
+        float dur = 0.18f;
+        float t = 0f;
+        float baseAngle = aimAngle;
+        while (t < dur)
+        {
+            t += Time.deltaTime;
+            float k = t / dur;
+            // Cung từ -55° tới +55° rồi về.
+            float arc = Mathf.Sin(k * Mathf.PI) * 55f;
+            weaponPivot.localRotation = Quaternion.Euler(0f, 0f, baseAngle - 55f + arc + 55f);
+            yield return null;
+        }
+        swingRoutine = null;
     }
 
     private void Start()
@@ -60,7 +119,7 @@ public class PlayerWeaponVisual : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (weaponPivot == null)
+        if (!overlayEnabled || weaponPivot == null)
             return;
 
         bool facingLeft = bodySprite != null && bodySprite.flipX;
@@ -77,7 +136,9 @@ public class PlayerWeaponVisual : MonoBehaviour
 
         float targetAngle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
         aimAngle = Mathf.LerpAngle(aimAngle, targetAngle, aimSmooth * Time.deltaTime);
-        weaponPivot.localRotation = Quaternion.Euler(0f, 0f, aimAngle);
+        // Khi đang vung cận chiến, để SwingArc điều khiển góc — không ghi đè.
+        if (swingRoutine == null)
+            weaponPivot.localRotation = Quaternion.Euler(0f, 0f, aimAngle);
 
         if (weaponSprite != null)
             weaponSprite.flipY = aimDir.x < 0f && Mathf.Abs(aimDir.y) < 0.5f;
@@ -87,16 +148,34 @@ public class PlayerWeaponVisual : MonoBehaviour
 
     public void RefreshWeaponSprite(HeroType hero)
     {
-        RefreshWeaponSprite(ArtSpriteLibrary.GetWeaponSprite(hero), Color.white);
+        // Cầm tay: dùng sprite không nền; UI vẫn dùng Icons_background qua GetWeapon().
+        Sprite s = WeaponIconLibrary.GetHeroWeaponHeld(hero);
+        if (s != null)
+            RefreshWeaponSprite(s, Color.white);
+        else
+            RefreshWeaponSprite(ArtSpriteLibrary.GetWeaponSprite(hero), Color.white);
     }
 
     public void RefreshWeaponSprite(WeaponType type)
     {
-        RefreshWeaponSprite(ArtSpriteLibrary.GetWeaponSprite(type), ArtSpriteLibrary.GetWeaponTint(type));
+        Sprite s = WeaponIconLibrary.GetWeaponHeld(type);
+        if (s != null)
+            RefreshWeaponSprite(s, WeaponIconLibrary.Tint(type));
+        else
+            RefreshWeaponSprite(ArtSpriteLibrary.GetWeaponSprite(type), ArtSpriteLibrary.GetWeaponTint(type));
     }
 
     public void RefreshFromLoadout()
     {
+        PlayableCharacterEntry entry = PlayableCharacterCatalog.GetSelected();
+        if (entry != null && entry.HasAttackAnimation)
+        {
+            SetOverlayEnabled(false);
+            return;
+        }
+
+        SetOverlayEnabled(true);
+
         if (WeaponManager.Instance != null && WeaponManager.Instance.ActiveWeapons.Count > 0)
         {
             RefreshWeaponSprite(WeaponManager.Instance.ActiveWeapons[0].weaponType);
@@ -114,10 +193,34 @@ public class PlayerWeaponVisual : MonoBehaviour
         if (weaponSprite == null)
             return;
 
+        if (sprite == null)
+        {
+            Debug.LogWarning("[PlayerWeaponVisual] Không load được sprite vũ khí — kiểm tra Icons_no_background.");
+            return;
+        }
+
         weaponSprite.sprite = sprite;
         weaponSprite.color = tint;
-        weaponSprite.sortingOrder = 26;
+        weaponSprite.sortingOrder = 27;
+        ApplyGripPivotOffset(sprite);
         ApplyWeaponLocalScale();
+    }
+
+    /// <summary>Bù pivot góc dưới-trái của icon pack → tay cầm nằm đúng trên WeaponPivot.</summary>
+    private void ApplyGripPivotOffset(Sprite sprite)
+    {
+        if (weaponSprite == null || sprite == null)
+            return;
+
+        Vector2 normPivot = new Vector2(
+            sprite.pivot.x / Mathf.Max(1f, sprite.rect.width),
+            sprite.pivot.y / Mathf.Max(1f, sprite.rect.height));
+        Vector2 grip = new Vector2(0.12f, 0.38f);
+        Vector2 delta = grip - normPivot;
+        weaponSprite.transform.localPosition = new Vector3(
+            delta.x * sprite.bounds.size.x,
+            delta.y * sprite.bounds.size.y,
+            0f);
     }
 
     private void ApplyWeaponLocalScale()
@@ -128,7 +231,7 @@ public class PlayerWeaponVisual : MonoBehaviour
         // Vũ khí = ~45% chiều cao player (world units). Tính độc lập, bù cho parentScale
         // (vì vũ khí là con của player đã bị phóng to).
         float parentScale = Mathf.Max(0.01f, transform.lossyScale.x);
-        float targetWeaponWorldHeight = GameScale.PlayerHeight * 0.45f;
+        float targetWeaponWorldHeight = GameScale.PlayerHeight * 0.55f;
 
         float spriteHeight = Mathf.Max(0.02f, weaponSprite.sprite.bounds.size.y);
         // localScale cần để sprite cao đúng targetWeaponWorldHeight TRÊN MÀN (đã nhân parentScale).
@@ -184,8 +287,13 @@ public class PlayerWeaponVisual : MonoBehaviour
 
     private void BuildWeaponHierarchy()
     {
+        Transform attach = transform;
+        Transform heroBody = transform.Find("HeroBody");
+        if (heroBody != null)
+            attach = heroBody;
+
         GameObject pivotGo = new GameObject("WeaponPivot");
-        pivotGo.transform.SetParent(transform, false);
+        pivotGo.transform.SetParent(attach, false);
         weaponPivot = pivotGo.transform;
 
         GameObject weaponGo = new GameObject("Weapon");

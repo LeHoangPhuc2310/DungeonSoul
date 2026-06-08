@@ -7,9 +7,15 @@ using UnityEngine.SceneManagement;
 // It builds the entire menu UI at runtime — no prefabs or Inspector wiring needed.
 public class MainMenuManager : MonoBehaviour
 {
+    private GameObject settingsPanel;
+    private TMP_Text playLabel;
+    private TMP_Text settingsBtnLabel;
+    private TMP_Text quitLabel;
+
     private void Start()
     {
         Time.timeScale = 1f;
+        GameSettings.ApplyAudio();
         BuildUI();
     }
 
@@ -62,9 +68,112 @@ public class MainMenuManager : MonoBehaviour
         sub.color = new Color(0.7f, 0.7f, 0.8f, 1f);
         sub.raycastTarget = false;
 
-        // Việc chọn nhân vật chuyển sang CharacterSelectScene; MainMenu chỉ còn PLAY/QUIT.
-        MakeButton("PLAY", canvasGO.transform, new Vector2(0f, -60f), OnPlay);
-        MakeButton("QUIT", canvasGO.transform, new Vector2(0f, -160f), OnQuit);
+        // 3 nút chính.
+        playLabel = MakeButton(GameSettings.T("CHƠI", "PLAY"), canvasGO.transform, new Vector2(0f, -40f), OnPlay);
+        settingsBtnLabel = MakeButton(GameSettings.T("CÀI ĐẶT", "SETTINGS"), canvasGO.transform, new Vector2(0f, -140f), OnSettings);
+        quitLabel = MakeButton(GameSettings.T("THOÁT", "QUIT"), canvasGO.transform, new Vector2(0f, -240f), OnQuit);
+
+        BuildSettingsPanel(canvasGO.transform);
+    }
+
+    private void BuildSettingsPanel(Transform parent)
+    {
+        settingsPanel = MakeRect("SettingsPanel", parent, new Vector2(640f, 460f), Vector2.zero);
+        Image bg = settingsPanel.AddComponent<Image>();
+        bg.color = new Color(0.06f, 0.06f, 0.1f, 0.99f);
+        Outline outline = settingsPanel.AddComponent<Outline>();
+        outline.effectColor = new Color(0.4f, 0.36f, 0.25f, 1f);
+        outline.effectDistance = new Vector2(2f, -2f);
+        Transform p = settingsPanel.transform;
+
+        MakeText(GameSettings.T("CÀI ĐẶT", "SETTINGS"), p, new Vector2(0f, 185f), 40f,
+            new Color(0.96f, 0.82f, 0.28f, 1f), FontStyles.Bold);
+
+        // Toggle nhạc.
+        MakeText(GameSettings.T("Nhạc nền", "Music"), p, new Vector2(-150f, 95f), 26f, Color.white, FontStyles.Normal, TextAlignmentOptions.Left);
+        MakeToggleButton(p, new Vector2(180f, 95f), () => GameSettings.MusicOn, v => GameSettings.MusicOn = v);
+
+        // Toggle SFX.
+        MakeText(GameSettings.T("Hiệu ứng âm thanh", "Sound FX"), p, new Vector2(-150f, 30f), 26f, Color.white, FontStyles.Normal, TextAlignmentOptions.Left);
+        MakeToggleButton(p, new Vector2(180f, 30f), () => GameSettings.SfxOn, v => GameSettings.SfxOn = v);
+
+        // Ngôn ngữ.
+        MakeText(GameSettings.T("Ngôn ngữ", "Language"), p, new Vector2(-150f, -40f), 26f, Color.white, FontStyles.Normal, TextAlignmentOptions.Left);
+        MakeLanguageButton(p, new Vector2(180f, -40f));
+
+        // Đóng.
+        MakeButton(GameSettings.T("ĐÓNG", "CLOSE"), p, new Vector2(0f, -150f), () => settingsPanel.SetActive(false));
+
+        settingsPanel.SetActive(false);
+    }
+
+    private void MakeToggleButton(Transform parent, Vector2 pos, System.Func<bool> getter, System.Action<bool> setter)
+    {
+        GameObject go = MakeRect("Toggle", parent, new Vector2(140f, 56f), pos);
+        Image bg = go.AddComponent<Image>();
+        Button btn = go.AddComponent<Button>();
+        btn.targetGraphic = bg;
+
+        GameObject textGo = MakeRect("Text", go.transform, Vector2.zero, Vector2.zero);
+        RectTransform trt = textGo.GetComponent<RectTransform>();
+        trt.anchorMin = Vector2.zero; trt.anchorMax = Vector2.one; trt.offsetMin = trt.offsetMax = Vector2.zero;
+        TextMeshProUGUI tmp = textGo.AddComponent<TextMeshProUGUI>();
+        tmp.fontSize = 24f; tmp.fontStyle = FontStyles.Bold;
+        tmp.alignment = TextAlignmentOptions.Center;
+        tmp.raycastTarget = false;
+
+        void Refresh()
+        {
+            bool on = getter();
+            tmp.text = on ? GameSettings.T("BẬT", "ON") : GameSettings.T("TẮT", "OFF");
+            tmp.color = Color.white;
+            bg.color = on ? new Color(0.2f, 0.55f, 0.3f, 1f) : new Color(0.45f, 0.2f, 0.22f, 1f);
+        }
+
+        btn.onClick.AddListener(() => { setter(!getter()); Refresh(); });
+        Refresh();
+    }
+
+    private void MakeLanguageButton(Transform parent, Vector2 pos)
+    {
+        GameObject go = MakeRect("LangBtn", parent, new Vector2(200f, 56f), pos);
+        Image bg = go.AddComponent<Image>();
+        bg.color = new Color(0.2f, 0.32f, 0.5f, 1f);
+        Button btn = go.AddComponent<Button>();
+        btn.targetGraphic = bg;
+
+        GameObject textGo = MakeRect("Text", go.transform, Vector2.zero, Vector2.zero);
+        RectTransform trt = textGo.GetComponent<RectTransform>();
+        trt.anchorMin = Vector2.zero; trt.anchorMax = Vector2.one; trt.offsetMin = trt.offsetMax = Vector2.zero;
+        TextMeshProUGUI tmp = textGo.AddComponent<TextMeshProUGUI>();
+        tmp.fontSize = 24f; tmp.fontStyle = FontStyles.Bold;
+        tmp.alignment = TextAlignmentOptions.Center;
+        tmp.color = Color.white;
+        tmp.raycastTarget = false;
+
+        void Refresh() => tmp.text = GameSettings.Language == GameLanguage.English ? "English" : "Tiếng Việt";
+
+        btn.onClick.AddListener(() =>
+        {
+            GameSettings.Language = GameSettings.Language == GameLanguage.English
+                ? GameLanguage.Vietnamese : GameLanguage.English;
+            Refresh();
+            RefreshMenuLabels();
+        });
+        Refresh();
+    }
+
+    private void RefreshMenuLabels()
+    {
+        if (playLabel != null) playLabel.text = GameSettings.T("CHƠI", "PLAY");
+        if (settingsBtnLabel != null) settingsBtnLabel.text = GameSettings.T("CÀI ĐẶT", "SETTINGS");
+        if (quitLabel != null) quitLabel.text = GameSettings.T("THOÁT", "QUIT");
+    }
+
+    private void OnSettings()
+    {
+        if (settingsPanel != null)
+            settingsPanel.SetActive(!settingsPanel.activeSelf);
     }
 
     private void OnPlay()
@@ -100,14 +209,19 @@ public class MainMenuManager : MonoBehaviour
         return go;
     }
 
-    private static void MakeButton(string label, Transform parent, Vector2 pos, UnityEngine.Events.UnityAction action)
+    private static TMP_Text MakeButton(string label, Transform parent, Vector2 pos, UnityEngine.Events.UnityAction action)
     {
         GameObject go = MakeRect(label, parent, new Vector2(320f, 80f), pos);
         go.GetComponent<RectTransform>().anchorMin =
         go.GetComponent<RectTransform>().anchorMax = new Vector2(0.5f, 0.5f);
 
         Image bg = go.AddComponent<Image>();
-        bg.color = new Color(0.14f, 0.14f, 0.24f, 1f);
+        Sprite guiBtn = label.Contains("THOÁT", System.StringComparison.OrdinalIgnoreCase)
+            || label.Contains("QUIT", System.StringComparison.OrdinalIgnoreCase)
+            ? GuiArtLibrary.ButtonDanger
+            : GuiArtLibrary.ButtonPrimary;
+        if (!GuiArtLibrary.ApplyButton(bg, guiBtn, new Color(0.14f, 0.14f, 0.24f, 1f)))
+            bg.color = new Color(0.14f, 0.14f, 0.24f, 1f);
         Button btn = go.AddComponent<Button>();
         btn.targetGraphic = bg;
         ColorBlock cb = btn.colors;
@@ -124,5 +238,16 @@ public class MainMenuManager : MonoBehaviour
         tmp.text = label; tmp.fontSize = 32f; tmp.fontStyle = FontStyles.Bold;
         tmp.alignment = TextAlignmentOptions.Center;
         tmp.color = Color.white; tmp.raycastTarget = false;
+        return tmp;
+    }
+
+    private static TMP_Text MakeText(string text, Transform parent, Vector2 pos, float size, Color color,
+        FontStyles style, TextAlignmentOptions align = TextAlignmentOptions.Center)
+    {
+        GameObject go = MakeRect("Txt", parent, new Vector2(360f, 50f), pos);
+        TextMeshProUGUI tmp = go.AddComponent<TextMeshProUGUI>();
+        tmp.text = text; tmp.fontSize = size; tmp.fontStyle = style;
+        tmp.color = color; tmp.alignment = align; tmp.raycastTarget = false;
+        return tmp;
     }
 }

@@ -7,8 +7,8 @@ public class PlayerController : MonoBehaviour
     [Header("Di chuyển mượt")]
     [SerializeField] private float inputSmoothTime = 0.04f;
     [SerializeField] private float velocitySmoothTime = 0f;
-    [Tooltip("Bán kính va chạm = tỉ lệ × chiều cao nhân vật (world units).")]
-    [SerializeField] private float colliderRadiusRatio = 0.32f;
+    [Tooltip("Bán kính va chạm = tỉ lệ × nửa chiều ngang sprite (world). ~0.55–0.75.")]
+    [SerializeField] private float colliderRadiusRatio = 0.68f;
 
     public float MoveSpeed
     {
@@ -67,12 +67,13 @@ public class PlayerController : MonoBehaviour
         }
 
         FitBodyCollider();
+
+        if (GetComponent<PlayerWeaponVisual>() == null)
+            gameObject.AddComponent<PlayerWeaponVisual>();
     }
 
     private void Start()
     {
-        if (GetComponent<PlayerWeaponVisual>() == null)
-            gameObject.AddComponent<PlayerWeaponVisual>();
 
         HeroType hero = HeroRunStats.Instance != null
             ? HeroRunStats.Instance.SelectedHero
@@ -147,20 +148,7 @@ public class PlayerController : MonoBehaviour
         spriteRenderer.color = Color.white;
         spriteRenderer.sortingOrder = 25;
 
-        SimpleSpriteAnimator anim = bodyRenderer.GetComponent<SimpleSpriteAnimator>();
-        if (idle != null && idle.Length > 1)
-        {
-            if (anim == null)
-                anim = bodyRenderer.gameObject.AddComponent<SimpleSpriteAnimator>();
-            anim.enabled = true;
-            anim.SetMoveTarget(transform);
-            anim.SetAutoFlip(false);
-            anim.PlayWithWalk(idle, walk, 10f);
-        }
-        else if (anim != null)
-        {
-            anim.enabled = false;
-        }
+        SimpleSpriteAnimator anim = SetupBodyAnimator(idle, walk, entry.attack, entry.hurt, entry.death);
 
         CenterBodyOnTransform(sprite);
         float scale = GameScale.ScaleFor(sprite, GameScale.PlayerHeight);
@@ -168,9 +156,56 @@ public class PlayerController : MonoBehaviour
 
         FitBodyCollider();
 
+        AutoAttack atkP = GetComponent<AutoAttack>();
+        if (atkP != null)
+        {
+            HeroType selHero = entry.combatClass;
+            atkP.Style = WeaponStyleUtil.ForHero(selHero);
+            atkP.ConfigureBodyAnimator(anim, entry.HasAttackAnimation, entry.attackFps);
+        }
+
+        ApplyWeaponVisualPolicy(entry.HasAttackAnimation);
+    }
+
+    private SimpleSpriteAnimator SetupBodyAnimator(Sprite[] idle, Sprite[] walk, Sprite[] attack, Sprite[] hurt, Sprite[] death)
+    {
+        bool needsAnimator = (idle != null && idle.Length > 1)
+            || (walk != null && walk.Length > 1)
+            || (attack != null && attack.Length > 0);
+
+        SimpleSpriteAnimator anim = bodyRenderer.GetComponent<SimpleSpriteAnimator>();
+        if (!needsAnimator)
+        {
+            if (anim != null)
+                anim.enabled = false;
+            return null;
+        }
+
+        if (anim == null)
+            anim = bodyRenderer.gameObject.AddComponent<SimpleSpriteAnimator>();
+
+        anim.enabled = true;
+        anim.SetMoveTarget(transform);
+        anim.SetAutoFlip(false);
+        anim.PlayWithWalk(idle, walk, 10f);
+        anim.SetAttackFrames(attack);
+        anim.SetCombatFrames(hurt, death);
+        return anim;
+    }
+
+    private void ApplyWeaponVisualPolicy(bool useBodyAttackAnimation)
+    {
         PlayerWeaponVisual weaponVisual = GetComponent<PlayerWeaponVisual>();
-        if (weaponVisual != null)
+        if (weaponVisual == null)
+            return;
+
+        if (useBodyAttackAnimation)
+            weaponVisual.SetOverlayEnabled(false);
+        else
+        {
+            weaponVisual.SetOverlayEnabled(true);
             weaponVisual.RefreshFromLoadout();
+        }
     }
 
     public void ApplyHeroVisual(HeroType hero)
@@ -213,21 +248,48 @@ public class PlayerController : MonoBehaviour
 
         FitBodyCollider();
 
+        // Đặt kiểu tấn công theo lớp: Warrior = cận chiến, Ranger/Mage = tầm xa.
+        AutoAttack atk = GetComponent<AutoAttack>();
+        if (atk != null)
+            atk.Style = WeaponStyleUtil.ForHero(hero);
+
         PlayerWeaponVisual weaponVisual = GetComponent<PlayerWeaponVisual>();
         if (weaponVisual != null)
+        {
+            weaponVisual.SetOverlayEnabled(true);
             weaponVisual.RefreshFromLoadout();
+        }
     }
 
     private void FitBodyCollider()
     {
+        EnsureBodySpriteRenderer();
         float scale = Mathf.Max(0.01f, transform.lossyScale.x);
-        float worldRadius = GameScale.PlayerHeight * colliderRadiusRatio;
+
+        float worldRadius;
+        Vector2 offsetLocal = Vector2.zero;
+
+        if (spriteRenderer != null && spriteRenderer.sprite != null)
+        {
+            Bounds b = spriteRenderer.bounds;
+            float halfW = Mathf.Max(0.02f, b.extents.x);
+            float halfH = Mathf.Max(0.02f, b.extents.y);
+            worldRadius = halfW * colliderRadiusRatio;
+            worldRadius = Mathf.Clamp(worldRadius, halfW * 0.45f, halfH * 0.42f);
+
+            Vector2 centerDelta = (Vector2)(b.center - transform.position);
+            offsetLocal = centerDelta / scale;
+        }
+        else
+        {
+            worldRadius = GameScale.PlayerHeight * 0.26f;
+        }
 
         CircleCollider2D circle = GetComponent<CircleCollider2D>();
         if (circle != null)
         {
             circle.radius = worldRadius / scale;
-            circle.offset = Vector2.zero;
+            circle.offset = offsetLocal;
             ApplySlideMaterial(circle);
             return;
         }
@@ -236,11 +298,23 @@ public class PlayerController : MonoBehaviour
         if (capsule == null)
             return;
 
-        float worldHeight = GameScale.PlayerHeight * 0.85f;
+        float worldHeight = worldRadius * 2.2f;
         float worldWidth = worldRadius * 2f;
         capsule.size = new Vector2(worldWidth / scale, worldHeight / scale);
-        capsule.offset = Vector2.zero;
+        capsule.offset = offsetLocal;
         ApplySlideMaterial(capsule);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        CircleCollider2D circle = GetComponent<CircleCollider2D>();
+        if (circle == null)
+            return;
+
+        Gizmos.color = new Color(0.2f, 0.9f, 0.4f, 0.35f);
+        Vector3 worldCenter = transform.TransformPoint(circle.offset);
+        float worldR = circle.radius * Mathf.Max(0.01f, transform.lossyScale.x);
+        Gizmos.DrawWireSphere(worldCenter, worldR);
     }
 
     private static void ApplySlideMaterial(Collider2D col)

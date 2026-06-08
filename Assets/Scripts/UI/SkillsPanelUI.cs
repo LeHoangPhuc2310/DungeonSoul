@@ -16,6 +16,8 @@ public class SkillsPanelUI : MonoBehaviour
     private class SkillSlotView
     {
         public GameObject root;
+        public SkillData skill;
+        public HudHoverTooltip hover;
         public TMP_Text abbrevText;
         public TMP_Text stackText;
         public Image borderImage;
@@ -30,6 +32,7 @@ public class SkillsPanelUI : MonoBehaviour
         }
         Instance = this;
         EnsureLayout();
+        SkillTooltipUI.GetOrCreate(GetComponentInParent<Canvas>());
     }
 
     private void Start()
@@ -68,6 +71,8 @@ public class SkillsPanelUI : MonoBehaviour
 
         if (slots.TryGetValue(skill.skillType, out SkillSlotView existing))
         {
+            existing.skill = skill;
+            existing.hover?.ConfigureSkill(skill, stack);
             UpdateStackLabel(existing, stack);
             return;
         }
@@ -109,6 +114,13 @@ public class SkillsPanelUI : MonoBehaviour
         le.preferredHeight = slotSize;
         le.minWidth = slotSize;
         le.minHeight = slotSize;
+
+        Image hitArea = root.AddComponent<Image>();
+        hitArea.color = new Color(0f, 0f, 0f, 0.004f);
+        hitArea.raycastTarget = true;
+
+        HudHoverTooltip hover = root.AddComponent<HudHoverTooltip>();
+        hover.ConfigureSkill(skill, stack);
 
         GameObject borderGo = new GameObject("Border", typeof(RectTransform), typeof(Image));
         borderGo.transform.SetParent(root.transform, false);
@@ -165,6 +177,7 @@ public class SkillsPanelUI : MonoBehaviour
         abbrev.color = Color.white;
         abbrev.raycastTarget = false;
         abbrev.textWrappingMode = TextWrappingModes.NoWrap;
+        GameUIFont.ApplyHud(abbrev, 13f);
         abbrev.gameObject.SetActive(iconSprite == null);
 
         GameObject stackGo = new GameObject("Stack", typeof(RectTransform), typeof(TextMeshProUGUI));
@@ -181,9 +194,12 @@ public class SkillsPanelUI : MonoBehaviour
         stackTmp.alignment = TextAlignmentOptions.BottomRight;
         stackTmp.color = new Color(1f, 0.92f, 0.35f, 1f);
         stackTmp.raycastTarget = false;
+        GameUIFont.ApplyHud(stackTmp, 11f);
         var view = new SkillSlotView
         {
             root = root,
+            skill = skill,
+            hover = hover,
             abbrevText = abbrev,
             stackText = stackTmp,
             borderImage = borderImg

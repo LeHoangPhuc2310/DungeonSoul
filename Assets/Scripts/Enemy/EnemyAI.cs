@@ -8,7 +8,26 @@ using UnityEngine;
 public class EnemyAI : MonoBehaviour
 {
     [Header("Chase")]
-    [SerializeField] private float detectionRadius = 32f;
+    [Tooltip("0 = tự động theo camera. Giới hạn để quái không đuổi từ ngoài map.")]
+    [SerializeField] private float detectionRadius = 0f;
+
+    private float _resolvedDetectionRadius = -1f;
+
+    private float EffectiveDetectionRadius
+    {
+        get
+        {
+            if (_resolvedDetectionRadius < 0f)
+            {
+                float camRange = GameScale.GetCombatRangeFromCamera(1.12f);
+                _resolvedDetectionRadius = detectionRadius <= 0f
+                    ? camRange
+                    : Mathf.Min(detectionRadius, camRange * 1.25f);
+            }
+
+            return _resolvedDetectionRadius;
+        }
+    }
     [SerializeField] private float moveSpeed = 2.2f;
     [SerializeField] private float stopDistance = 0.48f;
     [SerializeField] private float meleeRange = 0.52f;
@@ -116,7 +135,7 @@ public class EnemyAI : MonoBehaviour
         Vector2 toPlayer = (Vector2)player.position - rb.position;
         float dist = toPlayer.magnitude;
 
-        if (dist > detectionRadius)
+        if (dist > EffectiveDetectionRadius)
             return;
 
         if (dist <= meleeRange && Time.time >= nextAttackTime)
@@ -287,7 +306,7 @@ public class EnemyAI : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = new Color(1f, 0.4f, 0.4f, 0.7f);
-        Gizmos.DrawWireSphere(transform.position, detectionRadius);
+        Gizmos.DrawWireSphere(transform.position, EffectiveDetectionRadius);
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, stopDistance);
         Gizmos.color = Color.red;

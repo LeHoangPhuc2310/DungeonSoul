@@ -202,6 +202,8 @@ public class PlayerSkillHandler : MonoBehaviour
         if (autoAttack != null && skillStats != null)
             autoAttack.CritChance = skillStats.CritChance;
 
+        PassiveItemManager.Instance?.ApplyAggregatedToPlayer();
+
         PlayerStatsUI.NotifyChanged();
     }
 

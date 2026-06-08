@@ -17,12 +17,19 @@ public class CharacterSelectUI : MonoBehaviour
     private static readonly Color Gold = new Color(0.96f, 0.82f, 0.28f, 1f);
     private static readonly Color SlotNormal = new Color(0.11f, 0.1f, 0.09f, 0.98f);
     private static readonly Color SlotSelected = new Color(0.28f, 0.22f, 0.08f, 1f);
+    private const float PortraitCardWidth = 118f;
+    private const float PortraitCardHeight = 188f;
+    private const int CardsPerRow = 5;
+    private const float GridContentWidth = 680f;
+    private static readonly Vector2 PortraitCell = new Vector2(PortraitCardWidth, PortraitCardHeight);
     private static readonly Color ClassWarrior = new Color(0.85f, 0.55f, 0.35f, 1f);
     private static readonly Color ClassRanger = new Color(0.45f, 0.85f, 0.55f, 1f);
     private static readonly Color ClassMage = new Color(0.65f, 0.55f, 0.95f, 1f);
 
     private PlayableCharacterEntry selected;
     private readonly Dictionary<string, Image> slotFrames = new Dictionary<string, Image>();
+    private readonly Dictionary<string, HeroType> slotHeroClasses = new Dictionary<string, HeroType>();
+    private Image detailPanelBg;
     private Image detailPreview;
     private TMP_Text detailName;
     private TMP_Text detailClass;
@@ -77,49 +84,57 @@ public class CharacterSelectUI : MonoBehaviour
             new Vector2(0f, 405f), new Vector2(1200f, 40f), TextAlignmentOptions.Center);
         GameUIFont.Apply(hint, GameUIFont.Role.HeaderHint);
 
-        GameObject body = MakeRect("Body", canvasGO.transform, new Vector2(1780f, 820f), new Vector2(0f, -20f));
+        GameObject body = MakeRect("Body", canvasGO.transform, Vector2.zero, Vector2.zero);
+        RectTransform bodyRt = body.GetComponent<RectTransform>();
+        bodyRt.anchorMin = Vector2.zero;
+        bodyRt.anchorMax = Vector2.one;
+        bodyRt.offsetMin = new Vector2(24f, 24f);
+        bodyRt.offsetMax = new Vector2(-24f, -130f);
         BuildGridPanel(body.transform);
         BuildDetailPanel(body.transform);
-
-        confirmButton = MakeButton("Chọn", canvasGO.transform, new Vector2(640f, -430f),
-            new Vector2(280f, 72f), OnConfirm, new Color(0.72f, 0.12f, 0.12f, 1f));
     }
 
     private void BuildGridPanel(Transform parent)
     {
-        GameObject panel = MakeRect("GridPanel", parent, new Vector2(1080f, 760f), new Vector2(-350f, 0f));
-        Image panelBg = panel.AddComponent<Image>();
-        panelBg.color = new Color(0f, 0f, 0f, 0.28f);
-        Outline outline = panel.AddComponent<Outline>();
-        outline.effectColor = new Color(0.35f, 0.3f, 0.2f, 0.8f);
-        outline.effectDistance = new Vector2(2f, -2f);
+        GameObject panel = MakeRect("GridPanel", parent, Vector2.zero, Vector2.zero);
+        RectTransform panelRt = panel.GetComponent<RectTransform>();
+        panelRt.anchorMin = Vector2.zero;
+        panelRt.anchorMax = new Vector2(0.58f, 1f);
+        panelRt.offsetMin = Vector2.zero;
+        panelRt.offsetMax = new Vector2(-8f, 0f);
 
-        GameObject scrollGo = MakeRect("Scroll", panel.transform, new Vector2(1040f, 720f), Vector2.zero);
+        Image panelBg = panel.AddComponent<Image>();
+        panelBg.color = new Color(0f, 0f, 0f, 0.32f);
+
+        GameObject scrollGo = MakeRect("Scroll", panel.transform, Vector2.zero, Vector2.zero);
+        Stretch(scrollGo.GetComponent<RectTransform>());
         ScrollRect scroll = scrollGo.AddComponent<ScrollRect>();
         scroll.horizontal = false;
         scroll.vertical = true;
         scroll.movementType = ScrollRect.MovementType.Clamped;
-        scroll.scrollSensitivity = 40f;
+        scroll.scrollSensitivity = 36f;
 
         GameObject viewport = MakeRect("Viewport", scrollGo.transform, Vector2.zero, Vector2.zero);
         Stretch(viewport.GetComponent<RectTransform>());
         viewport.AddComponent<RectMask2D>();
         scroll.viewport = viewport.GetComponent<RectTransform>();
 
-        GameObject content = MakeRect("Content", viewport.transform, new Vector2(980f, 900f), Vector2.zero);
+        GameObject content = MakeRect("Content", viewport.transform, new Vector2(0f, 100f), Vector2.zero);
         RectTransform contentRt = content.GetComponent<RectTransform>();
         contentRt.anchorMin = new Vector2(0f, 1f);
         contentRt.anchorMax = new Vector2(1f, 1f);
         contentRt.pivot = new Vector2(0.5f, 1f);
+        contentRt.sizeDelta = new Vector2(0f, 100f);
         scroll.content = contentRt;
 
-        GridLayoutGroup grid = content.AddComponent<GridLayoutGroup>();
-        grid.cellSize = new Vector2(128f, 138f);
-        grid.spacing = new Vector2(10f, 10f);
-        grid.padding = new RectOffset(14, 14, 10, 10);
-        grid.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
-        grid.constraintCount = 5;
-        grid.childAlignment = TextAnchor.UpperCenter;
+        VerticalLayoutGroup contentLayout = content.AddComponent<VerticalLayoutGroup>();
+        contentLayout.spacing = 16f;
+        contentLayout.padding = new RectOffset(8, 8, 8, 16);
+        contentLayout.childAlignment = TextAnchor.UpperLeft;
+        contentLayout.childControlWidth = true;
+        contentLayout.childControlHeight = true;
+        contentLayout.childForceExpandWidth = true;
+        contentLayout.childForceExpandHeight = false;
 
         ContentSizeFitter fitter = content.AddComponent<ContentSizeFitter>();
         fitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
@@ -131,82 +146,144 @@ public class CharacterSelectUI : MonoBehaviour
             return;
         }
 
-        AddClassSection(content.transform, "CHIẾN BINH", HeroType.Warrior, ClassWarrior);
-        AddClassSection(content.transform, "CUNG THỦ", HeroType.Ranger, ClassRanger);
-        AddClassSection(content.transform, "PHÁP SƯ", HeroType.Mage, ClassMage);
+        BuildClassSection(content.transform, "CHIẾN BINH", HeroType.Warrior, ClassWarrior);
+        BuildClassSection(content.transform, "CUNG THỦ", HeroType.Ranger, ClassRanger);
+        BuildClassSection(content.transform, "PHÁP SƯ", HeroType.Mage, ClassMage);
     }
 
-    private void AddClassSection(Transform content, string label, HeroType heroClass, Color accent)
+    private void BuildClassSection(Transform content, string label, HeroType heroClass, Color accent)
     {
-        MakeSectionLabel(content, label, accent);
+        GameObject section = MakeRect("Section_" + label, content, new Vector2(GridContentWidth, 10f), Vector2.zero);
+        LayoutElement sectionLe = section.AddComponent<LayoutElement>();
+        sectionLe.minWidth = GridContentWidth;
+        sectionLe.preferredWidth = GridContentWidth;
+
+        VerticalLayoutGroup sectionLayout = section.AddComponent<VerticalLayoutGroup>();
+        sectionLayout.spacing = 8f;
+        sectionLayout.padding = new RectOffset(0, 0, 0, 0);
+        sectionLayout.childAlignment = TextAnchor.UpperLeft;
+        sectionLayout.childControlWidth = true;
+        sectionLayout.childControlHeight = true;
+        sectionLayout.childForceExpandWidth = true;
+        sectionLayout.childForceExpandHeight = false;
+
+        ContentSizeFitter sectionFitter = section.AddComponent<ContentSizeFitter>();
+        sectionFitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
+
+        MakeSectionLabel(section.transform, label, accent);
+
+        GameObject cardsRoot = MakeRect("Cards", section.transform, new Vector2(GridContentWidth, 10f), Vector2.zero);
+        LayoutElement cardsLe = cardsRoot.AddComponent<LayoutElement>();
+        cardsLe.minWidth = GridContentWidth;
+        cardsLe.preferredWidth = GridContentWidth;
+
+        GridLayoutGroup grid = cardsRoot.AddComponent<GridLayoutGroup>();
+        grid.cellSize = PortraitCell;
+        grid.spacing = new Vector2(10f, 10f);
+        grid.padding = new RectOffset(0, 0, 0, 0);
+        grid.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
+        grid.constraintCount = CardsPerRow;
+        grid.childAlignment = TextAnchor.UpperLeft;
+
+        ContentSizeFitter cardsFitter = cardsRoot.AddComponent<ContentSizeFitter>();
+        cardsFitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
+
         foreach (PlayableCharacterEntry entry in PlayableCharacterCatalog.ByClass(heroClass))
         {
             if (entry != null && entry.PreviewSprite != null)
-                BuildCharacterSlot(content, entry);
+                BuildCharacterSlot(cardsRoot.transform, entry);
         }
     }
 
     private void BuildDetailPanel(Transform parent)
     {
-        GameObject panel = MakeRect("DetailPanel", parent, new Vector2(620f, 760f), new Vector2(530f, 0f));
-        Image panelBg = panel.AddComponent<Image>();
-        panelBg.color = PanelBg;
-        Outline outline = panel.AddComponent<Outline>();
-        outline.effectColor = Gold;
-        outline.effectDistance = new Vector2(3f, -3f);
+        GameObject panel = MakeRect("DetailPanel", parent, Vector2.zero, Vector2.zero);
+        RectTransform panelRt = panel.GetComponent<RectTransform>();
+        panelRt.anchorMin = new Vector2(0.58f, 0f);
+        panelRt.anchorMax = Vector2.one;
+        panelRt.offsetMin = new Vector2(8f, 0f);
+        panelRt.offsetMax = Vector2.zero;
 
-        detailName = MakeLabel("Tên nhân vật", panel.transform, new Vector2(0f, 320f),
-            new Vector2(560f, 56f), TextAlignmentOptions.Center);
+        detailPanelBg = panel.AddComponent<Image>();
+        detailPanelBg.color = new Color(0.05f, 0.06f, 0.1f, 0.88f);
+
+        VerticalLayoutGroup layout = panel.AddComponent<VerticalLayoutGroup>();
+        layout.padding = new RectOffset(24, 24, 20, 20);
+        layout.spacing = 12f;
+        layout.childAlignment = TextAnchor.UpperCenter;
+        layout.childControlWidth = true;
+        layout.childControlHeight = true;
+        layout.childForceExpandWidth = true;
+        layout.childForceExpandHeight = false;
+
+        detailName = MakeLayoutLabel(panel.transform, "Tên nhân vật", 40f, TextAlignmentOptions.Center);
         GameUIFont.Apply(detailName, GameUIFont.Role.CardTitle);
 
-        detailClass = MakeLabel("Lớp", panel.transform, new Vector2(0f, 268f),
-            new Vector2(560f, 32f), TextAlignmentOptions.Center);
+        detailClass = MakeLayoutLabel(panel.transform, "Lớp", 26f, TextAlignmentOptions.Center);
         GameUIFont.Apply(detailClass, GameUIFont.Role.CardRarity);
 
-        GameObject previewGo = MakeRect("Preview", panel.transform, new Vector2(240f, 240f), new Vector2(0f, 130f));
+        GameObject previewFrameGo = MakeRect("PreviewFrame", panel.transform, new Vector2(200f, 300f), Vector2.zero);
+        LayoutElement previewLe = previewFrameGo.AddComponent<LayoutElement>();
+        previewLe.preferredWidth = 200f;
+        previewLe.preferredHeight = 300f;
+        previewLe.minHeight = 300f;
+        Image previewFrame = previewFrameGo.AddComponent<Image>();
+        previewFrame.raycastTarget = false;
+        previewFrame.color = Color.white;
+
+        GameObject previewGo = MakeRect("Preview", previewFrameGo.transform, new Vector2(130f, 130f), new Vector2(0f, 16f));
         detailPreview = previewGo.AddComponent<Image>();
         detailPreview.preserveAspect = true;
         detailPreview.raycastTarget = false;
 
-        detailBonus = MakeLabel("", panel.transform, new Vector2(0f, -30f),
-            new Vector2(540f, 130f), TextAlignmentOptions.TopLeft);
+        detailBonus = MakeLayoutLabel(panel.transform, "", 150f, TextAlignmentOptions.TopLeft);
         GameUIFont.Apply(detailBonus, GameUIFont.Role.CardBody);
+        detailBonus.fontSize = 15f;
 
-        detailAbilityTitle = MakeLabel("", panel.transform, new Vector2(0f, -130f),
-            new Vector2(540f, 36f), TextAlignmentOptions.TopLeft);
+        detailAbilityTitle = MakeLayoutLabel(panel.transform, "", 30f, TextAlignmentOptions.TopLeft);
         GameUIFont.Apply(detailAbilityTitle, GameUIFont.Role.CardTitle);
-        detailAbilityTitle.fontSize = 22f;
+        detailAbilityTitle.fontSize = 20f;
         detailAbilityTitle.alignment = TextAlignmentOptions.TopLeft;
 
-        detailAbilityBody = MakeLabel("", panel.transform, new Vector2(0f, -250f),
-            new Vector2(540f, 120f), TextAlignmentOptions.TopLeft);
+        detailAbilityBody = MakeLayoutLabel(panel.transform, "", 72f, TextAlignmentOptions.TopLeft);
         GameUIFont.Apply(detailAbilityBody, GameUIFont.Role.CardBody);
+        detailAbilityBody.fontSize = 14f;
+
+        confirmButton = MakeLayoutButton("Tiếp theo →", panel.transform, 64f, OnConfirm);
     }
 
     private void BuildCharacterSlot(Transform parent, PlayableCharacterEntry entry)
     {
         string key = entry.id;
         PlayableCharacterEntry captured = entry;
-        Image frame = BuildSlotFrame(parent, key, () => SelectCharacter(captured));
+        Image frame = BuildSlotFrame(parent, key, entry.combatClass, () => SelectCharacter(captured));
 
-        GameObject iconGo = MakeRect("Icon", frame.transform, new Vector2(84f, 84f), new Vector2(0f, 14f));
+        GameObject iconGo = MakeRect("Icon", frame.transform, new Vector2(72f, 72f), new Vector2(0f, 18f));
         Image icon = iconGo.AddComponent<Image>();
         icon.preserveAspect = true;
         icon.raycastTarget = false;
         icon.sprite = entry.PreviewSprite;
 
-        TMP_Text name = MakeLabel(entry.displayName, frame.transform, new Vector2(0f, -48f),
-            new Vector2(118f, 36f), TextAlignmentOptions.Center);
+        TMP_Text name = MakeLabel(entry.displayName, frame.transform, new Vector2(0f, -72f),
+            new Vector2(100f, 30f), TextAlignmentOptions.Center);
         GameUIFont.Apply(name, GameUIFont.Role.CardStack);
-        name.fontSize = 12f;
-        name.enableWordWrapping = true;
+        name.fontSize = 11f;
+        name.textWrappingMode = TextWrappingModes.NoWrap;
+        name.overflowMode = TextOverflowModes.Ellipsis;
     }
 
-    private Image BuildSlotFrame(Transform parent, string key, UnityEngine.Events.UnityAction onClick)
+    private Image BuildSlotFrame(Transform parent, string key, HeroType heroClass, UnityEngine.Events.UnityAction onClick)
     {
-        GameObject slot = MakeRect("Slot_" + key, parent, new Vector2(128f, 138f), Vector2.zero);
+        GameObject slot = MakeRect("Slot_" + key, parent, PortraitCell, Vector2.zero);
+        LayoutElement slotLe = slot.AddComponent<LayoutElement>();
+        slotLe.preferredWidth = PortraitCardWidth;
+        slotLe.preferredHeight = PortraitCardHeight;
+        slotLe.minWidth = PortraitCardWidth;
+        slotLe.minHeight = PortraitCardHeight;
+
         Image frame = slot.AddComponent<Image>();
-        frame.color = SlotNormal;
+        slotHeroClasses[key] = heroClass;
+        ApplyCharacterSlotFrame(frame, heroClass, false);
         Button btn = slot.AddComponent<Button>();
         btn.targetGraphic = frame;
         btn.onClick.AddListener(onClick);
@@ -214,19 +291,44 @@ public class CharacterSelectUI : MonoBehaviour
         return frame;
     }
 
+    private static void ApplyCharacterSlotFrame(Image frame, HeroType heroClass, bool selected)
+    {
+        Sprite sprite = selected ? GuiArtLibrary.CardSelected : GuiArtLibrary.CardFrameForHero(heroClass);
+        Color fallback = selected ? SlotSelected : SlotNormal;
+        GuiArtLibrary.ApplyCardFrame(frame, sprite, fallback, selected);
+        if (!selected)
+            frame.color = new Color(0.78f, 0.78f, 0.82f, 1f);
+    }
+
     private void MakeSectionLabel(Transform parent, string text, Color? accent = null)
     {
-        GameObject go = MakeRect("Section", parent, new Vector2(960f, 34f), Vector2.zero);
+        GameObject go = MakeRect("SectionLabel", parent, new Vector2(GridContentWidth, 26f), Vector2.zero);
         LayoutElement le = go.AddComponent<LayoutElement>();
-        le.minHeight = 34f;
-        le.preferredHeight = 34f;
-        le.minWidth = 960f;
+        le.minHeight = 26f;
+        le.preferredHeight = 26f;
+        le.minWidth = GridContentWidth;
         TextMeshProUGUI tmp = go.AddComponent<TextMeshProUGUI>();
         GameUIFont.Apply(tmp, GameUIFont.Role.CardRarity);
         tmp.text = text;
-        tmp.fontSize = 15f;
+        tmp.fontSize = 16f;
+        tmp.fontStyle = FontStyles.Bold;
         tmp.color = accent ?? new Color(0.75f, 0.7f, 0.6f, 1f);
-        tmp.alignment = TextAlignmentOptions.Center;
+        tmp.alignment = TextAlignmentOptions.MidlineLeft;
+    }
+
+    private static TMP_Text MakeLayoutLabel(Transform parent, string text, float height, TextAlignmentOptions align)
+    {
+        GameObject go = MakeRect("Lbl", parent, new Vector2(500f, height), Vector2.zero);
+        LayoutElement le = go.AddComponent<LayoutElement>();
+        le.minHeight = height;
+        le.preferredHeight = height;
+        le.minWidth = 480f;
+        TextMeshProUGUI tmp = go.AddComponent<TextMeshProUGUI>();
+        tmp.text = text;
+        tmp.alignment = align;
+        tmp.raycastTarget = false;
+        tmp.richText = true;
+        return tmp;
     }
 
     private void SelectCharacter(PlayableCharacterEntry entry, bool playSound = true)
@@ -246,7 +348,13 @@ public class CharacterSelectUI : MonoBehaviour
     private void RefreshSlotHighlights()
     {
         foreach (KeyValuePair<string, Image> kv in slotFrames)
-            kv.Value.color = selected != null && kv.Key == selected.id ? SlotSelected : SlotNormal;
+        {
+            bool isSelected = selected != null && kv.Key == selected.id;
+            HeroType heroClass = slotHeroClasses.TryGetValue(kv.Key, out HeroType cls) ? cls : HeroType.Warrior;
+            ApplyCharacterSlotFrame(kv.Value, heroClass, isSelected);
+        }
+
+
     }
 
     private void RefreshDetail(PlayableCharacterEntry entry)
@@ -259,6 +367,14 @@ public class CharacterSelectUI : MonoBehaviour
             HeroType.Mage => ClassMage,
             _ => ClassWarrior
         };
+
+        Transform previewFrame = detailPreview != null ? detailPreview.transform.parent : null;
+        if (previewFrame != null)
+        {
+            Image frameImg = previewFrame.GetComponent<Image>();
+            if (frameImg != null)
+                GuiArtLibrary.ApplyCardFrame(frameImg, GuiArtLibrary.CardSelected, SlotSelected, true);
+        }
 
         detailBonus.text = "<color=#73FF73>Bonus</color>\n"
             + "<color=#73FF73>" + entry.bonusPositive + "</color>\n"
@@ -319,12 +435,13 @@ public class CharacterSelectUI : MonoBehaviour
         RunEntryGate.ConfirmCharacterSelect();
         Time.timeScale = 1f;
 
-        if (gameSceneBuildIndex > 0 && gameSceneBuildIndex < SceneManager.sceneCountInBuildSettings)
-            SceneManager.LoadScene(gameSceneBuildIndex);
+        // Flow mới: sang màn chọn vũ khí trước khi vào game.
+        if (Application.CanStreamedLevelBeLoaded("WeaponSelectScene"))
+            SceneManager.LoadScene("WeaponSelectScene");
         else if (!string.IsNullOrEmpty(gameSceneName) && Application.CanStreamedLevelBeLoaded(gameSceneName))
-            SceneManager.LoadScene(gameSceneName);
+            SceneManager.LoadScene(gameSceneName); // dự phòng: vào thẳng game
         else
-            Debug.LogError("[CharacterSelectUI] Không tìm thấy SampleScene trong Build Settings.");
+            Debug.LogError("[CharacterSelectUI] Không tìm thấy WeaponSelectScene/SampleScene trong Build Settings.");
     }
 
     private static GameObject MakeRect(string name, Transform parent, Vector2 size, Vector2 pos)
@@ -357,20 +474,31 @@ public class CharacterSelectUI : MonoBehaviour
         return tmp;
     }
 
-    private static Button MakeButton(string label, Transform parent, Vector2 pos, Vector2 size,
-        UnityEngine.Events.UnityAction action, Color bgColor)
+    private static Button MakeLayoutButton(string label, Transform parent, float height,
+        UnityEngine.Events.UnityAction action)
     {
-        GameObject go = MakeRect(label, parent, size, pos);
+        GameObject go = new GameObject(label, typeof(RectTransform));
+        go.transform.SetParent(parent, false);
+        LayoutElement le = go.AddComponent<LayoutElement>();
+        le.preferredHeight = height;
+        le.minHeight = height;
+        le.preferredWidth = 280f;
+
         Image bg = go.AddComponent<Image>();
-        bg.color = bgColor;
+        if (!GuiArtLibrary.ApplyButton(bg, GuiArtLibrary.ButtonPrimary, new Color(0.2f, 0.6f, 0.32f, 1f)))
+            bg.color = new Color(0.2f, 0.6f, 0.32f, 1f);
+
         Button btn = go.AddComponent<Button>();
         btn.targetGraphic = bg;
         btn.onClick.AddListener(action);
 
-        GameObject textGo = MakeRect("Text", go.transform, Vector2.zero, Vector2.zero);
+        GameObject textGo = new GameObject("Text", typeof(RectTransform));
+        textGo.transform.SetParent(go.transform, false);
         Stretch(textGo.GetComponent<RectTransform>());
         TextMeshProUGUI tmp = textGo.AddComponent<TextMeshProUGUI>();
         tmp.text = label;
+        tmp.alignment = TextAlignmentOptions.Center;
+        tmp.raycastTarget = false;
         GameUIFont.Apply(tmp, GameUIFont.Role.Button);
         return btn;
     }

@@ -22,6 +22,33 @@ public static class GameScale
     public const float ProjectileSize = 0.2f; // đạn (nhỏ gọn — giảm cho bớt to)
     public const float ChestHeight = 1.6f;    // rương (chiều cao world — to & rõ, ~2/3 chiều cao người chơi)
 
+    /// <summary>
+    /// Bán kính combat đồng bộ camera — đảm bảo chỉ đánh/spawn quái trong vùng nhìn thấy.
+    /// ortho 2.85 → ~5.0–5.3 unit (tùy tỉ lệ màn hình).
+    /// </summary>
+    public static float GetCombatRangeFromCamera(float beyondScreenFactor = 1.05f)
+    {
+        Camera cam = Camera.main;
+        if (cam == null || !cam.orthographic)
+            return 4.8f;
+
+        float halfH = cam.orthographicSize;
+        float halfW = halfH * cam.aspect;
+        return Mathf.Max(halfW, halfH) * beyondScreenFactor;
+    }
+
+    /// <summary>Khoảng spawn quái tối đa từ player — trong khung hình.</summary>
+    public static float GetSpawnMaxDistanceFromPlayer(float screenFill = 0.9f)
+    {
+        Camera cam = Camera.main;
+        if (cam == null || !cam.orthographic)
+            return 4.2f;
+
+        float halfH = cam.orthographicSize;
+        float halfW = halfH * cam.aspect;
+        return Mathf.Max(halfW, halfH) * screenFill;
+    }
+
     /// <summary>Chiều cao quái theo archetype.</summary>
     public static float EnemyHeightFor(EnemyArchetype a)
     {

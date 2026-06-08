@@ -269,7 +269,8 @@ public class MetaShopUI : MonoBehaviour
         // Panel chính — cao, vừa khít chiều dọc màn hình.
         GameObject panel = MakeRect("Panel", canvasGO.transform, new Vector2(720f, 980f), Vector2.zero);
         Image panelImg = panel.AddComponent<Image>();
-        panelImg.color = new Color(0.08f, 0.09f, 0.15f, 0.99f);
+        if (!GuiArtLibrary.ApplyPanel(panelImg, GuiArtLibrary.MenuPanel))
+            panelImg.color = new Color(0.08f, 0.09f, 0.15f, 0.99f);
 
         // Header bar — tiêu đề trên, số xu ngay dưới, không đè nhau.
         MakeLabel("META SHOP", panel.transform, new Vector2(0f, 430f), 40f, FontStyles.Bold, new Color(0.96f, 0.82f, 0.28f, 1f));
@@ -444,12 +445,12 @@ public class MetaShopUI : MonoBehaviour
             return cachedRowFont;
         rowFontResolved = true;
 
-        // Ưu tiên font mặc định TMP (LiberationSans — đủ glyph tiếng Việt).
+        // Fallback khi pixel font chưa sẵn sàng.
         cachedRowFont = TMP_Settings.defaultFontAsset;
         if (cachedRowFont == null)
             cachedRowFont = Resources.Load<TMP_FontAsset>("Fonts & Materials/LiberationSans SDF");
         if (cachedRowFont == null)
-            cachedRowFont = GameUIFont.Serif;
+            cachedRowFont = GameUIFont.UI;
 
         return cachedRowFont;
     }
@@ -501,8 +502,8 @@ public class MetaShopUI : MonoBehaviour
         GameObject go = MakeRect("Lbl", parent, new Vector2(640f, 48f), pos);
         TextMeshProUGUI tmp = go.AddComponent<TextMeshProUGUI>();
         // Áp font trước, rồi ghi đè style/size/color theo tham số gọi (Apply ép giá trị của Role).
-        if (GameUIFont.Serif != null)
-            tmp.font = GameUIFont.Serif;
+        if (GameUIFont.UI != null)
+            GameUIFont.ApplyHud(tmp, tmp.fontSize > 0.1f ? tmp.fontSize : 13f);
         tmp.text = text;
         tmp.fontSize = size;
         tmp.fontSizeMin = size;
@@ -521,7 +522,11 @@ public class MetaShopUI : MonoBehaviour
     {
         GameObject go = MakeRect(label, parent, new Vector2(120f, 44f), pos);
         Image bg = go.AddComponent<Image>();
-        bg.color = new Color(0.18f, 0.2f, 0.32f, 1f);
+        Sprite guiBtn = label.Contains("Đóng", System.StringComparison.OrdinalIgnoreCase)
+            ? GuiArtLibrary.ButtonDanger
+            : GuiArtLibrary.ButtonSecondary;
+        if (!GuiArtLibrary.ApplyButton(bg, guiBtn, new Color(0.18f, 0.2f, 0.32f, 1f)))
+            bg.color = new Color(0.18f, 0.2f, 0.32f, 1f);
         Button btn = go.AddComponent<Button>();
         btn.targetGraphic = bg;
         btn.onClick.AddListener(action);

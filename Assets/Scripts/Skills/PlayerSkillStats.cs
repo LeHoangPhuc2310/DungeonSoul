@@ -15,6 +15,7 @@ public class PlayerSkillStats : MonoBehaviour
     public float SlowAuraRadius { get; private set; }
     public float SlowAuraStrength { get; private set; }
     public float CoinDropBonus { get; private set; } = 1f;
+    public float PassiveBurnChance { get; private set; }
 
     public void Recalculate(PlayerSkillHandler handler)
     {
@@ -29,6 +30,7 @@ public class PlayerSkillStats : MonoBehaviour
         SlowAuraRadius = 0f;
         SlowAuraStrength = 0f;
         CoinDropBonus = 1f;
+        PassiveBurnChance = 0f;
 
         if (handler == null)
             return;
@@ -76,5 +78,14 @@ public class PlayerSkillStats : MonoBehaviour
         int coinMagnet = handler.GetStack(SkillType.CoinMagnet);
         if (coinMagnet > 0)
             CoinDropBonus = 1f + (coinMagnet == 1 ? 0.1f : coinMagnet == 2 ? 0.15f : 0.2f);
+
+        // Cộng thêm từ passive item
+        PassiveItemManager passives = PassiveItemManager.Instance;
+        if (passives != null)
+        {
+            CritChance = Mathf.Clamp01(CritChance + passives.CritChanceBonus);
+            LifeStealPercent += passives.LifeStealBonus;
+            PassiveBurnChance = passives.BurnChanceBonus;
+        }
     }
 }

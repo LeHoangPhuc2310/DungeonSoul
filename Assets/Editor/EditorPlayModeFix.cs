@@ -2,7 +2,7 @@
 using UnityEditor;
 using UnityEditor.SceneManagement;
 
-/// <summary>Clears stuck UI and forces Play to start at Character Select.</summary>
+/// <summary>Clears stuck UI and forces Play to start at the first menu scene.</summary>
 [InitializeOnLoad]
 internal static class EditorPlayModeFix
 {
@@ -14,7 +14,7 @@ internal static class EditorPlayModeFix
     private static void OnDelayCall()
     {
         EditorUtility.ClearProgressBar();
-        CharacterSelectSceneSetup.EnsurePlayStartsAtCharacterSelect();
+        CharacterSelectSceneSetup.SetPlayModeStartScene();
     }
 }
 #endif

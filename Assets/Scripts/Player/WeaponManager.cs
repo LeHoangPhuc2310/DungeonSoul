@@ -19,7 +19,7 @@ public class WeaponManager : MonoBehaviour
     public static WeaponManager Instance { get; private set; }
 
     [SerializeField] private int maxWeapons = 6;
-    [SerializeField] private float defaultRange = 9f;
+    [SerializeField] private float defaultRange = 5f;
     [SerializeField] private float defaultCooldown = 1f;
     [SerializeField] private float defaultDamage = 10f;
 
@@ -32,8 +32,23 @@ public class WeaponManager : MonoBehaviour
     public float CooldownMultiplier { get; set; } = 1f;
     public float AreaMultiplier { get; set; } = 1f;
     public float ProjectileSpeedMultiplier { get; set; } = 1f;
+    public int ExtraProjectileCount { get; set; }
     public IReadOnlyList<WeaponSlot> ActiveWeapons => activeWeapons;
     public int UnlockedSlots => unlockedSlots;
+
+    public bool HasWeapon(WeaponType type) => FindSlot(type) != null;
+
+    public int GetWeaponCopies(WeaponType type)
+    {
+        WeaponSlot slot = FindSlot(type);
+        return slot != null ? slot.copies : 0;
+    }
+
+    public bool IsWeaponEvolved(WeaponType type)
+    {
+        WeaponSlot slot = FindSlot(type);
+        return slot != null && slot.evolved;
+    }
 
     private void Awake()
     {
@@ -48,7 +63,8 @@ public class WeaponManager : MonoBehaviour
 
     private void Start()
     {
-        AddOrUpgradeWeapon(WeaponType.IronBow);
+        // Vũ khí khởi đầu = lựa chọn từ màn WeaponSelect (mặc định IronBow).
+        AddOrUpgradeWeapon(RunLoadout.StartingWeapon);
         if (ExpSystem.Instance != null)
             ExpSystem.Instance.OnLevelUpEvent += HandleLevelUp;
 
@@ -71,7 +87,7 @@ public class WeaponManager : MonoBehaviour
             if (slot.cooldown > 0f)
                 continue;
 
-            Transform target = FindNearestEnemy(slot.baseRange);
+            Transform target = FindNearestEnemy(GetEffectiveWeaponRange(slot.baseRange));
             FireWeapon(slot, target);
             slot.cooldown = Mathf.Max(0.08f, slot.baseCooldown * Mathf.Max(0.2f, CooldownMultiplier));
         }
@@ -162,15 +178,48 @@ public class WeaponManager : MonoBehaviour
         if (!WeaponEvolution.Instance.TryGetEvolution(slot.weaponType, slot.copies, out evolvedType))
             return;
 
+        ApplyEvolutionToSlot(slot, evolvedType, 1.8f, 0.8f, 1.2f);
+    }
+
+    /// <summary>Tiến hóa khi vũ khí đạt cấp 8 + passive liên kết max cấp.</summary>
+    public bool TryEvolveWithPassive(PassiveItemData passive)
+    {
+        if (passive == null || !passive.HasEvolveCombo)
+            return false;
+
+        WeaponSlot slot = FindSlot(passive.evolveTargetWeapon);
+        if (slot == null || slot.evolved || slot.copies < 8)
+            return false;
+
+        PassivePick pick = PassiveItemManager.Instance != null
+            ? PassiveItemManager.Instance.FindPick(passive)
+            : null;
+        if (pick == null || !pick.IsMaxed)
+            return false;
+
+        float dmgMul = passive.evolveDamageMultiplier > 0f ? passive.evolveDamageMultiplier : 1f;
+        ApplyEvolutionToSlot(slot, passive.evolveResultWeapon, dmgMul, 0.85f, 1.15f);
+        UpdateHud();
+        RefreshPlayerWeaponVisual();
+        return true;
+    }
+
+    private void ApplyEvolutionToSlot(WeaponSlot slot, WeaponType evolvedType, float damageMul, float cooldownMul, float rangeMul)
+    {
         slot.weaponType = evolvedType;
         slot.evolved = true;
         slot.copies = 1;
-        slot.baseDamage *= 1.8f;
-        slot.baseCooldown *= 0.8f;
-        slot.baseRange *= 1.2f;
+        slot.baseDamage *= damageMul;
+        slot.baseCooldown *= cooldownMul;
+        slot.baseRange *= rangeMul;
+        ApplyWeaponPreset(slot, evolvedType);
 
-        WeaponEvolution.Instance.PlayEvolutionFx(transform, evolvedType);
+        if (WeaponEvolution.Instance != null)
+            WeaponEvolution.Instance.PlayEvolutionFx(transform, evolvedType);
     }
+
+    private static float GetEffectiveWeaponRange(float range) =>
+        Mathf.Min(range, GameScale.GetCombatRangeFromCamera(1.08f));
 
     private Transform FindNearestEnemy(float range)
     {
@@ -222,8 +271,12 @@ public class WeaponManager : MonoBehaviour
                 DamageAllEnemies(damage * 0.9f, 0f);
                 break;
             default:
-                DamageTarget(target, damage);
+            {
+                int shots = 1 + Mathf.Max(0, ExtraProjectileCount);
+                for (int s = 0; s < shots; s++)
+                    DamageTarget(target, damage);
                 break;
+            }
         }
     }
 
@@ -234,6 +287,8 @@ public class WeaponManager : MonoBehaviour
             return;
 
         health.TakeDamage(damage);
+        SkillBehaviors behaviors = GetComponent<SkillBehaviors>();
+        behaviors?.OnPlayerDealtDamage(damage, health);
         if (HUDManager.Instance != null)
             HUDManager.Instance.RegisterDamageDealt(damage);
     }
@@ -333,11 +388,7 @@ public class WeaponManager : MonoBehaviour
         if (hud == null)
             return;
 
-        List<WeaponType> weapons = new List<WeaponType>(activeWeapons.Count);
-        for (int i = 0; i < activeWeapons.Count; i++)
-            weapons.Add(activeWeapons[i].weaponType);
-
-        hud.UpdateWeaponSlots(weapons, unlockedSlots);
+        hud.UpdateWeaponSlots(activeWeapons, unlockedSlots);
     }
 
     private static void RefreshPlayerWeaponVisual()

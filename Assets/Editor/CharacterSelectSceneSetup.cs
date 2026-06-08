@@ -1,5 +1,6 @@
-// DungeonSoul — CharacterSelectSceneSetup.cs — Tạo CharacterSelectScene và cấu hình Build Settings.
-// Menu: DungeonSoul → Setup → Tạo Character Select Scene
+// DungeonSoul — CharacterSelectSceneSetup.cs — Tạo đủ flow scene + Build Settings.
+// Flow: MainMenu (0) → CharacterSelect (1) → WeaponSelect (2) → SampleScene (3).
+// Menu: DungeonSoul → Setup → Tạo Đầy Đủ Flow Màn Hình
 
 using System.Collections.Generic;
 using UnityEditor;
@@ -10,78 +11,74 @@ using UnityEngine.SceneManagement;
 public static class CharacterSelectSceneSetup
 {
     private const string SceneFolder = "Assets/Scenes";
-    private const string SelectScenePath = "Assets/Scenes/CharacterSelectScene.unity";
-    private const string SampleScenePath = "Assets/Scenes/SampleScene.unity";
     private const string MainMenuScenePath = "Assets/Scenes/MainMenu.unity";
-    [MenuItem("DungeonSoul/Setup/Tạo Character Select Scene")]
-    public static void CreateCharacterSelectScene()
+    private const string SelectScenePath = "Assets/Scenes/CharacterSelectScene.unity";
+    private const string WeaponScenePath = "Assets/Scenes/WeaponSelectScene.unity";
+    private const string SampleScenePath = "Assets/Scenes/SampleScene.unity";
+
+    [MenuItem("DungeonSoul/Setup/Tạo Đầy Đủ Flow Màn Hình")]
+    public static void CreateFullFlow()
     {
         if (!AssetDatabase.IsValidFolder(SceneFolder))
             AssetDatabase.CreateFolder("Assets", "Scenes");
 
-        // Nếu scene đã tồn tại thì chỉ cập nhật Build Settings.
-        if (!System.IO.File.Exists(SelectScenePath))
-        {
-            UnityEngine.SceneManagement.Scene scene = EditorSceneManager.NewScene(
-                NewSceneSetup.EmptyScene, NewSceneMode.Single);
-
-            // Camera tối giản cho scene UI.
-            GameObject camGo = new GameObject("Main Camera");
-            Camera cam = camGo.AddComponent<Camera>();
-            cam.clearFlags = CameraClearFlags.SolidColor;
-            cam.backgroundColor = new Color(0.05f, 0.06f, 0.11f, 1f);
-            cam.orthographic = true;
-            camGo.tag = "MainCamera";
-
-            // GameObject mang CharacterSelectUI — script tự dựng UI lúc Play.
-            GameObject uiGo = new GameObject("CharacterSelectUI");
-            uiGo.AddComponent<CharacterSelectUI>();
-
-            EditorSceneManager.SaveScene(scene, SelectScenePath);
-            Debug.Log("[CharacterSelectSceneSetup] Đã tạo scene: " + SelectScenePath);
-        }
-        else
-        {
-            Debug.Log("[CharacterSelectSceneSetup] Scene đã tồn tại, chỉ cập nhật Build Settings.");
-        }
+        // Tạo các scene UI còn thiếu (Additive — không đóng scene đang mở).
+        EnsureUiScene(MainMenuScenePath, "MainMenuManager", typeof(MainMenuManager));
+        EnsureUiScene(SelectScenePath, "CharacterSelectUI", typeof(CharacterSelectUI));
+        EnsureUiScene(WeaponScenePath, "WeaponSelectUI", typeof(WeaponSelectUI));
 
         ConfigureBuildSettings();
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
-
         SetPlayModeStartScene();
 
-        EditorUtility.DisplayDialog("Character Select",
-            "Đã tạo/cập nhật CharacterSelectScene và Build Settings.\n\n" +
-            "Mỗi lần bấm Play sẽ bắt đầu từ màn chọn nhân vật (dù đang mở scene nào).\n\n" +
-            "Thứ tự scene:\n" + DescribeBuildOrder(), "OK");
+        EditorUtility.DisplayDialog("DungeonSoul Flow",
+            "Đã tạo/cập nhật flow màn hình:\n\n" + DescribeBuildOrder() +
+            "\nBấm Play sẽ bắt đầu từ MainMenu.", "OK");
     }
 
-    /// <summary>
-    /// Đặt scene khởi đầu khi bấm Play trong Editor = scene đầu Build Settings
-    /// (MainMenu nếu có, không thì CharacterSelectScene). Nhờ vậy luôn vào đúng flow
-    /// dù đang mở SampleScene.
-    /// </summary>
-    [MenuItem("DungeonSoul/Setup/Đặt Play bắt đầu từ màn đầu")]
+    // Giữ menu cũ để tương thích.
+    [MenuItem("DungeonSoul/Setup/Tạo Character Select Scene")]
+    public static void CreateCharacterSelectScene() => CreateFullFlow();
+
+    private static void EnsureUiScene(string path, string goName, System.Type uiComponent)
+    {
+        if (System.IO.File.Exists(path))
+            return;
+
+        UnityEngine.SceneManagement.Scene scene = EditorSceneManager.NewScene(
+            NewSceneSetup.EmptyScene, NewSceneMode.Additive);
+
+        GameObject camGo = new GameObject("Main Camera");
+        Camera cam = camGo.AddComponent<Camera>();
+        cam.clearFlags = CameraClearFlags.SolidColor;
+        cam.backgroundColor = new Color(0.04f, 0.04f, 0.08f, 1f);
+        cam.orthographic = true;
+        camGo.tag = "MainCamera";
+        EditorSceneManager.MoveGameObjectToScene(camGo, scene);
+
+        GameObject uiGo = new GameObject(goName);
+        uiGo.AddComponent(uiComponent);
+        EditorSceneManager.MoveGameObjectToScene(uiGo, scene);
+
+        EditorSceneManager.SaveScene(scene, path);
+        EditorSceneManager.CloseScene(scene, true);
+        Debug.Log("[FlowSetup] Đã tạo scene: " + path);
+    }
+
+    [MenuItem("DungeonSoul/Setup/Đặt Play bắt đầu từ MainMenu")]
     public static void SetPlayModeStartScene()
     {
-        EnsurePlayStartsAtCharacterSelect();
-    }
-
-    /// <summary>Luôn bắt đầu Play từ CharacterSelectScene (bắt buộc chọn nhân vật).</summary>
-    public static void EnsurePlayStartsAtCharacterSelect()
-    {
-        if (!System.IO.File.Exists(SelectScenePath))
+        // Bắt đầu Play từ MainMenu nếu có, không thì CharacterSelect.
+        string startPath = System.IO.File.Exists(MainMenuScenePath) ? MainMenuScenePath : SelectScenePath;
+        if (!System.IO.File.Exists(startPath))
             return;
 
-        SceneAsset startScene = AssetDatabase.LoadAssetAtPath<SceneAsset>(SelectScenePath);
-        if (startScene == null)
-            return;
-
-        if (EditorSceneManager.playModeStartScene != startScene)
+        SceneAsset startScene = AssetDatabase.LoadAssetAtPath<SceneAsset>(startPath);
+        if (startScene != null && EditorSceneManager.playModeStartScene != startScene)
         {
             EditorSceneManager.playModeStartScene = startScene;
-            Debug.Log("[CharacterSelectSceneSetup] Play Mode Start Scene = " + SelectScenePath);
+            Debug.Log("[FlowSetup] Play Mode Start Scene = " + startPath);
         }
     }
 
@@ -89,44 +86,29 @@ public static class CharacterSelectSceneSetup
     public static void ClearPlayModeStartScene()
     {
         EditorSceneManager.playModeStartScene = null;
-        Debug.Log("[CharacterSelectSceneSetup] Đã bỏ Play Mode Start Scene — Play sẽ chạy scene đang mở.");
-    }
-
-    /// <summary>
-    /// Đảm bảo thứ tự build: [MainMenu nếu có] → CharacterSelectScene → SampleScene.
-    /// </summary>
-    private static void ConfigureBuildSettingsIfNeeded()
-    {
-        List<EditorBuildSettingsScene> ordered = BuildOrderedScenes();
-        if (BuildSettingsMatch(ordered))
-            return;
-
-        EditorBuildSettings.scenes = ordered.ToArray();
-        Debug.Log("[CharacterSelectSceneSetup] Build order: " + DescribeBuildOrder());
+        Debug.Log("[FlowSetup] Đã bỏ Play Mode Start Scene.");
     }
 
     private static void ConfigureBuildSettings()
     {
         EditorBuildSettings.scenes = BuildOrderedScenes().ToArray();
-        Debug.Log("[CharacterSelectSceneSetup] Build order: " + DescribeBuildOrder());
+        Debug.Log("[FlowSetup] Build order: " + DescribeBuildOrder());
     }
 
+    /// <summary>Thứ tự: MainMenu → CharacterSelect → WeaponSelect → SampleScene.</summary>
     private static List<EditorBuildSettingsScene> BuildOrderedScenes()
     {
         List<EditorBuildSettingsScene> ordered = new List<EditorBuildSettingsScene>();
+        AddIfExists(ordered, MainMenuScenePath);
+        AddIfExists(ordered, SelectScenePath);
+        AddIfExists(ordered, WeaponScenePath);
+        AddIfExists(ordered, SampleScenePath);
 
-        if (System.IO.File.Exists(MainMenuScenePath))
-            ordered.Add(new EditorBuildSettingsScene(MainMenuScenePath, true));
-
-        ordered.Add(new EditorBuildSettingsScene(SelectScenePath, true));
-
-        if (System.IO.File.Exists(SampleScenePath))
-            ordered.Add(new EditorBuildSettingsScene(SampleScenePath, true));
-
+        // Giữ scene khác đã có trong build (không trùng).
         foreach (EditorBuildSettingsScene existing in EditorBuildSettings.scenes)
         {
             if (existing.path == MainMenuScenePath || existing.path == SelectScenePath
-                || existing.path == SampleScenePath)
+                || existing.path == WeaponScenePath || existing.path == SampleScenePath)
                 continue;
             ordered.Add(existing);
         }
@@ -134,19 +116,10 @@ public static class CharacterSelectSceneSetup
         return ordered;
     }
 
-    private static bool BuildSettingsMatch(List<EditorBuildSettingsScene> desired)
+    private static void AddIfExists(List<EditorBuildSettingsScene> list, string path)
     {
-        EditorBuildSettingsScene[] current = EditorBuildSettings.scenes;
-        if (current.Length != desired.Count)
-            return false;
-
-        for (int i = 0; i < current.Length; i++)
-        {
-            if (current[i].path != desired[i].path || current[i].enabled != desired[i].enabled)
-                return false;
-        }
-
-        return true;
+        if (System.IO.File.Exists(path))
+            list.Add(new EditorBuildSettingsScene(path, true));
     }
 
     private static string DescribeBuildOrder()

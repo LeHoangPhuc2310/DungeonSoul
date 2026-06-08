@@ -8,6 +8,13 @@ public class PlayableCharacterEntry
     public HeroType combatClass = HeroType.Warrior;
     public Sprite[] idle;
     public Sprite[] walk;
+    public Sprite[] attack;
+    public Sprite[] hurt;
+    public Sprite[] death;
+    [Tooltip("FPS cho animation Attack01/02 từ Tiny RPG pack.")]
+    public float attackFps = 12f;
+
+    public bool HasAttackAnimation => attack != null && attack.Length > 0;
 
     [Header("Stats")]
     public float hp = 120f;

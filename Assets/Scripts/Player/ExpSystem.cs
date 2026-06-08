@@ -41,6 +41,9 @@ public class ExpSystem : MonoBehaviour
         if (amount <= 0f)
             return;
 
+        if (PassiveItemManager.Instance != null)
+            amount *= PassiveItemManager.Instance.ExpGainMultiplier;
+
         currentExp += amount;
         ProcessLevelUps();
         RaiseExpChanged();

@@ -1,4 +1,4 @@
-// DungeonSoul — FontSwitcher.cs — Swap legacy UI.Text to TMP + apply GameUIFont.
+// DungeonSoul — FontSwitcher.cs — Swap legacy UI.Text to TMP + apply readable GameUIFont.
 
 using TMPro;
 using UnityEngine;
@@ -37,8 +37,7 @@ public class FontSwitcher : MonoBehaviour
         {
             if (tmps[i] == null)
                 continue;
-            if (tmps[i].font == null || tmps[i].font == TMP_Settings.defaultFontAsset)
-                tmps[i].font = GameUIFont.Serif;
+            GameUIFont.ApplyUiFont(tmps[i]);
             tmps[i].outlineWidth = 0f;
         }
     }
@@ -61,7 +60,7 @@ public class FontSwitcher : MonoBehaviour
         tmp.text = content;
         tmp.fontSize = size;
         tmp.color = color;
-        tmp.font = GameUIFont.Serif;
+        GameUIFont.ApplyUiFont(tmp);
         tmp.outlineWidth = 0f;
         tmp.alignment = AnchorToTmp(anchor);
         tmp.fontStyle = style == FontStyle.Bold ? FontStyles.Bold : FontStyles.Normal;

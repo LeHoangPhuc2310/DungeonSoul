@@ -12,7 +12,8 @@ public static class GameSetupWizard
         BossAssetCreator.CreateAll();
         ArtSpriteSetBuilder.BuildArtSpriteSet();
         DungeonPackSetupEditor.BuildSilent();
-        if (!GameUIFontBuilder.TryCreateTimesNewRomanAsset(out string fontMessage))
+        GuiSetupEditor.BuildSilent();
+        if (!GameUIFontBuilder.TryCreatePixelGameAsset(out string fontMessage))
             Debug.LogWarning("[GameSetupWizard] Font: " + fontMessage);
 
         ConfigureMobilePlayerSettings();
@@ -22,10 +23,11 @@ public static class GameSetupWizard
 
         EditorUtility.DisplayDialog(
             "Dungeon Soul",
-            "Đã tạo Boss/Meta/Font assets và gắn GameRunBootstrap.\n\n" +
+            "Đã tạo Boss/Meta/Pixel font và gắn GameRunBootstrap.\n\n" +
             "Trong scene game:\n" +
             "• GameManagers → Run Mode: Wave Arena (mặc định) hoặc Procedural Dungeon\n" +
-            "• 2D Pixel Dungeon Pack → HUD/rương/xu/hero\n" +
+            "• 2D Pixel Dungeon Pack → rương/xu/hero\n" +
+            "• Art/GUI → thanh HP/EXP, nút, khung skill\n" +
             "• Map Kenney đã vẽ (menu Map → Paint Kenney Demo Map)\n" +
             "• Gán Floor/Wall Tilemap cho DungeonGenerator nếu dùng dungeon\n" +
             "• Build Android/iOS: Portrait, IL2CPP",

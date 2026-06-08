@@ -139,12 +139,11 @@ public class PlayerStatsUI : MonoBehaviour
         if (statsText == null)
             return;
 
-        statsText.fontSize = fontSize;
+        GameUIFont.ApplyHud(statsText, fontSize);
         statsText.fontSizeMin = fontSize;
         statsText.fontSizeMax = fontSize;
         statsText.enableAutoSizing = false;
-        statsText.outlineWidth = 0.22f;
-        statsText.outlineColor = new Color(0f, 0f, 0f, 0.9f);
+        statsText.outlineWidth = 0f;
 
         RectTransform rt = statsText.rectTransform;
         rt.anchorMin = new Vector2(0f, 1f);

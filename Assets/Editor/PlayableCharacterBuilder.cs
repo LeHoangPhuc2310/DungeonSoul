@@ -137,7 +137,17 @@ public static class PlayableCharacterBuilder
             abilityName = def.ability,
             abilityDescription = def.abilityDesc,
             idle = LoadTinyRpgSheet(def.folder, "Idle"),
-            walk = FirstNonEmpty(LoadTinyRpgSheet(def.folder, "Walk"), LoadTinyRpgSheet(def.folder, "Idle"))
+            walk = FirstNonEmpty(
+                LoadTinyRpgSheet(def.folder, "Walk"),
+                LoadTinyRpgSheet(def.folder, "Walk01"),
+                LoadTinyRpgSheet(def.folder, "Walk02"),
+                LoadTinyRpgSheet(def.folder, "Idle")),
+            attack = LoadAttackSheets(def.folder),
+            hurt = LoadTinyRpgSheet(def.folder, "Hurt"),
+            death = FirstNonEmpty(
+                LoadTinyRpgSheet(def.folder, "Death"),
+                LoadTinyRpgSheet(def.folder, "DEATH")),
+            attackFps = 12f
         };
 
         if (entry.PreviewSprite == null)
@@ -221,6 +231,30 @@ public static class PlayableCharacterBuilder
         }
 
         return list.OrderBy(s => s.name).ToArray();
+    }
+
+    private static Sprite[] LoadAttackSheets(string characterName)
+    {
+        return FirstNonEmpty(
+            Merge(
+                LoadTinyRpgSheet(characterName, "Attack01"),
+                LoadTinyRpgSheet(characterName, "Attack02"),
+                LoadTinyRpgSheet(characterName, "Attack03"),
+                LoadTinyRpgSheet(characterName, "Attack3"),
+                LoadTinyRpgSheet(characterName, "Attack")));
+    }
+
+    private static Sprite[] Merge(params Sprite[][] arrays)
+    {
+        List<Sprite> merged = new List<Sprite>();
+        for (int i = 0; i < arrays.Length; i++)
+        {
+            if (arrays[i] == null)
+                continue;
+            merged.AddRange(arrays[i]);
+        }
+
+        return merged.Count > 0 ? merged.ToArray() : Array.Empty<Sprite>();
     }
 
     private static Sprite[] FirstNonEmpty(params Sprite[][] arrays)
