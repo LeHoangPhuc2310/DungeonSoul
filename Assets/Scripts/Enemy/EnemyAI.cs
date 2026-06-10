@@ -245,7 +245,7 @@ public class EnemyAI : MonoBehaviour
         if (dist <= reach)
         {
             playerHealth.TakeDamage(contactDamage);
-            AudioManager.PlayCombatHit();
+            AudioManager.PlayEnemyAttack();
         }
     }
 

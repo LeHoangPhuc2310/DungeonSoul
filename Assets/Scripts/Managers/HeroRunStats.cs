@@ -35,7 +35,6 @@ public class HeroRunStats : MonoBehaviour
     private void Start()
     {
         ApplyToPlayer();
-        MetaProgression.Instance?.ApplyToPlayer();
         Invoke(nameof(ApplyToPlayer), 0.15f);
     }
 
@@ -86,7 +85,10 @@ public class HeroRunStats : MonoBehaviour
 
             AutoAttack atk = player.GetComponent<AutoAttack>();
             if (atk != null)
+            {
+                atk.Style = WeaponStyleUtil.ForHero(entry.combatClass);
                 atk.ApplyHeroBaseStats(entry.damage, entry.fireRate, entry.crit);
+            }
 
             PlayerController moveCtrl = player.GetComponent<PlayerController>();
             if (moveCtrl != null)
@@ -108,7 +110,10 @@ public class HeroRunStats : MonoBehaviour
 
             AutoAttack atk = player.GetComponent<AutoAttack>();
             if (atk != null)
+            {
+                atk.Style = WeaponStyleUtil.ForHero(SelectedHero);
                 atk.ApplyHeroBaseStats(dmg, fireRate, crit);
+            }
 
             PlayerController moveCtrl = player.GetComponent<PlayerController>();
             if (moveCtrl != null)

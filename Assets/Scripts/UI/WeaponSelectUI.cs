@@ -25,11 +25,13 @@ public class WeaponSelectUI : MonoBehaviour
     private void Start()
     {
         Time.timeScale = 1f;
+        AudioManager.EnsureExists();
         if (VirtualJoystick.Instance != null)
             Destroy(VirtualJoystick.Instance.gameObject);
 
         BuildUI();
-        selected = RunLoadout.StartingWeapon;
+        HeroType heroClass = WeaponStyleUtil.GetSelectedHeroClass();
+        selected = RunLoadout.GetValidStartingWeapon(heroClass, RunLoadout.StartingWeapon);
         SelectWeapon(selected, playSound: false);
     }
 
@@ -58,8 +60,8 @@ public class WeaponSelectUI : MonoBehaviour
             new Vector2(0f, 372f), new Vector2(1200f, 40f), TextAlignmentOptions.Center);
         GameUIFont.Apply(hint, GameUIFont.Role.HeaderHint);
 
-        // Hàng 5 vũ khí.
-        WeaponType[] choices = RunLoadout.StartingChoices;
+        HeroType heroClass = WeaponStyleUtil.GetSelectedHeroClass();
+        WeaponType[] choices = RunLoadout.GetStartingChoices(heroClass);
         const float cell = 200f;
         const float gap = 30f;
         float totalW = choices.Length * cell + (choices.Length - 1) * gap;

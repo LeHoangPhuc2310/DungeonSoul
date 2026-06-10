@@ -8,11 +8,7 @@ public class LootDrop : MonoBehaviour
 
     public void TryDrop(Vector3 position)
     {
-        float chance = dropChance;
-        if (MetaRunModifiers.Instance != null)
-            chance = Mathf.Clamp01(chance + MetaRunModifiers.Instance.LootDropBonus);
-
-        if (Random.value > chance)
+        if (Random.value > dropChance)
             return;
 
         GameObject coin = new GameObject("CoinPickup");

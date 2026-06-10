@@ -43,7 +43,6 @@ public class GameRunBootstrap : MonoBehaviour
 
     private void Start()
     {
-        MetaRunModifiers.Instance?.ApplyAtRunStart();
         if (runMode == GameRunMode.ProceduralDungeon)
         {
             DungeonRunController dungeon = GetComponent<DungeonRunController>();
@@ -95,9 +94,6 @@ public class GameRunBootstrap : MonoBehaviour
     private static void EnsureManagers()
     {
         Ensure<RunManager>("RunManager");
-        Ensure<MetaProgression>("MetaProgression");
-        Ensure<MetaShopManager>("MetaShopManager");
-        Ensure<MetaRunModifiers>("MetaRunModifiers");
         Ensure<BossSpawnManager>("BossSpawnManager");
         Ensure<AchievementManager>("AchievementManager");
         Ensure<HeroRunStats>("HeroRunStats");

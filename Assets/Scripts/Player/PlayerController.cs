@@ -149,6 +149,23 @@ public class PlayerController : MonoBehaviour
         spriteRenderer.sortingOrder = 25;
 
         SimpleSpriteAnimator anim = SetupBodyAnimator(idle, walk, entry.attack, entry.hurt, entry.death);
+        if (anim != null && entry.HasFourDirections)
+        {
+            anim.SetFourWaySprites(
+                idle, walk,
+                entry.idleBack, entry.walkBack,
+                entry.idleSideRight, entry.walkSideRight,
+                entry.idleSideLeft, entry.walkSideLeft);
+
+            if (entry.HasFourWayAttack)
+            {
+                anim.SetFourWayAttackFrames(
+                    entry.attack, entry.attackBack,
+                    entry.attackSideRight, entry.attackSideLeft);
+            }
+
+            anim.SetStabilizeVisualCenter(true);
+        }
 
         CenterBodyOnTransform(sprite);
         float scale = GameScale.ScaleFor(sprite, GameScale.PlayerHeight);
@@ -364,7 +381,13 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (smoothedInput.x != 0f && spriteRenderer != null)
+        SimpleSpriteAnimator bodyAnim = bodyRenderer != null
+            ? bodyRenderer.GetComponent<SimpleSpriteAnimator>()
+            : null;
+
+        if (bodyAnim != null && bodyAnim.UsesFourDirections)
+            bodyAnim.SetFacingFromInput(smoothedInput);
+        else if (smoothedInput.x != 0f && spriteRenderer != null)
             spriteRenderer.flipX = smoothedInput.x < 0f;
 
         if (smoothedInput.sqrMagnitude < 0.001f)

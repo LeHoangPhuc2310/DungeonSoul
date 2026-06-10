@@ -276,7 +276,12 @@ public class AutoAttack : MonoBehaviour
             ? GetFacingDirection()
             : AimDirectionToward(target.position);
         LastAimDirection = dir;
-        FaceAttackDirection(dir);
+
+        if (attackStyle != AttackStyle.Melee)
+            ApplyAttackFacing(dir);
+
+        if (attackStyle == AttackStyle.Melee)
+            AudioManager.PlaySwordSwing();
 
         bool started = bodyAnimator.PlayAttack(
             ExecuteBodyAttackHit,
@@ -304,6 +309,9 @@ public class AutoAttack : MonoBehaviour
 
     private Vector2 GetFacingDirection()
     {
+        if (bodyAnimator != null && bodyAnimator.UsesFourDirections)
+            return bodyAnimator.GetFacingDirection();
+
         CacheBodySpriteRenderer();
         if (bodySpriteRenderer != null)
             return bodySpriteRenderer.flipX ? Vector2.left : Vector2.right;
@@ -312,6 +320,11 @@ public class AutoAttack : MonoBehaviour
             return LastAimDirection.x < 0f ? Vector2.left : Vector2.right;
 
         return Vector2.right;
+    }
+
+    private void ApplyAttackFacing(Vector2 dir)
+    {
+        FaceAttackDirection(dir);
     }
 
     private Vector2 AimDirectionToward(Vector3 worldPosition)
@@ -334,7 +347,8 @@ public class AutoAttack : MonoBehaviour
 
         Vector2 facing = GetFacingDirection();
         Vector2 toNorm = toEnemy / Mathf.Sqrt(distSqr);
-        return Vector2.Dot(toNorm, facing) >= 0.2f;
+        float arcThreshold = bodyAnimator != null && bodyAnimator.UsesFourDirections ? 0.45f : 0.2f;
+        return Vector2.Dot(toNorm, facing) >= arcThreshold;
     }
 
     private Transform FindNearestEnemyInFacingArc()
@@ -395,7 +409,10 @@ public class AutoAttack : MonoBehaviour
         LastAimDirection = facing;
 
         if (playWeaponFx)
+        {
+            AudioManager.PlaySwordSwing();
             OnMeleeSwing?.Invoke(facing);
+        }
 
         HealthSystem hs = target.GetComponent<HealthSystem>();
         if (hs == null)
@@ -460,6 +477,9 @@ public class AutoAttack : MonoBehaviour
 
     private void FireProjectile(Vector3 targetPosition, bool playWeaponFx = true)
     {
+        if (attackStyle == AttackStyle.Melee)
+            return;
+
         Vector3 origin = FireOrigin;
         Vector2 direction = (targetPosition - origin);
         if (direction.sqrMagnitude < 0.0001f)

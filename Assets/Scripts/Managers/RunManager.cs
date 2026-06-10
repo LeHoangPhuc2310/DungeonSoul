@@ -21,11 +21,6 @@ public class RunManager : MonoBehaviour
         Instance = this;
     }
 
-    private void Start()
-    {
-        MetaProgression.Instance?.ApplyToPlayer();
-    }
-
     public void AddRunCoins(int amount)
     {
         if (!runActive || amount <= 0)
@@ -61,14 +56,15 @@ public class RunManager : MonoBehaviour
 
     public void EndRun(bool victory)
     {
-        bool firstEnd = runActive;
         runActive = false;
 
-        if (firstEnd)
-            MetaProgression.Instance?.AddMetaCoins(runCoins);
-
         string result = victory ? "VICTORY" : "GAME OVER";
-        Debug.Log($"[Run] {result} | Score={runScore} | Coins saved to meta={runCoins}");
+        Debug.Log($"[Run] {result} | Score={runScore} | Coins={runCoins}");
+
+        if (victory)
+            AudioManager.PlayVictory();
+        else
+            AudioManager.PlayGameOver();
 
         HUDManager.Resolve()?.ShowRunResult(victory, runScore, runCoins);
     }

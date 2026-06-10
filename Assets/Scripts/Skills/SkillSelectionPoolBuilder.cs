@@ -47,10 +47,13 @@ public static class SkillSelectionPoolBuilder
     private static void GetSourceWeights(SkillSelectionContext ctx,
         out float wSkill, out float wPassive, out float wWeapon)
     {
+        bool melee = !WeaponStyleUtil.UsesWeaponPickupRewards();
+
         switch (ctx)
         {
             case SkillSelectionContext.LevelUp:
-                wSkill = 0.5f; wPassive = 0.3f; wWeapon = 0.2f;
+                if (melee) { wSkill = 0.55f; wPassive = 0.45f; wWeapon = 0f; }
+                else { wSkill = 0.5f; wPassive = 0.3f; wWeapon = 0.2f; }
                 break;
             case SkillSelectionContext.NormalChest:
                 wSkill = 0.7f; wPassive = 0.3f; wWeapon = 0f;
@@ -59,10 +62,12 @@ public static class SkillSelectionPoolBuilder
                 wSkill = 0.7f; wPassive = 0.3f; wWeapon = 0f;
                 break;
             case SkillSelectionContext.BossChest:
-                wSkill = 0.4f; wPassive = 0.4f; wWeapon = 0.2f;
+                if (melee) { wSkill = 0.5f; wPassive = 0.5f; wWeapon = 0f; }
+                else { wSkill = 0.4f; wPassive = 0.4f; wWeapon = 0.2f; }
                 break;
             default:
-                wSkill = 0.5f; wPassive = 0.3f; wWeapon = 0.2f;
+                if (melee) { wSkill = 0.55f; wPassive = 0.45f; wWeapon = 0f; }
+                else { wSkill = 0.5f; wPassive = 0.3f; wWeapon = 0.2f; }
                 break;
         }
     }
@@ -118,6 +123,8 @@ public static class SkillSelectionPoolBuilder
             SkillData s = allSkills[i];
             if (s == null || usedKeys.Contains("skill:" + s.skillType))
                 continue;
+            if (!SkillCombatRules.IsOfferedToHero(s.skillType, WeaponStyleUtil.GetSelectedHeroClass()))
+                continue;
             if (IsSkillMaxed(s, cfg))
                 continue;
             if (s.rarity == rolled)
@@ -131,9 +138,20 @@ public static class SkillSelectionPoolBuilder
                 SkillData s = allSkills[i];
                 if (s == null || usedKeys.Contains("skill:" + s.skillType) || IsSkillMaxed(s, cfg))
                     continue;
+                if (!SkillCombatRules.IsOfferedToHero(s.skillType, WeaponStyleUtil.GetSelectedHeroClass()))
+                    continue;
                 matching.Add(s);
             }
         }
+
+        HeroType heroClass = WeaponStyleUtil.GetSelectedHeroClass();
+        float weightTotal = 0f;
+        float[] weights = new float[matching.Count];
+        for (int i = 0; i < matching.Count; i++)
+            weightTotal += weights[i] = SkillCombatRules.WeightMultiplier(matching[i].skillType, heroClass);
+
+        if (weightTotal <= 0f)
+            weightTotal = matching.Count;
 
         for (int i = 0; i < matching.Count; i++)
         {
@@ -141,7 +159,7 @@ public static class SkillSelectionPoolBuilder
             pool.Add(new WeightedCandidate
             {
                 sourceKind = SkillSelectionChoiceKind.SkillUpgrade,
-                weight = sourceWeight / matching.Count,
+                weight = sourceWeight * (weights[i] / weightTotal),
                 choice = new SkillSelectionChoice
                 {
                     kind = SkillSelectionChoiceKind.SkillUpgrade,
@@ -211,6 +229,9 @@ public static class SkillSelectionPoolBuilder
         if (sourceWeight <= 0f || WeaponManager.Instance == null)
             return;
 
+        if (!WeaponStyleUtil.UsesWeaponPickupRewards())
+            return;
+
         List<WeaponType> offers = BuildWeaponPool(context, usedKeys);
         for (int i = 0; i < offers.Count; i++)
         {
@@ -238,9 +259,13 @@ public static class SkillSelectionPoolBuilder
             WeaponType.PoisonDagger, WeaponType.HolyCross, WeaponType.ThunderRod
         };
 
+        HeroType heroClass = WeaponStyleUtil.GetSelectedHeroClass();
         for (int i = 0; i < bases.Length; i++)
         {
             WeaponType t = bases[i];
+            if (!WeaponStyleUtil.HeroCanUseWeapon(heroClass, t))
+                continue;
+
             string key = "weapon:" + t;
             if (usedKeys.Contains(key))
                 continue;
@@ -258,12 +283,17 @@ public static class SkillSelectionPoolBuilder
         // Boss: thêm vũ khí tiến hóa nếu đủ điều kiện
         if (context == SkillSelectionContext.BossChest)
         {
-            TryAddEvolved(ref result, usedKeys, WeaponType.IronBow, WeaponType.StormBow, wm);
-            TryAddEvolved(ref result, usedKeys, WeaponType.FireStaff, WeaponType.DragonStaff, wm);
+            if (WeaponStyleUtil.HeroCanUseWeapon(heroClass, WeaponType.IronBow))
+                TryAddEvolved(ref result, usedKeys, WeaponType.IronBow, WeaponType.StormBow, wm);
+            if (WeaponStyleUtil.HeroCanUseWeapon(heroClass, WeaponType.FireStaff))
+                TryAddEvolved(ref result, usedKeys, WeaponType.FireStaff, WeaponType.DragonStaff, wm);
             TryAddEvolved(ref result, usedKeys, WeaponType.PoisonDagger, WeaponType.DeathDagger, wm);
-            TryAddEvolved(ref result, usedKeys, WeaponType.FrostWand, WeaponType.BlizzardWand, wm);
-            TryAddEvolved(ref result, usedKeys, WeaponType.HolyCross, WeaponType.HolyNova, wm);
-            TryAddEvolved(ref result, usedKeys, WeaponType.ThunderRod, WeaponType.ZeusRod, wm);
+            if (WeaponStyleUtil.HeroCanUseWeapon(heroClass, WeaponType.FrostWand))
+                TryAddEvolved(ref result, usedKeys, WeaponType.FrostWand, WeaponType.BlizzardWand, wm);
+            if (WeaponStyleUtil.HeroCanUseWeapon(heroClass, WeaponType.HolyCross))
+                TryAddEvolved(ref result, usedKeys, WeaponType.HolyCross, WeaponType.HolyNova, wm);
+            if (WeaponStyleUtil.HeroCanUseWeapon(heroClass, WeaponType.ThunderRod))
+                TryAddEvolved(ref result, usedKeys, WeaponType.ThunderRod, WeaponType.ZeusRod, wm);
         }
 
         return result;
@@ -293,10 +323,7 @@ public static class SkillSelectionPoolBuilder
 
     public static SkillRarity RollRarity(SkillSelectionContext context)
     {
-        float roll = Random.value;
-        if (MetaRunModifiers.Instance != null)
-            roll -= MetaRunModifiers.Instance.SkillRarityBonus * 0.05f;
-        roll = Mathf.Clamp01(roll);
+        float roll = Mathf.Clamp01(Random.value);
 
         if (context == SkillSelectionContext.BossChest)
         {

@@ -12,8 +12,10 @@ public class SkillBehaviors : MonoBehaviour
     private float timeFreezeTimer;
     private float dragonStrikeTimer;
     private float iceAuraVfxTimer;
+    private float bladeStormTimer;
     private bool ghostActive;
     private readonly Collider2D[] iceAuraBuffer = new Collider2D[32];
+    private readonly Collider2D[] bladeStormBuffer = new Collider2D[24];
 
     private void Awake()
     {
@@ -32,6 +34,7 @@ public class SkillBehaviors : MonoBehaviour
         TickTimeFreeze();
         TickDragonStrike();
         TickIceAura();
+        TickBladeStorm();
     }
 
     public void OnPlayerDealtDamage(float damage, HealthSystem target)
@@ -152,6 +155,46 @@ public class SkillBehaviors : MonoBehaviour
             SkillVfxLibrary.Play(SkillVfxStyle.Fire, target.position, 1.3f, new Color(1f, 0.4f, 0.2f, 1f), 26);
             AudioManager.PlayBossAttack();
         }
+    }
+
+    private void TickBladeStorm()
+    {
+        if (handler == null || !handler.HasSkill(SkillType.BladeStorm))
+            return;
+
+        int stack = handler.GetStack(SkillType.BladeStorm);
+        float interval = stack >= 2 ? 1.4f : stack >= 1 ? 1.8f : 2.2f;
+        bladeStormTimer += Time.deltaTime;
+        if (bladeStormTimer < interval)
+            return;
+
+        bladeStormTimer = 0f;
+        float radius = 1.6f + stack * 0.25f;
+        float damage = 10f + stack * 6f;
+        int hits = DamageEnemiesInRadius(cachedTransform.position, radius, damage, bladeStormBuffer);
+        if (hits > 0)
+            AudioManager.PlaySwordSwing();
+    }
+
+    private int DamageEnemiesInRadius(Vector3 center, float radius, float damage, Collider2D[] buffer)
+    {
+        int count = Physics2D.OverlapCircleNonAlloc(center, radius, buffer);
+        int hits = 0;
+        for (int i = 0; i < count; i++)
+        {
+            if (buffer[i] == null || !buffer[i].CompareTag("Enemy"))
+                continue;
+
+            HealthSystem hs = buffer[i].GetComponent<HealthSystem>();
+            if (hs == null)
+                continue;
+
+            hs.TakeDamage(damage);
+            hits++;
+            OnPlayerDealtDamage(damage, hs);
+        }
+
+        return hits;
     }
 
     private void TickIceAura()

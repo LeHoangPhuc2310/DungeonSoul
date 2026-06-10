@@ -88,10 +88,6 @@ public class RoomManager : MonoBehaviour
 
     private void HandleRoomCleared(RoomType type)
     {
-        float flatHeal = MetaRunModifiers.Instance != null ? MetaRunModifiers.Instance.RoomHealAmount : 0f;
-        if (flatHeal > 0f)
-            HealPlayerFlat(flatHeal);
-
         if (type == RoomType.Curse)
             DamagePlayer(0.1f);
 
@@ -128,7 +124,6 @@ public class RoomManager : MonoBehaviour
                 SkillSelectionUI.GetOrFind()?.ShowChest(RoomType.Treasure);
                 break;
             case RoomType.Shop:
-                MetaShopUI.Instance?.Show();
                 break;
             case RoomType.Forge:
                 SkillSelectionUI.GetOrFind()?.Show();
@@ -149,15 +144,6 @@ public class RoomManager : MonoBehaviour
         HealthSystem hs = player.GetComponent<HealthSystem>();
         if (hs != null)
             hs.Heal(hs.MaxHP * percent);
-    }
-
-    private static void HealPlayerFlat(float amount)
-    {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player == null)
-            return;
-        HealthSystem hs = player.GetComponent<HealthSystem>();
-        hs?.Heal(amount);
     }
 
     private static void DamagePlayer(float percentMax)

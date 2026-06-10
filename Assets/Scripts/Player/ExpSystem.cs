@@ -108,6 +108,7 @@ public class ExpSystem : MonoBehaviour
         }
 
         AudioManager.PlayLevelUp();
+        GameJuice.Shake(0.18f, 0.22f, 16f);
         AchievementManager.Instance?.OnPlayerLevel(currentLevel);
         Debug.Log("Level Up! Now level " + currentLevel);
         OnLevelUpEvent?.Invoke(currentLevel);

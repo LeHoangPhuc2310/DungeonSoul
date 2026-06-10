@@ -1,5 +1,5 @@
 // DungeonSoul — GameIconLibrary.cs — Map skill/weapon/passive sang icon tile + màu tint.
-// Dùng chung cho SkillSelectionUI, MetaShopUI, SkillsPanelUI...
+// Dùng chung cho SkillSelectionUI, SkillsPanelUI...
 
 using UnityEngine;
 
@@ -95,6 +95,10 @@ public static class GameIconLibrary
 
     public static Sprite SkillSprite(SkillType type)
     {
+        Sprite aseprite = AsepriteSkillVfxLoader.LoadSkillIcon(AsepriteSkillEffectPaths.SkillIconIndex(type));
+        if (aseprite != null)
+            return aseprite;
+
         return ArtSpriteLibrary.LoadTile(SkillTile(type));
     }
 

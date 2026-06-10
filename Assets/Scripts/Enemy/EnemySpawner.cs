@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -7,7 +8,8 @@ public class EnemySpawner : MonoBehaviour
     public GameObject enemyPrefab;
     public Tilemap floorTilemap;
     [SerializeField] private Tilemap wallTilemap;
-    public GameObject chest;
+    [Tooltip("Thời gian nghỉ giữa khi clear wave thường và spawn wave kế (giây).")]
+    [SerializeField] private float waveBreakSeconds = 1.5f;
     public int minEnemies = 8;
     public int maxEnemies = 13;
     [SerializeField] private int maxEnemiesPerWave = 24;
@@ -33,7 +35,8 @@ public class EnemySpawner : MonoBehaviour
     private readonly List<Vector3Int> walkableTiles = new List<Vector3Int>();
     private readonly List<Vector3> spawnWorldPositions = new List<Vector3>();
     private bool initialSpawnDone;
-    private bool chestSpawned;
+    private bool waveAdvancing;
+    private Coroutine waveBreakRoutine;
     private int waveIndex = 1;
 
     private void Awake()
@@ -43,9 +46,6 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
-        if (chest != null)
-            chest.SetActive(false);
-
         RefreshWalkablePositions();
         SpawnInitialEnemies();
         initialSpawnDone = true;
@@ -59,20 +59,32 @@ public class EnemySpawner : MonoBehaviour
 
     private void Update()
     {
-        if (!initialSpawnDone || chestSpawned || chest == null)
+        if (!initialSpawnDone || waveAdvancing)
             return;
 
+        // Boss wave: rương boss (RedChestController) tự xử lý → bỏ qua auto-advance.
         if (BossSpawnManager.IsBossWave(waveIndex))
             return;
 
+        // Wave thường: hết quái → không có rương, tự nghỉ ngắn rồi sang wave kế.
         if (EnemyAliveTracker.Count <= 0)
         {
-            chest.SetActive(true);
-            chestSpawned = true;
+            waveAdvancing = true;
             AudioManager.PlayRoomClear();
             AudioManager.PlayBackgroundMusic();
-            Debug.Log("All enemies defeated! Chest appeared.");
+            Debug.Log("[EnemySpawner] Clear wave " + waveIndex + " — tự sang wave kế.");
+            if (waveBreakRoutine != null)
+                StopCoroutine(waveBreakRoutine);
+            waveBreakRoutine = StartCoroutine(WaveBreakThenAdvance());
         }
+    }
+
+    private IEnumerator WaveBreakThenAdvance()
+    {
+        // WaitForSecondsRealtime — wave vẫn tiếp tục khi panel skill pause (timeScale=0).
+        yield return new WaitForSecondsRealtime(Mathf.Max(0f, waveBreakSeconds));
+        waveBreakRoutine = null;
+        BeginNextWave();
     }
 
     private void CacheWalkablePositions()
@@ -134,12 +146,10 @@ public class EnemySpawner : MonoBehaviour
             AudioManager.PlayCombatMusic();
     }
 
-    /// <summary>Called after player picks a skill from the chest — spawns the next combat wave.</summary>
+    /// <summary>Spawn wave kế: gọi tự động khi clear wave thường, hoặc sau rương boss.</summary>
     public void BeginNextWave()
     {
-        chestSpawned = false;
-        if (chest != null)
-            chest.SetActive(false);
+        waveAdvancing = false;
 
         waveIndex++;
         int count = SpawnWaveEnemies();
@@ -166,7 +176,6 @@ public class EnemySpawner : MonoBehaviour
             BossSpawnManager.SpawnForWave(waveIndex, pos, enemyPrefab);
             EnemyAliveTracker.Reset(0);
             EnemyAliveTracker.Add(1);
-            chestSpawned = false;
             return 1;
         }
 

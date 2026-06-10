@@ -1005,8 +1005,6 @@ public class SkillSelectionUI : MonoBehaviour
             config = SkillSelectionConfig.Get();
 
         int maxRerolls = config.maxRerollsPerPanel;
-        if (MetaRunModifiers.Instance != null)
-            maxRerolls += MetaRunModifiers.Instance.ExtraForgeRerolls;
 
         if (rerollsUsed >= maxRerolls)
             return;
@@ -1383,8 +1381,6 @@ public class SkillSelectionUI : MonoBehaviour
             config = SkillSelectionConfig.Get();
 
         int maxRerolls = config.maxRerollsPerPanel;
-        if (MetaRunModifiers.Instance != null)
-            maxRerolls += MetaRunModifiers.Instance.ExtraForgeRerolls;
 
         int coins = RunManager.Instance != null ? RunManager.Instance.RunCoins : 0;
         bool canReroll = acceptingChoices && !choiceConfirmed
@@ -1501,8 +1497,14 @@ public class SkillSelectionUI : MonoBehaviour
         refs.accentBar.raycastTarget = false;
 
         refs.border = GetOrCreateChildImage(root, "Border");
-        refs.border.type = Image.Type.Sliced;
         refs.border.raycastTarget = false;
+        // Khung phủ toàn thẻ (hơi loe ra để viền ôm sát mép) — sprite gán ở ApplyChoiceToCard theo độ hiếm.
+        RectTransform borderRt = refs.border.rectTransform;
+        borderRt.anchorMin = Vector2.zero;
+        borderRt.anchorMax = Vector2.one;
+        borderRt.offsetMin = new Vector2(-2f, -2f);
+        borderRt.offsetMax = new Vector2(2f, 2f);
+        refs.border.transform.SetAsLastSibling(); // viền nằm trên cùng để không bị icon/nền che
 
         refs.synergyGlow = GetOrCreateChildImage(root, "SynergyGlow");
         refs.synergyGlow.raycastTarget = false;
@@ -1684,7 +1686,19 @@ public class SkillSelectionUI : MonoBehaviour
         if (refs.border != null)
         {
             refs.border.enabled = true;
-            refs.border.color = borderColor;
+            // Dùng sprite khung 9-slice theo độ hiếm (xanh lá/lam/tím/vàng). Fallback: viền màu trơn.
+            Sprite frameSprite = GuiArtLibrary.CardFrame(rarity);
+            if (frameSprite != null)
+            {
+                refs.border.sprite = frameSprite;
+                refs.border.type = Image.Type.Sliced;
+                refs.border.color = Color.white;
+            }
+            else
+            {
+                refs.border.sprite = null;
+                refs.border.color = borderColor;
+            }
         }
 
         if (refs.accentBar != null)

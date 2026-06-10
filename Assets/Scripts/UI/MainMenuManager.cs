@@ -15,6 +15,7 @@ public class MainMenuManager : MonoBehaviour
     private void Start()
     {
         Time.timeScale = 1f;
+        AudioManager.EnsureExists();
         GameSettings.ApplyAudio();
         BuildUI();
     }

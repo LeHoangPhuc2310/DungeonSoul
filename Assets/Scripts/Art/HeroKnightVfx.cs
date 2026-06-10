@@ -110,7 +110,7 @@ public class HeroKnightVfxRunner : MonoBehaviour
         if (frames == null || frames.Length <= 1 || sr == null)
             return;
 
-        timer += Time.deltaTime;
+        timer += Time.unscaledDeltaTime;
         if (timer < frameDuration)
             return;
 
@@ -125,7 +125,7 @@ public class HeroKnightVfxRunner : MonoBehaviour
     private IEnumerator DestroyAfterPlay()
     {
         float life = frames != null ? frames.Length * frameDuration + 0.05f : 0.35f;
-        yield return new WaitForSeconds(life);
+        yield return new WaitForSecondsRealtime(life);
         Destroy(gameObject);
     }
 }

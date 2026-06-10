@@ -1,9 +1,28 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>BGM + SFX từ pack TheHeroKnight (Resources/Audio/HeroKnight).</summary>
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance { get; private set; }
+
+    /// <summary>Đảm bảo có AudioManager + AudioListener (mọi scene, kể cả menu không có camera listener).</summary>
+    public static void EnsureExists()
+    {
+        if (Instance != null)
+            return;
+
+        AudioManager existing = Object.FindAnyObjectByType<AudioManager>(FindObjectsInactive.Include);
+        if (existing != null)
+        {
+            Instance = existing;
+            existing.EnsureAudioListener();
+            return;
+        }
+
+        GameObject go = new GameObject("AudioManager");
+        go.AddComponent<AudioManager>();
+    }
 
     private const string AudioRoot = "Audio/HeroKnight/";
     private const string SupplementalRoot = "Audio/Supplemental/";
@@ -25,6 +44,13 @@ public class AudioManager : MonoBehaviour
     private AudioClip bossAttackClip;
     private AudioClip gameOverClip;
     private AudioClip victoryClip;
+    private AudioClip enemyAttackClip;
+    private AudioClip playerHurtClip;
+    private AudioClip dashClip;
+    private AudioClip bossSpawnClip;
+
+    private float lastEnemyAttackTime = -1f;
+    private float lastPlayerHurtTime = -1f;
 
     private bool combatMusicActive;
 
@@ -38,6 +64,9 @@ public class AudioManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+        SceneManager.sceneLoaded += OnSceneLoaded;
+
+        EnsureAudioListener();
 
         musicSource = gameObject.AddComponent<AudioSource>();
         musicSource.loop = true;
@@ -54,19 +83,47 @@ public class AudioManager : MonoBehaviour
         LoadClips();
     }
 
+    private void OnDestroy()
+    {
+        if (Instance == this)
+            Instance = null;
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        EnsureAudioListener();
+    }
+
     private void Start()
     {
         PlayBackgroundMusic();
+    }
+
+    private void EnsureAudioListener()
+    {
+        AudioListener listener = GetComponent<AudioListener>();
+        if (listener == null)
+            listener = gameObject.AddComponent<AudioListener>();
+        listener.enabled = true;
+
+        // Unity chỉ cần một listener — tắt listener trên camera scene để tránh trùng.
+        AudioListener[] all = Object.FindObjectsByType<AudioListener>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+        for (int i = 0; i < all.Length; i++)
+        {
+            if (all[i] != null && all[i] != listener)
+                all[i].enabled = false;
+        }
     }
 
     private void LoadClips()
     {
         bgMusic = LoadClip("BgSound");
         combatMusic = LoadClip("ComBat");
-        levelUpClip = LoadClipOrSupplemental("Victory", "in-game-level-uptype-2-230567");
+        levelUpClip = LoadSupplemental("in-game-level-uptype-2-230567");
         coinClip = LoadClipOrSupplemental("Pickup", "retro-coin-4-236671");
         uiClickClip = LoadClipOrSupplemental("Pickup", "mixkit-player-jumping-in-a-video-game-2043");
-        roomClearClip = LoadClipOrSupplemental("Victory", "rocky-victory1");
+        roomClearClip = LoadSupplemental("rocky-victory1");
         healClip = LoadClip("Heal");
         swordClip = LoadClipOrSupplemental("Sword", "slash-21834");
         arrowClip = LoadClip("Arrow");
@@ -74,7 +131,12 @@ public class AudioManager : MonoBehaviour
         combatHitClip = LoadClip("SwordBlood");
         bossAttackClip = LoadClip("Attack2");
         gameOverClip = LoadClip("GameOver");
-        victoryClip = LoadClipOrSupplemental("Victory", "rocky-victory1");
+        // "Victory.mp3" trong pack thực ra là nhạc dài ~3.6 phút → dùng jingle ngắn cho khoảnh khắc thắng.
+        victoryClip = LoadSupplemental("rocky-victory1");
+        enemyAttackClip = LoadClip("EnemyAttack");
+        playerHurtClip = LoadClipOrSupplemental("SwordBlood", "slash-21834");
+        dashClip = LoadClip("Dash");
+        bossSpawnClip = LoadClip("MonsterBreath");
         if (bgMusic == null)
             bgMusic = LoadSupplemental("Simulacra-chosic.com_");
     }
@@ -157,6 +219,47 @@ public class AudioManager : MonoBehaviour
     public static void PlayBossAttack()
     {
         Instance?.PlayOneShot(Instance.bossAttackClip, 0.8f, 1f);
+    }
+
+    /// <summary>Quái thường đánh player — throttle để không "ò ó o" khi nhiều quái đánh cùng lúc.</summary>
+    public static void PlayEnemyAttack()
+    {
+        if (Instance == null)
+            return;
+        if (Time.unscaledTime - Instance.lastEnemyAttackTime < 0.08f)
+            return;
+        Instance.lastEnemyAttackTime = Time.unscaledTime;
+        Instance.PlayOneShot(Instance.enemyAttackClip, 0.55f, Random.Range(0.95f, 1.06f));
+    }
+
+    /// <summary>Player ăn đòn — throttle tránh chồng tiếng khi bị vây.</summary>
+    public static void PlayPlayerHurt()
+    {
+        if (Instance == null)
+            return;
+        if (Time.unscaledTime - Instance.lastPlayerHurtTime < 0.12f)
+            return;
+        Instance.lastPlayerHurtTime = Time.unscaledTime;
+        Instance.PlayOneShot(Instance.playerHurtClip, 0.7f, Random.Range(0.96f, 1.04f));
+    }
+
+    public static void PlayDash()
+    {
+        Instance?.PlayOneShot(Instance.dashClip, 0.7f, 1f);
+    }
+
+    public static void PlayBossSpawn()
+    {
+        Instance?.PlayOneShot(Instance.bossSpawnClip, 0.9f, 1f);
+    }
+
+    public static void PlayVictory()
+    {
+        if (Instance == null)
+            return;
+        Instance.combatMusicActive = false;
+        Instance.musicSource.Stop();
+        Instance.PlayOneShot(Instance.victoryClip, 1f, 1f);
     }
 
     public static void PlayGameOver()

@@ -49,7 +49,8 @@ public static class EnemyArchetypeUtility
             ai.MoveSpeed *= speedMult;
             ai.StopDistance = archetype == EnemyArchetype.Runner ? 0.42f : archetype == EnemyArchetype.Brute ? 0.54f : 0.48f;
             ai.MeleeRange = archetype == EnemyArchetype.Runner ? 0.44f : archetype == EnemyArchetype.Brute ? 0.56f : 0.5f;
-            float waveDmg = 1f + Mathf.Max(0, waveIndex - 1) * 0.05f;
+            // +8%/wave (cũ 5%): để wave 7-10 có sức ép thật, không bị player scale qua mặt.
+            float waveDmg = 1f + Mathf.Max(0, waveIndex - 1) * 0.08f;
             ai.ContactDamage = (archetype == EnemyArchetype.Brute ? 9f : archetype == EnemyArchetype.Elite ? 12f : 6f) * waveDmg;
         }
 

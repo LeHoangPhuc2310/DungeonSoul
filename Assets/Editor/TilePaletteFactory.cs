@@ -100,6 +100,13 @@ public static class TilePaletteFactory
             texturePath = "Assets/2D Pixel Dungeon Asset Pack/items and trap_animation",
             gridCellSize = 0,
             minSpriteSize = 6
+        },
+        new PaletteSource
+        {
+            id = "WallsFloor",
+            texturePath = "Assets/ASEPRITE/ASEPRITE_MAP/PNG/walls_floor.png",
+            gridCellSize = 16,
+            minSpriteSize = 8
         }
     };
 
@@ -115,6 +122,26 @@ public static class TilePaletteFactory
 
     [MenuItem("DungeonSoul/Map/Generate All Tile Palettes (Silent)")]
     public static int GenerateAllSilent() => GenerateAll();
+
+    [MenuItem("DungeonSoul/Map/Slice + Build WallsFloor Tiles (16x16)")]
+    public static void GenerateWallsFloor()
+    {
+        EnsureFolder(PaletteFolder);
+        EnsureFolder(TileDataFolder);
+
+        PaletteSource source = FindSource("WallsFloor");
+
+        // walls_floor.png ships with 7 auto-sliced clusters; force a fresh 16x16 grid slice
+        // so the painter has uniform tiles to work with.
+        EnsureGridSlice(source.texturePath, source.gridCellSize, forceReslice: true);
+
+        bool ok = BuildPalette(source);
+        AssetDatabase.SaveAssets();
+        AssetDatabase.Refresh();
+        EditorUtility.DisplayDialog("Dungeon Soul", ok
+            ? $"Đã slice walls_floor.png thành ô 16x16 và tạo tile asset.\nThư mục: {TileDataFolder}/WallsFloor"
+            : "Không tạo được WallsFloor tiles — xem Console.", "OK");
+    }
 
     [MenuItem("DungeonSoul/Map/Generate Dungeon Pack Items Palette")]
     public static void GenerateItemsOnly()
@@ -327,22 +354,25 @@ public static class TilePaletteFactory
         return tiles;
     }
 
-    private static void EnsureGridSlice(string texturePath, int cellSize)
+    private static void EnsureGridSlice(string texturePath, int cellSize, bool forceReslice = false)
     {
         TextureImporter importer = AssetImporter.GetAtPath(texturePath) as TextureImporter;
         if (importer == null)
             return;
 
-        UObject[] existing = AssetDatabase.LoadAllAssetsAtPath(texturePath);
-        int spriteCount = 0;
-        for (int i = 0; i < existing.Length; i++)
+        if (!forceReslice)
         {
-            if (existing[i] is Sprite)
-                spriteCount++;
-        }
+            UObject[] existing = AssetDatabase.LoadAllAssetsAtPath(texturePath);
+            int spriteCount = 0;
+            for (int i = 0; i < existing.Length; i++)
+            {
+                if (existing[i] is Sprite)
+                    spriteCount++;
+            }
 
-        if (spriteCount > 4)
-            return;
+            if (spriteCount > 4)
+                return;
+        }
 
         importer.textureType = TextureImporterType.Sprite;
         importer.spriteImportMode = SpriteImportMode.Multiple;

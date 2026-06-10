@@ -1,6 +1,5 @@
-// DungeonSoul — SkillVfxLibrary.cs — Hiệu ứng kỹ năng từ Effects Pack 14 (Assets2 → Resources/EffectsPack14).
+// DungeonSoul — Hiệu ứng kỹ năng (ưu tiên ASEPRITE_skill_effect, fallback EffectsPack14 / EffectLibrary).
 
-using System.Collections.Generic;
 using UnityEngine;
 
 public enum SkillVfxStyle
@@ -15,24 +14,20 @@ public enum SkillVfxStyle
 
 public static class SkillVfxLibrary
 {
-    private static readonly Dictionary<int, Sprite[]> cache = new Dictionary<int, Sprite[]>();
-
     public static Sprite[] GetFrames(SkillVfxStyle style)
     {
-        int folder = (int)style;
-        if (cache.TryGetValue(folder, out Sprite[] cached) && cached != null && cached.Length > 0)
-            return cached;
+        Sprite[] aseprite = AsepriteSkillVfxLoader.LoadFolders(AsepriteSkillEffectPaths.FoldersFor(style));
+        if (aseprite != null && aseprite.Length > 0)
+            return aseprite;
 
-        Sprite[] loaded = LoadFolder(folder);
-        cache[folder] = loaded;
-        return loaded;
+        return LoadLegacyPack((int)style);
     }
 
-    public static void Play(SkillVfxStyle style, Vector3 worldPos, float scale = 1.2f, Color? tint = null, int sortingOrder = 23)
+    public static void Play(SkillVfxStyle style, Vector3 worldPos, float scale = 1.2f, Color? tint = null, int sortingOrder = 23,
+        float rotationZ = 0f)
     {
         Sprite[] frames = GetFrames(style);
 
-        // Fallback sang EffectLibrary (Assets/Art/Sprite/Effect) nếu EffectsPack14 trống.
         if (frames == null || frames.Length == 0)
         {
             EffectLibrary.Play(MapToEffectKind(style), worldPos, scale, tint, 20f, sortingOrder);
@@ -42,6 +37,7 @@ public static class SkillVfxLibrary
         Color color = tint ?? Color.white;
         GameObject go = new GameObject("SkillVfx_" + style);
         go.transform.position = worldPos;
+        go.transform.rotation = Quaternion.Euler(0f, 0f, rotationZ);
         SpriteRenderer sr = go.AddComponent<SpriteRenderer>();
         sr.sprite = frames[0];
         sr.color = color;
@@ -112,48 +108,37 @@ public static class SkillVfxLibrary
         };
     }
 
-    private static Sprite[] LoadFolder(int folderIndex)
+    private static Sprite[] LoadLegacyPack(int folderIndex)
     {
         string resourcesPath = $"EffectsPack14/{folderIndex}";
         Sprite[] fromResources = Resources.LoadAll<Sprite>(resourcesPath);
         if (fromResources != null && fromResources.Length > 0)
-            return SortNumeric(fromResources);
+            return fromResources;
 
 #if UNITY_EDITOR
         string assetPath = $"Assets/Resources/EffectsPack14/{folderIndex}";
         string[] guids = UnityEditor.AssetDatabase.FindAssets("t:Sprite", new[] { assetPath });
         if (guids != null && guids.Length > 0)
         {
-            List<Sprite> list = new List<Sprite>(guids.Length);
+            Sprite[] list = new Sprite[guids.Length];
+            int count = 0;
             for (int i = 0; i < guids.Length; i++)
             {
                 string path = UnityEditor.AssetDatabase.GUIDToAssetPath(guids[i]);
                 Sprite s = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>(path);
                 if (s != null)
-                    list.Add(s);
+                    list[count++] = s;
             }
 
-            if (list.Count > 0)
-                return SortNumeric(list.ToArray());
+            if (count > 0)
+            {
+                Sprite[] trimmed = new Sprite[count];
+                System.Array.Copy(list, trimmed, count);
+                return trimmed;
+            }
         }
 #endif
 
         return System.Array.Empty<Sprite>();
-    }
-
-    private static Sprite[] SortNumeric(Sprite[] sprites)
-    {
-        System.Array.Sort(sprites, (a, b) => FrameNumber(a.name).CompareTo(FrameNumber(b.name)));
-        return sprites;
-    }
-
-    private static int FrameNumber(string name)
-    {
-        if (string.IsNullOrEmpty(name))
-            return 0;
-        int dot = name.LastIndexOf('.');
-        if (dot > 0)
-            name = name.Substring(0, dot);
-        return int.TryParse(name, out int n) ? n : 0;
     }
 }

@@ -8,6 +8,8 @@ public class AchievementManager : MonoBehaviour
     private const string KeyKillTotal = "ds_ach_kills";
     private const string KeyFirstRun = "ds_ach_first_run";
     private const string KeyLevel5 = "ds_ach_lv5";
+    private const string KeyGoblinSlayer = "ds_ach_goblin_slayer";
+    private const string KeyDungeonMaster = "ds_ach_dungeon_master";
 
     public int TotalKills { get; private set; }
 
@@ -26,43 +28,53 @@ public class AchievementManager : MonoBehaviour
 
     public void OnRunStarted()
     {
-        if (PlayerPrefs.GetInt(KeyFirstRun, 0) == 0)
-        {
-            Unlock("First Steps", 50);
-            PlayerPrefs.SetInt(KeyFirstRun, 1);
-            PlayerPrefs.Save();
-        }
+        if (PlayerPrefs.GetInt(KeyFirstRun, 0) != 0)
+            return;
+
+        Unlock("First Steps");
+        PlayerPrefs.SetInt(KeyFirstRun, 1);
+        PlayerPrefs.Save();
     }
 
     public void OnEnemyKilled()
     {
         TotalKills++;
         PlayerPrefs.SetInt(KeyKillTotal, TotalKills);
-        PlayerPrefs.Save();
 
-        if (TotalKills >= 100)
-            Unlock("Goblin Slayer", 100);
-    }
+        // Chỉ save khi đạt mốc — tránh PlayerPrefs.Save() mỗi kill (gây lag/đứng trên WebGL).
+        if (TotalKills % 10 == 0)
+            PlayerPrefs.Save();
 
-    public void OnPlayerLevel(int level)
-    {
-        if (level >= 5 && PlayerPrefs.GetInt(KeyLevel5, 0) == 0)
+        if (TotalKills >= 100 && PlayerPrefs.GetInt(KeyGoblinSlayer, 0) == 0)
         {
-            Unlock("Rising Star", 75);
-            PlayerPrefs.SetInt(KeyLevel5, 1);
+            Unlock("Goblin Slayer");
+            PlayerPrefs.SetInt(KeyGoblinSlayer, 1);
             PlayerPrefs.Save();
         }
     }
 
-    public void OnRunEnded(bool victory, int floor)
+    public void OnPlayerLevel(int level)
     {
-        if (victory && floor >= 10)
-            Unlock("Dungeon Master", 200);
+        if (level < 5 || PlayerPrefs.GetInt(KeyLevel5, 0) != 0)
+            return;
+
+        Unlock("Rising Star");
+        PlayerPrefs.SetInt(KeyLevel5, 1);
+        PlayerPrefs.Save();
     }
 
-    private static void Unlock(string title, int metaCoinReward)
+    public void OnRunEnded(bool victory, int floor)
     {
-        Debug.Log("[Achievement] " + title + " +" + metaCoinReward + " meta xu");
-        MetaProgression.Instance?.AddMetaCoins(metaCoinReward);
+        if (!victory || floor < 10 || PlayerPrefs.GetInt(KeyDungeonMaster, 0) != 0)
+            return;
+
+        Unlock("Dungeon Master");
+        PlayerPrefs.SetInt(KeyDungeonMaster, 1);
+        PlayerPrefs.Save();
+    }
+
+    private static void Unlock(string title)
+    {
+        Debug.Log("[Achievement] Mở khóa: " + title);
     }
 }

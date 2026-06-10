@@ -1,4 +1,4 @@
-// DungeonSoul — CharacterSelectUI.cs — Lưới 20 nhân vật Tiny RPG + panel chi tiết.
+// DungeonSoul — CharacterSelectUI.cs — Lưới nhân vật chọn + panel chi tiết.
 
 using System.Collections;
 using System.Collections.Generic;
@@ -42,12 +42,13 @@ public class CharacterSelectUI : MonoBehaviour
     private void Start()
     {
         Time.timeScale = 1f;
+        AudioManager.EnsureExists();
         HideStrayGameplayUi();
         BuildUI();
 
         selected = PlayableCharacterCatalog.GetSelected();
-        if (selected == null && PlayableCharacterCatalog.All.Count > 0)
-            selected = PlayableCharacterCatalog.All[0];
+        if (selected == null && PlayableCharacterCatalog.Visible.Count > 0)
+            selected = PlayableCharacterCatalog.Visible[0];
 
         if (selected != null)
             SelectCharacter(selected, playSound: false);
@@ -80,7 +81,7 @@ public class CharacterSelectUI : MonoBehaviour
             new Vector2(0f, 470f), new Vector2(1500f, 70f), TextAlignmentOptions.Center);
         GameUIFont.Apply(title, GameUIFont.Role.HeaderTitle);
 
-        TMP_Text hint = MakeLabel("20 nhân vật — chọn một anh hùng rồi bấm Chọn", canvasGO.transform,
+        TMP_Text hint = MakeLabel("Chọn nhân vật rồi bấm Tiếp theo — vào dungeon ngay", canvasGO.transform,
             new Vector2(0f, 405f), new Vector2(1200f, 40f), TextAlignmentOptions.Center);
         GameUIFont.Apply(hint, GameUIFont.Role.HeaderHint);
 
@@ -139,16 +140,19 @@ public class CharacterSelectUI : MonoBehaviour
         ContentSizeFitter fitter = content.AddComponent<ContentSizeFitter>();
         fitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
 
-        IReadOnlyList<PlayableCharacterEntry> all = PlayableCharacterCatalog.All;
-        if (all.Count == 0)
+        IReadOnlyList<PlayableCharacterEntry> visible = PlayableCharacterCatalog.Visible;
+        if (visible.Count == 0)
         {
-            MakeSectionLabel(content.transform, "Chạy menu: DungeonSoul → Characters → Build Playable Character Database");
+            MakeSectionLabel(content.transform, "Chạy menu: DungeonSoul → Characters → Import ASEPRITE Characters");
             return;
         }
 
-        BuildClassSection(content.transform, "CHIẾN BINH", HeroType.Warrior, ClassWarrior);
-        BuildClassSection(content.transform, "CUNG THỦ", HeroType.Ranger, ClassRanger);
-        BuildClassSection(content.transform, "PHÁP SƯ", HeroType.Mage, ClassMage);
+        if (PlayableCharacterCatalog.HasVisibleInClass(HeroType.Warrior))
+            BuildClassSection(content.transform, "CHIẾN BINH", HeroType.Warrior, ClassWarrior);
+        if (PlayableCharacterCatalog.HasVisibleInClass(HeroType.Ranger))
+            BuildClassSection(content.transform, "CUNG THỦ", HeroType.Ranger, ClassRanger);
+        if (PlayableCharacterCatalog.HasVisibleInClass(HeroType.Mage))
+            BuildClassSection(content.transform, "PHÁP SƯ", HeroType.Mage, ClassMage);
     }
 
     private void BuildClassSection(Transform content, string label, HeroType heroClass, Color accent)
@@ -360,7 +364,7 @@ public class CharacterSelectUI : MonoBehaviour
     private void RefreshDetail(PlayableCharacterEntry entry)
     {
         detailName.text = entry.displayName;
-        detailClass.text = entry.ClassLabel.ToUpperInvariant();
+        detailClass.text = entry.ClassLabel.ToUpperInvariant() + " · " + entry.CombatStyleLabel.ToUpperInvariant();
         detailClass.color = entry.combatClass switch
         {
             HeroType.Ranger => ClassRanger,
@@ -384,7 +388,8 @@ public class CharacterSelectUI : MonoBehaviour
             + "Chí mạng: " + Mathf.RoundToInt(entry.crit * 100f) + "%";
 
         detailAbilityTitle.text = entry.abilityName;
-        detailAbilityBody.text = entry.abilityDescription;
+        detailAbilityBody.text = "<color=#A8C8FF><i>" + entry.CombatStyleDescription + "</i></color>\n\n"
+            + entry.abilityDescription;
 
         Sprite[] frames = entry.idle != null && entry.idle.Length > 0 ? entry.idle : entry.walk;
         StartPreview(frames);
@@ -435,13 +440,10 @@ public class CharacterSelectUI : MonoBehaviour
         RunEntryGate.ConfirmCharacterSelect();
         Time.timeScale = 1f;
 
-        // Flow mới: sang màn chọn vũ khí trước khi vào game.
-        if (Application.CanStreamedLevelBeLoaded("WeaponSelectScene"))
-            SceneManager.LoadScene("WeaponSelectScene");
-        else if (!string.IsNullOrEmpty(gameSceneName) && Application.CanStreamedLevelBeLoaded(gameSceneName))
-            SceneManager.LoadScene(gameSceneName); // dự phòng: vào thẳng game
+        if (!string.IsNullOrEmpty(gameSceneName) && Application.CanStreamedLevelBeLoaded(gameSceneName))
+            SceneManager.LoadScene(gameSceneName);
         else
-            Debug.LogError("[CharacterSelectUI] Không tìm thấy WeaponSelectScene/SampleScene trong Build Settings.");
+            Debug.LogError("[CharacterSelectUI] Không tìm thấy " + gameSceneName + " trong Build Settings.");
     }
 
     private static GameObject MakeRect(string name, Transform parent, Vector2 size, Vector2 pos)

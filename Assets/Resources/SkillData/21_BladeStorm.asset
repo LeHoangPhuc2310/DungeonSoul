@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e0d8e52eb103948a439ec2cc61f3ac, type: 3}
   m_Name: 21_BladeStorm
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
-  skillName: Blade Storm
-  description: "Coming Soon - Summon 3 orbiting blades that damage enemies on contact."
+  skillName: "Bão Kiếm"
+  description: "Vòng chém quanh nhân vật gây sát thương định kỳ. Cấp cao hơn: nhanh hơn, rộng hơn."
   rarity: 2
   skillType: 20
   value: 3

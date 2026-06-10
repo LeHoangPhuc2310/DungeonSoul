@@ -27,6 +27,7 @@ public class WeaponManager : MonoBehaviour
     private readonly Collider2D[] enemyCache = new Collider2D[96];
 
     private int unlockedSlots = 1;
+    private bool weaponSystemEnabled = true;
 
     public float DamageMultiplier { get; set; } = 1f;
     public float CooldownMultiplier { get; set; } = 1f;
@@ -63,10 +64,13 @@ public class WeaponManager : MonoBehaviour
 
     private void Start()
     {
-        // Vũ khí khởi đầu = lựa chọn từ màn WeaponSelect (mặc định IronBow).
-        AddOrUpgradeWeapon(RunLoadout.StartingWeapon);
-        if (ExpSystem.Instance != null)
-            ExpSystem.Instance.OnLevelUpEvent += HandleLevelUp;
+        weaponSystemEnabled = WeaponStyleUtil.UsesWeaponPickupRewards();
+        if (weaponSystemEnabled)
+        {
+            // Pháp sư/cung: không chọn vũ khí trước game — chỉ nhặt trong dungeon.
+            if (ExpSystem.Instance != null)
+                ExpSystem.Instance.OnLevelUpEvent += HandleLevelUp;
+        }
 
         UpdateHud();
     }
@@ -79,6 +83,9 @@ public class WeaponManager : MonoBehaviour
 
     private void Update()
     {
+        if (!weaponSystemEnabled || activeWeapons.Count == 0)
+            return;
+
         float dt = Time.deltaTime;
         for (int i = 0; i < activeWeapons.Count; i++)
         {
@@ -95,6 +102,12 @@ public class WeaponManager : MonoBehaviour
 
     public bool AddOrUpgradeWeapon(WeaponType type)
     {
+        if (!weaponSystemEnabled)
+            return false;
+
+        if (!WeaponStyleUtil.HeroCanUseWeapon(WeaponStyleUtil.GetSelectedHeroClass(), type))
+            return false;
+
         WeaponSlot existing = FindSlot(type);
         if (existing != null)
         {
@@ -249,6 +262,9 @@ public class WeaponManager : MonoBehaviour
         if (target == null)
             return;
 
+        if (!WeaponStyleUtil.HeroCanUseWeapon(WeaponStyleUtil.GetSelectedHeroClass(), slot.weaponType))
+            return;
+
         float damage = slot.baseDamage * Mathf.Max(0.2f, DamageMultiplier);
         switch (slot.weaponType)
         {
@@ -388,6 +404,13 @@ public class WeaponManager : MonoBehaviour
         if (hud == null)
             return;
 
+        if (!weaponSystemEnabled)
+        {
+            hud.SetWeaponBarVisible(false);
+            return;
+        }
+
+        hud.SetWeaponBarVisible(true);
         hud.UpdateWeaponSlots(activeWeapons, unlockedSlots);
     }
 

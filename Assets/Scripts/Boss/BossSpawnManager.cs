@@ -79,9 +79,11 @@ public class BossSpawnManager : MonoBehaviour
             GameplayPresentation.Instance.ApplyEnemyScale(go.transform);
         ApplyBossScale(go.transform, wave);
 
-        // VFX triệu hồi boss — vòng to + nổ xanh.
+        // VFX triệu hồi boss — vòng to + nổ xanh, kèm tiếng gầm + rung màn báo hiệu boss tới.
         EffectLibrary.Play(EffectKind.SpawnPoint, pos, 2.4f, new Color(1f, 0.4f, 0.4f, 1f), 14f, 5);
         EffectLibrary.Play(EffectKind.BlueExplosion, pos, 2.8f, Color.white, 18f, 24);
+        AudioManager.PlayBossSpawn();
+        GameJuice.Shake(0.35f, 0.5f, 14f);
 
         Debug.Log("[BossSpawn] " + data.bossName + " at wave " + wave);
     }

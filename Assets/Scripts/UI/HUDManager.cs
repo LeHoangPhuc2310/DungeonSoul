@@ -338,11 +338,7 @@ public class HUDManager : MonoBehaviour
         if (Object.FindAnyObjectByType<PauseMenuUI>() == null)
             new GameObject("PauseMenuUI").AddComponent<PauseMenuUI>();
 
-        if (Object.FindAnyObjectByType<MetaShopUI>() == null)
-            new GameObject("MetaShopUI").AddComponent<MetaShopUI>();
-
-        if (Object.FindAnyObjectByType<AudioManager>() == null)
-            new GameObject("AudioManager").AddComponent<AudioManager>();
+        AudioManager.EnsureExists();
 
         if (Object.FindAnyObjectByType<HeroRunStats>() == null)
             new GameObject("HeroRunStats").AddComponent<HeroRunStats>();
@@ -350,14 +346,18 @@ public class HUDManager : MonoBehaviour
         if (Object.FindAnyObjectByType<AchievementManager>() == null)
             new GameObject("AchievementManager").AddComponent<AchievementManager>();
 
-        if (Object.FindAnyObjectByType<MetaShopManager>() == null)
-            new GameObject("MetaShopManager").AddComponent<MetaShopManager>();
-
         if (Object.FindAnyObjectByType<BossSpawnManager>() == null)
             new GameObject("BossSpawnManager").AddComponent<BossSpawnManager>();
 
+        // Passive item: phải tồn tại để 12 passive trong Resources/PassiveItems xuất hiện khi level-up.
+        if (Object.FindAnyObjectByType<PassiveItemManager>() == null)
+            new GameObject("PassiveItemManager").AddComponent<PassiveItemManager>();
+
         if (Object.FindAnyObjectByType<ObjectPooler>() == null)
             new GameObject("ObjectPooler").AddComponent<ObjectPooler>();
+
+        // GameJuice (screen shake / hit-stop) — bám camera, cần sẵn từ đầu trận.
+        GameJuice.Ensure();
 
         if (Object.FindAnyObjectByType<BossHPBarUI>() == null)
             new GameObject("BossHPBarUI").AddComponent<BossHPBarUI>();
@@ -1127,13 +1127,28 @@ public class HUDManager : MonoBehaviour
         if (floorText != null && FloorManager.Instance != null)
             floorText.text = "TẦNG " + FloorManager.Instance.CurrentFloor + " / 10";
     }
+    public void SetWeaponBarVisible(bool visible)
+    {
+        if (!visible && weaponBarRoot != null)
+            weaponBarRoot.SetActive(false);
+        else if (visible && weaponBarRoot != null)
+            weaponBarRoot.SetActive(true);
+    }
+
     public void UpdateWeaponSlots(IReadOnlyList<WeaponManager.WeaponSlot> activeSlots, int maxSlots)
     {
         if (!Application.isPlaying)
             return;
 
+        if (!WeaponStyleUtil.UsesWeaponPickupRewards())
+        {
+            SetWeaponBarVisible(false);
+            return;
+        }
+
         maxSlots = Mathf.Clamp(maxSlots, 1, 6);
         EnsureWeaponBar(maxSlots);
+        SetWeaponBarVisible(true);
 
         for (int i = 0; i < weaponSlotImages.Count; i++)
         {

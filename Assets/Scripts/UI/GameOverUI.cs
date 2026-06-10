@@ -72,17 +72,12 @@ public class GameOverUI : MonoBehaviour
         if (scoreResultText != null) scoreResultText.text = "Score: " + score;
         if (floorResultText != null) floorResultText.text = victory ? "Hoàn thành 10 tầng!" : "Floor: " + floor;
         if (coinsResultText != null)
-        {
-            int meta = MetaProgression.Instance != null ? MetaProgression.Instance.MetaCoins : 0;
-            coinsResultText.text = "Xu: " + coins + "  |  Meta: " + meta;
-        }
+            coinsResultText.text = "Xu: " + coins;
 
         FillPlayerStats();
         FillHeroAndBoss(floor);
 
         AchievementManager.Instance?.OnRunEnded(victory, floor);
-        if (!victory && MetaProgression.Instance != null)
-            MetaProgression.Instance.AddMetaCoins(Mathf.Max(0, coins / 10));
     }
 
     /// <summary>Điền danh sách chỉ số người chơi (kiểu Player Stats của KnightFall).</summary>

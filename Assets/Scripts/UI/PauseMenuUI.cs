@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class PauseMenuUI : MonoBehaviour
 {
     public static PauseMenuUI Instance { get; private set; }
+    public bool IsPaused => paused;
 
     private static readonly Color OverlayColor = new Color(0.02f, 0.03f, 0.05f, 0.82f);
     private static readonly Color PanelBg = new Color(0.12f, 0.13f, 0.19f, 1f);
@@ -241,7 +242,6 @@ public class PauseMenuUI : MonoBehaviour
         v.childForceExpandHeight = false;
 
         ActionBtn(section.transform, "TIẾP TỤC", Resume, GuiArtLibrary.ButtonPrimary, BtnPrimary, 78f, 32f);
-        ActionBtn(section.transform, "CỬA HÀNG", OpenMetaShop, GuiArtLibrary.ButtonSecondary, BtnSecondary, 70f, 28f);
         ActionBtn(section.transform, "VỀ MENU", QuitToScene, GuiArtLibrary.ButtonDanger, BtnDanger, 70f, 28f);
     }
 
@@ -319,35 +319,6 @@ public class PauseMenuUI : MonoBehaviour
         tmp.raycastTarget = false;
         tmp.margin = Vector4.zero;
         tmp.ForceMeshUpdate();
-    }
-
-    private void OpenMetaShop()
-    {
-        AudioManager.PlayUiTap();
-        MetaShopUI shop = MetaShopUI.Instance;
-        if (shop == null)
-        {
-            GameObject go = new GameObject("MetaShopUI");
-            shop = go.AddComponent<MetaShopUI>();
-        }
-
-        // Ẩn card pause (không bật lại timeScale) rồi mở shop; shop sẽ gọi ReopenFromShop khi đóng.
-        if (canvas != null)
-            canvas.gameObject.SetActive(false);
-        shop.ShowFromPause(this);
-    }
-
-    /// <summary>MetaShopUI gọi lại khi người chơi đóng shop để quay về card pause.</summary>
-    public void ReopenFromShop()
-    {
-        if (!paused)
-            return;
-        if (canvas == null)
-            BuildUI();
-        canvas.gameObject.SetActive(true);
-        canvas.transform.SetAsLastSibling();
-        RefreshHeroSelection();
-        Time.timeScale = 0f;
     }
 
     private static void QuitToScene()

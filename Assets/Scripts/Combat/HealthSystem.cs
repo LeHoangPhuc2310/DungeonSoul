@@ -67,12 +67,27 @@ public class HealthSystem : MonoBehaviour
 
         currentHP = Mathf.Max(0f, currentHP - finalDamage);
         if (isPlayer || CompareTag("Player"))
+        {
             HUDManager.Resolve()?.UpdateHp();
+            // Player ăn đòn = phản hồi mạnh để người chơi "cảm" được nguy hiểm.
+            GameJuice.Shake(0.22f, 0.18f);
+            HitFeedback.Play(gameObject);
+            AudioManager.PlayPlayerHurt();
+        }
         else
         {
             HUDManager.SpawnDamageNumber(transform.position, finalDamage, isCrit);
             GetComponent<EnemySpriteAnimator>()?.PlayHurt();
             GetComponent<SimpleSpriteAnimator>()?.PlayHurt();
+
+            // Juice khi đánh trúng quái: nháy trắng + freeze-frame cực ngắn (đậm hơn nếu crit).
+            HitFeedback.Play(gameObject);
+            // Chỉ crit mới hit-stop — AOE đánh nhiều quái không được reset freeze liên tục.
+            if (currentHP > 0f && isCrit)
+            {
+                GameJuice.HitStop(0.04f);
+                GameJuice.Shake(0.12f, 0.1f);
+            }
         }
 
         if (currentHP <= 0f)
@@ -121,7 +136,6 @@ public class HealthSystem : MonoBehaviour
             EnemyReward reward = GetComponent<EnemyReward>();
             int score = reward != null ? reward.ScoreReward : 10;
             int coins = reward != null ? reward.RollCoins() : Random.Range(3, 6);
-            coins = MetaRunModifiers.ScaleCoins(coins);
             PlayerSkillStats stats = PlayerSkillHandler.Instance != null
                 ? PlayerSkillHandler.Instance.GetComponent<PlayerSkillStats>()
                 : null;
@@ -146,7 +160,12 @@ public class HealthSystem : MonoBehaviour
 
             // VFX nổ chỉ cho BOSS (nổ xanh to). Quái thường không nổ để tránh rối khi chết hàng loạt.
             if (boss != null)
+            {
                 EffectLibrary.Play(EffectKind.BlueExplosion, transform.position, 3.2f, Color.white, 22f, 25);
+                // Boss gục = khoảnh khắc "đã": freeze dài + rung mạnh.
+                GameJuice.HitStop(0.12f);
+                GameJuice.Shake(0.5f, 0.45f, 22f);
+            }
 
             EnemyAliveTracker.Add(-1);
 
@@ -175,6 +194,9 @@ public class HealthSystem : MonoBehaviour
                 HUDManager.Resolve()?.UpdateHp();
                 return;
             }
+
+            // Player chết = cú rung dứt khoát đánh dấu kết thúc run.
+            GameJuice.Shake(0.6f, 0.5f, 18f);
 
             if (RunManager.Instance != null)
                 RunManager.Instance.EndRun(false);
