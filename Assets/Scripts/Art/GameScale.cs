@@ -16,6 +16,9 @@ public static class GameScale
     public const float BossHeightBase = 3.3f; // boss tầng thấp
     public const float BossHeightMax = 4.6f;  // boss tầng 10
 
+    /// <summary>Nhân damage quái/boss → player. 1 = release; giảm khi test (vd. 0.35).</summary>
+    public const float EnemyDamageMultiplier = 0.35f;
+
     // --- ITEM rơi trong game (đường kính world units) ---
     public const float CoinSize = 0.5f;       // xu
     public const float ExpGemSize = 0.45f;    // ngọc EXP

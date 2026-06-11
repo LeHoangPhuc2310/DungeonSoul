@@ -39,11 +39,7 @@ public class HealthSystem : MonoBehaviour
         currentHP = Mathf.Clamp(currentHP, 0f, maxHP);
         baseRegen = hpRegenPerSecond;
         if (!isPlayer)
-        {
             isPlayer = CompareTag("Player");
-            if (!isPlayer)
-                EnemyOverheadHPBar.Ensure(gameObject);
-        }
     }
 
     private void Update()
@@ -92,6 +88,13 @@ public class HealthSystem : MonoBehaviour
 
         if (currentHP <= 0f)
             Die();
+    }
+
+    /// <summary>Reset HP khi lấy từ object pool.</summary>
+    public void ResetForPool()
+    {
+        currentHP = maxHP;
+        invulnerable = false;
     }
 
     public void Heal(float amount)
@@ -150,39 +153,48 @@ public class HealthSystem : MonoBehaviour
             if (loot != null)
                 loot.TryDrop(transform.position);
 
-            SkillBehaviors behaviors = FindPlayerSkillBehaviors();
-            if (behaviors != null)
-                behaviors.OnEnemyKilled(transform.position, maxHP);
-
             BossController boss = GetComponent<BossController>();
             if (boss != null)
-                boss.OnBossDefeated();
-
-            // VFX nổ chỉ cho BOSS (nổ xanh to). Quái thường không nổ để tránh rối khi chết hàng loạt.
-            if (boss != null)
-            {
-                EffectLibrary.Play(EffectKind.BlueExplosion, transform.position, 3.2f, Color.white, 22f, 25);
-                // Boss gục = khoảnh khắc "đã": freeze dài + rung mạnh.
-                GameJuice.HitStop(0.12f);
-                GameJuice.Shake(0.5f, 0.45f, 22f);
-            }
+                boss.OnBossDefeated(); // VFX nổ + hit-stop + shake nằm trong BossController.
 
             EnemyAliveTracker.Add(-1);
 
             if (RoomClearBridge.Instance != null)
                 RoomClearBridge.Instance.OnEnemyKilled();
 
+            // Điểm cắm cho mọi phản ứng "khi quái chết" (skill on-kill, quest, combo, analytics...).
+            // Thêm chức năng mới = subscribe EventBus.OnEnemyKilled, KHÔNG sửa file này.
+            EventBus.InvokeEnemyKilled(new EnemyKilledInfo(gameObject, transform.position, maxHP, boss != null));
+
+            float deathDelay = 0f;
+            bool hasDeathAnim = false;
+
             EnemySpriteAnimator kenneyAnim = GetComponent<EnemySpriteAnimator>();
             if (kenneyAnim != null && kenneyAnim.TryPlayDeath(out float kenneyDelay))
             {
-                Destroy(gameObject, kenneyDelay);
+                deathDelay = kenneyDelay;
+                hasDeathAnim = true;
+            }
+            else
+            {
+                SimpleSpriteAnimator knightAnim = GetComponent<SimpleSpriteAnimator>();
+                if (knightAnim != null && knightAnim.TryPlayDeath(out float knightDelay))
+                {
+                    deathDelay = knightDelay;
+                    hasDeathAnim = true;
+                }
+            }
+
+            EnemyPoolable poolable = GetComponent<EnemyPoolable>();
+            if (poolable != null && boss == null)
+            {
+                poolable.ScheduleReturn(hasDeathAnim ? deathDelay : 0.05f);
                 return;
             }
 
-            SimpleSpriteAnimator knightAnim = GetComponent<SimpleSpriteAnimator>();
-            if (knightAnim != null && knightAnim.TryPlayDeath(out float knightDelay))
+            if (hasDeathAnim)
             {
-                Destroy(gameObject, knightDelay);
+                Destroy(gameObject, deathDelay);
                 return;
             }
         }
@@ -238,12 +250,6 @@ public class HealthSystem : MonoBehaviour
         return GetComponent<EnemyAI>() != null
             || GetComponent<EnemyReward>() != null
             || GetComponent<BossController>() != null;
-    }
-
-    private static SkillBehaviors FindPlayerSkillBehaviors()
-    {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        return player != null ? player.GetComponent<SkillBehaviors>() : null;
     }
 
     private void SpawnExpGem(float enemyMaxHp)

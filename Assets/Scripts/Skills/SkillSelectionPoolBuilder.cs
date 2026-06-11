@@ -17,20 +17,21 @@ public static class SkillSelectionPoolBuilder
         int playerLevel)
     {
         SkillSelectionConfig cfg = SkillSelectionConfig.Get();
-        List<SkillSelectionChoice> result = new List<SkillSelectionChoice>(3);
+        int targetCount = GetTargetChoiceCount(context);
+        List<SkillSelectionChoice> result = new List<SkillSelectionChoice>(targetCount);
         HashSet<string> usedKeys = new HashSet<string>();
 
         // Tutorial: level-up đầu tiên chỉ skill
         if (context == SkillSelectionContext.LevelUp && playerLevel <= 2)
         {
-            FillSkillsOnly(result, usedKeys, allSkills, context, cfg, 3);
+            FillSkillsOnly(result, usedKeys, allSkills, context, cfg, targetCount);
             LogResult(context, result, "first-level-up-skills-only");
-            return PadOrFallback(result, usedKeys, allSkills, context, cfg);
+            return PadOrFallback(result, usedKeys, allSkills, context, cfg, targetCount);
         }
 
         GetSourceWeights(context, out float wSkill, out float wPassive, out float wWeapon);
 
-        for (int slot = 0; slot < 3; slot++)
+        for (int slot = 0; slot < targetCount; slot++)
         {
             SkillSelectionChoice pick = PickOne(context, allSkills, usedKeys, wSkill, wPassive, wWeapon, cfg);
             if (pick == null)
@@ -40,8 +41,16 @@ public static class SkillSelectionPoolBuilder
             usedKeys.Add(pick.GetUniqueKey());
         }
 
-        LogResult(context, result, $"weights skill={wSkill:P0} passive={wPassive:P0} weapon={wWeapon:P0}");
-        return PadOrFallback(result, usedKeys, allSkills, context, cfg);
+        LogResult(context, result, $"weights skill={wSkill:P0} passive={wPassive:P0} weapon={wWeapon:P0} count={targetCount}");
+        return PadOrFallback(result, usedKeys, allSkills, context, cfg, targetCount);
+    }
+
+    public static int GetTargetChoiceCount(SkillSelectionContext context)
+    {
+        if (context == SkillSelectionContext.LevelUp)
+            return GlobalStats.RollLevelUpChoiceCount();
+
+        return 3;
     }
 
     private static void GetSourceWeights(SkillSelectionContext ctx,
@@ -123,6 +132,8 @@ public static class SkillSelectionPoolBuilder
             SkillData s = allSkills[i];
             if (s == null || usedKeys.Contains("skill:" + s.skillType))
                 continue;
+            if (BanishRegistry.IsBanished("skill:" + s.skillType))
+                continue;
             if (!SkillCombatRules.IsOfferedToHero(s.skillType, WeaponStyleUtil.GetSelectedHeroClass()))
                 continue;
             if (IsSkillMaxed(s, cfg))
@@ -137,6 +148,8 @@ public static class SkillSelectionPoolBuilder
             {
                 SkillData s = allSkills[i];
                 if (s == null || usedKeys.Contains("skill:" + s.skillType) || IsSkillMaxed(s, cfg))
+                    continue;
+                if (BanishRegistry.IsBanished("skill:" + s.skillType))
                     continue;
                 if (!SkillCombatRules.IsOfferedToHero(s.skillType, WeaponStyleUtil.GetSelectedHeroClass()))
                     continue;
@@ -214,6 +227,8 @@ public static class SkillSelectionPoolBuilder
             PassiveItemData p = eligibles[i];
             if (p == null || usedKeys.Contains("passive:" + p.id))
                 continue;
+            if (BanishRegistry.IsBanished("passive:" + p.id))
+                continue;
             result.Add(p);
         }
 
@@ -267,7 +282,7 @@ public static class SkillSelectionPoolBuilder
                 continue;
 
             string key = "weapon:" + t;
-            if (usedKeys.Contains(key))
+            if (usedKeys.Contains(key) || BanishRegistry.IsBanished(key))
                 continue;
 
             if (!wm.HasWeapon(t))
@@ -357,6 +372,8 @@ public static class SkillSelectionPoolBuilder
                 SkillData s = allSkills[j];
                 if (s == null || usedKeys.Contains("skill:" + s.skillType) || IsSkillMaxed(s, cfg))
                     continue;
+                if (BanishRegistry.IsBanished("skill:" + s.skillType))
+                    continue;
                 pool.Add(s);
             }
 
@@ -375,7 +392,8 @@ public static class SkillSelectionPoolBuilder
         HashSet<string> usedKeys,
         List<SkillData> allSkills,
         SkillSelectionContext context,
-        SkillSelectionConfig cfg)
+        SkillSelectionConfig cfg,
+        int targetCount = 3)
     {
         // Mọi thứ max → một thẻ hồi máu
         if (result.Count == 0)
@@ -391,7 +409,7 @@ public static class SkillSelectionPoolBuilder
         }
 
         int safety = 0;
-        while (result.Count < 3 && safety++ < 8)
+        while (result.Count < targetCount && safety++ < 10)
         {
             if (result.Count % 2 == 0)
             {

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public enum GameRunMode
 {
+    Survival,
     WaveArena,
     ProceduralDungeon
 }
@@ -12,7 +13,7 @@ public class GameRunBootstrap : MonoBehaviour
 {
     public static GameRunBootstrap Instance { get; private set; }
 
-    [SerializeField] private GameRunMode runMode = GameRunMode.WaveArena;
+    [SerializeField] private GameRunMode runMode = GameRunMode.Survival;
     [SerializeField] private bool applyMobileSettings = true;
     [SerializeField] private int targetFrameRate = 60;
     [SerializeField] private bool preventScreenSleep = true;
@@ -50,11 +51,16 @@ public class GameRunBootstrap : MonoBehaviour
                 dungeon = gameObject.AddComponent<DungeonRunController>();
             dungeon.BeginDungeonRun();
         }
-        else
+        else if (runMode == GameRunMode.WaveArena)
         {
+            DisableSurvivalRun();
             RoomManager room = RoomManager.Instance;
             if (room != null)
                 room.SetWaveMode(true);
+        }
+        else if (runMode == GameRunMode.Survival)
+        {
+            EnsureSurvivalRun();
         }
 
         RefreshPlayerVisual();
@@ -94,6 +100,7 @@ public class GameRunBootstrap : MonoBehaviour
     private static void EnsureManagers()
     {
         Ensure<RunManager>("RunManager");
+        Ensure<SurvivalRunManager>("SurvivalRunManager");
         Ensure<BossSpawnManager>("BossSpawnManager");
         Ensure<AchievementManager>("AchievementManager");
         Ensure<HeroRunStats>("HeroRunStats");
@@ -114,6 +121,27 @@ public class GameRunBootstrap : MonoBehaviour
             GameObject font = new GameObject("FontSwitcher");
             font.AddComponent<FontSwitcher>();
         }
+    }
+
+    private void EnsureSurvivalRun()
+    {
+        SurvivalRunManager mgr = Ensure<SurvivalRunManager>("SurvivalRunManager");
+        mgr.SetSurvivalMode(true);
+        mgr.ResetForNewRun();
+
+        EnemySpawner spawner = Object.FindAnyObjectByType<EnemySpawner>();
+        if (spawner != null)
+            spawner.EnableSurvivalMode(true);
+    }
+
+    private void DisableSurvivalRun()
+    {
+        SurvivalRunManager mgr = Object.FindAnyObjectByType<SurvivalRunManager>();
+        mgr?.SetSurvivalMode(false);
+
+        EnemySpawner spawner = Object.FindAnyObjectByType<EnemySpawner>();
+        if (spawner != null)
+            spawner.EnableSurvivalMode(false);
     }
 
     private static T Ensure<T>(string name) where T : Component

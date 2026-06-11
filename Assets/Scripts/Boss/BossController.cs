@@ -209,7 +209,7 @@ public class BossController : MonoBehaviour
         if (player == null)
             return;
         HealthSystem ph = player.GetComponent<HealthSystem>();
-        ph?.TakeDamage(amount);
+        ph?.TakeDamage(amount * GameScale.EnemyDamageMultiplier);
     }
 
     private void StopAllAbilityCoroutines()
@@ -249,6 +249,11 @@ public class BossController : MonoBehaviour
         defeated = true;
         StopAllAbilityCoroutines();
         BossHPBarUI.HideBar();
+
+        // Boss gục = khoảnh khắc "đã": nổ xanh to + freeze dài + rung mạnh (chuyển từ HealthSystem.Die về đây).
+        EffectLibrary.Play(EffectKind.BlueExplosion, transform.position, 3.2f, Color.white, 22f, 25);
+        GameJuice.HitStop(0.12f);
+        GameJuice.Shake(0.5f, 0.45f, 22f);
 
         Debug.Log("[Boss] Defeated: " + (bossData != null ? bossData.bossName : name));
         EventBus.InvokeBossDefeated();

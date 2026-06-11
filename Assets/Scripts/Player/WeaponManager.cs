@@ -407,11 +407,13 @@ public class WeaponManager : MonoBehaviour
         if (!weaponSystemEnabled)
         {
             hud.SetWeaponBarVisible(false);
+            hud.RefreshVsLoadoutPanel();
             return;
         }
 
         hud.SetWeaponBarVisible(true);
         hud.UpdateWeaponSlots(activeWeapons, unlockedSlots);
+        hud.RefreshVsLoadoutPanel();
     }
 
     private static void RefreshPlayerWeaponVisual()

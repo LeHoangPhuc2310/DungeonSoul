@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 7711223344556677889}
   - component: {fileID: 8803311782992774225}
   - component: {fileID: -7492264878523628621}
+  - component: {fileID: 5522334455667788990}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -89,8 +90,8 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: -510194180926327622, guid: 6e45da772509c954fb5150c5fe6c59ea, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -157,12 +158,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbd5521b35a8d5b409f30322992458a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
-  detectionRadius: 6
+  detectionRadius: 0
   moveSpeed: 2
-  stopDistance: 0.75
-  attackRange: 0.95
+  stopDistance: 0.48
+  meleeRange: 0.52
   contactDamage: 10
-  damageInterval: 1.5
+  attackCooldown: 1.15
   playerTag: Player
   bobAmplitude: 0.07
   bobSpeed: 9
@@ -268,3 +269,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c03661f1d257eda4c8b201f79042cde4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpriteAnimator
+--- !u!114 &5522334455667788990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7177117788238185271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfbf628715d7c5549bf797bb904a212c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyVisualBootstrap

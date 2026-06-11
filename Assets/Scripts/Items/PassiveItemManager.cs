@@ -29,6 +29,11 @@ public class PassiveItemManager : MonoBehaviour
     public int ExtraProjectileCount { get; private set; }
     public float DamageMultiplierBonus { get; private set; } = 1f;
     public float CooldownMultiplierBonus { get; private set; } = 1f;
+    public float LuckBonus { get; private set; }
+    public float AreaSizeBonus { get; private set; }
+    public float DefensePercent => _cachedDefensePercent;
+    public float MoveSpeedPercent => _cachedMovePercent;
+    public float MagnetRadiusBonus => _cachedMagnetBonus;
 
     public IReadOnlyList<PassivePick> PickedItems => pickedItems;
     public int MaxPassiveItems => maxPassiveItems;
@@ -243,11 +248,15 @@ public class PassiveItemManager : MonoBehaviour
         ExtraProjectileCount = 0;
         DamageMultiplierBonus = 1f;
         CooldownMultiplierBonus = 1f;
+        LuckBonus = 0f;
+        AreaSizeBonus = 0f;
         reviveAvailable = false;
 
         float defensePercent = 0f;
         float hpFlat = 0f;
         float movePercent = 0f;
+        float luckSum = 0f;
+        float areaSum = 0f;
 
         for (int i = 0; i < pickedItems.Count; i++)
         {
@@ -293,9 +302,17 @@ public class PassiveItemManager : MonoBehaviour
                 case PassiveStatModifierType.Revive:
                     reviveAvailable = true;
                     break;
+                case PassiveStatModifierType.Luck:
+                    luckSum += total;
+                    break;
+                case PassiveStatModifierType.AreaSize:
+                    areaSum += total;
+                    break;
             }
         }
 
+        LuckBonus = luckSum;
+        AreaSizeBonus = areaSum;
         _cachedDefensePercent = defensePercent;
         _cachedHpFlat = hpFlat;
         _cachedMovePercent = movePercent;
@@ -351,6 +368,7 @@ public class PassiveItemManager : MonoBehaviour
         {
             weaponManager.DamageMultiplier = DamageMultiplierBonus;
             weaponManager.CooldownMultiplier = CooldownMultiplierBonus;
+            weaponManager.AreaMultiplier = 1f + AreaSizeBonus;
             weaponManager.ExtraProjectileCount = ExtraProjectileCount;
         }
 
@@ -358,6 +376,7 @@ public class PassiveItemManager : MonoBehaviour
             autoAttack.ProjectileCount = 1 + ExtraProjectileCount;
 
         ApplyMagnetBonus(_cachedMagnetBonus);
+        GlobalStats.Refresh();
     }
 
     private static void ApplyMagnetBonus(float bonus)
@@ -454,6 +473,9 @@ public class PassiveItemManager : MonoBehaviour
     {
         HUDManager hud = HUDManager.Resolve();
         if (hud != null)
+        {
             hud.UpdatePassiveSlots(pickedItems, maxPassiveItems);
+            hud.RefreshVsLoadoutPanel();
+        }
     }
 }

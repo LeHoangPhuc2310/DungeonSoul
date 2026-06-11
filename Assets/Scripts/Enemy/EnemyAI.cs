@@ -244,7 +244,7 @@ public class EnemyAI : MonoBehaviour
         float reach = meleeRange + 0.12f;
         if (dist <= reach)
         {
-            playerHealth.TakeDamage(contactDamage);
+            playerHealth.TakeDamage(contactDamage * GameScale.EnemyDamageMultiplier);
             AudioManager.PlayEnemyAttack();
         }
     }

@@ -40,13 +40,13 @@ public class GameOverUI : MonoBehaviour
         WireButtons();
     }
 
-    public void Show(int score, int floor, int coins, bool victory = false)
+    public void Show(int score, int floor, int coins, bool victory = false, int soulsEarned = 0, float survivalSeconds = 0f)
     {
         EnsureUI();
         WireButtons();
         if (canvas != null)
             canvas.gameObject.SetActive(true);
-        Setup(score, floor, coins, victory);
+        Setup(score, floor, coins, victory, soulsEarned, survivalSeconds);
     }
 
     public void HidePanel()
@@ -58,7 +58,7 @@ public class GameOverUI : MonoBehaviour
             c.gameObject.SetActive(false);
     }
 
-    public void Setup(int score, int floor, int coins, bool victory = false)
+    public void Setup(int score, int floor, int coins, bool victory = false, int soulsEarned = 0, float survivalSeconds = 0f)
     {
         EnsureUI();
         ResolveSceneTextReferences();
@@ -70,14 +70,27 @@ public class GameOverUI : MonoBehaviour
         }
 
         if (scoreResultText != null) scoreResultText.text = "Score: " + score;
-        if (floorResultText != null) floorResultText.text = victory ? "Hoàn thành 10 tầng!" : "Floor: " + floor;
+        if (floorResultText != null)
+        {
+            if (SurvivalRunManager.IsSurvivalMode())
+            {
+                floorResultText.text = "Thời gian: " + SurvivalRunManager.FormatTime(survivalSeconds)
+                    + (victory ? " — SỐNG SÓT!" : "");
+            }
+            else
+            {
+                floorResultText.text = victory ? "Hoàn thành 10 tầng!" : "Floor: " + floor;
+            }
+        }
+
         if (coinsResultText != null)
-            coinsResultText.text = "Xu: " + coins;
+        {
+            string meta = soulsEarned > 0 ? "  |  +" + soulsEarned + " Souls" : "";
+            coinsResultText.text = "Xu run: " + coins + meta + "  |  Tổng Souls: " + MetaRunProgress.SoulPoints;
+        }
 
         FillPlayerStats();
         FillHeroAndBoss(floor);
-
-        AchievementManager.Instance?.OnRunEnded(victory, floor);
     }
 
     /// <summary>Điền danh sách chỉ số người chơi (kiểu Player Stats của KnightFall).</summary>

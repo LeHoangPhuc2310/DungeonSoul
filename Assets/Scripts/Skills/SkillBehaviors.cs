@@ -25,6 +25,21 @@ public class SkillBehaviors : MonoBehaviour
         stats = GetComponent<PlayerSkillStats>();
     }
 
+    private void OnEnable()
+    {
+        EventBus.OnEnemyKilled += HandleEnemyKilled;
+    }
+
+    private void OnDisable()
+    {
+        EventBus.OnEnemyKilled -= HandleEnemyKilled;
+    }
+
+    private void HandleEnemyKilled(EnemyKilledInfo info)
+    {
+        OnEnemyKilled(info.Position, info.MaxHp);
+    }
+
     private void Update()
     {
         if (handler == null)

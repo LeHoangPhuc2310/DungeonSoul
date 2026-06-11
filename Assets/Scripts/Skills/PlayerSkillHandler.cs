@@ -63,6 +63,9 @@ public class PlayerSkillHandler : MonoBehaviour
 
         if (SkillsPanelUI.Instance != null)
             SkillsPanelUI.Instance.AddOrUpdateSkill(skill);
+
+        GlobalStats.Refresh();
+        HUDManager.Resolve()?.RefreshVsLoadoutPanel();
     }
 
     private void PlaySkillAcquireVfx(SkillType type)

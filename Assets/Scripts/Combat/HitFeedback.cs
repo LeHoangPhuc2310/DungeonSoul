@@ -32,10 +32,26 @@ public class HitFeedback : MonoBehaviour
         if (renderers != null)
             return;
 
-        renderers = GetComponentsInChildren<SpriteRenderer>(true);
-        baseColors = new Color[renderers.Length];
-        for (int i = 0; i < renderers.Length; i++)
-            baseColors[i] = renderers[i] != null ? renderers[i].color : Color.white;
+        SpriteRenderer[] all = GetComponentsInChildren<SpriteRenderer>(true);
+        int count = 0;
+        for (int i = 0; i < all.Length; i++)
+        {
+            if (all[i] != null && !IsOverheadHpBarRenderer(all[i]))
+                count++;
+        }
+
+        renderers = new SpriteRenderer[count];
+        baseColors = new Color[count];
+        int write = 0;
+        for (int i = 0; i < all.Length; i++)
+        {
+            SpriteRenderer sr = all[i];
+            if (sr == null || IsOverheadHpBarRenderer(sr))
+                continue;
+            renderers[write] = sr;
+            baseColors[write] = sr.color;
+            write++;
+        }
     }
 
     private void Trigger()
@@ -52,6 +68,19 @@ public class HitFeedback : MonoBehaviour
         yield return new WaitForSecondsRealtime(FlashSeconds);
         SetFlash(false);
         flashRoutine = null;
+    }
+
+    private static bool IsOverheadHpBarRenderer(SpriteRenderer sr)
+    {
+        Transform t = sr.transform;
+        while (t != null)
+        {
+            if (t.name == "OverheadHP")
+                return true;
+            t = t.parent;
+        }
+
+        return false;
     }
 
     private void SetFlash(bool on)

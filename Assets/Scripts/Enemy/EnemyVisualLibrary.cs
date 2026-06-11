@@ -65,9 +65,27 @@ public static class EnemyVisualLibrary
         if (anim == null)
             anim = enemy.AddComponent<EnemySpriteAnimator>();
         anim.enabled = true;
+
+        if (sr != null)
+        {
+            sr.color = Color.white;
+            sr.enabled = true;
+        }
+
         anim.ApplySet(set);
 
-        if (set.PreviewSprite != null)
-            GameScale.FitEnemy(enemy.transform, set.PreviewSprite, archetype);
+        Sprite preview = set.PreviewSprite;
+        if (sr != null && preview != null)
+        {
+            sr.sprite = preview;
+            sr.color = Color.white;
+            sr.sortingOrder = 8;
+            sr.enabled = true;
+        }
+
+        if (preview != null)
+            GameScale.FitEnemy(enemy.transform, preview, archetype);
+        else
+            EnemyVisualUtil.ApplyStaticFallback(enemy, archetype);
     }
 }

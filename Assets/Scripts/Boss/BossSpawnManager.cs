@@ -42,6 +42,24 @@ public class BossSpawnManager : MonoBehaviour
 
     public static bool IsBossWave(int wave) => wave == 3 || wave == 6 || wave == 9 || wave == 10;
 
+    public static string GetBossNameForTier(int tierIndex)
+    {
+        BossData data = GetDataForTier(tierIndex);
+        return data != null ? data.bossName : "Boss";
+    }
+
+    public static void SpawnForSurvivalTier(int tierIndex, int waveForScale, Vector3 position, GameObject prefabFallback)
+    {
+        BossSpawnManager mgr = Instance;
+        if (mgr == null)
+        {
+            GameObject go = new GameObject("BossSpawnManager");
+            mgr = go.AddComponent<BossSpawnManager>();
+        }
+
+        mgr.SpawnBossForTier(tierIndex, waveForScale, position, prefabFallback);
+    }
+
     public static void SpawnForWave(int wave, Vector3 position, GameObject prefabFallback)
     {
         BossSpawnManager mgr = Instance;
@@ -54,12 +72,26 @@ public class BossSpawnManager : MonoBehaviour
         mgr.SpawnBoss(wave, position, prefabFallback);
     }
 
+    public void SpawnBossForTier(int tierIndex, int waveForScale, Vector3 position, GameObject prefabFallback)
+    {
+        BossData data = GetDataForTier(tierIndex);
+        if (data == null)
+            return;
+
+        SpawnBossInternal(data, waveForScale, position, prefabFallback);
+    }
+
     public void SpawnBoss(int wave, Vector3 position, GameObject prefabFallback)
     {
         BossData data = GetDataForWave(wave);
         if (data == null)
             return;
 
+        SpawnBossInternal(data, wave, position, prefabFallback);
+    }
+
+    private void SpawnBossInternal(BossData data, int wave, Vector3 position, GameObject prefabFallback)
+    {
         Vector3 pos = spawnCenter != null ? spawnCenter.position : position;
         GameObject go = prefabFallback != null
             ? Instantiate(prefabFallback, pos, Quaternion.identity)
@@ -79,13 +111,26 @@ public class BossSpawnManager : MonoBehaviour
             GameplayPresentation.Instance.ApplyEnemyScale(go.transform);
         ApplyBossScale(go.transform, wave);
 
+        EnemyAI bossAi = go.GetComponent<EnemyAI>();
+        if (bossAi != null)
+            bossAi.MoveSpeed *= EnemyArchetypeUtility.GetWaveSpeedMultiplier(wave);
+
         // VFX triệu hồi boss — vòng to + nổ xanh, kèm tiếng gầm + rung màn báo hiệu boss tới.
         EffectLibrary.Play(EffectKind.SpawnPoint, pos, 2.4f, new Color(1f, 0.4f, 0.4f, 1f), 14f, 5);
         EffectLibrary.Play(EffectKind.BlueExplosion, pos, 2.8f, Color.white, 18f, 24);
         AudioManager.PlayBossSpawn();
         GameJuice.Shake(0.35f, 0.5f, 14f);
 
-        Debug.Log("[BossSpawn] " + data.bossName + " at wave " + wave);
+        EnemyAliveTracker.Add(1);
+        Debug.Log("[BossSpawn] " + data.bossName + " (scale wave " + wave + ")");
+    }
+
+    private static BossData GetDataForTier(int tierIndex)
+    {
+        if (tierIndex < 0 || tierIndex >= RuntimeBossTable.Length)
+            return null;
+
+        return RuntimeBossTable[tierIndex];
     }
 
     public static void SpawnMinionsNear(Vector3 center, int count)

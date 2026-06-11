@@ -14,9 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillSelectionConfig
   rerollCoinCost: 50
   maxRerollsPerPanel: 3
+  skillPurchaseCoinCost: 75
+  minPurchaseCoinCost: 40
+  commonPriceMult: 0.65
+  rarePriceMult: 1
+  epicPriceMult: 1.45
+  legendaryPriceMult: 2.2
+  maxPinnedCardsOnReroll: 1
   skipHealPercent: 0.1
   fallbackBonusHp: 10
   fallbackBonusCoins: 5
   allMaxedHealHp: 30
   maxSkillStack: 3
+  maxBanishesPerRun: 5
   logPoolWeights: 0

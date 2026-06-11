@@ -9,11 +9,11 @@ public class SkillSelectionUI : MonoBehaviour
     public static SkillSelectionUI Instance { get; private set; }
 
     public Canvas skillCanvas;
-    public Button[] skillButtons = new Button[3];
+    public Button[] skillButtons = new Button[4];
     public List<SkillData> allSkills = new List<SkillData>();
 
     private readonly List<SkillSelectionChoice> currentChoices = new List<SkillSelectionChoice>(3);
-    private readonly SkillCardRefs[] cardRefs = new SkillCardRefs[3];
+    private readonly SkillCardRefs[] cardRefs = new SkillCardRefs[4];
 
     private bool isOpen;
     public bool IsPanelOpen => isOpen;
@@ -44,7 +44,12 @@ public class SkillSelectionUI : MonoBehaviour
     private TMP_Text headerHint;
     private Button rerollButton;
     private Button skipButton;
+    private Button banishButton;
     private Button confirmButton;
+    private Button buyButton;
+    private Button lockButton;
+    private readonly bool[] pinnedForReroll = new bool[4];
+    private int activeChoiceCount = 3;
     private GameObject skipConfirmRoot;
     private bool skipConfirmArmed;
 
@@ -78,6 +83,9 @@ public class SkillSelectionUI : MonoBehaviour
         public TMP_Text progressText;
         public TMP_Text rarity;
         public TMP_Text stack;
+        public Image lockIcon;
+        public Image priceBg;
+        public TMP_Text priceLabel;
         public SkillCardInteraction interaction;
     }
 
@@ -429,6 +437,8 @@ public class SkillSelectionUI : MonoBehaviour
         highlightedCardIndex = -1;
         pendingConfirmIndex = -1;
         rerollsUsed = 0;
+        for (int i = 0; i < pinnedForReroll.Length; i++)
+            pinnedForReroll[i] = false;
         choiceConfirmed = false;
         acceptingChoices = false;
         panelOpenUnscaledTime = Time.unscaledTime;
@@ -504,7 +514,17 @@ public class SkillSelectionUI : MonoBehaviour
         SetAllChoiceButtonsInteractable(true);
         RefreshActionButtons();
         if (headerHint != null)
-            headerHint.text = "Chạm thẻ để chọn  |  Giữ lâu: xem chi tiết";
+        {
+            if (SurvivalRunManager.IsSurvivalMode())
+            {
+                string luckHint = activeChoiceCount >= 4 ? " · 4 lựa chọn (Luck!)" : string.Empty;
+                headerHint.text = "Chọn 1 thẻ  |  Reroll / Skip / Banish" + luckHint;
+            }
+            else
+            {
+                headerHint.text = "Chạm thẻ để chọn  |  Giữ lâu: xem chi tiết";
+            }
+        }
         unlockInputRoutine = null;
     }
 
@@ -520,11 +540,55 @@ public class SkillSelectionUI : MonoBehaviour
         }
     }
 
-    private void BuildWeightedChoices()
+    private void BuildWeightedChoices(bool rerolling = false)
     {
         int level = ExpSystem.Instance != null ? ExpSystem.Instance.CurrentLevel : 1;
+        List<SkillSelectionChoice> previous = rerolling ? new List<SkillSelectionChoice>(currentChoices) : null;
+
         currentChoices.Clear();
-        currentChoices.AddRange(SkillSelectionPoolBuilder.Build(currentContext, allSkills, level));
+        var usedKeys = new HashSet<string>();
+
+        SkillSelectionChoice savedPurchase = RunManager.Instance?.PeekLockedSkillPurchase();
+        if (savedPurchase != null && !rerolling)
+        {
+            SkillSelectionChoice locked = savedPurchase.Clone();
+            locked.note = "locked_purchase";
+            currentChoices.Add(locked);
+            usedKeys.Add(locked.GetUniqueKey());
+        }
+
+        if (rerolling && previous != null)
+        {
+            for (int i = 0; i < pinnedForReroll.Length && i < previous.Count; i++)
+            {
+                if (!pinnedForReroll[i] || previous[i] == null)
+                    continue;
+
+                string key = previous[i].GetUniqueKey();
+                if (usedKeys.Contains(key))
+                    continue;
+
+                currentChoices.Add(previous[i].Clone());
+                usedKeys.Add(key);
+            }
+        }
+
+        List<SkillSelectionChoice> pool = SkillSelectionPoolBuilder.Build(currentContext, allSkills, level);
+        for (int i = 0; i < pool.Count && currentChoices.Count < skillButtons.Length; i++)
+        {
+            SkillSelectionChoice choice = pool[i];
+            if (choice == null)
+                continue;
+
+            string key = choice.GetUniqueKey();
+            if (usedKeys.Contains(key))
+                continue;
+
+            currentChoices.Add(choice);
+            usedKeys.Add(key);
+        }
+
+        activeChoiceCount = Mathf.Clamp(currentChoices.Count, 3, skillButtons.Length);
     }
 
     private void ApplyTypographyToAllCards()
@@ -765,15 +829,17 @@ public class SkillSelectionUI : MonoBehaviour
         }
     }
 
-    /// <summary>Chạm thẻ = chọn ngay (nút Xác nhận vẫn dùng được nếu muốn).</summary>
+    /// <summary>Chạm thẻ = chọn (highlight) — xác nhận / mua / khóa ở nút dưới.</summary>
     private void OnCardTapped(int index, SkillSelectionChoice choice)
     {
         if (choice == null || !acceptingChoices || choiceConfirmed)
             return;
 
         AudioManager.PlayUiTap();
+        pendingConfirmIndex = index;
         HighlightCard(index);
-        ConfirmChoice(choice, index);
+        RefreshActionButtons();
+        RefreshLockButtonIcon();
     }
 
     private void HighlightCard(int index)
@@ -789,7 +855,49 @@ public class SkillSelectionUI : MonoBehaviour
             SkillCardRefs refs = i < cardRefs.Length ? cardRefs[i] : null;
             if (refs?.synergyGlow != null)
                 refs.synergyGlow.color = new Color(1f, 0.85f, 0.2f, i == index ? 0.55f : 0.25f);
+
+            ApplyCardLockState(i, refs);
         }
+    }
+
+    private void ApplyCardLockState(int index, SkillCardRefs refs)
+    {
+        if (refs?.lockIcon == null)
+            return;
+
+        bool isLockedPurchase = index < currentChoices.Count
+            && currentChoices[index] != null
+            && IsLockedPurchaseChoice(currentChoices[index]);
+        bool isPinned = index >= 0 && index < pinnedForReroll.Length && pinnedForReroll[index];
+        bool show = isLockedPurchase || isPinned;
+
+        refs.lockIcon.enabled = show;
+        if (!show)
+            return;
+
+        SkillSelectionChoice choice = index < currentChoices.Count ? currentChoices[index] : null;
+        SkillRarity rarity = SkillPurchasePricing.ResolveRarity(choice);
+        refs.lockIcon.sprite = isLockedPurchase
+            ? UnlockIconLibrary.LockedBadge
+            : UnlockIconLibrary.ForRarity(rarity);
+        refs.lockIcon.color = Color.white;
+    }
+
+    private void RefreshLockButtonIcon()
+    {
+        if (lockButton == null || pendingConfirmIndex < 0 || pendingConfirmIndex >= currentChoices.Count)
+            return;
+
+        SkillSelectionChoice choice = currentChoices[pendingConfirmIndex];
+        Transform iconTf = lockButton.transform.Find("Icon");
+        Image iconImg = iconTf != null ? iconTf.GetComponent<Image>() : null;
+        if (iconImg == null)
+            return;
+
+        SkillRarity rarity = SkillPurchasePricing.ResolveRarity(choice);
+        iconImg.enabled = true;
+        iconImg.sprite = UnlockIconLibrary.ForRarity(rarity);
+        iconImg.color = Color.white;
     }
 
     private void OnConfirmClicked()
@@ -799,7 +907,16 @@ public class SkillSelectionUI : MonoBehaviour
         if (pendingConfirmIndex < 0 || pendingConfirmIndex >= currentChoices.Count)
             return;
 
-        ConfirmChoice(currentChoices[pendingConfirmIndex], pendingConfirmIndex);
+        SkillSelectionChoice choice = currentChoices[pendingConfirmIndex];
+        if (IsLockedPurchaseChoice(choice))
+            return;
+
+        ConfirmChoice(choice, pendingConfirmIndex);
+    }
+
+    private static bool IsLockedPurchaseChoice(SkillSelectionChoice choice)
+    {
+        return choice != null && choice.note == "locked_purchase";
     }
 
     private void ConfirmChoice(SkillSelectionChoice choice, int index)
@@ -812,6 +929,8 @@ public class SkillSelectionUI : MonoBehaviour
         DismissSkipConfirm();
         SetAllChoiceButtonsInteractable(false);
         Debug.Log("[SkillSelectionUI] Đã chọn: " + choice.kind + " (index " + index + ")");
+
+        RunManager.Instance?.ClearLockedSkillPurchase();
 
         if (isActiveAndEnabled)
             StartCoroutine(AnimateSelectCard(index));
@@ -917,6 +1036,12 @@ public class SkillSelectionUI : MonoBehaviour
             return;
 
         EnemySpawner spawner = Object.FindAnyObjectByType<EnemySpawner>();
+        if (SurvivalRunManager.IsSurvivalMode())
+        {
+            PassiveItemManager.Instance?.CheckPassiveEvolutionsAtWaveEnd();
+            return;
+        }
+
         if (spawner != null && spawner.CurrentWave >= 10)
         {
             RunManager run = RunManager.Instance;
@@ -1015,7 +1140,7 @@ public class SkillSelectionUI : MonoBehaviour
 
         rerollsUsed++;
         AudioManager.PlayUiTap();
-        BuildWeightedChoices();
+        BuildWeightedChoices(rerolling: true);
         pendingConfirmIndex = -1;
         acceptingChoices = false;
         SetPanelInputBlocked(true);
@@ -1029,6 +1154,53 @@ public class SkillSelectionUI : MonoBehaviour
         unlockInputRoutine = StartCoroutine(UnlockChoiceInputAfterDelay());
         if (isActiveAndEnabled)
             StartCoroutine(AnimateShuffleCards());
+    }
+
+    private void OnBanishClicked()
+    {
+        if (!acceptingChoices || choiceConfirmed)
+            return;
+
+        if (config == null)
+            config = SkillSelectionConfig.Get();
+
+        if (pendingConfirmIndex < 0 || pendingConfirmIndex >= currentChoices.Count)
+            return;
+
+        SkillSelectionChoice choice = currentChoices[pendingConfirmIndex];
+        if (choice == null || !CanBanishChoice(choice))
+            return;
+
+        string key = choice.GetUniqueKey();
+        if (!BanishRegistry.TryBanish(key, config.maxBanishesPerRun))
+            return;
+
+        Debug.Log("[SkillSelectionUI] Banish: " + key);
+        AudioManager.PlayUiTap();
+        choiceConfirmed = true;
+        acceptingChoices = false;
+        DismissSkipConfirm();
+        SetAllChoiceButtonsInteractable(false);
+
+        bool fromChest = openedFromChestReward;
+        StopCloseCoroutines();
+        closeAfterSelectionRoutine = StartCoroutine(CloseAfterSelection(fromChest));
+    }
+
+    private static bool CanBanishChoice(SkillSelectionChoice choice)
+    {
+        if (choice == null)
+            return false;
+
+        switch (choice.kind)
+        {
+            case SkillSelectionChoiceKind.BonusHp:
+            case SkillSelectionChoiceKind.BonusCoin:
+            case SkillSelectionChoiceKind.HealFallback:
+                return false;
+            default:
+                return true;
+        }
     }
 
     private void OnSkipClicked()
@@ -1231,7 +1403,7 @@ public class SkillSelectionUI : MonoBehaviour
         switch (currentContext)
         {
             case SkillSelectionContext.LevelUp:
-                return "Lên cấp " + level + "!";
+                return SurvivalRunManager.IsSurvivalMode() ? "LEVEL UP!" : "Lên cấp " + level + "!";
             case SkillSelectionContext.EliteChest:
                 return "Rương Elite";
             case SkillSelectionContext.BossChest:
@@ -1256,10 +1428,69 @@ public class SkillSelectionUI : MonoBehaviour
             return;
 
         rerollButton = EnsureFooterButton("RerollButton", new Vector2(0.08f, 0.22f), OnRerollClicked, ref rerollButton);
+        banishButton = EnsureFooterButton("BanishButton", new Vector2(0.5f, 0.22f), OnBanishClicked, ref banishButton);
         skipButton = EnsureFooterButton("SkipButton", new Vector2(0.92f, 0.22f), OnSkipClicked, ref skipButton);
-        confirmButton = EnsureFooterButton("ConfirmButton", new Vector2(0.5f, 0.14f), OnConfirmClicked, ref confirmButton);
+        buyButton = EnsureFooterButton("BuyButton", new Vector2(0.28f, 0.14f), OnBuyClicked, ref buyButton);
+        lockButton = EnsureFooterButton("LockButton", new Vector2(0.72f, 0.14f), OnLockClicked, ref lockButton);
+        confirmButton = EnsureFooterButton("ConfirmButton", new Vector2(0.5f, 0.08f), OnConfirmClicked, ref confirmButton);
+        StyleFooterButtonWithIcon(lockButton, UnlockIconLibrary.LockedBadge);
+        StyleFooterButtonWithIcon(buyButton, null);
 
         EnsureSkipConfirmPopup();
+    }
+
+    private static void StyleFooterButtonWithIcon(Button button, Sprite icon)
+    {
+        if (button == null)
+            return;
+
+        Image bg = button.GetComponent<Image>();
+        if (bg != null && GuiArtLibrary.ButtonSecondary != null)
+        {
+            bg.sprite = GuiArtLibrary.ButtonSecondary;
+            bg.type = Image.Type.Sliced;
+            bg.color = Color.white;
+        }
+
+        Transform iconTf = button.transform.Find("Icon");
+        Image iconImg;
+        if (iconTf == null)
+        {
+            GameObject iconGo = new GameObject("Icon", typeof(RectTransform), typeof(Image));
+            iconGo.transform.SetParent(button.transform, false);
+            RectTransform irt = iconGo.GetComponent<RectTransform>();
+            irt.anchorMin = new Vector2(0f, 0.5f);
+            irt.anchorMax = new Vector2(0f, 0.5f);
+            irt.pivot = new Vector2(0f, 0.5f);
+            irt.anchoredPosition = new Vector2(10f, 0f);
+            irt.sizeDelta = new Vector2(34f, 34f);
+            iconImg = iconGo.GetComponent<Image>();
+            iconImg.preserveAspect = true;
+            iconImg.raycastTarget = false;
+        }
+        else
+        {
+            iconImg = iconTf.GetComponent<Image>();
+        }
+
+        if (iconImg != null)
+        {
+            iconImg.enabled = icon != null;
+            if (icon != null)
+            {
+                iconImg.sprite = icon;
+                iconImg.color = Color.white;
+            }
+        }
+
+        TMP_Text label = button.GetComponentInChildren<TMP_Text>(true);
+        if (label != null)
+        {
+            RectTransform lrt = label.rectTransform;
+            lrt.offsetMin = new Vector2(icon != null ? 48f : 8f, 4f);
+            lrt.offsetMax = new Vector2(-8f, -4f);
+            label.alignment = TextAlignmentOptions.MidlineLeft;
+        }
     }
 
     private Button EnsureFooterButton(string name, Vector2 anchor, UnityEngine.Events.UnityAction onClick, ref Button cached)
@@ -1404,10 +1635,159 @@ public class SkillSelectionUI : MonoBehaviour
             skipButton.interactable = acceptingChoices && !choiceConfirmed;
             TMP_Text label = skipButton.GetComponentInChildren<TMP_Text>(true);
             if (label != null)
-                label.text = "Bỏ qua (+10% HP)";
+                label.text = SurvivalRunManager.IsSurvivalMode() ? "Skip" : "Bỏ qua (+10% HP)";
+        }
+
+        if (banishButton != null)
+        {
+            bool hasBanishable = pendingConfirmIndex >= 0 && pendingConfirmIndex < currentChoices.Count
+                && CanBanishChoice(currentChoices[pendingConfirmIndex]);
+            int maxBanish = config.maxBanishesPerRun;
+            bool banishLeft = maxBanish <= 0 || BanishRegistry.BanishesUsed < maxBanish;
+            banishButton.interactable = acceptingChoices && !choiceConfirmed && hasBanishable && banishLeft;
+            banishButton.gameObject.SetActive(SurvivalRunManager.IsSurvivalMode());
+
+            TMP_Text label = banishButton.GetComponentInChildren<TMP_Text>(true);
+            if (label != null)
+            {
+                if (!banishLeft)
+                    label.text = "Banish (hết)";
+                else if (!hasBanishable)
+                    label.text = "Banish";
+                else
+                    label.text = maxBanish > 0
+                        ? "Banish (" + (maxBanish - BanishRegistry.BanishesUsed) + ")"
+                        : "Banish";
+            }
         }
 
         RefreshConfirmButton();
+        RefreshBuyAndLockButtons();
+    }
+
+    private void RefreshBuyAndLockButtons()
+    {
+        if (config == null)
+            config = SkillSelectionConfig.Get();
+
+        int coins = RunManager.Instance != null ? RunManager.Instance.RunCoins : 0;
+        SkillSelectionChoice selected = hasSelectionChoice()
+            ? currentChoices[pendingConfirmIndex]
+            : null;
+        int buyCost = selected != null ? SkillPurchasePricing.GetCost(selected) : config.skillPurchaseCoinCost;
+        bool purchasable = selected != null && SkillPurchasePricing.IsPurchasable(selected);
+        bool hasSelection = hasSelectionChoice();
+        bool canBuy = hasSelection && purchasable && buyCost > 0 && coins >= buyCost;
+        bool canLockPurchase = hasSelection && purchasable && buyCost > 0 && !canBuy;
+        bool canPinReroll = hasSelection && config.maxPinnedCardsOnReroll > 0;
+
+        if (buyButton != null)
+        {
+            buyButton.interactable = canBuy;
+            TMP_Text label = buyButton.GetComponentInChildren<TMP_Text>(true);
+            if (label != null)
+            {
+                if (!purchasable || buyCost <= 0)
+                    label.text = "Miễn phí";
+                else if (canBuy)
+                    label.text = "Mua · " + buyCost + " xu";
+                else
+                    label.text = "Mua · " + buyCost + " xu (thiếu)";
+                label.color = canBuy ? Color.white : new Color(0.55f, 0.55f, 0.58f, 1f);
+            }
+        }
+
+        if (lockButton != null)
+        {
+            bool pinned = hasSelection && pinnedForReroll[pendingConfirmIndex];
+            lockButton.interactable = canLockPurchase || canPinReroll;
+            TMP_Text label = lockButton.GetComponentInChildren<TMP_Text>(true);
+            if (label != null)
+            {
+                if (canLockPurchase)
+                    label.text = "Khóa · " + buyCost + " xu";
+                else if (pinned)
+                    label.text = "Đã ghim thẻ";
+                else
+                    label.text = "Ghim thẻ";
+                label.color = lockButton.interactable ? Color.white : new Color(0.55f, 0.55f, 0.58f, 1f);
+            }
+        }
+    }
+
+    private bool hasSelectionChoice()
+    {
+        return acceptingChoices && !choiceConfirmed && pendingConfirmIndex >= 0
+            && pendingConfirmIndex < currentChoices.Count && currentChoices[pendingConfirmIndex] != null;
+    }
+
+    private void OnBuyClicked()
+    {
+        if (!acceptingChoices || choiceConfirmed || pendingConfirmIndex < 0
+            || pendingConfirmIndex >= currentChoices.Count)
+            return;
+
+        if (config == null)
+            config = SkillSelectionConfig.Get();
+
+        SkillSelectionChoice choice = currentChoices[pendingConfirmIndex];
+        int buyCost = SkillPurchasePricing.GetCost(choice);
+        if (buyCost <= 0)
+            return;
+
+        RunManager run = RunManager.Instance;
+        if (run == null || !run.TrySpendRunCoins(buyCost))
+            return;
+        run.ClearLockedSkillPurchase();
+        AudioManager.PlayUiTap();
+        ConfirmChoice(choice, pendingConfirmIndex);
+    }
+
+    private void OnLockClicked()
+    {
+        if (!acceptingChoices || choiceConfirmed || pendingConfirmIndex < 0
+            || pendingConfirmIndex >= currentChoices.Count)
+            return;
+
+        if (config == null)
+            config = SkillSelectionConfig.Get();
+
+        SkillSelectionChoice choice = currentChoices[pendingConfirmIndex];
+        if (choice == null)
+            return;
+
+        int buyCost = SkillPurchasePricing.GetCost(choice);
+        int coins = RunManager.Instance != null ? RunManager.Instance.RunCoins : 0;
+        bool canBuy = buyCost > 0 && coins >= buyCost;
+
+        if (!canBuy)
+        {
+            choice.purchaseCoinCost = buyCost;
+            RunManager.Instance?.SetLockedSkillPurchase(choice);
+            AudioManager.PlayUiTap();
+            Debug.Log("[SkillSelectionUI] Đã khóa thẻ để mua sau: " + choice.GetUniqueKey());
+            choiceConfirmed = true;
+            acceptingChoices = false;
+            SetAllChoiceButtonsInteractable(false);
+            StopCloseCoroutines();
+            closeAfterSelectionRoutine = StartCoroutine(CloseAfterSelection(openedFromChestReward));
+            return;
+        }
+
+        int pinnedCount = 0;
+        for (int i = 0; i < pinnedForReroll.Length; i++)
+            if (pinnedForReroll[i])
+                pinnedCount++;
+
+        bool alreadyPinned = pinnedForReroll[pendingConfirmIndex];
+        if (!alreadyPinned && pinnedCount >= config.maxPinnedCardsOnReroll)
+            return;
+
+        pinnedForReroll[pendingConfirmIndex] = !alreadyPinned;
+        AudioManager.PlayUiTap();
+        for (int i = 0; i < skillButtons.Length; i++)
+            ApplyCardLockState(i, i < cardRefs.Length ? cardRefs[i] : null);
+        RefreshActionButtons();
     }
 
     private void RefreshConfirmButton()
@@ -1415,10 +1795,21 @@ public class SkillSelectionUI : MonoBehaviour
         if (confirmButton == null)
             return;
 
-        confirmButton.interactable = acceptingChoices && !choiceConfirmed && pendingConfirmIndex >= 0;
+        bool hasSelection = pendingConfirmIndex >= 0 && pendingConfirmIndex < currentChoices.Count
+            && currentChoices[pendingConfirmIndex] != null;
+        bool lockedPurchase = hasSelection && IsLockedPurchaseChoice(currentChoices[pendingConfirmIndex]);
+
+        confirmButton.interactable = acceptingChoices && !choiceConfirmed && hasSelection && !lockedPurchase;
         TMP_Text label = confirmButton.GetComponentInChildren<TMP_Text>(true);
         if (label != null)
-            label.text = pendingConfirmIndex >= 0 ? "XÁC NHẬN" : "Chọn thẻ trước";
+        {
+            if (!hasSelection)
+                label.text = "Chọn thẻ trước";
+            else if (lockedPurchase)
+                label.text = "Dùng nút Mua";
+            else
+                label.text = "XÁC NHẬN";
+        }
     }
 
     private void EnsureOverlayBackdrop()
@@ -1447,8 +1838,17 @@ public class SkillSelectionUI : MonoBehaviour
 
     private void ApplySkillButtonLayout()
     {
-        float totalWidth = CardWidth * 3f + CardGap * 2f;
-        float startX = -totalWidth * 0.5f + CardWidth * 0.5f;
+        int visible = Mathf.Clamp(activeChoiceCount, 3, skillButtons.Length);
+        float cardW = visible >= 4 ? 200f : CardWidth;
+        float gap = visible >= 4 ? 14f : CardGap;
+        float totalWidth = cardW * visible + gap * (visible - 1);
+        float startX = -totalWidth * 0.5f + cardW * 0.5f;
+
+        if (cardsPanelBg != null)
+        {
+            RectTransform panelRt = cardsPanelBg.rectTransform;
+            panelRt.sizeDelta = new Vector2(totalWidth + 56f, CardHeight + 52f);
+        }
 
         for (int i = 0; i < skillButtons.Length; i++)
         {
@@ -1456,12 +1856,17 @@ public class SkillSelectionUI : MonoBehaviour
             if (button == null)
                 continue;
 
+            bool show = i < visible;
+            button.gameObject.SetActive(show);
+            if (!show)
+                continue;
+
             RectTransform rt = button.GetComponent<RectTransform>();
             rt.anchorMin = new Vector2(0.5f, 0.42f);
             rt.anchorMax = new Vector2(0.5f, 0.42f);
             rt.pivot = new Vector2(0.5f, 0.5f);
-            rt.sizeDelta = new Vector2(Mathf.Max(CardWidth, MinTapSize), Mathf.Max(CardHeight, MinTapSize));
-            rt.anchoredPosition = new Vector2(startX + i * (CardWidth + CardGap), 0f);
+            rt.sizeDelta = new Vector2(Mathf.Max(cardW, MinTapSize), Mathf.Max(CardHeight, MinTapSize));
+            rt.anchoredPosition = new Vector2(startX + i * (cardW + gap), 0f);
             rt.localScale = Vector3.one;
 
             SkillCardRefs refs = EnsureCardRefs(button, i);
@@ -1537,7 +1942,53 @@ public class SkillSelectionUI : MonoBehaviour
         refs.levelBadge.fontStyle = FontStyles.Bold;
 
         refs.rarity = GetOrCreateChildText(root, "Rarity");
-        refs.rarity.gameObject.SetActive(false);
+        RectTransform rarityRt = refs.rarity.rectTransform;
+        rarityRt.anchorMin = new Vector2(0.5f, 1f);
+        rarityRt.anchorMax = new Vector2(0.5f, 1f);
+        rarityRt.pivot = new Vector2(0.5f, 1f);
+        rarityRt.anchoredPosition = new Vector2(0f, -34f);
+        rarityRt.sizeDelta = new Vector2(200f, 18f);
+        refs.rarity.fontSize = 11f;
+        refs.rarity.fontStyle = FontStyles.Bold;
+        refs.rarity.alignment = TextAlignmentOptions.Center;
+
+        refs.lockIcon = GetOrCreateChildImage(root, "LockIcon");
+        RectTransform lockRt = refs.lockIcon.rectTransform;
+        lockRt.anchorMin = new Vector2(1f, 1f);
+        lockRt.anchorMax = new Vector2(1f, 1f);
+        lockRt.pivot = new Vector2(1f, 1f);
+        lockRt.anchoredPosition = new Vector2(-8f, -34f);
+        lockRt.sizeDelta = new Vector2(36f, 36f);
+        refs.lockIcon.preserveAspect = true;
+        refs.lockIcon.raycastTarget = false;
+        refs.lockIcon.enabled = false;
+
+        refs.priceBg = GetOrCreateChildImage(root, "PriceBg");
+        RectTransform priceBgRt = refs.priceBg.rectTransform;
+        priceBgRt.anchorMin = new Vector2(0.5f, 0f);
+        priceBgRt.anchorMax = new Vector2(0.5f, 0f);
+        priceBgRt.pivot = new Vector2(0.5f, 0f);
+        priceBgRt.anchoredPosition = new Vector2(0f, 8f);
+        priceBgRt.sizeDelta = new Vector2(168f, 30f);
+        refs.priceBg.color = new Color(0.05f, 0.06f, 0.1f, 0.88f);
+        refs.priceBg.raycastTarget = false;
+        if (GuiArtLibrary.ButtonSecondary != null)
+        {
+            refs.priceBg.sprite = GuiArtLibrary.ButtonSecondary;
+            refs.priceBg.type = Image.Type.Sliced;
+            refs.priceBg.color = new Color(0.12f, 0.1f, 0.08f, 0.94f);
+        }
+
+        refs.priceLabel = GetOrCreateChildText(root, "PriceLabel");
+        RectTransform priceRt = refs.priceLabel.rectTransform;
+        priceRt.anchorMin = new Vector2(0.5f, 0f);
+        priceRt.anchorMax = new Vector2(0.5f, 0f);
+        priceRt.pivot = new Vector2(0.5f, 0f);
+        priceRt.anchoredPosition = new Vector2(0f, 8f);
+        priceRt.sizeDelta = new Vector2(160f, 30f);
+        refs.priceLabel.fontSize = 15f;
+        refs.priceLabel.fontStyle = FontStyles.Bold;
+        refs.priceLabel.alignment = TextAlignmentOptions.Center;
 
         refs.iconBg = GetOrCreateChildImage(root, "IconBg");
         RectTransform iconBgRt = refs.iconBg.rectTransform;
@@ -1675,7 +2126,7 @@ public class SkillSelectionUI : MonoBehaviour
 
         refs.interaction?.Bind(choice);
 
-        SkillRarity rarity = GetChoiceRarity(choice);
+        SkillRarity rarity = SkillPurchasePricing.ResolveRarity(choice);
         Color borderColor = GetRarityBorderColor(rarity);
         Color typeColor = GetTypeBadgeColor(choice.kind);
         bool synergy = SkillSelectionSynergy.HasSynergy(choice);
@@ -1722,8 +2173,43 @@ public class SkillSelectionUI : MonoBehaviour
         if (refs.synergyGlow != null)
             refs.synergyGlow.color = new Color(1f, 0.85f, 0.2f, synergy ? 0.45f : 0f);
 
+        int coinCost = SkillPurchasePricing.GetCost(choice);
+        bool showPrice = SkillPurchasePricing.IsPurchasable(choice) && coinCost > 0;
+
+        if (refs.rarity != null)
+        {
+            refs.rarity.gameObject.SetActive(showPrice);
+            refs.rarity.text = GetRarityLabel(rarity);
+            refs.rarity.color = SkillPurchasePricing.GetPriceColor(rarity);
+        }
+
+        if (refs.priceBg != null)
+            refs.priceBg.gameObject.SetActive(showPrice);
+
+        if (refs.priceLabel != null)
+        {
+            refs.priceLabel.gameObject.SetActive(showPrice);
+            if (showPrice)
+            {
+                refs.priceLabel.text = choice.note == "locked_purchase"
+                    ? "ĐÃ KHÓA · " + coinCost + " XU"
+                    : coinCost + " XU";
+                refs.priceLabel.color = SkillPurchasePricing.GetPriceColor(rarity);
+            }
+        }
+
         if (refs.synergyLabel != null)
-            refs.synergyLabel.text = synergy ? "Có thể evolve!" : string.Empty;
+        {
+            if (choice.note == "locked_purchase")
+                refs.synergyLabel.text = "Mua để nhận thẻ này";
+            else
+            {
+                string evolve = SkillSelectionSynergy.GetEvolutionLabel(choice);
+                refs.synergyLabel.text = !string.IsNullOrEmpty(evolve)
+                    ? evolve
+                    : (synergy ? "Có thể evolve!" : string.Empty);
+            }
+        }
 
         switch (choice.kind)
         {
@@ -1784,6 +2270,7 @@ public class SkillSelectionUI : MonoBehaviour
         }
 
         StyleCardTypography(refs);
+        ApplyCardLockState(cardIndex, refs);
     }
 
     private static void ClearCard(SkillCardRefs refs)
@@ -1794,6 +2281,10 @@ public class SkillSelectionUI : MonoBehaviour
         if (refs.typeBadge != null) refs.typeBadge.text = string.Empty;
         if (refs.levelBadge != null) refs.levelBadge.text = string.Empty;
         if (refs.icon != null) refs.icon.enabled = false;
+        if (refs.lockIcon != null) refs.lockIcon.enabled = false;
+        if (refs.priceBg != null) refs.priceBg.gameObject.SetActive(false);
+        if (refs.priceLabel != null) refs.priceLabel.gameObject.SetActive(false);
+        if (refs.rarity != null) refs.rarity.gameObject.SetActive(false);
     }
 
     private static SkillRarity GetChoiceRarity(SkillSelectionChoice choice)
@@ -1877,12 +2368,16 @@ public class SkillSelectionUI : MonoBehaviour
         if (refs.levelBadge == null)
             return;
 
+        bool vsStyle = SurvivalRunManager.IsSurvivalMode();
+
         if (current >= max && max > 0)
-            refs.levelBadge.text = "MAX";
+            refs.levelBadge.text = vsStyle ? "level: MAX" : "MAX";
         else if (current <= 0)
-            refs.levelBadge.text = "MỚI!";
+            refs.levelBadge.text = vsStyle ? "level: 1" : "MỚI!";
         else
-            refs.levelBadge.text = "Lv " + current + " → Lv " + (current + 1);
+            refs.levelBadge.text = vsStyle
+                ? "level: " + (current + 1)
+                : "Lv " + current + " → Lv " + (current + 1);
     }
 
     private void ApplyProgressBar(SkillCardRefs refs, int current, int max)
@@ -1933,8 +2428,8 @@ public class SkillSelectionUI : MonoBehaviour
 
     private void EnsureButtonArray()
     {
-        if (skillButtons == null || skillButtons.Length != 3)
-            skillButtons = new Button[3];
+        if (skillButtons == null || skillButtons.Length != 4)
+            skillButtons = new Button[4];
 
         // Build any missing buttons at runtime so the panel works without Inspector wiring.
         if (skillCanvas == null)

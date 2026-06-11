@@ -28,6 +28,23 @@ public class SkillSelectionChoice
     public float bonusHp;
     public int bonusCoins;
     public string note;
+    /// <summary>Giá khóa/mua (0 = tự tính theo độ hiếm).</summary>
+    public int purchaseCoinCost;
+
+    public SkillSelectionChoice Clone()
+    {
+        return new SkillSelectionChoice
+        {
+            kind = kind,
+            skill = skill,
+            weaponType = weaponType,
+            passiveItem = passiveItem,
+            bonusHp = bonusHp,
+            bonusCoins = bonusCoins,
+            note = note,
+            purchaseCoinCost = purchaseCoinCost
+        };
+    }
 
     public string GetUniqueKey()
     {

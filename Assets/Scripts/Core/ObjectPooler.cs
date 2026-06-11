@@ -34,20 +34,37 @@ public class ObjectPooler : MonoBehaviour
     private void PrewarmAll()
     {
         for (int i = 0; i < pools.Count; i++)
+            PrewarmEntry(pools[i]);
+    }
+
+    /// <summary>Đăng ký pool lúc runtime (vd EnemySpawner gọi khi có prefab).</summary>
+    public void RegisterRuntimePool(string key, GameObject prefab, int prewarm = 16)
+    {
+        if (string.IsNullOrEmpty(key) || prefab == null)
+            return;
+
+        if (poolLookup.ContainsKey(key))
+            return;
+
+        PoolEntry entry = new PoolEntry { key = key, prefab = prefab, prewarm = prewarm };
+        pools.Add(entry);
+        PrewarmEntry(entry);
+    }
+
+    private void PrewarmEntry(PoolEntry entry)
+    {
+        if (entry == null || string.IsNullOrEmpty(entry.key) || entry.prefab == null)
+            return;
+
+        if (!poolLookup.ContainsKey(entry.key))
+            poolLookup[entry.key] = new Queue<GameObject>();
+
+        int count = Mathf.Max(0, entry.prewarm);
+        for (int n = 0; n < count; n++)
         {
-            PoolEntry entry = pools[i];
-            if (entry == null || string.IsNullOrEmpty(entry.key) || entry.prefab == null)
-                continue;
-
-            if (!poolLookup.ContainsKey(entry.key))
-                poolLookup[entry.key] = new Queue<GameObject>();
-
-            for (int n = 0; n < entry.prewarm; n++)
-            {
-                GameObject obj = Instantiate(entry.prefab, transform);
-                obj.SetActive(false);
-                poolLookup[entry.key].Enqueue(obj);
-            }
+            GameObject obj = Instantiate(entry.prefab, transform);
+            obj.SetActive(false);
+            poolLookup[entry.key].Enqueue(obj);
         }
     }
 

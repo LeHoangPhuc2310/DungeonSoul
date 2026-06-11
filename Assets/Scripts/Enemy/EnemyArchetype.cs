@@ -27,6 +27,8 @@ public static class EnemyArchetypeUtility
         if (enemy == null)
             return;
 
+        ApplyVisual(enemy, archetype);
+
         GetConfig(archetype, out EnemyArtKind art, out Color tint, out float hpMult, out float speedMult,
             out float scaleMult, out int score, out int coinMin, out int coinMax, out bool elite);
 
@@ -46,7 +48,7 @@ public static class EnemyArchetypeUtility
         EnemyAI ai = enemy.GetComponent<EnemyAI>();
         if (ai != null)
         {
-            ai.MoveSpeed *= speedMult;
+            ai.MoveSpeed *= speedMult * GetWaveSpeedMultiplier(waveIndex);
             ai.StopDistance = archetype == EnemyArchetype.Runner ? 0.42f : archetype == EnemyArchetype.Brute ? 0.54f : 0.48f;
             ai.MeleeRange = archetype == EnemyArchetype.Runner ? 0.44f : archetype == EnemyArchetype.Brute ? 0.56f : 0.5f;
             // +8%/wave (cũ 5%): để wave 7-10 có sức ép thật, không bị player scale qua mặt.
@@ -58,49 +60,71 @@ public static class EnemyArchetypeUtility
         if (reward != null)
             reward.Configure(score, coinMin, coinMax, elite);
 
-        // Animation từ EnemyAnimationDatabase (Medusa, Golem, Orc, Tiny RPG, …).
-        EnemyAnimationSet animSet = EnemyVisualLibrary.PickRandomSet(archetype);
-        if (animSet != null)
-        {
-            EnemyVisualLibrary.ApplySet(enemy, animSet, archetype);
-
-            ai?.RefreshBaseScale();
-
-            EnemyPhysicsSetup physicsSetup = enemy.GetComponent<EnemyPhysicsSetup>();
-            physicsSetup?.FitColliderToSprite();
-
-            EnemyOverheadHPBar.Ensure(enemy);
-
-            EnemyArchetypeMarker marker = enemy.GetComponent<EnemyArchetypeMarker>();
-            if (marker == null)
-                marker = enemy.AddComponent<EnemyArchetypeMarker>();
-            marker.Set(archetype, animSet);
-            return;
-        }
-
-        // Fallback sprite tĩnh.
-        {
-            SpriteRenderer sr = enemy.GetComponent<SpriteRenderer>();
-            if (sr != null)
-            {
-                sr.sprite = ArtSpriteLibrary.GetEnemySprite(art);
-                sr.color = tint;
-                sr.sortingOrder = 5;
-                GameScale.FitEnemy(enemy.transform, sr.sprite, archetype);
-            }
-        }
-
         ai?.RefreshBaseScale();
 
         EnemyPhysicsSetup physics = enemy.GetComponent<EnemyPhysicsSetup>();
         physics?.FitColliderToSprite();
 
         EnemyOverheadHPBar.Ensure(enemy);
+    }
+
+    private static void ApplyVisual(GameObject enemy, EnemyArchetype archetype)
+    {
+        SpriteRenderer rootSr = enemy.GetComponent<SpriteRenderer>();
+        if (rootSr != null)
+        {
+            rootSr.color = Color.white;
+            if (EnemyVisualUtil.IsPlaceholderSprite(rootSr.sprite))
+                rootSr.sprite = null;
+        }
+
+        GetConfig(archetype, out EnemyArtKind art, out Color tint, out _, out _, out _, out _, out _, out _, out _);
+
+        EnemyAnimationSet animSet = EnemyVisualLibrary.PickRandomSet(archetype);
+        if (animSet != null)
+        {
+            EnemyVisualLibrary.ApplySet(enemy, animSet, archetype);
+
+            EnemyArchetypeMarker marker = enemy.GetComponent<EnemyArchetypeMarker>();
+            if (marker == null)
+                marker = enemy.AddComponent<EnemyArchetypeMarker>();
+            marker.Set(archetype, animSet);
+            EnsureBootstrap(enemy);
+            EnemyVisualUtil.EnsureApplied(enemy, archetype, animSet);
+            return;
+        }
+
+        SpriteRenderer sr = enemy.GetComponent<SpriteRenderer>();
+        if (sr != null)
+        {
+            sr.sprite = ArtSpriteLibrary.GetEnemySprite(art);
+            sr.color = tint;
+            sr.sortingOrder = 5;
+            sr.enabled = sr.sprite != null;
+            GameScale.FitEnemy(enemy.transform, sr.sprite, archetype);
+        }
 
         EnemyArchetypeMarker markerFallback = enemy.GetComponent<EnemyArchetypeMarker>();
         if (markerFallback == null)
             markerFallback = enemy.AddComponent<EnemyArchetypeMarker>();
         markerFallback.Set(archetype, null);
+        EnsureBootstrap(enemy);
+        EnemyVisualUtil.EnsureApplied(enemy, archetype, null);
+    }
+
+    private static void EnsureBootstrap(GameObject enemy)
+    {
+        if (enemy.GetComponent<EnemyVisualBootstrap>() == null)
+            enemy.AddComponent<EnemyVisualBootstrap>();
+    }
+
+    /// <summary>Mỗi wave giảm ~4% tốc chạy — wave cao đỡ áp lực khi đông quái.</summary>
+    public static float GetWaveSpeedMultiplier(int waveIndex)
+    {
+        const float reductionPerWave = 0.04f;
+        const float minMultiplier = 0.6f;
+        int steps = Mathf.Max(0, waveIndex - 1);
+        return Mathf.Max(minMultiplier, 1f - steps * reductionPerWave);
     }
 
     private static void GetConfig(EnemyArchetype archetype, out EnemyArtKind art, out Color tint,

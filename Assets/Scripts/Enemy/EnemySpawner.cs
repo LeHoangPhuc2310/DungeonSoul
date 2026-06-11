@@ -34,9 +34,13 @@ public class EnemySpawner : MonoBehaviour
 
     private readonly List<Vector3Int> walkableTiles = new List<Vector3Int>();
     private readonly List<Vector3> spawnWorldPositions = new List<Vector3>();
+    [Tooltip("Bật = Vampire Survivors (spawn liên tục + timer). Tắt = 10 wave arena.")]
+    [SerializeField] private bool survivalMode = true;
+
     private bool initialSpawnDone;
     private bool waveAdvancing;
     private Coroutine waveBreakRoutine;
+    private Coroutine survivalSpawnRoutine;
     private int waveIndex = 1;
 
     private void Awake()
@@ -47,8 +51,35 @@ public class EnemySpawner : MonoBehaviour
     private void Start()
     {
         RefreshWalkablePositions();
-        SpawnInitialEnemies();
+        RegisterEnemyPool();
+        if (IsSurvivalMode())
+            StartSurvivalRun();
+        else
+            SpawnInitialEnemies();
         initialSpawnDone = true;
+    }
+
+    private void RegisterEnemyPool()
+    {
+        if (enemyPrefab == null || ObjectPooler.Instance == null)
+            return;
+
+        ObjectPooler.Instance.RegisterRuntimePool(EnemyPoolable.PoolKey, enemyPrefab, 48);
+    }
+
+    private bool IsSurvivalMode()
+    {
+        if (GameRunBootstrap.Instance != null)
+        {
+            if (GameRunBootstrap.Instance.Mode == GameRunMode.WaveArena)
+                return false;
+            if (GameRunBootstrap.Instance.Mode == GameRunMode.Survival)
+                return true;
+        }
+
+        if (SurvivalRunManager.Instance != null)
+            return SurvivalRunManager.Instance.IsActive;
+        return survivalMode;
     }
 
     public void RefreshWalkablePositions()
@@ -59,7 +90,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void Update()
     {
-        if (!initialSpawnDone || waveAdvancing)
+        if (!initialSpawnDone || waveAdvancing || IsSurvivalMode())
             return;
 
         // Boss wave: rương boss (RedChestController) tự xử lý → bỏ qua auto-advance.
@@ -138,12 +169,66 @@ public class EnemySpawner : MonoBehaviour
             && floorTilemap.HasTile(cell + Vector3Int.down);
     }
 
+    private void StartSurvivalRun()
+    {
+        waveIndex = 1;
+        SurvivalRunManager.Instance?.ResetForNewRun();
+
+        int burst = SurvivalRunManager.Instance != null
+            ? SurvivalRunManager.Instance.GetInitialBurstCount()
+            : 12;
+
+        EnemyAliveTracker.Reset(0);
+        int spawned = 0;
+        for (int i = 0; i < burst; i++)
+        {
+            if (SpawnEnemy())
+                spawned++;
+        }
+
+        if (spawned > 0)
+            AudioManager.PlayCombatMusic();
+
+        EventBus.InvokeWaveStarted(1);
+        if (survivalSpawnRoutine != null)
+            StopCoroutine(survivalSpawnRoutine);
+        survivalSpawnRoutine = StartCoroutine(SurvivalSpawnLoop());
+        Debug.Log("[EnemySpawner] Survival mode — burst " + spawned);
+    }
+
+    private IEnumerator SurvivalSpawnLoop()
+    {
+        while (IsSurvivalMode())
+        {
+            SurvivalRunManager mgr = SurvivalRunManager.Instance;
+            float interval = mgr != null ? mgr.GetSpawnInterval() : 2.5f;
+            yield return new WaitForSeconds(interval);
+
+            if (!IsSurvivalMode())
+                yield break;
+
+            int maxOnScreen = mgr != null ? mgr.GetMaxEnemiesOnScreen() : 50;
+            if (EnemyAliveTracker.Count >= maxOnScreen)
+                continue;
+
+            int tier = mgr != null ? mgr.GetDifficultyTier() : waveIndex;
+            waveIndex = tier;
+            SpawnEnemy();
+        }
+    }
+
+    public Vector3 GetRandomSpawnPosition()
+    {
+        return PickSpawnPosition();
+    }
+
     private void SpawnInitialEnemies()
     {
         waveIndex = 1;
         int firstCount = SpawnWaveEnemies();
         if (firstCount > 0)
             AudioManager.PlayCombatMusic();
+        EventBus.InvokeWaveStarted(waveIndex);
     }
 
     /// <summary>Spawn wave kế: gọi tự động khi clear wave thường, hoặc sau rương boss.</summary>
@@ -155,6 +240,7 @@ public class EnemySpawner : MonoBehaviour
         int count = SpawnWaveEnemies();
         if (count > 0)
             AudioManager.PlayCombatMusic();
+        EventBus.InvokeWaveStarted(waveIndex);
         Debug.Log("[EnemySpawner] Wave " + waveIndex + " — spawned " + count + " enemies.");
 
         HUDManager hud = HUDManager.Resolve();
@@ -173,9 +259,8 @@ public class EnemySpawner : MonoBehaviour
             if (!IsValidSpawnWorldPosition(pos))
                 return 0;
 
-            BossSpawnManager.SpawnForWave(waveIndex, pos, enemyPrefab);
             EnemyAliveTracker.Reset(0);
-            EnemyAliveTracker.Add(1);
+            BossSpawnManager.SpawnForWave(waveIndex, pos, enemyPrefab);
             return 1;
         }
 
@@ -196,8 +281,14 @@ public class EnemySpawner : MonoBehaviour
 
     public int CurrentWave => waveIndex;
 
+    public void EnableSurvivalMode(bool enabled)
+    {
+        survivalMode = enabled;
+    }
+
     public bool SpawnEnemy()
     {
+        int difficulty = GetCurrentDifficulty();
         Vector3 pos = PickSpawnPosition();
         if (!IsValidSpawnWorldPosition(pos))
         {
@@ -207,17 +298,52 @@ public class EnemySpawner : MonoBehaviour
 
         if (enemyPrefab != null)
         {
-            GameObject enemy = Instantiate(enemyPrefab, pos, Quaternion.identity);
-            EnemyArchetypeUtility.Apply(enemy, EnemyArchetypeUtility.RollForWave(waveIndex), waveIndex);
+            EnemyArchetype archetype = EnemyArchetypeUtility.RollForWave(difficulty);
+            GameObject enemy = TrySpawnFromPool(pos, difficulty, archetype);
+            if (enemy == null)
+            {
+                enemy = Instantiate(enemyPrefab, pos, Quaternion.identity);
+                ApplySpawnedEnemy(enemy, difficulty, archetype);
+            }
+
             EnemyAliveTracker.Add(1);
         }
         else
         {
-            SpawnRuntimeEnemy(pos, waveIndex);
+            SpawnRuntimeEnemy(pos, difficulty);
             EnemyAliveTracker.Add(1);
         }
 
         return true;
+    }
+
+    private static GameObject TrySpawnFromPool(Vector3 pos, int difficulty, EnemyArchetype archetype)
+    {
+        if (ObjectPooler.Instance == null)
+            return null;
+
+        GameObject enemy = ObjectPooler.Instance.Get(EnemyPoolable.PoolKey, pos, Quaternion.identity);
+        if (enemy == null)
+            return null;
+
+        ApplySpawnedEnemy(enemy, difficulty, archetype);
+        return enemy;
+    }
+
+    private static void ApplySpawnedEnemy(GameObject enemy, int difficulty, EnemyArchetype archetype)
+    {
+        EnemyPoolable poolable = enemy.GetComponent<EnemyPoolable>();
+        if (poolable == null)
+            poolable = enemy.AddComponent<EnemyPoolable>();
+
+        poolable.PrepareForSpawn(difficulty, archetype);
+    }
+
+    private int GetCurrentDifficulty()
+    {
+        if (IsSurvivalMode() && SurvivalRunManager.Instance != null)
+            return SurvivalRunManager.Instance.GetDifficultyTier();
+        return waveIndex;
     }
 
     private float MaxSpawnDistance =>

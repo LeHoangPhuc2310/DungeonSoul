@@ -30,10 +30,35 @@ public class EnemyAnimationSet : ScriptableObject
     [Range(4f, 24f)] public float deathFps = 10f;
     [Range(0.5f, 8f)] public float visualScale = 2f;
 
-    public Sprite PreviewSprite =>
-        idle != null && idle.Length > 0 ? idle[0]
-        : move != null && move.Length > 0 ? move[0]
-        : null;
+    public Sprite PreviewSprite
+    {
+        get
+        {
+            Sprite fromIdle = FirstNonNull(idle);
+            if (fromIdle != null)
+                return fromIdle;
+
+            Sprite fromMove = FirstNonNull(move);
+            if (fromMove != null)
+                return fromMove;
+
+            return FirstNonNull(hurt) ?? FirstNonNull(death);
+        }
+    }
+
+    private static Sprite FirstNonNull(Sprite[] frames)
+    {
+        if (frames == null)
+            return null;
+
+        for (int i = 0; i < frames.Length; i++)
+        {
+            if (frames[i] != null)
+                return frames[i];
+        }
+
+        return null;
+    }
 
     public float DeathDuration =>
         death != null && death.Length > 0 ? death.Length / Mathf.Max(1f, deathFps) : 0.35f;

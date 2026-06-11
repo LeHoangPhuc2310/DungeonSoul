@@ -64,6 +64,9 @@ public static class PlayableCharacterCatalog
     public static bool IsVisible(PlayableCharacterEntry entry) =>
         entry != null && System.Array.IndexOf(VisibleIds, entry.id) >= 0;
 
+    public static bool IsUnlocked(PlayableCharacterEntry entry) =>
+        entry != null && MetaRunProgress.IsCharacterUnlocked(entry.id);
+
     public static string SelectedId
     {
         get => PlayerPrefs.GetString(PrefsKey, DefaultId);

@@ -11,6 +11,8 @@ public class MainMenuManager : MonoBehaviour
     private TMP_Text playLabel;
     private TMP_Text settingsBtnLabel;
     private TMP_Text quitLabel;
+    private TMP_Text soulsLabel;
+    private AchievementsMenuUI achievementsMenu;
 
     private void Start()
     {
@@ -69,12 +71,23 @@ public class MainMenuManager : MonoBehaviour
         sub.color = new Color(0.7f, 0.7f, 0.8f, 1f);
         sub.raycastTarget = false;
 
-        // 3 nút chính.
-        playLabel = MakeButton(GameSettings.T("CHƠI", "PLAY"), canvasGO.transform, new Vector2(0f, -40f), OnPlay);
-        settingsBtnLabel = MakeButton(GameSettings.T("CÀI ĐẶT", "SETTINGS"), canvasGO.transform, new Vector2(0f, -140f), OnSettings);
-        quitLabel = MakeButton(GameSettings.T("THOÁT", "QUIT"), canvasGO.transform, new Vector2(0f, -240f), OnQuit);
+        soulsLabel = MakeText("Souls: " + MetaRunProgress.SoulPoints, canvasGO.transform,
+            new Vector2(0f, 280f), 24f, new Color(0.75f, 0.85f, 1f, 1f), FontStyles.Normal);
 
+        // Nút chính.
+        playLabel = MakeButton(GameSettings.T("CHƠI", "PLAY"), canvasGO.transform, new Vector2(0f, -20f), OnPlay);
+        MakeButton(GameSettings.T("THÀNH TỰU", "ACHIEVEMENTS"), canvasGO.transform, new Vector2(0f, -110f), OnAchievements);
+        settingsBtnLabel = MakeButton(GameSettings.T("CÀI ĐẶT", "SETTINGS"), canvasGO.transform, new Vector2(0f, -200f), OnSettings);
+        quitLabel = MakeButton(GameSettings.T("THOÁT", "QUIT"), canvasGO.transform, new Vector2(0f, -290f), OnQuit);
+
+        achievementsMenu = gameObject.AddComponent<AchievementsMenuUI>();
         BuildSettingsPanel(canvasGO.transform);
+    }
+
+    private void OnAchievements()
+    {
+        if (achievementsMenu != null)
+            achievementsMenu.Toggle(transform);
     }
 
     private void BuildSettingsPanel(Transform parent)
@@ -175,6 +188,12 @@ public class MainMenuManager : MonoBehaviour
     {
         if (settingsPanel != null)
             settingsPanel.SetActive(!settingsPanel.activeSelf);
+    }
+
+    private void Update()
+    {
+        if (soulsLabel != null)
+            soulsLabel.text = "Souls: " + MetaRunProgress.SoulPoints;
     }
 
     private void OnPlay()

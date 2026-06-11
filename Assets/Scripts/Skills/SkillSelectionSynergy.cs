@@ -55,4 +55,52 @@ public static class SkillSelectionSynergy
 
         return false;
     }
+
+    /// <summary>Nhãn công thức tiến hóa hiển thị trên thẻ (kiểu VS).</summary>
+    public static string GetEvolutionLabel(SkillSelectionChoice choice)
+    {
+        if (choice == null || !HasSynergy(choice))
+            return string.Empty;
+
+        switch (choice.kind)
+        {
+            case SkillSelectionChoiceKind.PassiveItem:
+                return FormatEvolveRecipe(choice.passiveItem);
+            case SkillSelectionChoiceKind.WeaponPickup:
+                return FormatWeaponEvolveRecipe(choice.weaponType);
+            default:
+                return string.Empty;
+        }
+    }
+
+    private static string FormatEvolveRecipe(PassiveItemData passive)
+    {
+        if (passive == null || !passive.HasEvolveCombo)
+            return string.Empty;
+
+        string baseW = WeaponNames.Display(passive.evolveTargetWeapon);
+        string result = WeaponNames.Display(passive.evolveResultWeapon);
+        return baseW + " + " + passive.displayName + " → " + result;
+    }
+
+    private static string FormatWeaponEvolveRecipe(WeaponType weapon)
+    {
+        if (PassiveItemManager.Instance == null)
+            return string.Empty;
+
+        var picks = PassiveItemManager.Instance.PickedItems;
+        for (int i = 0; i < picks.Count; i++)
+        {
+            PassivePick pick = picks[i];
+            if (pick?.data == null || !pick.IsMaxed || !pick.data.HasEvolveCombo)
+                continue;
+            if (pick.data.evolveTargetWeapon != weapon)
+                continue;
+
+            return WeaponNames.Display(weapon) + " + " + pick.data.displayName
+                + " → " + WeaponNames.Display(pick.data.evolveResultWeapon);
+        }
+
+        return string.Empty;
+    }
 }

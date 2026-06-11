@@ -435,15 +435,37 @@ public class CharacterSelectUI : MonoBehaviour
         if (selected == null)
             return;
 
+        if (!PlayableCharacterCatalog.IsUnlocked(selected))
+        {
+            int cost = MetaRunProgress.GetUnlockCost(selected.id);
+            if (!MetaRunProgress.TryUnlockCharacter(selected.id))
+            {
+                Debug.Log("[CharacterSelect] Cần " + cost + " Souls để mở khóa " + selected.displayName);
+                return;
+            }
+        }
+
         AudioManager.PlayUiTap();
         HeroRunStats.SetCharacter(selected);
         RunEntryGate.ConfirmCharacterSelect();
         Time.timeScale = 1f;
 
-        if (!string.IsNullOrEmpty(gameSceneName) && Application.CanStreamedLevelBeLoaded(gameSceneName))
-            SceneManager.LoadScene(gameSceneName);
+        string nextScene = ResolveNextScene();
+        if (!string.IsNullOrEmpty(nextScene) && Application.CanStreamedLevelBeLoaded(nextScene))
+            SceneManager.LoadScene(nextScene);
         else
-            Debug.LogError("[CharacterSelectUI] Không tìm thấy " + gameSceneName + " trong Build Settings.");
+            Debug.LogError("[CharacterSelectUI] Không tìm thấy scene: " + nextScene);
+    }
+
+    private string ResolveNextScene()
+    {
+        if (selected != null && WeaponStyleUtil.UsesWeaponPickupRewards(selected.combatClass))
+        {
+            if (Application.CanStreamedLevelBeLoaded("WeaponSelectScene"))
+                return "WeaponSelectScene";
+        }
+
+        return gameSceneName;
     }
 
     private static GameObject MakeRect(string name, Transform parent, Vector2 size, Vector2 pos)

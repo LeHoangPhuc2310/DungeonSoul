@@ -145,6 +145,8 @@ public class HUDManager : MonoBehaviour
         SubscribeExpEvents();
         StartCoroutine(BindSystemsWhenReady());
         AchievementManager.Instance?.OnRunStarted();
+        if (SurvivalRunManager.IsSurvivalMode())
+            RefreshVsLoadoutPanel();
     }
 
     private IEnumerator BindSystemsWhenReady()
@@ -216,6 +218,12 @@ public class HUDManager : MonoBehaviour
 
     private void SyncFloorFromWave()
     {
+        if (SurvivalRunManager.IsSurvivalMode())
+        {
+            RefreshSurvivalHud();
+            return;
+        }
+
         EnemySpawner spawner = Object.FindAnyObjectByType<EnemySpawner>();
         if (spawner != null)
             currentFloor = Mathf.Clamp(spawner.CurrentWave, 1, 10);
@@ -348,6 +356,11 @@ public class HUDManager : MonoBehaviour
 
         if (Object.FindAnyObjectByType<BossSpawnManager>() == null)
             new GameObject("BossSpawnManager").AddComponent<BossSpawnManager>();
+
+        if (Object.FindAnyObjectByType<SurvivalRunManager>() == null)
+            new GameObject("SurvivalRunManager").AddComponent<SurvivalRunManager>();
+
+        EnsureVsStatsPanel();
 
         // Passive item: phải tồn tại để 12 passive trong Resources/PassiveItems xuất hiện khi level-up.
         if (Object.FindAnyObjectByType<PassiveItemManager>() == null)
@@ -765,6 +778,14 @@ public class HUDManager : MonoBehaviour
         RefreshScoreAndCoinLabels();
         ForceRefreshFromSystems(false);
 
+        if (SurvivalRunManager.IsSurvivalMode())
+        {
+            RefreshSurvivalHud();
+            VsStatsPanelUI.Instance?.SetVisible(true);
+            if (PlayerStatsUI.Instance != null)
+                PlayerStatsUI.Instance.gameObject.SetActive(false);
+        }
+
         if (SkillSelectionUI.Instance != null && SkillSelectionUI.Instance.IsPanelOpen)
             return;
 
@@ -919,6 +940,8 @@ public class HUDManager : MonoBehaviour
         rt.offsetMax = new Vector2(-pad.x * 0.5f, -pad.y);
     }
 
+    public static Sprite GetUiWhiteSpriteStatic() => GetUiWhiteSprite();
+
     private static Sprite GetUiWhiteSprite()
     {
         if (uiWhiteSprite == null)
@@ -964,8 +987,23 @@ public class HUDManager : MonoBehaviour
     private void RefreshTexts()
     {
         RefreshScoreAndCoinLabels();
+        RefreshSurvivalHud();
+    }
+
+    public void RefreshSurvivalHud()
+    {
+        if (!SurvivalRunManager.IsSurvivalMode())
+            return;
+
+        SurvivalRunManager mgr = SurvivalRunManager.Instance;
+        if (mgr == null)
+            return;
+
         if (floorText != null)
-            floorText.text = "TẦNG " + currentFloor + " / 10";
+            floorText.text = SurvivalRunManager.FormatTime(mgr.ElapsedSeconds);
+
+        if (scoreText != null)
+            scoreText.text = mgr.KillCount.ToString();
     }
 
     private void DisableStrayStatLabels()
@@ -999,12 +1037,13 @@ public class HUDManager : MonoBehaviour
         runEnded = false;
         playerHealth = null;
         Time.timeScale = 1f;
+        SurvivalRunManager.Instance?.ResetForNewRun();
         if (gameOverCanvas != null)
             gameOverCanvas.SetActive(false);
         GameOverUI.Instance?.HidePanel();
     }
 
-    public void ShowGameOver()
+    public void ShowGameOver(int soulsEarned = 0, float survivalSeconds = 0f)
     {
         runEnded = true;
         AudioManager.PlayGameOver();
@@ -1012,15 +1051,16 @@ public class HUDManager : MonoBehaviour
         if (gameOverCanvas != null)
         {
             gameOverCanvas.SetActive(true);
-            gameOverUI?.Setup(score, currentFloor, coins, false);
+            gameOverUI?.Setup(score, currentFloor, coins, false, soulsEarned, survivalSeconds);
         }
         else if (GameOverUI.Instance != null)
         {
-            GameOverUI.Instance.Show(score, currentFloor, coins, false);
+            GameOverUI.Instance.Show(score, currentFloor, coins, false, soulsEarned, survivalSeconds);
         }
         else
         {
-            new GameObject("GameOverUI").AddComponent<GameOverUI>().Show(score, currentFloor, coins, false);
+            new GameObject("GameOverUI").AddComponent<GameOverUI>()
+                .Show(score, currentFloor, coins, false, soulsEarned, survivalSeconds);
         }
 
         Time.timeScale = 0f;
@@ -1124,7 +1164,16 @@ public class HUDManager : MonoBehaviour
 
     private void RestoreFloorLabel()
     {
-        if (floorText != null && FloorManager.Instance != null)
+        if (floorText == null)
+            return;
+
+        if (SurvivalRunManager.IsSurvivalMode())
+        {
+            RefreshSurvivalHud();
+            return;
+        }
+
+        if (FloorManager.Instance != null)
             floorText.text = "TẦNG " + FloorManager.Instance.CurrentFloor + " / 10";
     }
     public void SetWeaponBarVisible(bool visible)
@@ -1135,10 +1184,43 @@ public class HUDManager : MonoBehaviour
             weaponBarRoot.SetActive(true);
     }
 
+    public void RefreshVsLoadoutPanel()
+    {
+        if (!SurvivalRunManager.IsSurvivalMode() || VsStatsPanelUI.Instance == null)
+            return;
+
+        WeaponManager wm = WeaponManager.Instance;
+        if (wm != null)
+            VsStatsPanelUI.Instance.RefreshWeaponSlots(wm.ActiveWeapons, wm.UnlockedSlots);
+
+        PassiveItemManager pm = PassiveItemManager.Instance;
+        if (pm != null)
+            VsStatsPanelUI.Instance.RefreshPassiveSlots(pm.PickedItems, pm.MaxPassiveItems);
+    }
+
+    private static void EnsureVsStatsPanel()
+    {
+        if (Object.FindAnyObjectByType<VsStatsPanelUI>(FindObjectsInactive.Include) != null)
+            return;
+
+        HUDManager hud = Resolve();
+        if (hud == null)
+            return;
+
+        hud.gameObject.AddComponent<VsStatsPanelUI>();
+    }
+
     public void UpdateWeaponSlots(IReadOnlyList<WeaponManager.WeaponSlot> activeSlots, int maxSlots)
     {
         if (!Application.isPlaying)
             return;
+
+        if (SurvivalRunManager.IsSurvivalMode())
+        {
+            SetWeaponBarVisible(false);
+            VsStatsPanelUI.Instance?.RefreshWeaponSlots(activeSlots, maxSlots);
+            return;
+        }
 
         if (!WeaponStyleUtil.UsesWeaponPickupRewards())
         {
@@ -1264,6 +1346,14 @@ public class HUDManager : MonoBehaviour
     {
         if (!Application.isPlaying)
             return;
+
+        if (SurvivalRunManager.IsSurvivalMode())
+        {
+            if (passiveBarRoot != null)
+                passiveBarRoot.SetActive(false);
+            VsStatsPanelUI.Instance?.RefreshPassiveSlots(passives, maxSlots);
+            return;
+        }
 
         maxSlots = Mathf.Clamp(maxSlots, 1, 6);
         EnsurePassiveBar(maxSlots);
@@ -1403,11 +1493,10 @@ public class HUDManager : MonoBehaviour
         displayScore = score;
         displayCoins = coins;
         ForceRefreshFromSystems(false);
-        AchievementManager.Instance?.OnEnemyKilled();
         if (c > 0)
             AudioManager.PlayCoinCollect();
     }
-    public void ShowRunResult(bool victory, int finalScore, int coinsEarned)
+    public void ShowRunResult(bool victory, int finalScore, int coinsEarned, int soulsEarned = 0, float survivalSeconds = 0f)
     {
         score = finalScore > 0 ? finalScore : score;
         coins = coinsEarned > 0 ? coinsEarned : coins;
@@ -1418,12 +1507,12 @@ public class HUDManager : MonoBehaviour
             SyncFloorFromWave();
 
         if (victory)
-            ShowVictoryScreen();
+            ShowVictoryScreen(soulsEarned, survivalSeconds);
         else
-            ShowGameOver();
+            ShowGameOver(soulsEarned, survivalSeconds);
     }
 
-    public void ShowVictoryScreen()
+    public void ShowVictoryScreen(int soulsEarned = 0, float survivalSeconds = 0f)
     {
         runEnded = true;
         Time.timeScale = 0f;
@@ -1431,14 +1520,13 @@ public class HUDManager : MonoBehaviour
         if (gameOverCanvas != null)
         {
             gameOverCanvas.SetActive(true);
-            gameOverUI?.Setup(score, currentFloor, coins, true);
+            gameOverUI?.Setup(score, currentFloor, coins, true, soulsEarned, survivalSeconds);
         }
         else if (GameOverUI.Instance != null)
-            GameOverUI.Instance.Show(score, currentFloor, coins, true);
+            GameOverUI.Instance.Show(score, currentFloor, coins, true, soulsEarned, survivalSeconds);
         else
-            new GameObject("GameOverUI").AddComponent<GameOverUI>().Show(score, currentFloor, coins, true);
-
-        AchievementManager.Instance?.OnRunEnded(true, currentFloor);
+            new GameObject("GameOverUI").AddComponent<GameOverUI>()
+                .Show(score, currentFloor, coins, true, soulsEarned, survivalSeconds);
     }
     public void AddScore(int amount, bool animateDelta) => AddScore(amount);
 }
