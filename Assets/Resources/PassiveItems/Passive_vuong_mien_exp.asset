@@ -15,7 +15,7 @@ MonoBehaviour:
   id: vuong_mien_exp
   displayName: Vương Miện
   description: Tăng EXP nhận được 8% mỗi cấp.
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: a3aaa631ce444a8ca75bf12315986130, type: 3}
   statModifierType: 5
   valuePerLevel:
   - 0.08

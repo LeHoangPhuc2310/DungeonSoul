@@ -16,6 +16,14 @@ public class PlayerSkillStats : MonoBehaviour
     public float SlowAuraStrength { get; private set; }
     public float CoinDropBonus { get; private set; } = 1f;
     public float PassiveBurnChance { get; private set; }
+    public float ExplosionOnHitRadius { get; private set; }
+    public float ExplosionOnHitDamageRatio { get; private set; }
+    public int ChainJumpCount { get; private set; }
+    public float ChainDamageRatio { get; private set; }
+    public float PoisonCloudRadius { get; private set; }
+    public float PoisonCloudDps { get; private set; }
+    public bool BoomerangEnabled { get; private set; }
+    public bool DeathMarkEnabled { get; private set; }
 
     public void Recalculate(PlayerSkillHandler handler)
     {
@@ -31,6 +39,14 @@ public class PlayerSkillStats : MonoBehaviour
         SlowAuraStrength = 0f;
         CoinDropBonus = 1f;
         PassiveBurnChance = 0f;
+        ExplosionOnHitRadius = 0f;
+        ExplosionOnHitDamageRatio = 0f;
+        ChainJumpCount = 0;
+        ChainDamageRatio = 0f;
+        PoisonCloudRadius = 0f;
+        PoisonCloudDps = 0f;
+        BoomerangEnabled = false;
+        DeathMarkEnabled = false;
 
         if (handler == null)
             return;
@@ -75,6 +91,30 @@ public class PlayerSkillStats : MonoBehaviour
             SlowAuraStrength = ice == 1 ? 0.4f : 0.6f;
         }
 
+        int explosiveRounds = handler.GetStack(SkillType.ExplosiveRounds);
+        if (explosiveRounds > 0)
+        {
+            ExplosionOnHitRadius = explosiveRounds == 1 ? 1.5f : explosiveRounds == 2 ? 1.8f : 2.1f;
+            ExplosionOnHitDamageRatio = explosiveRounds == 1 ? 0.5f : explosiveRounds == 2 ? 0.6f : 0.7f;
+        }
+
+        int chain = handler.GetStack(SkillType.LightningChain);
+        if (chain > 0)
+        {
+            ChainJumpCount = chain == 1 ? 2 : chain == 2 ? 3 : 4;
+            ChainDamageRatio = 0.6f;
+        }
+
+        int poison = handler.GetStack(SkillType.PoisonCloud);
+        if (poison > 0)
+        {
+            PoisonCloudRadius = poison == 1 ? 1.8f : poison == 2 ? 2.2f : 2.6f;
+            PoisonCloudDps = poison == 1 ? 4f : poison == 2 ? 6f : 8f;
+        }
+
+        BoomerangEnabled = handler.HasSkill(SkillType.Boomerang);
+        DeathMarkEnabled = handler.HasSkill(SkillType.DeathMark);
+
         int coinMagnet = handler.GetStack(SkillType.CoinMagnet);
         if (coinMagnet > 0)
             CoinDropBonus = 1f + (coinMagnet == 1 ? 0.1f : coinMagnet == 2 ? 0.15f : 0.2f);
@@ -84,7 +124,7 @@ public class PlayerSkillStats : MonoBehaviour
         if (passives != null)
         {
             CritChance = Mathf.Clamp01(CritChance + passives.CritChanceBonus);
-            LifeStealPercent += passives.LifeStealBonus;
+            LifeStealPercent = Mathf.Clamp01(LifeStealPercent + passives.LifeStealBonus);
             PassiveBurnChance = passives.BurnChanceBonus;
         }
     }

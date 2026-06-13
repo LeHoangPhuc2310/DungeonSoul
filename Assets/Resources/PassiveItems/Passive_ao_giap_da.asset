@@ -15,7 +15,7 @@ MonoBehaviour:
   id: ao_giap_da
   displayName: Áo Giáp Da
   description: Giảm sát thương nhận 4% mỗi cấp.
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 0ca1cf1303b04ee6be188f2a6b21ae35, type: 3}
   statModifierType: 0
   valuePerLevel:
   - 0.04

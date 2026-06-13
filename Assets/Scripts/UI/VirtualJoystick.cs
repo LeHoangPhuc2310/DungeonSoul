@@ -11,12 +11,46 @@ public class VirtualJoystick : MonoBehaviour
 
     [SerializeField] private float radius = 75f;
     [SerializeField] private bool showOnDesktop = false;
+    [Tooltip("Joystick nổi: chạm bất kỳ đâu trong vùng điều khiển thì cần xuất hiện ngay tại đó.")]
+    [SerializeField] private bool floatingJoystick = true;
 
     private RectTransform handle;
+    private RectTransform bgRect;
     private Vector2 inputVector;
     private PlayerController cachedPlayer;
+    private GameObject joystickUiRoot;
+    private Image bgImage;
+    private Image handleImage;
 
     public Vector2 InputVector => inputVector;
+
+    public static void SetChromeVisible(bool visible)
+    {
+        if (Instance != null)
+        {
+            if (!visible)
+                Instance.HideFloating();
+            if (Instance.joystickUiRoot != null)
+                Instance.joystickUiRoot.SetActive(visible);
+        }
+
+        GameObject canvas = GameObject.Find("JoystickCanvas");
+        if (canvas == null)
+            return;
+
+        canvas.SetActive(visible);
+        GraphicRaycaster raycaster = canvas.GetComponent<GraphicRaycaster>();
+        if (raycaster != null)
+            raycaster.enabled = visible;
+
+        JoystickTouchArea touch = canvas.GetComponentInChildren<JoystickTouchArea>(true);
+        if (touch != null)
+        {
+            Image touchImg = touch.GetComponent<Image>();
+            if (touchImg != null)
+                touchImg.raycastTarget = visible;
+        }
+    }
 
     private void Awake()
     {
@@ -63,10 +97,38 @@ public class VirtualJoystick : MonoBehaviour
             handle.anchoredPosition = offset;
     }
 
+    internal bool FloatingMode => floatingJoystick;
+    internal RectTransform BgRect => bgRect;
+
+    /// <summary>Joystick nổi: dời nền cần đến điểm chạm rồi hiện nó.</summary>
+    internal void ShowAt(Vector2 anchoredPos)
+    {
+        if (bgRect != null)
+            bgRect.anchoredPosition = anchoredPos;
+        SetJoystickVisible(true);
+    }
+
+    internal void HideFloating()
+    {
+        SetInput(Vector2.zero);
+        MoveHandle(Vector2.zero);
+        if (floatingJoystick)
+            SetJoystickVisible(false);
+    }
+
+    private void SetJoystickVisible(bool visible)
+    {
+        if (bgImage != null)
+            bgImage.enabled = visible;
+        if (handleImage != null)
+            handleImage.enabled = visible;
+    }
+
     private void BuildUI()
     {
         // Dedicated canvas so sorting order doesn't conflict
         GameObject canvasGO = new GameObject("JoystickCanvas");
+        joystickUiRoot = canvasGO;
         DontDestroyOnLoad(canvasGO);
         Canvas canvas = canvasGO.AddComponent<Canvas>();
         canvas.renderMode = RenderMode.ScreenSpaceOverlay;
@@ -84,19 +146,31 @@ public class VirtualJoystick : MonoBehaviour
             esGO.AddComponent<StandaloneInputModule>();
         }
 
-        // Background circle — bottom-left corner
+        // Vùng chạm điều khiển — phủ NỬA TRÁI màn hình (nửa phải để cho UI/nút khác).
+        // Đây là raycast target nhận chạm; joystick nổi sẽ hiện tại điểm chạm trong vùng này.
+        GameObject areaGO = new GameObject("JoystickTouchArea", typeof(RectTransform));
+        areaGO.transform.SetParent(canvasGO.transform, false);
+        RectTransform areaRT = areaGO.GetComponent<RectTransform>();
+        areaRT.anchorMin = new Vector2(0f, 0f);
+        areaRT.anchorMax = new Vector2(0.5f, 1f);   // nửa trái
+        areaRT.offsetMin = areaRT.offsetMax = Vector2.zero;
+        Image areaImg = areaGO.AddComponent<Image>();
+        areaImg.color = new Color(0f, 0f, 0f, 0f);  // trong suốt nhưng vẫn nhận chạm
+        areaImg.raycastTarget = true;
+
+        // Background circle — vị trí mặc định (góc trái dưới); chế độ nổi sẽ dời theo điểm chạm.
         GameObject bgGO = new GameObject("JoystickBG", typeof(RectTransform));
         bgGO.transform.SetParent(canvasGO.transform, false);
-        RectTransform bgRT = bgGO.GetComponent<RectTransform>();
-        bgRT.anchorMin = bgRT.anchorMax = new Vector2(0f, 0f);
-        bgRT.pivot = new Vector2(0.5f, 0.5f);
-        bgRT.anchoredPosition = new Vector2(160f, 160f);
-        bgRT.sizeDelta = new Vector2(radius * 2f, radius * 2f);
+        bgRect = bgGO.GetComponent<RectTransform>();
+        bgRect.anchorMin = bgRect.anchorMax = new Vector2(0f, 0f);
+        bgRect.pivot = new Vector2(0.5f, 0.5f);
+        bgRect.anchoredPosition = new Vector2(200f, 220f);
+        bgRect.sizeDelta = new Vector2(radius * 2f, radius * 2f);
 
-        Image bgImg = bgGO.AddComponent<Image>();
-        bgImg.sprite = MakeCircleSprite(128);
-        bgImg.color = new Color(1f, 1f, 1f, 0.18f);
-        bgImg.raycastTarget = true;
+        bgImage = bgGO.AddComponent<Image>();
+        bgImage.sprite = MakeCircleSprite(128);
+        bgImage.color = new Color(0.45f, 0.72f, 1f, 0.18f);
+        bgImage.raycastTarget = false;
 
         // Handle circle — child of background
         GameObject handleGO = new GameObject("JoystickHandle", typeof(RectTransform));
@@ -106,14 +180,18 @@ public class VirtualJoystick : MonoBehaviour
         handle.sizeDelta = new Vector2(radius * 0.7f, radius * 0.7f);
         handle.anchoredPosition = Vector2.zero;
 
-        Image handleImg = handleGO.AddComponent<Image>();
-        handleImg.sprite = MakeCircleSprite(64);
-        handleImg.color = new Color(1f, 1f, 1f, 0.45f);
-        handleImg.raycastTarget = false;
+        handleImage = handleGO.AddComponent<Image>();
+        handleImage.sprite = MakeCircleSprite(64);
+        handleImage.color = new Color(0.92f, 0.96f, 1f, 0.6f);
+        handleImage.raycastTarget = false;
 
-        // Touch handler on the background image
-        JoystickTouchArea touchArea = bgGO.AddComponent<JoystickTouchArea>();
-        touchArea.Init(this, bgRT, radius);
+        // Touch handler nằm trên VÙNG CHẠM (không phải nền tròn) → chạm đâu cũng điều khiển được.
+        JoystickTouchArea touchArea = areaGO.AddComponent<JoystickTouchArea>();
+        touchArea.Init(this, bgRect, radius);
+
+        // Chế độ nổi: ẩn cần lúc chưa chạm.
+        if (floatingJoystick)
+            SetJoystickVisible(false);
     }
 
     private static Sprite MakeCircleSprite(int size)
@@ -129,11 +207,13 @@ public class VirtualJoystick : MonoBehaviour
     }
 }
 
-// Handles touch/pointer events on the joystick background image.
+// Nhận chạm trên VÙNG điều khiển (nửa trái màn hình). Chế độ nổi: cần joystick xuất
+// hiện ngay tại điểm chạm rồi kéo từ đó — không bị kẹt một chỗ ở góc.
 public class JoystickTouchArea : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
 {
     private VirtualJoystick joystick;
     private RectTransform bgRect;
+    private RectTransform parentRect;
     private float radius;
 
     public void Init(VirtualJoystick owner, RectTransform bg, float r)
@@ -141,20 +221,35 @@ public class JoystickTouchArea : MonoBehaviour, IPointerDownHandler, IDragHandle
         joystick = owner;
         bgRect = bg;
         radius = r;
+        parentRect = bg != null ? bg.parent as RectTransform : null;
     }
 
-    public void OnPointerDown(PointerEventData eventData) => UpdateDrag(eventData);
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        if (joystick.FloatingMode && parentRect != null)
+        {
+            // Dời nền cần tới điểm chạm (toạ độ local trong canvas).
+            if (RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                    parentRect, eventData.position, eventData.pressEventCamera, out Vector2 canvasLocal))
+                joystick.ShowAt(canvasLocal);
+        }
+
+        UpdateDrag(eventData);
+    }
 
     public void OnDrag(PointerEventData eventData) => UpdateDrag(eventData);
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        joystick.SetInput(Vector2.zero);
-        joystick.MoveHandle(Vector2.zero);
+        joystick.HideFloating();
     }
 
     private void UpdateDrag(PointerEventData eventData)
     {
+        if (bgRect == null)
+            return;
+
+        // Đo lệch so với TÂM nền cần (đã được dời tới điểm chạm ở chế độ nổi).
         if (!RectTransformUtility.ScreenPointToLocalPointInRectangle(
                 bgRect, eventData.position, eventData.pressEventCamera, out Vector2 local))
             return;

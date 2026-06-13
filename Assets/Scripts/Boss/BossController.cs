@@ -79,11 +79,17 @@ public class BossController : MonoBehaviour
             return;
 
         float hpRatio = health.CurrentHP / Mathf.Max(1f, health.MaxHP);
+        // Tiến tới phase SÂU NHẤT mà HP đã chạm ngưỡng (phases sort giảm dần theo threshold),
+        // chỉ EnterPhase một lần để không restart ability coroutine nhiều lần trong cùng frame.
+        int targetPhase = currentPhaseIndex;
         for (int i = currentPhaseIndex + 1; i < bossData.phases.Count; i++)
         {
             if (hpRatio <= bossData.phases[i].hpThreshold)
-                EnterPhase(i);
+                targetPhase = i;
         }
+
+        if (targetPhase > currentPhaseIndex)
+            EnterPhase(targetPhase);
     }
 
     private void EnterPhase(int index)
@@ -275,11 +281,11 @@ public class BossController : MonoBehaviour
         Vector3 pos = transform.position + Vector3.down * 0.5f;
         if (redChestPrefab != null)
         {
-            Instantiate(redChestPrefab, pos, Quaternion.identity);
+            RuntimeSpawnGuard.Mark(Instantiate(redChestPrefab, pos, Quaternion.identity));
             return;
         }
 
-        GameObject chest = new GameObject("RedChest");
+        GameObject chest = RuntimeSpawnGuard.Mark(new GameObject("RedChest"));
         chest.transform.position = pos;
         chest.tag = "Untagged";
         SpriteRenderer sr = chest.AddComponent<SpriteRenderer>();

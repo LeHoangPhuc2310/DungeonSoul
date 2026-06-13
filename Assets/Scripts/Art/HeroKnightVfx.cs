@@ -52,7 +52,7 @@ public static class HeroKnightVfx
 
     private static void SpawnBurst(Vector3 worldPos, Sprite[] frames, float fps, float scale, Color tint, int sortingOrder)
     {
-        GameObject go = new GameObject("HeroKnightVfx");
+        GameObject go = RuntimeSpawnGuard.Mark(new GameObject("HeroKnightVfx"));
         go.transform.position = worldPos;
         SpriteRenderer sr = go.AddComponent<SpriteRenderer>();
         sr.sprite = frames[0];
@@ -100,6 +100,32 @@ public class HeroKnightVfxRunner : MonoBehaviour
             // Giới hạn để VFX sprite nhỏ không phình thành vòng tròn khổng lồ.
             s = Mathf.Clamp(s, 0.05f, 3f);
             transform.localScale = Vector3.one * s;
+        }
+
+        StartCoroutine(DestroyAfterPlay());
+    }
+
+    /// <summary>
+    /// Cho VFX dạng tia/dầm (sét, dầm sáng): KÉO DÀI theo trục dọc sprite (lengthWorld) nhưng
+    /// giữ ĐỘ DÀY cố định (thicknessWorld) — tránh tia xa thì phình to bè.
+    /// Sprite phải vẽ theo trục dọc; caller đã xoay transform cho khớp hướng.
+    /// </summary>
+    public void BeginStretched(Sprite[] spriteFrames, float fps, float lengthWorld, float thicknessWorld)
+    {
+        frames = spriteFrames;
+        frameDuration = 1f / Mathf.Max(1f, fps);
+        sr = GetComponent<SpriteRenderer>();
+        if (sr != null && frames != null && frames.Length > 0)
+        {
+            sr.sprite = frames[0];
+            Vector2 size = frames[0].bounds.size;
+            float sy = size.y > 0.001f ? lengthWorld / size.y : lengthWorld;
+            float sx = size.x > 0.001f ? thicknessWorld / size.x : thicknessWorld;
+            sy = Mathf.Clamp(sy, 0.05f, 8f);
+            sx = Mathf.Clamp(sx, 0.05f, 3f);
+            // localScale tính theo KHÔNG GIAN LOCAL của sprite (trước khi transform xoay):
+            // x = bề ngang (độ dày), y = chiều dài tia.
+            transform.localScale = new Vector3(sx, sy, 1f);
         }
 
         StartCoroutine(DestroyAfterPlay());

@@ -43,6 +43,7 @@ public class EnemyAI : MonoBehaviour
 
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
+    private Knockback knockback;
     private SimpleSpriteAnimator knightAnimator;
     private EnemySpriteAnimator kenneyAnimator;
     private Transform player;
@@ -88,6 +89,7 @@ public class EnemyAI : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         if (spriteRenderer == null)
             spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        knockback = GetComponent<Knockback>();
         baseScale = transform.localScale;
         if (baseScale.sqrMagnitude < 0.01f)
             baseScale = Vector3.one;
@@ -111,6 +113,17 @@ public class EnemyAI : MonoBehaviour
     {
         isMoving = false;
 
+        // Đang bị đẩy lùi: nhường quyền điều khiển Rigidbody cho Knockback frame này.
+        // Component Knockback được thêm runtime ở lần trúng đòn đầu tiên → lấy lazy.
+        if (knockback == null)
+            knockback = GetComponent<Knockback>();
+        if (knockback != null && knockback.IsActive)
+            return;
+
+        // Guard: nếu knightAnimator đã kết thúc animation mà FinishAttack không được gọi, reset để tránh deadlock.
+        if (isAttacking && knightAnimator != null && !knightAnimator.IsAttacking)
+            isAttacking = false;
+
         if (isAttacking || (knightAnimator != null && knightAnimator.IsAttacking))
             return;
 
@@ -125,11 +138,11 @@ public class EnemyAI : MonoBehaviour
         if (playerRefreshTimer <= 0f)
         {
             playerRefreshTimer = 0.75f;
-            if (player == null)
+            if (player == null || !player.gameObject.activeInHierarchy)
                 CachePlayer();
         }
 
-        if (player == null)
+        if (player == null || !player.gameObject.activeInHierarchy)
             return;
 
         Vector2 toPlayer = (Vector2)player.position - rb.position;
@@ -156,12 +169,20 @@ public class EnemyAI : MonoBehaviour
             if (Vector2.Distance(next, (Vector2)player.position) < stopDistance)
                 next = (Vector2)player.position - direction * stopDistance;
 
+            // Tách đàn: đẩy nhẹ khỏi quái xung quanh để không chồng khít thành một khối.
+            next += ComputeSeparation() * (moveSpeed * 0.55f * Time.fixedDeltaTime);
+
             rb.MovePosition(next);
             isMoving = moveDir.sqrMagnitude > 0.0001f;
             UpdateFacing(direction);
         }
         else if (dist > 0.01f)
         {
+            // Đứng vây quanh player: vẫn tách đàn để vòng vây giãn đều thay vì xếp chồng.
+            Vector2 sep = ComputeSeparation();
+            if (sep.sqrMagnitude > 0.0001f)
+                rb.MovePosition(rb.position + sep * (moveSpeed * 0.4f * Time.fixedDeltaTime));
+
             UpdateFacing(toPlayer / dist);
         }
 
@@ -170,6 +191,37 @@ public class EnemyAI : MonoBehaviour
 
     private const float WallProbeRadius = 0.22f;
     private static readonly RaycastHit2D[] wallHits = new RaycastHit2D[4];
+
+    private const float SeparationRadius = 0.42f;
+    private static readonly Collider2D[] separationHits = new Collider2D[8];
+
+    /// <summary>Vector đẩy khỏi các quái lân cận (cường độ 0..1.5) — giữ khoảng cách tự nhiên trong đàn.</summary>
+    private Vector2 ComputeSeparation()
+    {
+        int count = Physics2D.OverlapCircleNonAlloc(rb.position, SeparationRadius, separationHits);
+        Vector2 push = Vector2.zero;
+        for (int i = 0; i < count; i++)
+        {
+            Collider2D col = separationHits[i];
+            if (col == null || col.attachedRigidbody == rb || !col.CompareTag("Enemy"))
+                continue;
+
+            Vector2 away = rb.position - (Vector2)col.transform.position;
+            float dist = away.magnitude;
+            if (dist < 0.01f)
+            {
+                // Chồng đúng tâm nhau — tách theo hướng cố định theo instance để không rung lắc.
+                float angle = (GetInstanceID() & 0xFF) * (Mathf.PI * 2f / 256f);
+                away = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
+                dist = 0.01f;
+            }
+
+            // Càng gần đẩy càng mạnh, tắt dần về 0 ở mép bán kính tách.
+            push += (away / dist) * (1f - Mathf.Clamp01(dist / SeparationRadius));
+        }
+
+        return Vector2.ClampMagnitude(push, 1.5f);
+    }
 
     /// <summary>Trả hướng di chuyển sau khi tránh tường: nếu thẳng bị chặn, trượt theo X hoặc Y.</summary>
     private Vector2 ResolveWallSlide(Vector2 direction, float step)

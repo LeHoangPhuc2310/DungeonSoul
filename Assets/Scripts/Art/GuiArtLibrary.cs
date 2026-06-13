@@ -99,6 +99,7 @@ public static class GuiArtLibrary
     }
 
     public static Sprite CardSelected => Set != null ? Set.cardSelected : null;
+    public static Sprite CardBackground => Set != null ? Set.cardBackground : null;
 
     public static bool ApplyCardFrame(Image image, Sprite frame, Color fallback, bool selectedTint = false)
     {

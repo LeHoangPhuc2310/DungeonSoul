@@ -72,6 +72,11 @@ public class WeaponManager : MonoBehaviour
                 ExpSystem.Instance.OnLevelUpEvent += HandleLevelUp;
         }
 
+        if (GetComponent<PlayerOrbitalWeapons>() == null)
+            gameObject.AddComponent<PlayerOrbitalWeapons>();
+        if (GetComponent<PlayerBuffAuraVisual>() == null)
+            gameObject.AddComponent<PlayerBuffAuraVisual>();
+
         UpdateHud();
     }
 
@@ -266,34 +271,61 @@ public class WeaponManager : MonoBehaviour
             return;
 
         float damage = slot.baseDamage * Mathf.Max(0.2f, DamageMultiplier);
+        float speed = 9f * Mathf.Max(0.5f, ProjectileSpeedMultiplier);
+
         switch (slot.weaponType)
         {
             case WeaponType.StormBow:
-                DamageNearbyEnemies(target.position, damage, 2.8f * AreaMultiplier, 5);
+                SpawnWeaponProjectile(slot, target, damage, speed, hitPos =>
+                {
+                    WeaponVfxLibrary.PlayArea(slot.weaponType, hitPos, 2.8f * AreaMultiplier);
+                    DamageNearbyEnemies(hitPos, damage, 2.8f * AreaMultiplier, 5);
+                });
                 break;
             case WeaponType.DragonStaff:
-                DamageNearbyEnemies(target.position, damage * 1.6f, 2.2f * AreaMultiplier, 3);
+                SpawnWeaponProjectile(slot, target, damage * 1.6f, speed * 0.85f, hitPos =>
+                {
+                    WeaponVfxLibrary.PlayArea(slot.weaponType, hitPos, 2.2f * AreaMultiplier);
+                    DamageNearbyEnemies(hitPos, damage * 1.6f, 2.2f * AreaMultiplier, 3);
+                });
                 break;
             case WeaponType.BlizzardWand:
+                WeaponVfxLibrary.PlayArea(slot.weaponType, transform.position, 5f * AreaMultiplier);
                 DamageAllEnemies(damage * 1.1f, 0.35f);
                 break;
             case WeaponType.DeathDagger:
-                TryDamageInstantKill(target, damage);
+                SpawnWeaponProjectile(slot, target, 0f, speed * 1.35f, _ => TryDamageInstantKill(target, damage));
                 break;
             case WeaponType.HolyNova:
+                WeaponVfxLibrary.PlayArea(slot.weaponType, transform.position, 4.2f * AreaMultiplier);
                 DamageNearbyEnemies(transform.position, damage, 4.2f * AreaMultiplier, 999);
                 break;
             case WeaponType.ZeusRod:
+                WeaponVfxLibrary.PlayArea(slot.weaponType, target.position, 4f);
                 DamageAllEnemies(damage * 0.9f, 0f);
                 break;
             default:
             {
                 int shots = 1 + Mathf.Max(0, ExtraProjectileCount);
                 for (int s = 0; s < shots; s++)
-                    DamageTarget(target, damage);
+                    SpawnWeaponProjectile(slot, target, damage, speed, null);
                 break;
             }
         }
+    }
+
+    private void SpawnWeaponProjectile(WeaponSlot slot, Transform target, float damage, float speed, System.Action<Vector3> onHit)
+    {
+        if (WeaponVfxLibrary.HasPack)
+        {
+            AnimatedWeaponProjectile.Spawn(slot.weaponType, transform.position, target, damage, speed, 2.8f, onHit);
+            return;
+        }
+
+        if (onHit != null)
+            onHit(target.position);
+        else
+            DamageTarget(target, damage);
     }
 
     private void DamageTarget(Transform target, float damage)
@@ -375,25 +407,58 @@ public class WeaponManager : MonoBehaviour
     {
         switch (type)
         {
+            // ── Bow ──────────────────────────────────────────────
+            case WeaponType.IronBow:
+                slot.baseDamage = 11f;
+                slot.baseCooldown = 1.0f;
+                break;
+            case WeaponType.StormBow:
+                slot.baseDamage = 8f;
+                slot.baseCooldown = 0.55f;    // tốc bắn nhanh, dmg thấp
+                break;
+            // ── Staff / Wand ──────────────────────────────────────
             case WeaponType.FireStaff:
                 slot.baseDamage = 14f;
                 slot.baseCooldown = 1.2f;
+                break;
+            case WeaponType.DragonStaff:
+                slot.baseDamage = 22f;
+                slot.baseCooldown = 2.0f;    // chậm nhưng damage cao
                 break;
             case WeaponType.FrostWand:
                 slot.baseDamage = 10f;
                 slot.baseCooldown = 1.4f;
                 break;
+            case WeaponType.BlizzardWand:
+                slot.baseDamage = 6f;         // AOE slow — damage phụ
+                slot.baseCooldown = 1.1f;
+                break;
+            // ── Dagger ───────────────────────────────────────────
             case WeaponType.PoisonDagger:
                 slot.baseDamage = 9f;
                 slot.baseCooldown = 0.75f;
                 break;
+            case WeaponType.DeathDagger:
+                slot.baseDamage = 13f;
+                slot.baseCooldown = 0.9f;    // 20% instant kill đã có sẵn
+                break;
+            // ── Holy ─────────────────────────────────────────────
             case WeaponType.HolyCross:
                 slot.baseDamage = 12f;
                 slot.baseCooldown = 1.35f;
                 break;
+            case WeaponType.HolyNova:
+                slot.baseDamage = 18f;
+                slot.baseCooldown = 2.5f;    // AOE lớn, cooldown dài
+                break;
+            // ── Thunder ──────────────────────────────────────────
             case WeaponType.ThunderRod:
                 slot.baseDamage = 16f;
                 slot.baseCooldown = 1.8f;
+                break;
+            case WeaponType.ZeusRod:
+                slot.baseDamage = 28f;
+                slot.baseCooldown = 2.8f;    // strongest single-hit
                 break;
         }
     }

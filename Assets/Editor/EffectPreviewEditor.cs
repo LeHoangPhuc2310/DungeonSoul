@@ -242,6 +242,11 @@ public static class EffectPreviewPlayer
 
     public static void Play(Sprite[] spriteFrames, float size, float frameRate, bool loop = false)
     {
+        Play(spriteFrames, size, frameRate, loop, 0f);
+    }
+
+    public static void Play(Sprite[] spriteFrames, float size, float frameRate, bool loop, float rotationZ)
+    {
         Stop();
         if (spriteFrames == null || spriteFrames.Length == 0)
             return;
@@ -258,6 +263,7 @@ public static class EffectPreviewPlayer
             HideFlags.HideInHierarchy | HideFlags.DontSave | HideFlags.NotEditable,
             typeof(SpriteRenderer));
         previewRoot.transform.position = SceneViewCenter();
+        previewRoot.transform.rotation = Quaternion.Euler(0f, 0f, rotationZ);
 
         previewRenderer = previewRoot.GetComponent<SpriteRenderer>();
         previewRenderer.sprite = frames[0];

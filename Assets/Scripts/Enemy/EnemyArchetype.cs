@@ -60,6 +60,14 @@ public static class EnemyArchetypeUtility
         if (reward != null)
             reward.Configure(score, coinMin, coinMax, elite);
 
+        // Elite nhận một affix ngẫu nhiên (hành vi đặc biệt) — chiều sâu mỗi ván.
+        if (elite && enemy.GetComponent<EliteAffixController>() == null)
+        {
+            EliteAffix chosen = EliteAffixController.RollAffix();
+            if (chosen != EliteAffix.None)
+                enemy.AddComponent<EliteAffixController>().Setup(chosen);
+        }
+
         ai?.RefreshBaseScale();
 
         EnemyPhysicsSetup physics = enemy.GetComponent<EnemyPhysicsSetup>();

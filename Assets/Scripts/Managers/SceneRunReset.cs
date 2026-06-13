@@ -18,6 +18,8 @@ public static class SceneRunReset
     private static void ResetState()
     {
         Time.timeScale = 1f;
+        VirtualJoystick.SetChromeVisible(true);
+        RuntimeSpawnGuard.PurgeStaleRuntimeObjects();
         EnemyVisualLibrary.InvalidateCache();
         DungeonPackLibrary.InvalidateCache();
         RunManager.Instance?.ResetForNewRun();

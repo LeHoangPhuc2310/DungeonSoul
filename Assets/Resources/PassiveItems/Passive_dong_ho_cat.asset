@@ -15,7 +15,7 @@ MonoBehaviour:
   id: dong_ho_cat
   displayName: Đồng Hồ Cát
   description: Giảm hồi chiêu 8% mỗi cấp.
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: a41fcb5e32614b918ed82ead191823f9, type: 3}
   statModifierType: 4
   valuePerLevel:
   - 0.08

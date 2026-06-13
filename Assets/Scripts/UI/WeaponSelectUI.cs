@@ -86,7 +86,7 @@ public class WeaponSelectUI : MonoBehaviour
         GameObject iconFrameGo = MakeRect("IconFrame", detail.transform, new Vector2(150f, 150f), new Vector2(-460f, 0f));
         Image iconFrame = iconFrameGo.AddComponent<Image>();
         iconFrame.raycastTarget = false;
-        GuiArtLibrary.ApplyCardFrame(iconFrame, GuiArtLibrary.CardFrameForWeapon(selected), SlotSelected);
+        GuiArtLibrary.ApplyCardFrame(iconFrame, GuiArtLibrary.CardBackground ?? GuiArtLibrary.CardFrameForWeapon(selected), SlotSelected);
 
         detailIcon = MakeRect("Icon", iconFrameGo.transform, new Vector2(110f, 110f), Vector2.zero).AddComponent<Image>();
         detailIcon.preserveAspect = true;
@@ -121,8 +121,8 @@ public class WeaponSelectUI : MonoBehaviour
         Image icon = iconGo.AddComponent<Image>();
         icon.preserveAspect = true;
         icon.raycastTarget = false;
-        Sprite s = WeaponIconLibrary.GetWeapon(type);
-        if (s != null) { icon.sprite = s; icon.color = WeaponIconLibrary.Tint(type); }
+        Sprite s = GameIconLibrary.WeaponSprite(type);
+        if (s != null) { icon.sprite = s; icon.color = GameIconLibrary.WeaponTint(type); }
 
         TMP_Text name = MakeLabel(RunLoadout.DisplayName(type), slot.transform, new Vector2(0f, -78f),
             new Vector2(190f, 40f), TextAlignmentOptions.Center);
@@ -145,21 +145,23 @@ public class WeaponSelectUI : MonoBehaviour
         if (detailDesc != null) detailDesc.text = RunLoadout.Description(type);
         if (detailIcon != null)
         {
-            Sprite s = WeaponIconLibrary.GetWeapon(type);
-            if (s != null) { detailIcon.sprite = s; detailIcon.color = WeaponIconLibrary.Tint(type); detailIcon.enabled = true; }
+            Sprite s = GameIconLibrary.WeaponSprite(type);
+            if (s != null) { detailIcon.sprite = s; detailIcon.color = GameIconLibrary.WeaponTint(type); detailIcon.enabled = true; }
         }
 
         if (detailIcon != null && detailIcon.transform.parent != null)
         {
             Image frame = detailIcon.transform.parent.GetComponent<Image>();
             if (frame != null)
-                GuiArtLibrary.ApplyCardFrame(frame, GuiArtLibrary.CardFrameForWeapon(type), SlotSelected);
+                GuiArtLibrary.ApplyCardFrame(frame, GuiArtLibrary.CardBackground ?? GuiArtLibrary.CardFrameForWeapon(type), SlotSelected);
         }
     }
 
     private static void ApplyWeaponSlotFrame(Image frame, WeaponType type, bool selected)
     {
-        Sprite sprite = selected ? GuiArtLibrary.CardSelected : GuiArtLibrary.CardFrameForWeapon(type);
+        Sprite sprite = selected
+            ? (GuiArtLibrary.CardSelected ?? GuiArtLibrary.CardBackground)
+            : (GuiArtLibrary.CardBackground ?? GuiArtLibrary.CardFrameForWeapon(type));
         Color fallback = selected ? SlotSelected : SlotNormal;
         GuiArtLibrary.ApplyCardFrame(frame, sprite, fallback, selected);
     }

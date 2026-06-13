@@ -15,7 +15,7 @@ MonoBehaviour:
   id: canh_quat
   displayName: Cánh Quạ
   description: Tăng tốc độ di chuyển 5% mỗi cấp.
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 39f28ffc92fc49a2bcce03eda0d622b4, type: 3}
   statModifierType: 2
   valuePerLevel:
   - 0.05

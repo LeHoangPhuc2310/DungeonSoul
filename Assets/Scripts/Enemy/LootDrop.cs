@@ -11,7 +11,7 @@ public class LootDrop : MonoBehaviour
         if (Random.value > dropChance)
             return;
 
-        GameObject coin = new GameObject("CoinPickup");
+        GameObject coin = RuntimeSpawnGuard.Mark(new GameObject("CoinPickup"));
         coin.transform.position = position;
         CircleCollider2D col = coin.AddComponent<CircleCollider2D>();
         col.isTrigger = true;

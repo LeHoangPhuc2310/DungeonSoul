@@ -39,4 +39,7 @@ public class GuiSpriteSet : ScriptableObject
     public Sprite cardWeaponBlade;
     public Sprite cardWeaponHoly;
     public Sprite cardWeaponThunder;
+
+    [Header("Card Background (dùng cho slot vũ khí)")]
+    public Sprite cardBackground;
 }

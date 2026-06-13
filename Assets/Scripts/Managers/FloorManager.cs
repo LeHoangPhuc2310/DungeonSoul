@@ -4,7 +4,7 @@ public class FloorManager : MonoBehaviour
 {
     public static FloorManager Instance { get; private set; }
 
-    public static int currentFloor = 1;
+    private int currentFloor = 1;
     public int CurrentFloor => currentFloor;
 
     private void Awake()
@@ -15,11 +15,18 @@ public class FloorManager : MonoBehaviour
             return;
         }
         Instance = this;
+        currentFloor = 1;
         DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
     {
+        UpdateHUD();
+    }
+
+    public void SetFloor(int floor)
+    {
+        currentFloor = Mathf.Max(1, floor);
         UpdateHUD();
     }
 

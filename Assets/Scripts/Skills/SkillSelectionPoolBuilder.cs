@@ -21,21 +21,25 @@ public static class SkillSelectionPoolBuilder
         List<SkillSelectionChoice> result = new List<SkillSelectionChoice>(targetCount);
         HashSet<string> usedKeys = new HashSet<string>();
 
+        // DEBUG: ép một thẻ luôn là skill chỉ định (test VFX). Tắt forceSkillEnabled khi phát hành.
+        TryForceDebugSkill(result, usedKeys, allSkills, cfg);
+
         // Tutorial: level-up đầu tiên chỉ skill
         if (context == SkillSelectionContext.LevelUp && playerLevel <= 2)
         {
-            FillSkillsOnly(result, usedKeys, allSkills, context, cfg, targetCount);
+            FillSkillsOnly(result, usedKeys, allSkills, context, cfg, targetCount - result.Count);
             LogResult(context, result, "first-level-up-skills-only");
             return PadOrFallback(result, usedKeys, allSkills, context, cfg, targetCount);
         }
 
         GetSourceWeights(context, out float wSkill, out float wPassive, out float wWeapon);
 
-        for (int slot = 0; slot < targetCount; slot++)
+        // Lấp đầy tới targetCount (đã trừ các thẻ ép-debug có sẵn trong result).
+        while (result.Count < targetCount)
         {
             SkillSelectionChoice pick = PickOne(context, allSkills, usedKeys, wSkill, wPassive, wWeapon, cfg);
             if (pick == null)
-                continue;
+                break;
 
             result.Add(pick);
             usedKeys.Add(pick.GetUniqueKey());
@@ -43,6 +47,42 @@ public static class SkillSelectionPoolBuilder
 
         LogResult(context, result, $"weights skill={wSkill:P0} passive={wPassive:P0} weapon={wWeapon:P0} count={targetCount}");
         return PadOrFallback(result, usedKeys, allSkills, context, cfg, targetCount);
+    }
+
+    /// <summary>DEBUG: chèn skill chỉ định vào thẻ đầu tiên để chắc chắn nhận được (test VFX).</summary>
+    private static void TryForceDebugSkill(
+        List<SkillSelectionChoice> result,
+        HashSet<string> usedKeys,
+        List<SkillData> allSkills,
+        SkillSelectionConfig cfg)
+    {
+        if (cfg == null || !cfg.forceSkillEnabled || allSkills == null)
+            return;
+
+        SkillData forced = null;
+        for (int i = 0; i < allSkills.Count; i++)
+        {
+            if (allSkills[i] != null && allSkills[i].skillType == cfg.forceSkillType)
+            {
+                forced = allSkills[i];
+                break;
+            }
+        }
+
+        if (forced == null || IsSkillMaxed(forced, cfg))
+            return;
+
+        string key = "skill:" + forced.skillType;
+        if (usedKeys.Contains(key))
+            return;
+
+        result.Add(new SkillSelectionChoice
+        {
+            kind = SkillSelectionChoiceKind.SkillUpgrade,
+            skill = forced
+        });
+        usedKeys.Add(key);
+        Debug.Log("[SkillPool] DEBUG ép thẻ: " + forced.skillType);
     }
 
     public static int GetTargetChoiceCount(SkillSelectionContext context)
@@ -132,8 +172,6 @@ public static class SkillSelectionPoolBuilder
             SkillData s = allSkills[i];
             if (s == null || usedKeys.Contains("skill:" + s.skillType))
                 continue;
-            if (BanishRegistry.IsBanished("skill:" + s.skillType))
-                continue;
             if (!SkillCombatRules.IsOfferedToHero(s.skillType, WeaponStyleUtil.GetSelectedHeroClass()))
                 continue;
             if (IsSkillMaxed(s, cfg))
@@ -148,8 +186,6 @@ public static class SkillSelectionPoolBuilder
             {
                 SkillData s = allSkills[i];
                 if (s == null || usedKeys.Contains("skill:" + s.skillType) || IsSkillMaxed(s, cfg))
-                    continue;
-                if (BanishRegistry.IsBanished("skill:" + s.skillType))
                     continue;
                 if (!SkillCombatRules.IsOfferedToHero(s.skillType, WeaponStyleUtil.GetSelectedHeroClass()))
                     continue;
@@ -227,8 +263,6 @@ public static class SkillSelectionPoolBuilder
             PassiveItemData p = eligibles[i];
             if (p == null || usedKeys.Contains("passive:" + p.id))
                 continue;
-            if (BanishRegistry.IsBanished("passive:" + p.id))
-                continue;
             result.Add(p);
         }
 
@@ -282,7 +316,7 @@ public static class SkillSelectionPoolBuilder
                 continue;
 
             string key = "weapon:" + t;
-            if (usedKeys.Contains(key) || BanishRegistry.IsBanished(key))
+            if (usedKeys.Contains(key))
                 continue;
 
             if (!wm.HasWeapon(t))
@@ -371,8 +405,6 @@ public static class SkillSelectionPoolBuilder
             {
                 SkillData s = allSkills[j];
                 if (s == null || usedKeys.Contains("skill:" + s.skillType) || IsSkillMaxed(s, cfg))
-                    continue;
-                if (BanishRegistry.IsBanished("skill:" + s.skillType))
                     continue;
                 pool.Add(s);
             }

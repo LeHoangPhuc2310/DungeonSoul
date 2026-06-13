@@ -15,7 +15,7 @@ MonoBehaviour:
   id: vuong_mien_vinh_cuu
   displayName: Vương Miện Vĩnh Cửu
   description: Hồi sinh 1 lần với 50% HP khi chết.
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: bc572706202745b5b6f1960cdd0b4105, type: 3}
   statModifierType: 11
   valuePerLevel:
   - 1

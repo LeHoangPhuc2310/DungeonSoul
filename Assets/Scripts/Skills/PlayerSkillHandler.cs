@@ -66,6 +66,7 @@ public class PlayerSkillHandler : MonoBehaviour
 
         GlobalStats.Refresh();
         HUDManager.Resolve()?.RefreshVsLoadoutPanel();
+        GetComponent<PlayerBuffAuraVisual>()?.Refresh();
     }
 
     private void PlaySkillAcquireVfx(SkillType type)
@@ -203,7 +204,10 @@ public class PlayerSkillHandler : MonoBehaviour
         if (skillStats != null)
             skillStats.Recalculate(this);
         if (autoAttack != null && skillStats != null)
+        {
             autoAttack.CritChance = skillStats.CritChance;
+            autoAttack.CritMultiplier = skillStats.CritMultiplier;
+        }
 
         PassiveItemManager.Instance?.ApplyAggregatedToPlayer();
 

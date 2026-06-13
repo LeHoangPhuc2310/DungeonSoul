@@ -48,9 +48,14 @@ public class AudioManager : MonoBehaviour
     private AudioClip playerHurtClip;
     private AudioClip dashClip;
     private AudioClip bossSpawnClip;
+    private AudioClip lightningClip;
+    private AudioClip lightningZapClip;
+    private AudioClip trapSpikeClip;
 
     private float lastEnemyAttackTime = -1f;
     private float lastPlayerHurtTime = -1f;
+    private float lastLightningTime = -1f;
+    private float lastTrapSpikeTime = -1f;
 
     private bool combatMusicActive;
 
@@ -137,6 +142,11 @@ public class AudioManager : MonoBehaviour
         playerHurtClip = LoadClipOrSupplemental("SwordBlood", "slash-21834");
         dashClip = LoadClip("Dash");
         bossSpawnClip = LoadClip("MonsterBreath");
+        lightningClip = LoadSupplemental("lightning-crack")
+            ?? LoadSupplemental("lightning")
+            ?? ProceduralLightningSfx.GetCrack();
+        lightningZapClip = LoadSupplemental("lightning-zap") ?? ProceduralLightningSfx.GetZap();
+        trapSpikeClip = LoadSupplemental("trap-spike") ?? ProceduralTrapSfx.GetSpikePop();
         if (bgMusic == null)
             bgMusic = LoadSupplemental("Simulacra-chosic.com_");
     }
@@ -214,6 +224,35 @@ public class AudioManager : MonoBehaviour
     public static void PlayCombatHit()
     {
         Instance?.PlayOneShot(Instance.combatHitClip, 0.65f, 1f);
+    }
+
+    /// <summary>Tiếng sét — LightningChain, Cung Bão, Thunder Rod…</summary>
+    public static void PlayLightning(bool chainZap = false)
+    {
+        if (Instance == null)
+            return;
+
+        float throttle = chainZap ? 0.04f : 0.07f;
+        if (Time.unscaledTime - Instance.lastLightningTime < throttle)
+            return;
+        Instance.lastLightningTime = Time.unscaledTime;
+
+        AudioClip clip = chainZap ? Instance.lightningZapClip : Instance.lightningClip;
+        float vol = chainZap ? 0.62f : 0.78f;
+        float pitch = Random.Range(0.92f, 1.08f);
+        Instance.PlayOneShot(clip, vol, pitch);
+    }
+
+    /// <summary>Tiếng chông nhô từ bẫy sàn.</summary>
+    public static void PlayTrapSpike()
+    {
+        if (Instance == null)
+            return;
+
+        if (Time.unscaledTime - Instance.lastTrapSpikeTime < 0.06f)
+            return;
+        Instance.lastTrapSpikeTime = Time.unscaledTime;
+        Instance.PlayOneShot(Instance.trapSpikeClip, 0.42f, Random.Range(0.94f, 1.06f));
     }
 
     public static void PlayBossAttack()

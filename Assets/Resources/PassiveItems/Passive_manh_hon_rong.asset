@@ -15,7 +15,7 @@ MonoBehaviour:
   id: manh_hon_rong
   displayName: Mảnh Hồn Rồng
   description: Thêm 1 đạn mỗi cấp.
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: a16c21b0138140c786a0b9cc3f69d3ec, type: 3}
   statModifierType: 10
   valuePerLevel:
   - 1

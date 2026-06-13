@@ -37,3 +37,4 @@ MonoBehaviour:
   cardWeaponBlade: {fileID: 5441915626502683602, guid: 1c5319abbf2b2de44b22cc9a2e5b54ef, type: 3}
   cardWeaponHoly: {fileID: 3817212800811449068, guid: 251eba5cc49be494288929e8038800f2, type: 3}
   cardWeaponThunder: {fileID: 2713103610476550546, guid: 4872aba585aa5fd46a9b4fa25eee1476, type: 3}
+  cardBackground: {fileID: 7001820932149468811, guid: 48b72d5ffcff8ee4aad5a47b7ea62652, type: 3}

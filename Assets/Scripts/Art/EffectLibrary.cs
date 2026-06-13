@@ -59,7 +59,7 @@ public static class EffectLibrary
         if (frames == null || frames.Length == 0)
             return;
 
-        GameObject go = new GameObject("VFX_" + kind);
+        GameObject go = RuntimeSpawnGuard.Mark(new GameObject("VFX_" + kind));
         go.transform.position = worldPos;
         SpriteRenderer sr = go.AddComponent<SpriteRenderer>();
         sr.sprite = frames[0];

@@ -29,6 +29,7 @@ public class CharacterSelectUI : MonoBehaviour
     private PlayableCharacterEntry selected;
     private readonly Dictionary<string, Image> slotFrames = new Dictionary<string, Image>();
     private readonly Dictionary<string, HeroType> slotHeroClasses = new Dictionary<string, HeroType>();
+    private readonly Dictionary<string, GameObject> lockOverlays = new Dictionary<string, GameObject>();
     private Image detailPanelBg;
     private Image detailPreview;
     private TMP_Text detailName;
@@ -37,7 +38,19 @@ public class CharacterSelectUI : MonoBehaviour
     private TMP_Text detailAbilityTitle;
     private TMP_Text detailAbilityBody;
     private Button confirmButton;
+    private Image confirmButtonBg;
+    private TMP_Text confirmButtonLabel;
+    private TMP_Text unlockInfoText;
+    private TMP_Text soulsBalanceText;
+    private Image soulsBadgeIcon;
+    private Image confirmButtonSoulIcon;
     private Coroutine previewRoutine;
+    private Coroutine shakeRoutine;
+
+    // Màu nút theo trạng thái mở khóa.
+    private static readonly Color BtnNext = new Color(0.2f, 0.6f, 0.32f, 1f);
+    private static readonly Color BtnUnlock = new Color(0.78f, 0.6f, 0.16f, 1f);
+    private static readonly Color BtnLocked = new Color(0.3f, 0.29f, 0.33f, 1f);
 
     private void Start()
     {
@@ -84,6 +97,8 @@ public class CharacterSelectUI : MonoBehaviour
         TMP_Text hint = MakeLabel("Chọn nhân vật rồi bấm Tiếp theo — vào dungeon ngay", canvasGO.transform,
             new Vector2(0f, 405f), new Vector2(1200f, 40f), TextAlignmentOptions.Center);
         GameUIFont.Apply(hint, GameUIFont.Role.HeaderHint);
+
+        BuildSoulsBadge(canvasGO.transform);
 
         GameObject body = MakeRect("Body", canvasGO.transform, Vector2.zero, Vector2.zero);
         RectTransform bodyRt = body.GetComponent<RectTransform>();
@@ -253,7 +268,64 @@ public class CharacterSelectUI : MonoBehaviour
         GameUIFont.Apply(detailAbilityBody, GameUIFont.Role.CardBody);
         detailAbilityBody.fontSize = 14f;
 
+        // Dòng trạng thái mở khóa — đủ/thiếu Souls hiển thị ngay trên nút.
+        unlockInfoText = MakeLayoutLabel(panel.transform, "", 30f, TextAlignmentOptions.Center);
+        GameUIFont.Apply(unlockInfoText, GameUIFont.Role.CardBody);
+        unlockInfoText.fontSize = 15f;
+
         confirmButton = MakeLayoutButton("Tiếp theo →", panel.transform, 64f, OnConfirm);
+        confirmButtonBg = confirmButton.GetComponent<Image>();
+        confirmButtonLabel = confirmButton.GetComponentInChildren<TextMeshProUGUI>();
+
+        GameObject confirmIconGo = MakeRect("SoulIcon", confirmButton.transform, new Vector2(34f, 34f), new Vector2(-108f, 0f));
+        confirmButtonSoulIcon = confirmIconGo.AddComponent<Image>();
+        confirmButtonSoulIcon.sprite = SoulIconLibrary.Get();
+        confirmButtonSoulIcon.color = SoulIconLibrary.Tint;
+        confirmButtonSoulIcon.preserveAspect = true;
+        confirmButtonSoulIcon.raycastTarget = false;
+        confirmButtonSoulIcon.enabled = false;
+    }
+
+    /// <summary>Badge số dư Souls — neo góc trên-phải, cập nhật sau mỗi lần mở khóa.</summary>
+    private void BuildSoulsBadge(Transform parent)
+    {
+        GameObject badge = MakeRect("SoulsBadge", parent, new Vector2(280f, 56f), Vector2.zero);
+        RectTransform rt = badge.GetComponent<RectTransform>();
+        rt.anchorMin = rt.anchorMax = new Vector2(1f, 1f);
+        rt.pivot = new Vector2(1f, 1f);
+        rt.anchoredPosition = new Vector2(-28f, -22f);
+
+        Image bg = badge.AddComponent<Image>();
+        if (GuiArtLibrary.ButtonSecondary != null)
+        {
+            bg.sprite = GuiArtLibrary.ButtonSecondary;
+            bg.type = Image.Type.Sliced;
+            bg.color = new Color(0.92f, 0.9f, 0.98f, 1f);
+        }
+        else
+            bg.color = new Color(0.09f, 0.07f, 0.14f, 0.94f);
+        bg.raycastTarget = false;
+
+        GameObject iconGo = MakeRect("SoulIcon", badge.transform, new Vector2(40f, 40f), new Vector2(-108f, 0f));
+        soulsBadgeIcon = iconGo.AddComponent<Image>();
+        soulsBadgeIcon.sprite = SoulIconLibrary.Get();
+        soulsBadgeIcon.color = SoulIconLibrary.Tint;
+        soulsBadgeIcon.preserveAspect = true;
+        soulsBadgeIcon.raycastTarget = false;
+
+        soulsBalanceText = MakeLabel("", badge.transform, new Vector2(18f, 0f),
+            new Vector2(168f, 44f), TextAlignmentOptions.MidlineLeft);
+        GameUIFont.Apply(soulsBalanceText, GameUIFont.Role.CardTitle);
+        soulsBalanceText.fontSize = 20f;
+
+        RefreshSoulsBalance();
+    }
+
+    private void RefreshSoulsBalance()
+    {
+        if (soulsBalanceText != null)
+            soulsBalanceText.text = "<color=#B8A8D8>Souls</color>  <color=#F5D14A>"
+                + MetaRunProgress.SoulPoints + "</color>";
     }
 
     private void BuildCharacterSlot(Transform parent, PlayableCharacterEntry entry)
@@ -274,6 +346,46 @@ public class CharacterSelectUI : MonoBehaviour
         name.fontSize = 11f;
         name.textWrappingMode = TextWrappingModes.NoWrap;
         name.overflowMode = TextOverflowModes.Ellipsis;
+
+        BuildLockOverlay(frame.transform, entry);
+    }
+
+    /// <summary>Phủ tối card bị khóa + hiện giá Souls ngay trên card (không cần bấm vào mới biết).</summary>
+    private void BuildLockOverlay(Transform cardRoot, PlayableCharacterEntry entry)
+    {
+        int cost = MetaRunProgress.GetUnlockCost(entry.id);
+        if (cost <= 0)
+            return; // nhân vật miễn phí — không có overlay
+
+        GameObject overlay = MakeRect("LockOverlay", cardRoot,
+            new Vector2(PortraitCardWidth - 14f, PortraitCardHeight - 14f), Vector2.zero);
+        Image dim = overlay.AddComponent<Image>();
+        dim.color = new Color(0.02f, 0.02f, 0.05f, 0.66f);
+        dim.raycastTarget = false;
+
+        GameObject lockIconGo = MakeRect("LockIcon", overlay.transform, new Vector2(28f, 28f), new Vector2(0f, 52f));
+        Image lockIcon = lockIconGo.AddComponent<Image>();
+        lockIcon.sprite = UnlockIconLibrary.LockedBadge;
+        lockIcon.color = new Color(0.95f, 0.82f, 0.35f, 1f);
+        lockIcon.preserveAspect = true;
+        lockIcon.raycastTarget = false;
+
+        GameObject soulIconGo = MakeRect("SoulIcon", overlay.transform, new Vector2(44f, 44f), new Vector2(0f, 14f));
+        Image soulIcon = soulIconGo.AddComponent<Image>();
+        soulIcon.sprite = SoulIconLibrary.Get();
+        soulIcon.color = SoulIconLibrary.Tint;
+        soulIcon.preserveAspect = true;
+        soulIcon.raycastTarget = false;
+
+        TMP_Text costLabel = MakeLabel(cost.ToString(), overlay.transform,
+            new Vector2(0f, -22f), new Vector2(104f, 34f), TextAlignmentOptions.Center);
+        GameUIFont.Apply(costLabel, GameUIFont.Role.CardStack);
+        costLabel.fontSize = 20f;
+        costLabel.fontStyle = FontStyles.Bold;
+        costLabel.color = Gold;
+
+        lockOverlays[entry.id] = overlay;
+        overlay.SetActive(!PlayableCharacterCatalog.IsUnlocked(entry));
     }
 
     private Image BuildSlotFrame(Transform parent, string key, HeroType heroClass, UnityEngine.Events.UnityAction onClick)
@@ -393,6 +505,58 @@ public class CharacterSelectUI : MonoBehaviour
 
         Sprite[] frames = entry.idle != null && entry.idle.Length > 0 ? entry.idle : entry.walk;
         StartPreview(frames);
+        RefreshUnlockUI();
+    }
+
+    /// <summary>Nút Confirm biến hình theo trạng thái: Tiếp theo / Mở khóa / Thiếu Souls.</summary>
+    private void RefreshUnlockUI()
+    {
+        if (selected == null || confirmButton == null)
+            return;
+
+        RefreshSoulsBalance();
+
+        if (PlayableCharacterCatalog.IsUnlocked(selected))
+        {
+            confirmButtonLabel.text = "Tiếp theo →";
+            confirmButtonBg.color = BtnNext;
+            if (confirmButtonSoulIcon != null)
+                confirmButtonSoulIcon.enabled = false;
+            if (confirmButtonLabel != null)
+            {
+                RectTransform lrt = confirmButtonLabel.rectTransform;
+                lrt.offsetMin = Vector2.zero;
+                lrt.offsetMax = Vector2.zero;
+            }
+            if (unlockInfoText != null)
+                unlockInfoText.text = "";
+            return;
+        }
+
+        int cost = MetaRunProgress.GetUnlockCost(selected.id);
+        int souls = MetaRunProgress.SoulPoints;
+        bool affordable = souls >= cost;
+
+        if (confirmButtonSoulIcon != null)
+            confirmButtonSoulIcon.enabled = affordable;
+        if (confirmButtonLabel != null)
+        {
+            RectTransform lrt = confirmButtonLabel.rectTransform;
+            lrt.offsetMin = affordable ? new Vector2(36f, 0f) : Vector2.zero;
+            lrt.offsetMax = Vector2.zero;
+        }
+
+        confirmButtonLabel.text = affordable
+            ? "MỞ KHÓA — " + cost
+            : "ĐANG KHÓA";
+        confirmButtonBg.color = affordable ? BtnUnlock : BtnLocked;
+
+        if (unlockInfoText != null)
+        {
+            unlockInfoText.text = affordable
+                ? "<color=#F5D14A>Đủ Souls!</color> Bấm nút để mở khóa " + selected.displayName
+                : "<color=#FF6B6B>Thiếu " + (cost - souls) + " Souls</color> — sống sót lâu hơn để kiếm thêm";
+        }
     }
 
     private void StartPreview(Sprite[] frames)
@@ -435,14 +599,27 @@ public class CharacterSelectUI : MonoBehaviour
         if (selected == null)
             return;
 
+        // Nhân vật khóa: nút này là nút MỞ KHÓA — mở xong đứng lại để người chơi
+        // thấy card sáng lên và số dư trừ tiền, bấm lần nữa mới vào game.
         if (!PlayableCharacterCatalog.IsUnlocked(selected))
         {
-            int cost = MetaRunProgress.GetUnlockCost(selected.id);
-            if (!MetaRunProgress.TryUnlockCharacter(selected.id))
+            if (MetaRunProgress.TryUnlockCharacter(selected.id))
             {
-                Debug.Log("[CharacterSelect] Cần " + cost + " Souls để mở khóa " + selected.displayName);
-                return;
+                AudioManager.PlayCoinCollect();
+                if (lockOverlays.TryGetValue(selected.id, out GameObject overlay) && overlay != null)
+                    overlay.SetActive(false);
+                RefreshUnlockUI();
             }
+            else
+            {
+                AudioManager.PlayUiTap();
+                if (shakeRoutine != null)
+                    StopCoroutine(shakeRoutine);
+                shakeRoutine = StartCoroutine(ShakeConfirmButton());
+                RefreshUnlockUI();
+            }
+
+            return;
         }
 
         AudioManager.PlayUiTap();
@@ -455,6 +632,28 @@ public class CharacterSelectUI : MonoBehaviour
             SceneManager.LoadScene(nextScene);
         else
             Debug.LogError("[CharacterSelectUI] Không tìm thấy scene: " + nextScene);
+    }
+
+    /// <summary>Rung ngang nút khi không đủ Souls — phản hồi tức thì thay vì log console.</summary>
+    private IEnumerator ShakeConfirmButton()
+    {
+        RectTransform rt = confirmButton != null ? confirmButton.GetComponent<RectTransform>() : null;
+        if (rt == null)
+            yield break;
+
+        Vector2 basePos = rt.anchoredPosition;
+        const float duration = 0.32f;
+        float t = 0f;
+        while (t < duration)
+        {
+            t += Time.unscaledDeltaTime;
+            float falloff = 1f - t / duration;
+            rt.anchoredPosition = basePos + new Vector2(Mathf.Sin(t * 55f) * 9f * falloff, 0f);
+            yield return null;
+        }
+
+        rt.anchoredPosition = basePos;
+        shakeRoutine = null;
     }
 
     private string ResolveNextScene()

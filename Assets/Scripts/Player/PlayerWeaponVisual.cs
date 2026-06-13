@@ -148,7 +148,13 @@ public class PlayerWeaponVisual : MonoBehaviour
 
     public void RefreshWeaponSprite(HeroType hero)
     {
-        // Cầm tay: dùng sprite không nền; UI vẫn dùng Icons_background qua GetWeapon().
+        WeaponType defaultWeapon = hero switch
+        {
+            HeroType.Ranger => WeaponType.IronBow,
+            HeroType.Mage => WeaponType.FireStaff,
+            _ => WeaponType.IronBow
+        };
+
         Sprite s = WeaponIconLibrary.GetHeroWeaponHeld(hero);
         if (s != null)
             RefreshWeaponSprite(s, Color.white);
@@ -158,11 +164,22 @@ public class PlayerWeaponVisual : MonoBehaviour
 
     public void RefreshWeaponSprite(WeaponType type)
     {
-        Sprite s = WeaponIconLibrary.GetWeaponHeld(type);
-        if (s != null)
-            RefreshWeaponSprite(s, WeaponIconLibrary.Tint(type));
-        else
-            RefreshWeaponSprite(ArtSpriteLibrary.GetWeaponSprite(type), ArtSpriteLibrary.GetWeaponTint(type));
+        // Pack gốc không nền — nhìn tự nhiên hơn sprite AI có viền đen.
+        Sprite held = WeaponIconLibrary.GetWeaponHeld(type);
+        if (held != null)
+        {
+            RefreshWeaponSprite(held, WeaponIconLibrary.Tint(type));
+            return;
+        }
+
+        Sprite generated = GeneratedHeldWeaponLibrary.GetHeld(type);
+        if (generated != null)
+        {
+            RefreshWeaponSprite(generated, WeaponVfxLibrary.GetTint(type));
+            return;
+        }
+
+        RefreshWeaponSprite(ArtSpriteLibrary.GetWeaponSprite(type), ArtSpriteLibrary.GetWeaponTint(type));
     }
 
     public void RefreshFromLoadout()

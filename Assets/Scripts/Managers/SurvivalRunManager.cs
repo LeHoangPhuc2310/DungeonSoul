@@ -82,7 +82,6 @@ public class SurvivalRunManager : MonoBehaviour
         victoryTriggered = false;
         triggeredBossIndices.Clear();
         reaperSpawned = false;
-        BanishRegistry.ResetForNewRun();
     }
 
     public int GetDifficultyTier()

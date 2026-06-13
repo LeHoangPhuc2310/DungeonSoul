@@ -52,7 +52,7 @@ public class WeaponEvolution : MonoBehaviour
 
     private IEnumerator ShowEvolutionText(Transform target, WeaponType evolvedWeapon)
     {
-        GameObject textObject = new GameObject("WeaponEvolutionText");
+        GameObject textObject = RuntimeSpawnGuard.Mark(new GameObject("WeaponEvolutionText"));
         textObject.transform.position = target.position + Vector3.up * 2.2f;
         TextMeshPro text = textObject.AddComponent<TextMeshPro>();
         text.alignment = TextAlignmentOptions.Center;

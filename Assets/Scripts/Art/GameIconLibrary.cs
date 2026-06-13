@@ -58,6 +58,9 @@ public static class GameIconLibrary
 
     public static Color SkillTint(SkillType type)
     {
+        if (GeneratedPixelIconLibrary.Skill(type) != null)
+            return Color.white;
+
         switch (type)
         {
             case SkillType.FireArrow:
@@ -95,6 +98,10 @@ public static class GameIconLibrary
 
     public static Sprite SkillSprite(SkillType type)
     {
+        Sprite generated = GeneratedPixelIconLibrary.Skill(type);
+        if (generated != null)
+            return generated;
+
         Sprite aseprite = AsepriteSkillVfxLoader.LoadSkillIcon(AsepriteSkillEffectPaths.SkillIconIndex(type));
         if (aseprite != null)
             return aseprite;
@@ -102,17 +109,26 @@ public static class GameIconLibrary
         return ArtSpriteLibrary.LoadTile(SkillTile(type));
     }
 
+    public static bool UsesGeneratedSprite(SkillType type) =>
+        GeneratedPixelIconLibrary.Skill(type) != null;
+
     // ---------------- WEAPON ----------------
 
     public static Sprite WeaponSprite(WeaponType type)
     {
-        // Ưu tiên icon vũ khí thật từ Assets/Art/Sprite/Weapon.
+        Sprite generated = GeneratedPixelIconLibrary.Weapon(type);
+        if (generated != null)
+            return generated;
+
         Sprite s = WeaponIconLibrary.GetWeapon(type);
         return s != null ? s : ArtSpriteLibrary.GetWeaponSprite(type);
     }
 
     public static Color WeaponTint(WeaponType type)
     {
+        if (GeneratedPixelIconLibrary.Weapon(type) != null)
+            return Color.white;
+
         return WeaponIconLibrary.GetWeapon(type) != null
             ? WeaponIconLibrary.Tint(type)
             : ArtSpriteLibrary.GetWeaponTint(type);
@@ -153,8 +169,16 @@ public static class GameIconLibrary
 
     public static Sprite PassiveSprite(PassiveItemData item)
     {
-        if (item != null && item.icon != null)
-            return item.icon;
+        if (item != null)
+        {
+            if (item.icon != null)
+                return item.icon;
+
+            Sprite generated = GeneratedPixelIconLibrary.Passive(item.id);
+            if (generated != null)
+                return generated;
+        }
+
         return ArtSpriteLibrary.LoadTile(PassiveTileByStat(item != null ? item.statModifierType : PassiveStatModifierType.Damage));
     }
 
@@ -162,6 +186,10 @@ public static class GameIconLibrary
     {
         if (item == null)
             return Color.white;
+
+        if (item.icon != null || GeneratedPixelIconLibrary.Passive(item.id) != null)
+            return Color.white;
+
         return PassiveTintByStat(item.statModifierType);
     }
 
@@ -201,6 +229,8 @@ public static class GameIconLibrary
             case PassiveStatModifierType.LifeSteal: return new Color(1f, 0.5f, 0.55f);
             case PassiveStatModifierType.ProjectileCount: return new Color(0.5f, 0.9f, 1f);
             case PassiveStatModifierType.Revive: return new Color(0.95f, 0.72f, 0.15f);
+            case PassiveStatModifierType.Luck: return new Color(0.45f, 0.95f, 0.4f);
+            case PassiveStatModifierType.AreaSize: return new Color(0.75f, 0.55f, 1f);
             default: return Color.white;
         }
     }

@@ -14,6 +14,7 @@ public class SkillBehaviors : MonoBehaviour
     private float iceAuraVfxTimer;
     private float bladeStormTimer;
     private bool ghostActive;
+    private MirrorImageClone mirrorClone;
     private readonly Collider2D[] iceAuraBuffer = new Collider2D[32];
     private readonly Collider2D[] bladeStormBuffer = new Collider2D[24];
 
@@ -50,6 +51,7 @@ public class SkillBehaviors : MonoBehaviour
         TickDragonStrike();
         TickIceAura();
         TickBladeStorm();
+        TickMirrorImage();
     }
 
     public void OnPlayerDealtDamage(float damage, HealthSystem target)
@@ -66,7 +68,7 @@ public class SkillBehaviors : MonoBehaviour
         if (stats.ExplosionOnKillRadius > 0f)
         {
             ExplodeAt(position, stats.ExplosionOnKillRadius, maxHp * stats.ExplosionOnKillDamageRatio);
-            HeroKnightVfx.PlayExplosion(position, stats.ExplosionOnKillRadius);
+            SkillVfxLibrary.PlayForSkill(SkillType.Explosion, position, Mathf.Min(stats.ExplosionOnKillRadius, 2.4f));
         }
 
         if (handler.HasSkill(SkillType.Vampire) && health != null)
@@ -74,8 +76,11 @@ public class SkillBehaviors : MonoBehaviour
             int stack = handler.GetStack(SkillType.Vampire);
             float healPct = stack >= 2 ? 0.08f : 0.05f;
             health.Heal(health.MaxHP * healPct);
-            HeroKnightVfx.PlayHeal(health.transform.position);
+            SkillVfxLibrary.PlayForSkill(SkillType.Vampire, health.transform.position, 1f);
         }
+
+        if (stats.PoisonCloudRadius > 0f)
+            PoisonCloudZone.TrySpawn(position, stats.PoisonCloudRadius, stats.PoisonCloudDps, 5f);
 
         if (handler.HasSkill(SkillType.SoulHarvest) && Random.value < 0.3f)
         {
@@ -98,8 +103,7 @@ public class SkillBehaviors : MonoBehaviour
         {
             ghostActive = true;
             ghostTimer = 0f;
-            SkillVfxLibrary.Play(SkillVfxStyle.Arcane, cachedTransform.position, 1.35f,
-                new Color(0.7f, 0.55f, 1f, 0.85f), 21);
+            SkillVfxLibrary.PlayForSkill(SkillType.GhostForm, cachedTransform.position, 1.35f);
             StartCoroutine(GhostRoutine(duration));
         }
     }
@@ -124,8 +128,7 @@ public class SkillBehaviors : MonoBehaviour
             return;
 
         timeFreezeTimer = 0f;
-        SkillVfxLibrary.Play(SkillVfxStyle.Ice, cachedTransform.position, 1.4f,
-            new Color(0.55f, 0.85f, 1f, 1f), 22);
+        SkillVfxLibrary.PlayForSkill(SkillType.TimeFreeze, cachedTransform.position, 1.4f);
         StartCoroutine(FreezeAllEnemies(2.5f));
     }
 
@@ -167,7 +170,7 @@ public class SkillBehaviors : MonoBehaviour
         if (hs != null)
         {
             hs.TakeDamage(150f);
-            SkillVfxLibrary.Play(SkillVfxStyle.Fire, target.position, 1.3f, new Color(1f, 0.4f, 0.2f, 1f), 26);
+            SkillVfxLibrary.PlayForSkill(SkillType.DragonStrike, target.position, 1.3f);
             AudioManager.PlayBossAttack();
         }
     }
@@ -188,7 +191,10 @@ public class SkillBehaviors : MonoBehaviour
         float damage = 10f + stack * 6f;
         int hits = DamageEnemiesInRadius(cachedTransform.position, radius, damage, bladeStormBuffer);
         if (hits > 0)
+        {
             AudioManager.PlaySwordSwing();
+            SkillVfxLibrary.PlayForSkill(SkillType.BladeStorm, cachedTransform.position, 1.1f + stack * 0.08f);
+        }
     }
 
     private int DamageEnemiesInRadius(Vector3 center, float radius, float damage, Collider2D[] buffer)
@@ -204,7 +210,7 @@ public class SkillBehaviors : MonoBehaviour
             if (hs == null)
                 continue;
 
-            hs.TakeDamage(damage);
+            hs.TakeDamage(damage, false, (Vector2)center);
             hits++;
             OnPlayerDealtDamage(damage, hs);
         }
@@ -221,10 +227,9 @@ public class SkillBehaviors : MonoBehaviour
         if (iceAuraVfxTimer >= 4f)
         {
             iceAuraVfxTimer = 0f;
-            // Aura nhỏ gọn, mờ — chỉ gợi ý phạm vi, không choáng màn hình.
-            SkillVfxLibrary.Play(SkillVfxStyle.Ice, cachedTransform.position,
-                Mathf.Min(stats.SlowAuraRadius * 0.5f, 1.3f),
-                new Color(0.55f, 0.9f, 1f, 0.45f), 18);
+            // Aura nhỏ gọn — chỉ gợi ý phạm vi, không choáng màn hình.
+            SkillVfxLibrary.PlayForSkill(SkillType.IceAura, cachedTransform.position,
+                Mathf.Min(stats.SlowAuraRadius * 0.5f, 1.3f));
         }
 
         int count = Physics2D.OverlapCircleNonAlloc(cachedTransform.position, stats.SlowAuraRadius, iceAuraBuffer);
@@ -236,6 +241,30 @@ public class SkillBehaviors : MonoBehaviour
             if (ai != null)
                 ai.ApplySlow(stats.SlowAuraStrength, 0.25f);
         }
+    }
+
+    // MirrorImage: duy trì 1 phân thân auto-attack do code spawn (visual copy sprite player lúc runtime).
+    private void TickMirrorImage()
+    {
+        bool wants = handler.HasSkill(SkillType.MirrorImage);
+        if (!wants)
+        {
+            if (mirrorClone != null)
+            {
+                Destroy(mirrorClone.gameObject);
+                mirrorClone = null;
+            }
+            return;
+        }
+
+        if (mirrorClone != null)
+            return;
+
+        GameObject go = RuntimeSpawnGuard.Mark(new GameObject("MirrorImageClone"));
+        go.transform.position = cachedTransform.position + new Vector3(-0.9f, 0.4f, 0f);
+        mirrorClone = go.AddComponent<MirrorImageClone>();
+        mirrorClone.Initialize(cachedTransform, GetComponent<AutoAttack>());
+        SkillVfxLibrary.PlayForSkill(SkillType.MirrorImage, go.transform.position, 1.25f);
     }
 
     private static void ExplodeAt(Vector3 position, float radius, float damage)
@@ -253,13 +282,14 @@ public class SkillBehaviors : MonoBehaviour
 
     private void SpawnSoulOrb(Vector3 position)
     {
-        GameObject orb = new GameObject("SoulOrb");
+        GameObject orb = RuntimeSpawnGuard.Mark(new GameObject("SoulOrb"));
         orb.transform.position = position;
         CircleCollider2D col = orb.AddComponent<CircleCollider2D>();
         col.isTrigger = true;
         col.radius = 0.35f;
         SoulOrbPickup pickup = orb.AddComponent<SoulOrbPickup>();
         pickup.Initialize(health, 10f, 0.05f, 5f);
+        SoulOrbVisual.Attach(orb);
     }
 
     private Transform FindNearestEnemy(float range)

@@ -15,7 +15,7 @@ MonoBehaviour:
   id: hon_quy
   displayName: Hồn Quỷ
   description: Hút máu 3% sát thương gây ra mỗi cấp.
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 7a3cd728aa3544d5bbfe9a996e728994, type: 3}
   statModifierType: 9
   valuePerLevel:
   - 0.03

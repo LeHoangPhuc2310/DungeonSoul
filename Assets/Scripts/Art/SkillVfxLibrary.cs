@@ -16,6 +16,10 @@ public static class SkillVfxLibrary
 {
     public static Sprite[] GetFrames(SkillVfxStyle style)
     {
+        Sprite[] generated = GeneratedSkillVfxLibrary.GetFrames(style);
+        if (generated != null && generated.Length > 0)
+            return generated;
+
         Sprite[] aseprite = AsepriteSkillVfxLoader.LoadFolders(AsepriteSkillEffectPaths.FoldersFor(style));
         if (aseprite != null && aseprite.Length > 0)
             return aseprite;
@@ -35,7 +39,7 @@ public static class SkillVfxLibrary
         }
 
         Color color = tint ?? Color.white;
-        GameObject go = new GameObject("SkillVfx_" + style);
+        GameObject go = RuntimeSpawnGuard.Mark(new GameObject("SkillVfx_" + style));
         go.transform.position = worldPos;
         go.transform.rotation = Quaternion.Euler(0f, 0f, rotationZ);
         SpriteRenderer sr = go.AddComponent<SpriteRenderer>();
@@ -60,6 +64,12 @@ public static class SkillVfxLibrary
 
     public static void PlayForSkill(SkillType type, Vector3 worldPos, float scale = 1.15f)
     {
+        if (GeneratedSkillVfxLibrary.HasPack)
+        {
+            GeneratedSkillVfxLibrary.PlayForSkill(type, worldPos, scale);
+            return;
+        }
+
         SkillVfxStyle style = MapSkill(type);
         Color tint = TintFor(style);
         Play(style, worldPos, scale, tint);

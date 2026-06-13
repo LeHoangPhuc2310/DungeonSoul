@@ -181,7 +181,7 @@ public class PlayerController : MonoBehaviour
             atkP.ConfigureBodyAnimator(anim, entry.HasAttackAnimation, entry.attackFps);
         }
 
-        ApplyWeaponVisualPolicy(entry.HasAttackAnimation);
+        ApplyWeaponVisualPolicy(entry);
     }
 
     private SimpleSpriteAnimator SetupBodyAnimator(Sprite[] idle, Sprite[] walk, Sprite[] attack, Sprite[] hurt, Sprite[] death)
@@ -210,19 +210,24 @@ public class PlayerController : MonoBehaviour
         return anim;
     }
 
-    private void ApplyWeaponVisualPolicy(bool useBodyAttackAnimation)
+    private void ApplyWeaponVisualPolicy(PlayableCharacterEntry entry)
     {
         PlayerWeaponVisual weaponVisual = GetComponent<PlayerWeaponVisual>();
         if (weaponVisual == null)
             return;
 
-        if (useBodyAttackAnimation)
-            weaponVisual.SetOverlayEnabled(false);
-        else
+        bool useBodyAttack = entry != null && entry.HasAttackAnimation;
+        bool showOverlay = entry == null
+            || entry.keepRangedWeaponOverlay
+            || (!useBodyAttack && !entry.weaponHeldInSprite);
+
+        if (showOverlay)
         {
             weaponVisual.SetOverlayEnabled(true);
             weaponVisual.RefreshFromLoadout();
         }
+        else
+            weaponVisual.SetOverlayEnabled(false);
     }
 
     public void ApplyHeroVisual(HeroType hero)

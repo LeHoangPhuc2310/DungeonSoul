@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "unity-mcp": {
+      "command": "C:\\Users\\ASUS\\.unity\\relay\\relay_win.exe",
+      "args": [
+        "--mcp",
+        "--project-path",
+        "D:\\UNITY\\DungeonSoul"
+      ]
+    }
+  }
+}

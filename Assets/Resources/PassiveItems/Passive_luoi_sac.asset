@@ -15,7 +15,7 @@ MonoBehaviour:
   id: luoi_sac
   displayName: Lưỡi Sắc
   description: Tăng tỉ lệ chí mạng 5% mỗi cấp.
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 84bc4615bc224efc973b2e109f051c39, type: 3}
   statModifierType: 6
   valuePerLevel:
   - 0.05

@@ -82,14 +82,55 @@ public class ExpGem : MonoBehaviour
         if (spriteRenderer == null)
             return;
 
-        if (WorldPickupVisual.TrySetupSpinningCoin(gameObject, coinWorldSize, rarity == GemRarity.Rare))
-            return;
+        bool rare = rarity == GemRarity.Rare;
 
-        spriteRenderer.sprite = WeaponVisualLibrary.GetCircleSprite();
-        spriteRenderer.color = rarity == GemRarity.Rare
-            ? new Color(0.2f, 0.55f, 1f, 1f)
-            : new Color(1f, 0.85f, 0.15f, 1f);
-        transform.localScale = Vector3.one * (rarity == GemRarity.Rare ? GameScale.ExpGemSize * 1.15f : GameScale.ExpGemSize);
+        // Viên kinh nghiệm = pha lê (xanh lá / xanh dương), KHÔNG dùng sprite xu vàng để tránh nhầm.
+        Sprite gem = ExpGemVisual.GetGemSprite(rare);
+        spriteRenderer.sprite = gem;
+        spriteRenderer.color = Color.white;
+        spriteRenderer.sortingOrder = 12;
+
+        // CoinPickupAnimator (required component) sẽ tự nạp frame xu trong OnEnable —
+        // ép nó giữ đúng 1 frame pha lê để không quay thành đồng xu.
+        coinAnimator?.SetFrames(new[] { gem });
+
+        float baseSize = rare ? GameScale.ExpGemSize * 1.18f : GameScale.ExpGemSize;
+        transform.localScale = Vector3.one * baseSize;
+
+        // Hào quang nhẹ phía sau cho viên nổi bật trên nền sàn tối.
+        EnsureGlow(rare);
+    }
+
+    private SpriteRenderer glow;
+
+    private void EnsureGlow(bool rare)
+    {
+        if (glow == null)
+        {
+            GameObject go = new GameObject("Glow");
+            go.transform.SetParent(transform, false);
+            go.transform.localScale = Vector3.one * 1.7f;
+            glow = go.AddComponent<SpriteRenderer>();
+            glow.sprite = WeaponVisualLibrary.GetCircleSprite();
+            glow.sortingOrder = spriteRenderer.sortingOrder - 1;
+        }
+
+        glow.color = rare
+            ? new Color(0.4f, 0.7f, 1f, 0.28f)
+            : new Color(0.4f, 1f, 0.55f, 0.24f);
+    }
+
+    private float bobPhase;
+
+    private void LateUpdate()
+    {
+        // Nhịp hào quang để viên "sống". Không di chuyển root (sẽ phá logic hút nam châm + collider).
+        bobPhase += Time.deltaTime * 4f;
+        if (glow != null)
+        {
+            float pulse = 0.85f + Mathf.Sin(bobPhase * 1.6f) * 0.15f;
+            glow.transform.localScale = Vector3.one * (1.7f * pulse);
+        }
     }
 }
 

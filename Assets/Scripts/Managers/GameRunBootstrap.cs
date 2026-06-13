@@ -65,6 +65,40 @@ public class GameRunBootstrap : MonoBehaviour
 
         RefreshPlayerVisual();
         Invoke(nameof(RefreshPlayerVisual), 0.2f);
+
+        EnsureTrapSpawner();
+        EnsureHealthPotionSpawner();
+    }
+
+    /// <summary>Gắn TrapSpawner (rải bẫy chông lên sàn) — dùng chung GameObject với EnemySpawner
+    /// để tận dụng FloorLayer/WallLayer, fallback DungeonGrid.</summary>
+    private void EnsureTrapSpawner()
+    {
+        if (Object.FindAnyObjectByType<TrapSpawner>() != null)
+            return;
+
+        EnemySpawner spawner = Object.FindAnyObjectByType<EnemySpawner>();
+        GameObject host = spawner != null ? spawner.gameObject : GameObject.Find("DungeonGrid");
+        if (host == null)
+            return;
+
+        if (host.GetComponent<TrapSpawner>() == null)
+            host.AddComponent<TrapSpawner>();
+    }
+
+    /// <summary>Gắn HealthPotionSpawner (thả ngẫu nhiên bình thuốc hồi máu lên sàn).</summary>
+    private void EnsureHealthPotionSpawner()
+    {
+        if (Object.FindAnyObjectByType<HealthPotionSpawner>() != null)
+            return;
+
+        EnemySpawner spawner = Object.FindAnyObjectByType<EnemySpawner>();
+        GameObject host = spawner != null ? spawner.gameObject : GameObject.Find("DungeonGrid");
+        if (host == null)
+            return;
+
+        if (host.GetComponent<HealthPotionSpawner>() == null)
+            host.AddComponent<HealthPotionSpawner>();
     }
 
     private void RefreshPlayerVisual()

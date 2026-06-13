@@ -48,6 +48,12 @@ public class PlayableCharacterEntry
         && idleSideRight != null && idleSideRight.Length > 0
         && walkSideRight != null && walkSideRight.Length > 0;
 
+    [Header("Vũ khí")]
+    [Tooltip("Vũ khí đã vẽ trong sprite (ASEPRITE attack/walk). Tắt overlay gậy/kiếm riêng.")]
+    public bool weaponHeldInSprite = true;
+    [Tooltip("Mage/Ranger: giữ overlay gậy/cung xoay + recoil dù có attack body (body không cầm vũ khí).")]
+    public bool keepRangedWeaponOverlay;
+
     [Header("Stats")]
     public float hp = 120f;
     public float damage = 15f;

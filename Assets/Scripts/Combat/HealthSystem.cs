@@ -50,7 +50,13 @@ public class HealthSystem : MonoBehaviour
 
     public void TakeDamage(float amount) => TakeDamage(amount, false);
 
-    public void TakeDamage(float amount, bool isCrit)
+    public void TakeDamage(float amount, bool isCrit) => TakeDamage(amount, isCrit, null);
+
+    /// <summary>
+    /// Gây sát thương. Nếu truyền sourcePosition và đây là quái thường, sẽ đẩy lùi theo hướng
+    /// từ nguồn tới quái (knockback). Boss không bị đẩy để giữ cảm giác "trùm" vững.
+    /// </summary>
+    public void TakeDamage(float amount, bool isCrit, Vector2? sourcePosition)
     {
         if (amount <= 0f || currentHP <= 0f || invulnerable)
             return;
@@ -65,9 +71,11 @@ public class HealthSystem : MonoBehaviour
         if (isPlayer || CompareTag("Player"))
         {
             HUDManager.Resolve()?.UpdateHp();
-            // Player ăn đòn = phản hồi mạnh để người chơi "cảm" được nguy hiểm.
+            // Player ăn đòn = phản hồi mạnh để người chơi "cảm" được nguy hiểm:
+            // số máu mất (đỏ) + nháy đỏ sprite + rung màn + âm thanh.
+            HUDManager.SpawnPlayerDamageNumber(transform.position, finalDamage);
             GameJuice.Shake(0.22f, 0.18f);
-            HitFeedback.Play(gameObject);
+            HitFeedback.PlayHurt(gameObject);
             AudioManager.PlayPlayerHurt();
         }
         else
@@ -83,6 +91,13 @@ public class HealthSystem : MonoBehaviour
             {
                 GameJuice.HitStop(0.04f);
                 GameJuice.Shake(0.12f, 0.1f);
+            }
+
+            // Đẩy lùi: chỉ quái thường còn sống, không áp dụng cho boss (giữ trùm vững chãi).
+            if (currentHP > 0f && sourcePosition.HasValue && GetComponent<BossController>() == null)
+            {
+                float knockStrength = isCrit ? 7.5f : 4.5f;
+                Knockback.Apply(gameObject, sourcePosition.Value, knockStrength);
             }
         }
 
@@ -261,14 +276,14 @@ public class HealthSystem : MonoBehaviour
 
         if (expGemPrefab != null)
         {
-            GameObject gemObject = Instantiate(expGemPrefab, transform.position, Quaternion.identity);
+            GameObject gemObject = RuntimeSpawnGuard.Mark(Instantiate(expGemPrefab, transform.position, Quaternion.identity));
             ExpGem gem = gemObject.GetComponent<ExpGem>();
             if (gem != null)
                 gem.Initialize(rare ? ExpGem.GemRarity.Rare : ExpGem.GemRarity.Common, gemExp);
             return;
         }
 
-        GameObject runtimeGem = new GameObject("ExpGem");
+        GameObject runtimeGem = RuntimeSpawnGuard.Mark(new GameObject("ExpGem"));
         runtimeGem.transform.position = transform.position;
         ExpGem runtimeExpGem = runtimeGem.AddComponent<ExpGem>();
         runtimeExpGem.Initialize(rare ? ExpGem.GemRarity.Rare : ExpGem.GemRarity.Common, gemExp);

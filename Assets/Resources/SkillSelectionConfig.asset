@@ -26,5 +26,6 @@ MonoBehaviour:
   fallbackBonusCoins: 5
   allMaxedHealHp: 30
   maxSkillStack: 3
-  maxBanishesPerRun: 5
   logPoolWeights: 0
+  forceSkillEnabled: 0
+  forceSkillType: 13

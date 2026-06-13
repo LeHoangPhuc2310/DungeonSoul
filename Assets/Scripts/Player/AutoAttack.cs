@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 
 public class AutoAttack : MonoBehaviour
@@ -61,6 +62,13 @@ public class AutoAttack : MonoBehaviour
     {
         get => critChance;
         set => critChance = Mathf.Clamp01(value);
+    }
+
+    [SerializeField] private float critMultiplier = 2f;
+    public float CritMultiplier
+    {
+        get => critMultiplier;
+        set => critMultiplier = Mathf.Max(1f, value);
     }
 
     public float ProjectileDamage
@@ -177,10 +185,17 @@ public class AutoAttack : MonoBehaviour
         baseFireInterval = fireInterval;
         baseProjectileDamage = projectileDamage;
 
-        GameObject poolRoot = new GameObject("ProjectilePool");
+        GameObject poolRoot = RuntimeSpawnGuard.Mark(new GameObject("ProjectilePool"));
         projectileRoot = poolRoot.transform;
 
         PrewarmProjectilePool();
+    }
+
+    private void OnDestroy()
+    {
+        // Pool đạn là object root độc lập — phải hủy cùng player, tránh rò rỉ qua các lần đổi scene.
+        if (projectileRoot != null)
+            Destroy(projectileRoot.gameObject);
     }
 
     private void Start()
@@ -195,7 +210,10 @@ public class AutoAttack : MonoBehaviour
             return;
 
         if (useBodyAttackAnimation && bodyAnimator != null && bodyAnimator.IsAttacking)
+        {
+            shotCooldown = 0f;   // reset để không bắn burst sau khi animation kết thúc
             return;
+        }
 
         if (attackStyle == AttackStyle.Melee)
         {
@@ -419,8 +437,8 @@ public class AutoAttack : MonoBehaviour
             return;
 
         bool isCrit = critChance > 0f && UnityEngine.Random.value < critChance;
-        float dmg = projectileDamage * (isCrit ? 2f : 1f);
-        hs.TakeDamage(dmg, isCrit);
+        float dmg = projectileDamage * (isCrit ? critMultiplier : 1f);
+        hs.TakeDamage(dmg, isCrit, (Vector2)SearchCenter);
 
         if (isCrit)
             EffectLibrary.Play(EffectKind.CritImpact, target.position, 0.9f,
@@ -506,6 +524,37 @@ public class AutoAttack : MonoBehaviour
             Vector2 spawnOffset = perpendicular * (centerOffset * spacing);
             SpawnSingleProjectile(origin, direction, spawnOffset, useBowArrow);
         }
+
+        // TwinArrows: mũi tên follow-up delay 0.1s từ cùng điểm bắn.
+        if (PlayerSkillHandler.Instance != null && PlayerSkillHandler.Instance.HasSkill(SkillType.TwinArrows))
+            StartCoroutine(FireEchoShot(direction, useBowArrow));
+    }
+
+    private IEnumerator FireEchoShot(Vector2 direction, bool useBowArrow)
+    {
+        yield return new WaitForSeconds(0.1f);
+        if (gameObject.activeInHierarchy)
+            SpawnSingleProjectile(FireOrigin, direction, Vector2.zero, useBowArrow);
+    }
+
+    /// <summary>Bắn đạn từ vị trí tùy ý (MirrorImage clone) với hệ số damage riêng.</summary>
+    public void FireCloneProjectile(Vector3 origin, Vector3 targetPosition, float damageMultiplier)
+    {
+        Vector2 direction = targetPosition - origin;
+        if (direction.sqrMagnitude < 0.0001f)
+            return;
+        direction.Normalize();
+
+        Projectile projectile = GetPooledProjectile();
+        if (projectile == null)
+            return;
+
+        projectile.transform.position = origin;
+        projectile.transform.rotation = Quaternion.identity;
+        projectile.transform.localScale = Vector3.one * projectileScale;
+        projectile.ConfigureVisual(GetCircleSprite(), new Color(0.8f, 0.5f, 1f, 0.9f), 10);
+        projectile.Initialize(direction * projectileSpeed, projectileLifetime,
+            projectileDamage * Mathf.Max(0.05f, damageMultiplier), this);
     }
 
     private bool UsesBowArrow()

@@ -228,7 +228,7 @@ public class BossSpawnManager : MonoBehaviour
 
     private static GameObject CreateRuntimeBossBody(Vector3 pos)
     {
-        GameObject enemy = new GameObject("Boss");
+        GameObject enemy = RuntimeSpawnGuard.Mark(new GameObject("Boss"));
         enemy.transform.position = pos;
         SpriteRenderer sr = enemy.AddComponent<SpriteRenderer>();
         sr.sprite = ArtSpriteLibrary.GetEnemySprite(EnemyArtKind.Elite);

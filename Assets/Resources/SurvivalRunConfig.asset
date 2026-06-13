@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b233b25089f34b4385ce7cc4dcaf00f, type: 3}
+  m_Name: SurvivalRunConfig
+  m_EditorClassIdentifier: Assembly-CSharp::SurvivalRunConfig
+  survivalDurationSeconds: 1800
+  bossSpawnTimesSeconds:
+  - 300
+  - 600
+  - 1200
+  - 1500
+  reaperSpawnBeforeEndSeconds: 90
+  initialBurstCount: 50
+  initialSpawnInterval: 1
+  minSpawnInterval: 0.35
+  maxEnemiesOnScreen: 100
+  spawnIntervalReductionPerMinute: 0.12
+  minutesPerDifficultyTier: 2

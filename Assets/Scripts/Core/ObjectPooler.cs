@@ -62,7 +62,7 @@ public class ObjectPooler : MonoBehaviour
         int count = Mathf.Max(0, entry.prewarm);
         for (int n = 0; n < count; n++)
         {
-            GameObject obj = Instantiate(entry.prefab, transform);
+            GameObject obj = RuntimeSpawnGuard.Mark(Instantiate(entry.prefab, transform));
             obj.SetActive(false);
             poolLookup[entry.key].Enqueue(obj);
         }
@@ -104,7 +104,7 @@ public class ObjectPooler : MonoBehaviour
         for (int i = 0; i < pools.Count; i++)
         {
             if (pools[i] != null && pools[i].key == key && pools[i].prefab != null)
-                return Instantiate(pools[i].prefab, transform);
+                return RuntimeSpawnGuard.Mark(Instantiate(pools[i].prefab, transform));
         }
 
         return null;

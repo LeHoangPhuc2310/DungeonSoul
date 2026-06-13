@@ -5,6 +5,10 @@ public static class PlayableCharacterCatalog
 {
     private const string DefaultId = "swordsman_lvl1";
     private const string PrefsKey = "ds_selected_character";
+    private const string QuickPlayPrefsKey = "ds_quick_play_bundle";
+
+    /// <summary>Nhân vật mặc định 4 hướng cầm vũ khí sẵn (ASEPRITE Kiếm sĩ I).</summary>
+    public const string BundledFourWayHeroId = "swordsman_lvl1";
 
     /// <summary>Chỉ hiện 8 nhân vật ASEPRITE (Swordsman/Orc/Slime) trong màn chọn.</summary>
     private static readonly string[] VisibleIds =
@@ -82,11 +86,36 @@ public static class PlayableCharacterCatalog
 
     public static PlayableCharacterEntry GetSelected()
     {
+        if (UseQuickPlayBundle)
+        {
+            PlayableCharacterEntry bundled = Get(BundledFourWayHeroId);
+            if (bundled != null)
+                return bundled;
+        }
+
         PlayableCharacterEntry entry = Get(SelectedId);
         if (entry != null && IsVisible(entry))
             return entry;
 
         return Visible.Count > 0 ? Visible[0] : null;
+    }
+
+    /// <summary>Bỏ qua màn chọn — luôn dùng nhân vật 4 hướng cầm vũ khí sẵn + loadout đã lưu.</summary>
+    public static bool UseQuickPlayBundle
+    {
+        get => PlayerPrefs.GetInt(QuickPlayPrefsKey, 0) == 1;
+        set
+        {
+            PlayerPrefs.SetInt(QuickPlayPrefsKey, value ? 1 : 0);
+            PlayerPrefs.Save();
+        }
+    }
+
+    public static void ApplyQuickPlayBundle()
+    {
+        SelectedId = BundledFourWayHeroId;
+        UseQuickPlayBundle = true;
+        RunEntryGate.ConfirmCharacterSelect();
     }
 
     public static void InvalidateCache()

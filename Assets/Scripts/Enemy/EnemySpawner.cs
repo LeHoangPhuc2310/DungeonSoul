@@ -10,14 +10,16 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private Tilemap wallTilemap;
     [Tooltip("Thời gian nghỉ giữa khi clear wave thường và spawn wave kế (giây).")]
     [SerializeField] private float waveBreakSeconds = 1.5f;
-    public int minEnemies = 8;
-    public int maxEnemies = 13;
-    [SerializeField] private int maxEnemiesPerWave = 24;
-    [SerializeField] private int extraEnemiesPerTwoWaves = 1;
+    public int minEnemies = 12;
+    public int maxEnemies = 18;
+    [SerializeField] private int maxEnemiesPerWave = 36;
+    [SerializeField] private int extraEnemiesPerTwoWaves = 2;
     public float spawnDelay = 2f;
-    [SerializeField] private float minDistanceFromPlayer = 2.5f;
-    [Tooltip("0 = tự động theo camera — quái spawn trong vùng nhìn thấy.")]
+    [SerializeField] private float minDistanceFromPlayer = 2.8f;
+    [Tooltip("0 = tự động theo camera + kích thước map.")]
     [SerializeField] private float maxDistanceFromPlayer = 0f;
+    [Tooltip("Số hướng chia đều khi spawn wave (8 = N/NE/E/SE/S/SW/W/NW).")]
+    [SerializeField] private int spawnSectorCount = 8;
     [SerializeField] private bool requireInteriorTile = true;
 
     public List<Vector3> manualSpawnPoints = new List<Vector3>()
@@ -42,6 +44,7 @@ public class EnemySpawner : MonoBehaviour
     private Coroutine waveBreakRoutine;
     private Coroutine survivalSpawnRoutine;
     private int waveIndex = 1;
+    private int nextSpawnSector;
 
     private void Awake()
     {
@@ -57,6 +60,15 @@ public class EnemySpawner : MonoBehaviour
         else
             SpawnInitialEnemies();
         initialSpawnDone = true;
+        EnsureTrapSpawner();
+    }
+
+    private void EnsureTrapSpawner()
+    {
+        if (Object.FindAnyObjectByType<TrapSpawner>() != null)
+            return;
+        if (GetComponent<TrapSpawner>() == null)
+            gameObject.AddComponent<TrapSpawner>();
     }
 
     private void RegisterEnemyPool()
@@ -64,7 +76,7 @@ public class EnemySpawner : MonoBehaviour
         if (enemyPrefab == null || ObjectPooler.Instance == null)
             return;
 
-        ObjectPooler.Instance.RegisterRuntimePool(EnemyPoolable.PoolKey, enemyPrefab, 48);
+        ObjectPooler.Instance.RegisterRuntimePool(EnemyPoolable.PoolKey, enemyPrefab, 96);
     }
 
     private bool IsSurvivalMode()
@@ -176,13 +188,14 @@ public class EnemySpawner : MonoBehaviour
 
         int burst = SurvivalRunManager.Instance != null
             ? SurvivalRunManager.Instance.GetInitialBurstCount()
-            : 12;
+            : 36;
 
         EnemyAliveTracker.Reset(0);
+        int sectors = Mathf.Max(4, spawnSectorCount);
         int spawned = 0;
         for (int i = 0; i < burst; i++)
         {
-            if (SpawnEnemy())
+            if (SpawnEnemy(i % sectors))
                 spawned++;
         }
 
@@ -207,13 +220,14 @@ public class EnemySpawner : MonoBehaviour
             if (!IsSurvivalMode())
                 yield break;
 
-            int maxOnScreen = mgr != null ? mgr.GetMaxEnemiesOnScreen() : 50;
+            int maxOnScreen = mgr != null ? mgr.GetMaxEnemiesOnScreen() : 140;
             if (EnemyAliveTracker.Count >= maxOnScreen)
                 continue;
 
             int tier = mgr != null ? mgr.GetDifficultyTier() : waveIndex;
             waveIndex = tier;
-            SpawnEnemy();
+            int sector = nextSpawnSector++ % Mathf.Max(4, spawnSectorCount);
+            SpawnEnemy(sector);
         }
     }
 
@@ -248,7 +262,7 @@ public class EnemySpawner : MonoBehaviour
             hud.UpdateFloor(Mathf.Min(waveIndex, 10));
 
         if (FloorManager.Instance != null && waveIndex <= 10)
-            FloorManager.currentFloor = waveIndex;
+            FloorManager.Instance.SetFloor(waveIndex);
     }
 
     private int SpawnWaveEnemies()
@@ -265,14 +279,15 @@ public class EnemySpawner : MonoBehaviour
         }
 
         int waveBonus = Mathf.Max(0, (waveIndex - 1) / 2) * extraEnemiesPerTwoWaves;
-        int min = Mathf.Max(8, minEnemies) + waveBonus;
-        int max = Mathf.Max(13, maxEnemies) + waveBonus;
+        int min = minEnemies + waveBonus;
+        int max = maxEnemies + waveBonus;
         int count = Mathf.Clamp(Random.Range(min, max + 1), min, maxEnemiesPerWave);
         EnemyAliveTracker.Reset(0);
+        int sectors = Mathf.Max(4, spawnSectorCount);
         int spawned = 0;
         for (int i = 0; i < count; i++)
         {
-            if (SpawnEnemy())
+            if (SpawnEnemy(i % sectors))
                 spawned++;
         }
 
@@ -288,8 +303,15 @@ public class EnemySpawner : MonoBehaviour
 
     public bool SpawnEnemy()
     {
+        return SpawnEnemy(-1);
+    }
+
+    public bool SpawnEnemy(int sectorIndex)
+    {
         int difficulty = GetCurrentDifficulty();
-        Vector3 pos = PickSpawnPosition();
+        Vector3 pos = sectorIndex >= 0
+            ? PickSpawnPositionInSector(sectorIndex)
+            : PickSpawnPosition();
         if (!IsValidSpawnWorldPosition(pos))
         {
             Debug.LogWarning("[EnemySpawner] Skipped spawn outside walkable map.");
@@ -332,6 +354,8 @@ public class EnemySpawner : MonoBehaviour
 
     private static void ApplySpawnedEnemy(GameObject enemy, int difficulty, EnemyArchetype archetype)
     {
+        RuntimeSpawnGuard.Mark(enemy);
+
         EnemyPoolable poolable = enemy.GetComponent<EnemyPoolable>();
         if (poolable == null)
             poolable = enemy.AddComponent<EnemyPoolable>();
@@ -346,22 +370,113 @@ public class EnemySpawner : MonoBehaviour
         return waveIndex;
     }
 
-    private float MaxSpawnDistance =>
-        maxDistanceFromPlayer > 0f
-            ? maxDistanceFromPlayer
-            : GameScale.GetSpawnMaxDistanceFromPlayer(0.88f);
+    private float MinSpawnDistance => minDistanceFromPlayer;
 
-    private bool IsWithinSpawnDistance(Vector3 pos, Transform player)
+    private float MaxSpawnDistanceFor(Transform player)
     {
-        if (player == null)
-            return true;
+        if (maxDistanceFromPlayer > 0f)
+            return maxDistanceFromPlayer;
 
-        float max = MaxSpawnDistance;
-        if (max <= 0f)
-            return true;
+        float cameraMax = GameScale.GetSpawnMaxDistanceFromPlayer(IsSurvivalMode() ? 1.2f : 0.92f);
+        if (player == null || spawnWorldPositions.Count == 0)
+            return cameraMax;
 
-        return Vector2.Distance(pos, player.position) <= max;
+        float mapMax = 0f;
+        for (int i = 0; i < spawnWorldPositions.Count; i++)
+        {
+            float d = Vector2.Distance(spawnWorldPositions[i], player.position);
+            if (d > mapMax)
+                mapMax = d;
+        }
+
+        // Wave arena: dùng phần lớn map để spawn đều 4/8 hướng; survival: xa hơn một chút.
+        float mapFactor = IsSurvivalMode() ? 0.88f : 0.78f;
+        return Mathf.Max(minDistanceFromPlayer + 1.5f, Mathf.Min(cameraMax, mapMax * mapFactor));
     }
+
+    private bool IsWithinSpawnDistance(Vector3 pos, Transform player, float maxDistance)
+    {
+        if (player == null || maxDistance <= 0f)
+            return true;
+
+        return Vector2.Distance(pos, player.position) <= maxDistance;
+    }
+
+    private static float AngleFromPlayer(Vector3 worldPos, Vector3 playerPos)
+    {
+        Vector2 delta = worldPos - playerPos;
+        float angle = Mathf.Atan2(delta.y, delta.x) * Mathf.Rad2Deg;
+        return angle < 0f ? angle + 360f : angle;
+    }
+
+    private Vector3 PickSpawnPositionInSector(int sectorIndex)
+    {
+        int sectors = Mathf.Max(4, spawnSectorCount);
+        sectorIndex = ((sectorIndex % sectors) + sectors) % sectors;
+
+        if (spawnWorldPositions.Count == 0)
+            RefreshWalkablePositions();
+
+        Transform player = FindPlayer();
+        float minD = MinSpawnDistance;
+        float maxD = MaxSpawnDistanceFor(player);
+        float sectorWidth = 360f / sectors;
+        float sectorCenter = sectorIndex * sectorWidth;
+
+        sectorCandidates.Clear();
+        for (int i = 0; i < spawnWorldPositions.Count; i++)
+        {
+            Vector3 pos = spawnWorldPositions[i];
+            if (!IsValidSpawnWorldPosition(pos))
+                continue;
+
+            if (player == null)
+            {
+                sectorCandidates.Add(pos);
+                continue;
+            }
+
+            float dist = Vector2.Distance(pos, player.position);
+            if (dist < minD || dist > maxD)
+                continue;
+
+            float angle = AngleFromPlayer(pos, player.position);
+            if (Mathf.Abs(Mathf.DeltaAngle(angle, sectorCenter)) <= sectorWidth * 0.55f)
+                sectorCandidates.Add(pos);
+        }
+
+        if (sectorCandidates.Count > 0)
+            return sectorCandidates[Random.Range(0, sectorCandidates.Count)];
+
+        // Hướng này ít ô — nới lỏng sang hướng kề.
+        for (int i = 0; i < spawnWorldPositions.Count; i++)
+        {
+            Vector3 pos = spawnWorldPositions[i];
+            if (!IsValidSpawnWorldPosition(pos))
+                continue;
+
+            if (player == null)
+            {
+                sectorCandidates.Add(pos);
+                continue;
+            }
+
+            float dist = Vector2.Distance(pos, player.position);
+            if (dist < minD * 0.85f || dist > maxD * 1.05f)
+                continue;
+
+            float angle = AngleFromPlayer(pos, player.position);
+            if (Mathf.Abs(Mathf.DeltaAngle(angle, sectorCenter)) <= sectorWidth * 0.95f)
+                sectorCandidates.Add(pos);
+        }
+
+        if (sectorCandidates.Count > 0)
+            return sectorCandidates[Random.Range(0, sectorCandidates.Count)];
+
+        return PickFromTilemap();
+    }
+
+    private readonly List<Vector3> sectorCandidates = new List<Vector3>(48);
 
     private Vector3 PickSpawnPosition()
     {
@@ -395,7 +510,8 @@ public class EnemySpawner : MonoBehaviour
             if (player != null)
             {
                 float dist = Vector2.Distance(point, player.position);
-                if (dist < minDistanceFromPlayer || !IsWithinSpawnDistance(point, player))
+                float maxD = MaxSpawnDistanceFor(player);
+                if (dist < MinSpawnDistance || !IsWithinSpawnDistance(point, player, maxD))
                     continue;
             }
 
@@ -405,9 +521,12 @@ public class EnemySpawner : MonoBehaviour
         return valid;
     }
 
+    private readonly List<Vector3> fallbackCandidates = new List<Vector3>(64);
+
     private Vector3 PickFromTilemap()
     {
         Transform player = FindPlayer();
+        float maxD = MaxSpawnDistanceFor(player);
 
         for (int attempt = 0; attempt < 32; attempt++)
         {
@@ -419,15 +538,40 @@ public class EnemySpawner : MonoBehaviour
                 return pos;
 
             float dist = Vector2.Distance(pos, player.position);
-            if (dist >= minDistanceFromPlayer && IsWithinSpawnDistance(pos, player))
+            if (dist >= MinSpawnDistance && IsWithinSpawnDistance(pos, player, maxD))
                 return pos;
         }
 
+        // Map nhỏ hơn vành đai spawn lý tưởng: ưu tiên các ô XA player nhất còn lại,
+        // chọn ngẫu nhiên trong nhóm đó — tuyệt đối không dồn cả wave về một ô cố định.
+        fallbackCandidates.Clear();
+        float bestDist = 0f;
         for (int i = 0; i < spawnWorldPositions.Count; i++)
         {
             Vector3 pos = spawnWorldPositions[i];
-            if (IsValidSpawnWorldPosition(pos))
-                return pos;
+            if (!IsValidSpawnWorldPosition(pos))
+                continue;
+
+            float dist = player != null ? Vector2.Distance(pos, player.position) : float.MaxValue;
+            if (dist > bestDist)
+                bestDist = dist;
+
+            if (player == null || dist >= minDistanceFromPlayer)
+                fallbackCandidates.Add(pos);
+        }
+
+        if (fallbackCandidates.Count > 0)
+        {
+            // Giữ lại nửa xa nhất của các ứng viên để quái vẫn xuất hiện ở rìa.
+            float cutoff = bestDist * 0.6f;
+            for (int i = fallbackCandidates.Count - 1; i >= 0; i--)
+            {
+                if (player != null && Vector2.Distance(fallbackCandidates[i], player.position) < cutoff)
+                    fallbackCandidates.RemoveAt(i);
+            }
+
+            if (fallbackCandidates.Count > 0)
+                return fallbackCandidates[Random.Range(0, fallbackCandidates.Count)];
         }
 
         return transform.position;
@@ -478,7 +622,7 @@ public class EnemySpawner : MonoBehaviour
 
     private static void SpawnRuntimeEnemy(Vector3 position, int wave)
     {
-        GameObject enemy = new GameObject("Enemy");
+        GameObject enemy = RuntimeSpawnGuard.Mark(new GameObject("Enemy"));
         enemy.tag = "Enemy";
         enemy.transform.position = position;
 

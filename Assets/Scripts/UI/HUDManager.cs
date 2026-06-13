@@ -92,6 +92,14 @@ public class HUDManager : MonoBehaviour
         return Instance;
     }
 
+    /// <summary>Ẩn thanh EXP + HUD dưới khi mở panel chọn skill.</summary>
+    public void SetSkillPickFocus(bool active)
+    {
+        Transform bottom = transform.Find("Bottom");
+        if (bottom != null)
+            bottom.gameObject.SetActive(!active);
+    }
+
     private void Awake()
     {
         if (Application.isPlaying)
@@ -344,36 +352,36 @@ public class HUDManager : MonoBehaviour
     private static void EnsureGameplayUiSystems()
     {
         if (Object.FindAnyObjectByType<PauseMenuUI>() == null)
-            new GameObject("PauseMenuUI").AddComponent<PauseMenuUI>();
+            RuntimeSpawnGuard.Mark(new GameObject("PauseMenuUI")).AddComponent<PauseMenuUI>();
 
         AudioManager.EnsureExists();
 
         if (Object.FindAnyObjectByType<HeroRunStats>() == null)
-            new GameObject("HeroRunStats").AddComponent<HeroRunStats>();
+            RuntimeSpawnGuard.Mark(new GameObject("HeroRunStats")).AddComponent<HeroRunStats>();
 
         if (Object.FindAnyObjectByType<AchievementManager>() == null)
-            new GameObject("AchievementManager").AddComponent<AchievementManager>();
+            RuntimeSpawnGuard.Mark(new GameObject("AchievementManager")).AddComponent<AchievementManager>();
 
         if (Object.FindAnyObjectByType<BossSpawnManager>() == null)
-            new GameObject("BossSpawnManager").AddComponent<BossSpawnManager>();
+            RuntimeSpawnGuard.Mark(new GameObject("BossSpawnManager")).AddComponent<BossSpawnManager>();
 
         if (Object.FindAnyObjectByType<SurvivalRunManager>() == null)
-            new GameObject("SurvivalRunManager").AddComponent<SurvivalRunManager>();
+            RuntimeSpawnGuard.Mark(new GameObject("SurvivalRunManager")).AddComponent<SurvivalRunManager>();
 
         EnsureVsStatsPanel();
 
         // Passive item: phải tồn tại để 12 passive trong Resources/PassiveItems xuất hiện khi level-up.
         if (Object.FindAnyObjectByType<PassiveItemManager>() == null)
-            new GameObject("PassiveItemManager").AddComponent<PassiveItemManager>();
+            RuntimeSpawnGuard.Mark(new GameObject("PassiveItemManager")).AddComponent<PassiveItemManager>();
 
         if (Object.FindAnyObjectByType<ObjectPooler>() == null)
-            new GameObject("ObjectPooler").AddComponent<ObjectPooler>();
+            RuntimeSpawnGuard.Mark(new GameObject("ObjectPooler")).AddComponent<ObjectPooler>();
 
         // GameJuice (screen shake / hit-stop) — bám camera, cần sẵn từ đầu trận.
         GameJuice.Ensure();
 
         if (Object.FindAnyObjectByType<BossHPBarUI>() == null)
-            new GameObject("BossHPBarUI").AddComponent<BossHPBarUI>();
+            RuntimeSpawnGuard.Mark(new GameObject("BossHPBarUI")).AddComponent<BossHPBarUI>();
 
         if (Camera.main != null && Camera.main.GetComponent<GameplayPresentation>() == null)
             Camera.main.gameObject.AddComponent<GameplayPresentation>();
@@ -382,7 +390,7 @@ public class HUDManager : MonoBehaviour
 
         if (Object.FindAnyObjectByType<VirtualJoystick>() == null)
         {
-            GameObject joy = new GameObject("VirtualJoystick");
+            GameObject joy = RuntimeSpawnGuard.Mark(new GameObject("VirtualJoystick"));
             VirtualJoystick vj = joy.AddComponent<VirtualJoystick>();
             vj.EnsureBuilt(showOnDesktop: true);
         }
@@ -778,15 +786,19 @@ public class HUDManager : MonoBehaviour
         RefreshScoreAndCoinLabels();
         ForceRefreshFromSystems(false);
 
+        bool skillPickOpen = SkillSelectionUI.Instance != null && SkillSelectionUI.Instance.IsPanelOpen;
+
         if (SurvivalRunManager.IsSurvivalMode())
         {
             RefreshSurvivalHud();
-            VsStatsPanelUI.Instance?.SetVisible(true);
+            VsStatsPanelUI.Instance?.SetVisible(!skillPickOpen);
             if (PlayerStatsUI.Instance != null)
                 PlayerStatsUI.Instance.gameObject.SetActive(false);
         }
 
-        if (SkillSelectionUI.Instance != null && SkillSelectionUI.Instance.IsPanelOpen)
+        SetSkillPickFocus(skillPickOpen);
+
+        if (skillPickOpen)
             return;
 
         RefreshPlayerHealthReference();
@@ -1048,22 +1060,31 @@ public class HUDManager : MonoBehaviour
         runEnded = true;
         AudioManager.PlayGameOver();
 
-        if (gameOverCanvas != null)
-        {
-            gameOverCanvas.SetActive(true);
-            gameOverUI?.Setup(score, currentFloor, coins, false, soulsEarned, survivalSeconds);
-        }
-        else if (GameOverUI.Instance != null)
-        {
-            GameOverUI.Instance.Show(score, currentFloor, coins, false, soulsEarned, survivalSeconds);
-        }
-        else
-        {
-            new GameObject("GameOverUI").AddComponent<GameOverUI>()
-                .Show(score, currentFloor, coins, false, soulsEarned, survivalSeconds);
-        }
+        // Ẩn joystick ảo: JoystickCanvas (sortingOrder 500) nằm trên GameOverCanvas và
+        // vùng chạm nửa trái màn hình sẽ nuốt click vào nút "Chơi lại" nếu không tắt.
+        VirtualJoystick.SetChromeVisible(false);
+
+        ResolveGameOverUI().Show(score, currentFloor, coins, false, soulsEarned, survivalSeconds);
 
         Time.timeScale = 0f;
+    }
+
+    /// <summary>
+    /// Trả về GameOverUI dùng chung: ưu tiên instance có sẵn trong scene (kể cả khi
+    /// GameObject đang inactive — Awake chưa chạy nên GameOverUI.Instance vẫn null),
+    /// chỉ tạo mới khi scene hoàn toàn không có. Tránh việc spawn một GameObject
+    /// "GameOverUI" rỗng (không Canvas) rồi để nó tự build canvas trùng — nguyên nhân
+    /// khiến panel game-over bị nhân đôi và nút bấm không ăn.
+    /// </summary>
+    private GameOverUI ResolveGameOverUI()
+    {
+        if (gameOverUI == null)
+            gameOverUI = Object.FindAnyObjectByType<GameOverUI>(FindObjectsInactive.Include);
+        if (gameOverUI == null && GameOverUI.Instance != null)
+            gameOverUI = GameOverUI.Instance;
+        if (gameOverUI == null)
+            gameOverUI = RuntimeSpawnGuard.Mark(new GameObject("GameOverUI")).AddComponent<GameOverUI>();
+        return gameOverUI;
     }
 
     public static void SpawnDamageNumber(Vector3 worldPosition, float amount, bool isCrit = false)
@@ -1081,6 +1102,28 @@ public class HUDManager : MonoBehaviour
         SpawnRuntimeDamageText(worldPosition, amount, isCrit);
     }
 
+    /// <summary>Số máu player MẤT — màu đỏ, có dấu trừ, nổi lên rồi tan. Phân biệt rõ với
+    /// số sát thương gây cho quái (trắng/đỏ-crit).</summary>
+    public static void SpawnPlayerDamageNumber(Vector3 worldPosition, float amount)
+    {
+        if (amount <= 0f)
+            return;
+
+        GameObject go = RuntimeSpawnGuard.Mark(new GameObject("PlayerDmgNum"));
+        go.transform.position = worldPosition + Vector3.up * 0.6f;
+
+        TextMeshPro tmp = go.AddComponent<TextMeshPro>();
+        tmp.text = "-" + Mathf.RoundToInt(amount);
+        tmp.fontSize = 5.5f;
+        tmp.fontStyle = FontStyles.Bold;
+        tmp.color = new Color(1f, 0.32f, 0.28f, 1f);
+        tmp.alignment = TextAlignmentOptions.Center;
+        tmp.sortingOrder = 31;
+
+        DamageNumberFloat floater = go.AddComponent<DamageNumberFloat>();
+        floater.Initialize(0.9f);
+    }
+
     private void SpawnFromPrefab(Vector3 worldPosition, float amount, bool isCrit)
     {
         if (damageNumberPrefab == null)
@@ -1090,7 +1133,7 @@ public class HUDManager : MonoBehaviour
         }
 
         Vector3 spawnPos = worldPosition + Vector3.up * 0.5f;
-        GameObject go = Instantiate(damageNumberPrefab, spawnPos, Quaternion.identity);
+        GameObject go = RuntimeSpawnGuard.Mark(Instantiate(damageNumberPrefab, spawnPos, Quaternion.identity));
 
         TextMeshPro tmp = go.GetComponent<TextMeshPro>();
         if (tmp == null)
@@ -1114,7 +1157,7 @@ public class HUDManager : MonoBehaviour
 
     private static void SpawnRuntimeDamageText(Vector3 worldPosition, float amount, bool isCrit)
     {
-        GameObject go = new GameObject("DmgNum");
+        GameObject go = RuntimeSpawnGuard.Mark(new GameObject("DmgNum"));
         go.transform.position = worldPosition + Vector3.up * 0.5f;
 
         TextMeshPro tmp = go.AddComponent<TextMeshPro>();
@@ -1136,7 +1179,7 @@ public class HUDManager : MonoBehaviour
         if (expAmount <= 0f)
             return;
 
-        GameObject go = new GameObject("ExpNum");
+        GameObject go = RuntimeSpawnGuard.Mark(new GameObject("ExpNum"));
         go.transform.position = worldPosition + Vector3.up * 0.8f;
 
         TextMeshPro tmp = go.AddComponent<TextMeshPro>();
@@ -1149,6 +1192,27 @@ public class HUDManager : MonoBehaviour
 
         DamageNumberFloat floater = go.AddComponent<DamageNumberFloat>();
         floater.Initialize(1.0f);
+    }
+
+    /// <summary>Số HP hồi (màu xanh lá, có dấu +) khi nhặt bình thuốc / heal.</summary>
+    public static void SpawnHealNumber(Vector3 worldPosition, float healAmount)
+    {
+        if (healAmount <= 0f)
+            return;
+
+        GameObject go = RuntimeSpawnGuard.Mark(new GameObject("HealNum"));
+        go.transform.position = worldPosition + Vector3.up * 0.6f;
+
+        TextMeshPro tmp = go.AddComponent<TextMeshPro>();
+        tmp.text = "+" + Mathf.RoundToInt(healAmount);
+        tmp.fontSize = 5f;
+        tmp.fontStyle = FontStyles.Bold;
+        tmp.color = new Color(0.45f, 1f, 0.5f, 1f);
+        tmp.alignment = TextAlignmentOptions.Center;
+        tmp.sortingOrder = 31;
+
+        DamageNumberFloat floater = go.AddComponent<DamageNumberFloat>();
+        floater.Initialize(0.9f);
     }
 
     public void RegisterDamageDealt(float amount) {}
@@ -1517,16 +1581,8 @@ public class HUDManager : MonoBehaviour
         runEnded = true;
         Time.timeScale = 0f;
 
-        if (gameOverCanvas != null)
-        {
-            gameOverCanvas.SetActive(true);
-            gameOverUI?.Setup(score, currentFloor, coins, true, soulsEarned, survivalSeconds);
-        }
-        else if (GameOverUI.Instance != null)
-            GameOverUI.Instance.Show(score, currentFloor, coins, true, soulsEarned, survivalSeconds);
-        else
-            new GameObject("GameOverUI").AddComponent<GameOverUI>()
-                .Show(score, currentFloor, coins, true, soulsEarned, survivalSeconds);
+        VirtualJoystick.SetChromeVisible(false);
+        ResolveGameOverUI().Show(score, currentFloor, coins, true, soulsEarned, survivalSeconds);
     }
     public void AddScore(int amount, bool animateDelta) => AddScore(amount);
 }

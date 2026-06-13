@@ -15,12 +15,12 @@ public class SurvivalRunConfig : ScriptableObject
     public float reaperSpawnBeforeEndSeconds = 90f;
 
     [Header("Spawn liên tục")]
-    public int initialBurstCount = 24;
-    public float initialSpawnInterval = 1.9f;
-    public float minSpawnInterval = 0.35f;
-    public int maxEnemiesOnScreen = 90;
+    public int initialBurstCount = 14;
+    public float initialSpawnInterval = 1.5f;
+    public float minSpawnInterval = 0.4f;
+    public int maxEnemiesOnScreen = 60;
     [Tooltip("Sau mỗi phút, giảm interval spawn thêm bao nhiêu giây.")]
-    public float spawnIntervalReductionPerMinute = 0.14f;
+    public float spawnIntervalReductionPerMinute = 0.12f;
 
     [Header("Độ khó theo thời gian")]
     [Tooltip("Mỗi N phút tăng 1 tier (dùng cho HP/damage quái).")]

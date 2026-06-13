@@ -15,7 +15,7 @@ MonoBehaviour:
   id: clover
   displayName: Cỏ Ba Lá
   description: Tăng Luck — cơ hội nhận 4 lựa chọn khi lên cấp.
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 191ccdf4508c4968b9e1220127158fc6, type: 3}
   statModifierType: 12
   valuePerLevel:
   - 0.1

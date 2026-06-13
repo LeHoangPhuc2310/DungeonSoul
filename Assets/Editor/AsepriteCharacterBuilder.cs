@@ -77,6 +77,24 @@ public static class AsepriteCharacterBuilder
     [MenuItem("DungeonSoul/Characters/Import ASEPRITE Characters")]
     public static void ImportWithDialog() => ImportInternal(showDialog: true, rebuildTinyRpg: false);
 
+    [MenuItem("DungeonSoul/Characters/Quick Play — Kiếm sĩ 4 hướng (bỏ chọn nhân vật)")]
+    public static void EnableQuickPlayBundle()
+    {
+        PlayableCharacterCatalog.ApplyQuickPlayBundle();
+        EditorUtility.DisplayDialog("Quick Play",
+            "Đã bật: luôn dùng Kiếm sĩ ASEPRITE I (4 hướng, cầm kiếm sẵn).\n" +
+            "Menu Play → thẳng chọn vũ khí → vào game.\n\n" +
+            "Tắt: DungeonSoul → Characters → Tắt Quick Play",
+            "OK");
+    }
+
+    [MenuItem("DungeonSoul/Characters/Tắt Quick Play")]
+    public static void DisableQuickPlayBundle()
+    {
+        PlayableCharacterCatalog.UseQuickPlayBundle = false;
+        EditorUtility.DisplayDialog("Quick Play", "Đã tắt — quay lại màn chọn nhân vật.", "OK");
+    }
+
     [MenuItem("DungeonSoul/Characters/Rebuild All + Import ASEPRITE")]
     public static void RebuildAllWithAseprite()
     {
@@ -174,6 +192,9 @@ public static class AsepriteCharacterBuilder
         bool fourWay = idleBack.Length > 0 && walkBack.Length > 0
             && idleSide.Length > 0 && walkSide.Length > 0;
 
+        bool heldInSprite = attack.Length > 0 || fourWay;
+        bool rangedOverlay = def.heroClass != HeroType.Warrior && !heldInSprite;
+
         PlayableCharacterEntry entry = new PlayableCharacterEntry
         {
             id = def.id,
@@ -181,6 +202,8 @@ public static class AsepriteCharacterBuilder
             combatClass = def.heroClass,
             idle = idle,
             walk = walk,
+            weaponHeldInSprite = heldInSprite,
+            keepRangedWeaponOverlay = rangedOverlay,
             useFourDirections = fourWay,
             idleBack = idleBack,
             walkBack = walkBack,

@@ -22,6 +22,7 @@ public static class GameScale
     // --- ITEM rơi trong game (đường kính world units) ---
     public const float CoinSize = 0.5f;       // xu
     public const float ExpGemSize = 0.45f;    // ngọc EXP
+    public const float PotionSize = 0.55f;    // bình thuốc hồi máu
     public const float ProjectileSize = 0.2f; // đạn (nhỏ gọn — giảm cho bớt to)
     public const float ChestHeight = 1.6f;    // rương (chiều cao world — to & rõ, ~2/3 chiều cao người chơi)
 

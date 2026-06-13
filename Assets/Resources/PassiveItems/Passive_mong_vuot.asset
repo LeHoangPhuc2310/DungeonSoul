@@ -15,7 +15,7 @@ MonoBehaviour:
   id: mong_vuot
   displayName: Móng Vuốt
   description: Tăng sát thương 10% mỗi cấp.
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: a356d13727334491ae5be96735c9d33b, type: 3}
   statModifierType: 3
   valuePerLevel:
   - 0.1

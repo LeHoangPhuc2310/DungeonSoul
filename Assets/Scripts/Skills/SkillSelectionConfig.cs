@@ -22,10 +22,6 @@ public class SkillSelectionConfig : ScriptableObject
     [Header("Skip")]
     [Range(0f, 1f)] public float skipHealPercent = 0.1f;
 
-    [Header("Banish (VS)")]
-    [Tooltip("Số lần loại thẻ khỏi pool trong một run. 0 = không giới hạn.")]
-    public int maxBanishesPerRun = 5;
-
     [Header("Fallback thưởng")]
     public float fallbackBonusHp = 10f;
     public int fallbackBonusCoins = 5;
@@ -36,6 +32,9 @@ public class SkillSelectionConfig : ScriptableObject
 
     [Header("Debug")]
     public bool logPoolWeights;
+    [Tooltip("DEBUG: ép một thẻ luôn là skill này mỗi lần lên cấp (để test VFX). Tắt khi phát hành!")]
+    public bool forceSkillEnabled = false;
+    public SkillType forceSkillType = SkillType.LightningChain;
 
     private static SkillSelectionConfig cached;
 

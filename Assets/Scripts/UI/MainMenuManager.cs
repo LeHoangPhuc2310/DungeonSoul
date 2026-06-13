@@ -12,6 +12,7 @@ public class MainMenuManager : MonoBehaviour
     private TMP_Text settingsBtnLabel;
     private TMP_Text quitLabel;
     private TMP_Text soulsLabel;
+    private Image soulsBadgeIcon;
     private AchievementsMenuUI achievementsMenu;
 
     private void Start()
@@ -71,8 +72,7 @@ public class MainMenuManager : MonoBehaviour
         sub.color = new Color(0.7f, 0.7f, 0.8f, 1f);
         sub.raycastTarget = false;
 
-        soulsLabel = MakeText("Souls: " + MetaRunProgress.SoulPoints, canvasGO.transform,
-            new Vector2(0f, 280f), 24f, new Color(0.75f, 0.85f, 1f, 1f), FontStyles.Normal);
+        BuildSoulsBadge(canvasGO.transform);
 
         // Nút chính.
         playLabel = MakeButton(GameSettings.T("CHƠI", "PLAY"), canvasGO.transform, new Vector2(0f, -20f), OnPlay);
@@ -190,14 +190,65 @@ public class MainMenuManager : MonoBehaviour
             settingsPanel.SetActive(!settingsPanel.activeSelf);
     }
 
-    private void Update()
+    private void BuildSoulsBadge(Transform parent)
+    {
+        GameObject badge = MakeRect("SoulsBadge", parent, new Vector2(240f, 52f), new Vector2(0f, 280f));
+        RectTransform rt = badge.GetComponent<RectTransform>();
+        rt.anchorMin = rt.anchorMax = new Vector2(0.5f, 0.5f);
+
+        Image bg = badge.AddComponent<Image>();
+        if (GuiArtLibrary.ButtonSecondary != null)
+        {
+            bg.sprite = GuiArtLibrary.ButtonSecondary;
+            bg.type = Image.Type.Sliced;
+            bg.color = new Color(0.9f, 0.88f, 0.96f, 1f);
+        }
+        else
+            bg.color = new Color(0.08f, 0.07f, 0.12f, 0.94f);
+        bg.raycastTarget = false;
+
+        GameObject iconGo = MakeRect("SoulIcon", badge.transform, new Vector2(36f, 36f), new Vector2(-88f, 0f));
+        soulsBadgeIcon = iconGo.AddComponent<Image>();
+        soulsBadgeIcon.sprite = SoulIconLibrary.Get();
+        soulsBadgeIcon.color = SoulIconLibrary.Tint;
+        soulsBadgeIcon.preserveAspect = true;
+        soulsBadgeIcon.raycastTarget = false;
+
+        soulsLabel = MakeText("", badge.transform, new Vector2(16f, 0f), 22f,
+            new Color(0.75f, 0.85f, 1f, 1f), FontStyles.Bold, TextAlignmentOptions.MidlineLeft);
+        RectTransform lblRt = soulsLabel.rectTransform;
+        lblRt.sizeDelta = new Vector2(150f, 40f);
+        RefreshSoulsBadge();
+    }
+
+    private void RefreshSoulsBadge()
     {
         if (soulsLabel != null)
-            soulsLabel.text = "Souls: " + MetaRunProgress.SoulPoints;
+            soulsLabel.text = "Souls  " + MetaRunProgress.SoulPoints;
+    }
+
+    private void Update()
+    {
+        RefreshSoulsBadge();
     }
 
     private void OnPlay()
     {
+        if (PlayableCharacterCatalog.UseQuickPlayBundle)
+        {
+            PlayableCharacterCatalog.ApplyQuickPlayBundle();
+            HeroRunStats.SetCharacter(PlayableCharacterCatalog.GetSelected());
+            const string weaponScene = "WeaponSelectScene";
+            const string gameScene = "SampleScene";
+            if (Application.CanStreamedLevelBeLoaded(weaponScene))
+                SceneManager.LoadScene(weaponScene);
+            else if (Application.CanStreamedLevelBeLoaded(gameScene))
+                SceneManager.LoadScene(gameScene);
+            else if (Application.CanStreamedLevelBeLoaded("CharacterSelectScene"))
+                SceneManager.LoadScene("CharacterSelectScene");
+            return;
+        }
+
         // Vào màn chọn nhân vật trước khi vào game.
         const string selectScene = "CharacterSelectScene";
         if (Application.CanStreamedLevelBeLoaded(selectScene))

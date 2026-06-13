@@ -31,6 +31,8 @@ public class SkillSelectionUI : MonoBehaviour
     private Coroutine hideAnimatedRoutine;
     private int panelOpenGeneration;
     private CanvasGroup panelInputGroup;
+    private int lastTappedCardIndex = -1;
+    private float lastTappedCardTime = -1f;
 
     /// <summary>Chặn click “rơi” vào thẻ ngay khi panel vừa mở (EXP/rương cùng frame).</summary>
     private const float InputUnlockDelay = 0.55f;
@@ -42,9 +44,9 @@ public class SkillSelectionUI : MonoBehaviour
     private Image cardsPanelBg;
     private TMP_Text headerTitle;
     private TMP_Text headerHint;
+    private Image headerBanner;
     private Button rerollButton;
     private Button skipButton;
-    private Button banishButton;
     private Button confirmButton;
     private Button buyButton;
     private Button lockButton;
@@ -55,9 +57,10 @@ public class SkillSelectionUI : MonoBehaviour
 
     private SkillSelectionConfig config;
 
-    private const float CardWidth = 240f;
-    private const float CardHeight = 320f;
-    private const float CardGap = 18f;
+    private const float CardWidth = 280f;
+    private const float CardHeight = 390f;
+    private const float CardGap = 20f;
+    private const float CardIconSize = 130f;
     private const float MinTapSize = 80f;
 
     // Màu badge loại thẻ
@@ -87,6 +90,7 @@ public class SkillSelectionUI : MonoBehaviour
         public Image priceBg;
         public TMP_Text priceLabel;
         public SkillCardInteraction interaction;
+        public bool chromeReady;
     }
 
     private void Awake()
@@ -181,8 +185,17 @@ public class SkillSelectionUI : MonoBehaviour
         if (Time.timeScale == 0f)
             Time.timeScale = 1f;
 
+        SetGameplayChromeVisible(true);
         BeginPostCloseInvulnerability();
         HUDManager.Resolve()?.RefreshPlayerHealthReference();
+    }
+
+    private static void SetGameplayChromeVisible(bool visible)
+    {
+        if (VsStatsPanelUI.Instance != null)
+            VsStatsPanelUI.Instance.SetVisible(visible && SurvivalRunManager.IsSurvivalMode());
+        VirtualJoystick.SetChromeVisible(visible);
+        HUDManager.Resolve()?.SetSkillPickFocus(!visible);
     }
 
     /// <summary>Ẩn panel nhưng giữ timeScale=0 (popup swap passive).</summary>
@@ -420,6 +433,9 @@ public class SkillSelectionUI : MonoBehaviour
         }
 
         EnsureButtonArray();
+        for (int i = 0; i < cardRefs.Length; i++)
+            cardRefs[i] = null;
+
         BuildWeightedChoices();
 
         if (currentChoices.Count == 0)
@@ -436,6 +452,8 @@ public class SkillSelectionUI : MonoBehaviour
         isOpen = true;
         highlightedCardIndex = -1;
         pendingConfirmIndex = -1;
+        lastTappedCardIndex = -1;
+        lastTappedCardTime = -1f;
         rerollsUsed = 0;
         for (int i = 0; i < pinnedForReroll.Length; i++)
             pinnedForReroll[i] = false;
@@ -447,6 +465,8 @@ public class SkillSelectionUI : MonoBehaviour
 
         PauseCombatForSkillPick();
         Time.timeScale = 0f;
+        VirtualJoystick.SetChromeVisible(false);
+        SetGameplayChromeVisible(false);
         ConfigureSkillCanvas();
         skillCanvas.gameObject.SetActive(true);
         if (!gameObject.activeInHierarchy)
@@ -496,8 +516,11 @@ public class SkillSelectionUI : MonoBehaviour
         if (wait > 0f)
             yield return new WaitForSecondsRealtime(wait);
 
-        // Chờ thả chuột/chạm cũ — tránh Button.onClick kích hoạt khi mouse up
-        while (generation == panelOpenGeneration && isOpen && IsAnyPointerHeld())
+        // Chờ thả chuột/chạm cũ — tránh Button.onClick kích hoạt khi mouse up.
+        // Timeout ngắn: sau chết/chơi lại người chơi thường vẫn giữ chuột bắn/di chuyển.
+        float pointerWaitStart = Time.unscaledTime;
+        while (generation == panelOpenGeneration && isOpen && IsAnyPointerHeld()
+               && Time.unscaledTime - pointerWaitStart < 0.2f)
             yield return null;
 
         yield return null;
@@ -518,7 +541,7 @@ public class SkillSelectionUI : MonoBehaviour
             if (SurvivalRunManager.IsSurvivalMode())
             {
                 string luckHint = activeChoiceCount >= 4 ? " · 4 lựa chọn (Luck!)" : string.Empty;
-                headerHint.text = "Chọn 1 thẻ  |  Reroll / Skip / Banish" + luckHint;
+                headerHint.text = "Chọn một thẻ · Đổi lại · Skip" + luckHint;
             }
             else
             {
@@ -621,16 +644,26 @@ public class SkillSelectionUI : MonoBehaviour
         GameUIFont.Apply(refs.rarity, GameUIFont.Role.CardRarity);
         if (refs.rarity != null)
         {
-            refs.rarity.fontSize = 12f;
-            refs.rarity.characterSpacing = 4f;
+            refs.rarity.fontSize = 13f;
+            refs.rarity.characterSpacing = 3f;
         }
 
         GameUIFont.Apply(refs.title, GameUIFont.Role.CardTitle);
         if (refs.title != null)
         {
-            refs.title.fontSize = 18f;
+            refs.title.fontSize = 22f;
             refs.title.color = new Color(0.98f, 0.96f, 0.9f, 1f);
             refs.title.alignment = TextAlignmentOptions.Center;
+            refs.title.fontStyle = FontStyles.Bold;
+        }
+
+        GameUIFont.Apply(refs.statLine, GameUIFont.Role.CardStack);
+        if (refs.statLine != null)
+        {
+            refs.statLine.fontSize = 16f;
+            refs.statLine.fontStyle = FontStyles.Bold;
+            refs.statLine.alignment = TextAlignmentOptions.Center;
+            // màu stat được set per-card trong ApplyChoiceToCard
         }
 
         GameUIFont.Apply(refs.description, GameUIFont.Role.CardBody);
@@ -639,14 +672,14 @@ public class SkillSelectionUI : MonoBehaviour
             refs.description.fontSize = 14f;
             refs.description.color = new Color(0.82f, 0.86f, 0.92f, 1f);
             refs.description.alignment = TextAlignmentOptions.Top;
-            refs.description.lineSpacing = 0f;
+            refs.description.lineSpacing = 2f;
             refs.description.overflowMode = TextOverflowModes.Ellipsis;
         }
 
         GameUIFont.Apply(refs.stack, GameUIFont.Role.CardStack);
         if (refs.stack != null)
         {
-            refs.stack.fontSize = 12f;
+            refs.stack.fontSize = 13f;
             refs.stack.color = new Color(0.7f, 0.76f, 0.86f, 1f);
             refs.stack.alignment = TextAlignmentOptions.Center;
         }
@@ -832,14 +865,25 @@ public class SkillSelectionUI : MonoBehaviour
     /// <summary>Chạm thẻ = chọn (highlight) — xác nhận / mua / khóa ở nút dưới.</summary>
     private void OnCardTapped(int index, SkillSelectionChoice choice)
     {
-        if (choice == null || !acceptingChoices || choiceConfirmed)
+        if (choice == null || choiceConfirmed)
             return;
+
+        bool doubleTap = index == lastTappedCardIndex
+            && Time.unscaledTime - lastTappedCardTime < 0.45f;
+        lastTappedCardIndex = index;
+        lastTappedCardTime = Time.unscaledTime;
 
         AudioManager.PlayUiTap();
         pendingConfirmIndex = index;
         HighlightCard(index);
         RefreshActionButtons();
         RefreshLockButtonIcon();
+
+        if (!acceptingChoices)
+            return;
+
+        if (doubleTap)
+            ConfirmChoice(choice, index);
     }
 
     private void HighlightCard(int index)
@@ -850,11 +894,24 @@ public class SkillSelectionUI : MonoBehaviour
             if (skillButtons[i] == null)
                 continue;
 
-            float scale = i == index ? 1.05f : 1f;
+            bool selected = index >= 0 && i == index;
+            float scale = index < 0 ? 1f : (selected ? 1.08f : 0.97f);
             skillButtons[i].transform.localScale = Vector3.one * scale;
             SkillCardRefs refs = i < cardRefs.Length ? cardRefs[i] : null;
-            if (refs?.synergyGlow != null)
-                refs.synergyGlow.color = new Color(1f, 0.85f, 0.2f, i == index ? 0.55f : 0.25f);
+            if (refs?.synergyGlow != null && refs.synergyGlow.enabled)
+            {
+                Color c = refs.synergyGlow.color;
+                SkillRarity cardRarity = i < currentChoices.Count && currentChoices[i] != null
+                    ? GetChoiceRarity(currentChoices[i])
+                    : SkillRarity.Common;
+                float baseAlpha = GetRarityGlowAlpha(cardRarity);
+                c.a = selected ? Mathf.Min(baseAlpha + 0.2f, 0.72f) : baseAlpha;
+                refs.synergyGlow.color = c;
+            }
+            if (refs?.background != null)
+                refs.background.color = selected
+                    ? new Color(0.14f, 0.16f, 0.24f, 1f)
+                    : new Color(0.08f, 0.09f, 0.14f, 1f);
 
             ApplyCardLockState(i, refs);
         }
@@ -873,7 +930,10 @@ public class SkillSelectionUI : MonoBehaviour
 
         refs.lockIcon.enabled = show;
         if (!show)
+        {
+            ArrangeCardLayerOrder(refs);
             return;
+        }
 
         SkillSelectionChoice choice = index < currentChoices.Count ? currentChoices[index] : null;
         SkillRarity rarity = SkillPurchasePricing.ResolveRarity(choice);
@@ -881,6 +941,7 @@ public class SkillSelectionUI : MonoBehaviour
             ? UnlockIconLibrary.LockedBadge
             : UnlockIconLibrary.ForRarity(rarity);
         refs.lockIcon.color = Color.white;
+        ArrangeCardLayerOrder(refs);
     }
 
     private void RefreshLockButtonIcon()
@@ -910,6 +971,15 @@ public class SkillSelectionUI : MonoBehaviour
         SkillSelectionChoice choice = currentChoices[pendingConfirmIndex];
         if (IsLockedPurchaseChoice(choice))
             return;
+
+        // Thẻ phải trả xu (skill/vũ khí/passive) KHÔNG được nhận qua nút Xác nhận —
+        // bắt buộc dùng nút "Mua" để trừ xu. Nếu thiếu xu thì chặn hẳn. Chỉ thẻ miễn phí
+        // (BonusHp/BonusCoin/Heal) mới được xác nhận trực tiếp.
+        if (SkillPurchasePricing.IsPurchasable(choice) && SkillPurchasePricing.GetCost(choice) > 0)
+        {
+            AudioManager.PlayUiTap();
+            return;
+        }
 
         ConfirmChoice(choice, pendingConfirmIndex);
     }
@@ -1156,53 +1226,6 @@ public class SkillSelectionUI : MonoBehaviour
             StartCoroutine(AnimateShuffleCards());
     }
 
-    private void OnBanishClicked()
-    {
-        if (!acceptingChoices || choiceConfirmed)
-            return;
-
-        if (config == null)
-            config = SkillSelectionConfig.Get();
-
-        if (pendingConfirmIndex < 0 || pendingConfirmIndex >= currentChoices.Count)
-            return;
-
-        SkillSelectionChoice choice = currentChoices[pendingConfirmIndex];
-        if (choice == null || !CanBanishChoice(choice))
-            return;
-
-        string key = choice.GetUniqueKey();
-        if (!BanishRegistry.TryBanish(key, config.maxBanishesPerRun))
-            return;
-
-        Debug.Log("[SkillSelectionUI] Banish: " + key);
-        AudioManager.PlayUiTap();
-        choiceConfirmed = true;
-        acceptingChoices = false;
-        DismissSkipConfirm();
-        SetAllChoiceButtonsInteractable(false);
-
-        bool fromChest = openedFromChestReward;
-        StopCloseCoroutines();
-        closeAfterSelectionRoutine = StartCoroutine(CloseAfterSelection(fromChest));
-    }
-
-    private static bool CanBanishChoice(SkillSelectionChoice choice)
-    {
-        if (choice == null)
-            return false;
-
-        switch (choice.kind)
-        {
-            case SkillSelectionChoiceKind.BonusHp:
-            case SkillSelectionChoiceKind.BonusCoin:
-            case SkillSelectionChoiceKind.HealFallback:
-                return false;
-            default:
-                return true;
-        }
-    }
-
     private void OnSkipClicked()
     {
         if (!acceptingChoices || choiceConfirmed)
@@ -1250,7 +1273,7 @@ public class SkillSelectionUI : MonoBehaviour
             return;
 
         skillCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
-        skillCanvas.sortingOrder = 250;
+        skillCanvas.sortingOrder = 600;
         skillCanvas.enabled = true;
         skillCanvas.worldCamera = null;
 
@@ -1261,8 +1284,8 @@ public class SkillSelectionUI : MonoBehaviour
         if (scaler == null)
             scaler = skillCanvas.gameObject.AddComponent<CanvasScaler>();
         scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
-        scaler.referenceResolution = new Vector2(1080f, 1920f);
-        scaler.matchWidthOrHeight = 0.4f;
+        scaler.referenceResolution = new Vector2(1920f, 1080f);
+        scaler.matchWidthOrHeight = 0.5f;
 
         RectTransform root = skillCanvas.transform as RectTransform;
         if (root != null)
@@ -1291,8 +1314,8 @@ public class SkillSelectionUI : MonoBehaviour
         switch (currentContext)
         {
             case SkillSelectionContext.LevelUp:
-                backdrop = new Color(0.05f, 0.12f, 0.28f, 0.82f);
-                panel = new Color(0.08f, 0.14f, 0.26f, 0.94f);
+                backdrop = new Color(0.01f, 0.02f, 0.06f, 0.92f);
+                panel = new Color(0.04f, 0.06f, 0.12f, 0.88f);
                 break;
             case SkillSelectionContext.EliteChest:
                 backdrop = new Color(0.14f, 0.06f, 0.22f, 0.82f);
@@ -1334,14 +1357,13 @@ public class SkillSelectionUI : MonoBehaviour
 
         float totalWidth = CardWidth * 3f + CardGap * 2f;
         RectTransform rt = cardsPanelBg.rectTransform;
-        rt.anchorMin = rt.anchorMax = new Vector2(0.5f, 0.42f);
+        rt.anchorMin = rt.anchorMax = new Vector2(0.5f, 0.5f);
         rt.pivot = new Vector2(0.5f, 0.5f);
-        rt.sizeDelta = new Vector2(totalWidth + 56f, CardHeight + 52f);
+        rt.sizeDelta = new Vector2(totalWidth + 48f, CardHeight + 40f);
         rt.anchoredPosition = Vector2.zero;
 
-        if (!GuiArtLibrary.ApplyPanel(cardsPanelBg, GuiArtLibrary.DialogPanel))
-            cardsPanelBg.color = new Color(0.06f, 0.07f, 0.1f, 0.94f);
-
+        cardsPanelBg.sprite = null;
+        cardsPanelBg.color = new Color(0f, 0f, 0f, 0f);
         cardsPanelBg.raycastTarget = false;
     }
 
@@ -1349,6 +1371,8 @@ public class SkillSelectionUI : MonoBehaviour
     {
         if (skillCanvas == null)
             return;
+
+        EnsureHeaderBanner();
 
         if (headerTitle == null)
         {
@@ -1362,9 +1386,9 @@ public class SkillSelectionUI : MonoBehaviour
             GameObject titleGO = new GameObject("HeaderTitle", typeof(RectTransform));
             titleGO.transform.SetParent(skillCanvas.transform, false);
             RectTransform rt = titleGO.GetComponent<RectTransform>();
-            rt.anchorMin = rt.anchorMax = new Vector2(0.5f, 0.72f);
+            rt.anchorMin = rt.anchorMax = new Vector2(0.5f, 0.88f);
             rt.pivot = new Vector2(0.5f, 0.5f);
-            rt.sizeDelta = new Vector2(720f, 56f);
+            rt.sizeDelta = new Vector2(820f, 56f);
             rt.anchoredPosition = Vector2.zero;
             headerTitle = titleGO.AddComponent<TextMeshProUGUI>();
             headerTitle.raycastTarget = false;
@@ -1373,6 +1397,9 @@ public class SkillSelectionUI : MonoBehaviour
         int level = ExpSystem.Instance != null ? ExpSystem.Instance.CurrentLevel : 1;
         headerTitle.text = GetContextTitle(level);
         GameUIFont.Apply(headerTitle, GameUIFont.Role.HeaderTitle);
+        headerTitle.fontSize = 46f;
+        headerTitle.color = new Color(1f, 0.88f, 0.35f, 1f);
+        headerTitle.characterSpacing = 6f;
 
         if (headerHint == null)
         {
@@ -1386,9 +1413,9 @@ public class SkillSelectionUI : MonoBehaviour
             GameObject hintGO = new GameObject("HeaderHint", typeof(RectTransform));
             hintGO.transform.SetParent(skillCanvas.transform, false);
             RectTransform rt = hintGO.GetComponent<RectTransform>();
-            rt.anchorMin = rt.anchorMax = new Vector2(0.5f, 0.66f);
+            rt.anchorMin = rt.anchorMax = new Vector2(0.5f, 0.81f);
             rt.pivot = new Vector2(0.5f, 0.5f);
-            rt.sizeDelta = new Vector2(720f, 32f);
+            rt.sizeDelta = new Vector2(820f, 32f);
             rt.anchoredPosition = Vector2.zero;
             headerHint = hintGO.AddComponent<TextMeshProUGUI>();
             headerHint.raycastTarget = false;
@@ -1396,6 +1423,53 @@ public class SkillSelectionUI : MonoBehaviour
 
         headerHint.text = "Đang chuẩn bị lựa chọn...";
         GameUIFont.Apply(headerHint, GameUIFont.Role.HeaderHint);
+        headerHint.fontSize = 18f;
+        headerHint.color = new Color(0.78f, 0.84f, 0.94f, 0.95f);
+    }
+
+    private void EnsureHeaderBanner()
+    {
+        if (skillCanvas == null)
+            return;
+
+        if (headerBanner == null)
+        {
+            Transform existing = skillCanvas.transform.Find("HeaderBanner");
+            if (existing != null)
+                headerBanner = existing.GetComponent<Image>();
+        }
+
+        if (headerBanner == null)
+        {
+            GameObject bannerGO = new GameObject("HeaderBanner", typeof(RectTransform), typeof(Image));
+            bannerGO.transform.SetParent(skillCanvas.transform, false);
+            headerBanner = bannerGO.GetComponent<Image>();
+            headerBanner.raycastTarget = false;
+            RectTransform rt = bannerGO.GetComponent<RectTransform>();
+            rt.anchorMin = rt.anchorMax = new Vector2(0.5f, 0.845f);
+            rt.pivot = new Vector2(0.5f, 0.5f);
+            rt.sizeDelta = new Vector2(520f, 110f);
+            rt.anchoredPosition = Vector2.zero;
+        }
+
+        Sprite panel = GuiArtLibrary.DialogPanel ?? GuiArtLibrary.MenuPanel;
+        if (panel != null)
+        {
+            headerBanner.sprite = panel;
+            headerBanner.type = Image.Type.Simple;
+            headerBanner.preserveAspect = false;
+            headerBanner.color = new Color(0.55f, 0.62f, 0.78f, 0.95f);
+        }
+        else
+        {
+            headerBanner.sprite = null;
+            headerBanner.color = new Color(0.08f, 0.1f, 0.18f, 0.92f);
+        }
+
+        if (headerTitle != null)
+            headerTitle.transform.SetAsLastSibling();
+        if (headerHint != null)
+            headerHint.transform.SetAsLastSibling();
     }
 
     private string GetContextTitle(int level)
@@ -1427,16 +1501,88 @@ public class SkillSelectionUI : MonoBehaviour
         if (skillCanvas == null)
             return;
 
-        rerollButton = EnsureFooterButton("RerollButton", new Vector2(0.08f, 0.22f), OnRerollClicked, ref rerollButton);
-        banishButton = EnsureFooterButton("BanishButton", new Vector2(0.5f, 0.22f), OnBanishClicked, ref banishButton);
-        skipButton = EnsureFooterButton("SkipButton", new Vector2(0.92f, 0.22f), OnSkipClicked, ref skipButton);
-        buyButton = EnsureFooterButton("BuyButton", new Vector2(0.28f, 0.14f), OnBuyClicked, ref buyButton);
-        lockButton = EnsureFooterButton("LockButton", new Vector2(0.72f, 0.14f), OnLockClicked, ref lockButton);
-        confirmButton = EnsureFooterButton("ConfirmButton", new Vector2(0.5f, 0.08f), OnConfirmClicked, ref confirmButton);
+        Transform orphanBanish = skillCanvas.transform.Find("BanishButton");
+        if (orphanBanish != null)
+            Destroy(orphanBanish.gameObject);
+
+        rerollButton = EnsureFooterButton("RerollButton", new Vector2(0.5f, 0.2f), OnRerollClicked, ref rerollButton);
+        skipButton = EnsureFooterButton("SkipButton", new Vector2(0.5f, 0.2f), OnSkipClicked, ref skipButton);
+        buyButton = EnsureFooterButton("BuyButton", new Vector2(0.5f, 0.12f), OnBuyClicked, ref buyButton);
+        lockButton = EnsureFooterButton("LockButton", new Vector2(0.5f, 0.12f), OnLockClicked, ref lockButton);
+        confirmButton = EnsureFooterButton("ConfirmButton", new Vector2(0.5f, 0.055f), OnConfirmClicked, ref confirmButton);
         StyleFooterButtonWithIcon(lockButton, UnlockIconLibrary.LockedBadge);
         StyleFooterButtonWithIcon(buyButton, null);
+        StyleAllFooterButtons();
+        RepositionFooterButtons();
 
         EnsureSkipConfirmPopup();
+    }
+
+    private void RepositionFooterButtons()
+    {
+        SetFooterButton(rerollButton, new Vector2(0.32f, 0.24f), new Vector2(210f, 46f));
+        SetFooterButton(skipButton, new Vector2(0.68f, 0.24f), new Vector2(210f, 46f));
+        SetFooterButton(buyButton, new Vector2(0.36f, 0.15f), new Vector2(210f, 46f));
+        SetFooterButton(lockButton, new Vector2(0.64f, 0.15f), new Vector2(210f, 46f));
+        SetFooterButton(confirmButton, new Vector2(0.5f, 0.075f), new Vector2(360f, 52f));
+    }
+
+    private static void SetFooterButton(Button button, Vector2 anchor, Vector2 size)
+    {
+        if (button == null)
+            return;
+
+        RectTransform rt = button.GetComponent<RectTransform>();
+        rt.anchorMin = rt.anchorMax = anchor;
+        rt.pivot = new Vector2(0.5f, 0.5f);
+        rt.sizeDelta = size;
+        rt.anchoredPosition = Vector2.zero;
+    }
+
+    private void StyleAllFooterButtons()
+    {
+        ApplyFooterButtonStyle(rerollButton);
+        ApplyFooterButtonStyle(skipButton);
+        ApplyFooterButtonStyle(buyButton);
+        ApplyFooterButtonStyle(lockButton);
+        ApplyFooterButtonStyle(confirmButton);
+    }
+
+    private static void ApplyFooterButtonStyle(Button button)
+    {
+        if (button == null)
+            return;
+
+        Image bg = button.GetComponent<Image>();
+        if (bg == null)
+            return;
+
+        bool primary = button.name.Contains("Confirm");
+        Sprite sprite = primary && GuiArtLibrary.ButtonPrimary != null
+            ? GuiArtLibrary.ButtonPrimary
+            : GuiArtLibrary.ButtonSecondary;
+
+        if (sprite != null)
+        {
+            bg.sprite = sprite;
+            bg.type = Image.Type.Sliced;
+            bg.color = primary
+                ? new Color(1f, 0.95f, 0.82f, 1f)
+                : new Color(0.92f, 0.94f, 0.98f, 1f);
+        }
+        else
+        {
+            bg.color = primary
+                ? new Color(0.22f, 0.42f, 0.62f, 0.98f)
+                : new Color(0.14f, 0.17f, 0.24f, 0.96f);
+        }
+
+        TMP_Text label = button.GetComponentInChildren<TMP_Text>(true);
+        if (label != null)
+        {
+            GameUIFont.Apply(label, GameUIFont.Role.Button);
+            label.fontSize = 17f;
+        }
     }
 
     private static void StyleFooterButtonWithIcon(Button button, Sprite icon)
@@ -1638,31 +1784,10 @@ public class SkillSelectionUI : MonoBehaviour
                 label.text = SurvivalRunManager.IsSurvivalMode() ? "Skip" : "Bỏ qua (+10% HP)";
         }
 
-        if (banishButton != null)
-        {
-            bool hasBanishable = pendingConfirmIndex >= 0 && pendingConfirmIndex < currentChoices.Count
-                && CanBanishChoice(currentChoices[pendingConfirmIndex]);
-            int maxBanish = config.maxBanishesPerRun;
-            bool banishLeft = maxBanish <= 0 || BanishRegistry.BanishesUsed < maxBanish;
-            banishButton.interactable = acceptingChoices && !choiceConfirmed && hasBanishable && banishLeft;
-            banishButton.gameObject.SetActive(SurvivalRunManager.IsSurvivalMode());
-
-            TMP_Text label = banishButton.GetComponentInChildren<TMP_Text>(true);
-            if (label != null)
-            {
-                if (!banishLeft)
-                    label.text = "Banish (hết)";
-                else if (!hasBanishable)
-                    label.text = "Banish";
-                else
-                    label.text = maxBanish > 0
-                        ? "Banish (" + (maxBanish - BanishRegistry.BanishesUsed) + ")"
-                        : "Banish";
-            }
-        }
-
         RefreshConfirmButton();
         RefreshBuyAndLockButtons();
+        StyleAllFooterButtons();
+        RepositionFooterButtons();
     }
 
     private void RefreshBuyAndLockButtons()
@@ -1797,15 +1922,22 @@ public class SkillSelectionUI : MonoBehaviour
 
         bool hasSelection = pendingConfirmIndex >= 0 && pendingConfirmIndex < currentChoices.Count
             && currentChoices[pendingConfirmIndex] != null;
-        bool lockedPurchase = hasSelection && IsLockedPurchaseChoice(currentChoices[pendingConfirmIndex]);
+        SkillSelectionChoice choice = hasSelection ? currentChoices[pendingConfirmIndex] : null;
+        bool lockedPurchase = hasSelection && IsLockedPurchaseChoice(choice);
+        // Thẻ tốn xu phải dùng nút Mua/Khóa — nút Xác nhận chỉ cho thẻ miễn phí.
+        bool needsPurchase = hasSelection && SkillPurchasePricing.IsPurchasable(choice)
+            && SkillPurchasePricing.GetCost(choice) > 0;
 
-        confirmButton.interactable = acceptingChoices && !choiceConfirmed && hasSelection && !lockedPurchase;
+        confirmButton.interactable = acceptingChoices && !choiceConfirmed && hasSelection
+            && !lockedPurchase && !needsPurchase;
         TMP_Text label = confirmButton.GetComponentInChildren<TMP_Text>(true);
         if (label != null)
         {
             if (!hasSelection)
                 label.text = "Chọn thẻ trước";
             else if (lockedPurchase)
+                label.text = "Dùng nút Mua";
+            else if (needsPurchase)
                 label.text = "Dùng nút Mua";
             else
                 label.text = "XÁC NHẬN";
@@ -1832,22 +1964,23 @@ public class SkillSelectionUI : MonoBehaviour
         rt.anchorMax = Vector2.one;
         rt.offsetMin = rt.offsetMax = Vector2.zero;
         overlayBackdrop = overlayGO.GetComponent<Image>();
-        overlayBackdrop.color = new Color(0.02f, 0.03f, 0.06f, 0.78f);
+        overlayBackdrop.color = new Color(0.01f, 0.02f, 0.05f, 0.88f);
         overlayBackdrop.raycastTarget = true;
     }
 
     private void ApplySkillButtonLayout()
     {
         int visible = Mathf.Clamp(activeChoiceCount, 3, skillButtons.Length);
-        float cardW = visible >= 4 ? 200f : CardWidth;
-        float gap = visible >= 4 ? 14f : CardGap;
+        float cardW = visible >= 4 ? 220f : CardWidth;
+        float gap = visible >= 4 ? 16f : CardGap;
         float totalWidth = cardW * visible + gap * (visible - 1);
         float startX = -totalWidth * 0.5f + cardW * 0.5f;
 
         if (cardsPanelBg != null)
         {
             RectTransform panelRt = cardsPanelBg.rectTransform;
-            panelRt.sizeDelta = new Vector2(totalWidth + 56f, CardHeight + 52f);
+            panelRt.sizeDelta = new Vector2(totalWidth + 48f, CardHeight + 40f);
+            panelRt.anchorMin = panelRt.anchorMax = new Vector2(0.5f, 0.5f);
         }
 
         for (int i = 0; i < skillButtons.Length; i++)
@@ -1862,8 +1995,8 @@ public class SkillSelectionUI : MonoBehaviour
                 continue;
 
             RectTransform rt = button.GetComponent<RectTransform>();
-            rt.anchorMin = new Vector2(0.5f, 0.42f);
-            rt.anchorMax = new Vector2(0.5f, 0.42f);
+            rt.anchorMin = new Vector2(0.5f, 0.5f);
+            rt.anchorMax = new Vector2(0.5f, 0.5f);
             rt.pivot = new Vector2(0.5f, 0.5f);
             rt.sizeDelta = new Vector2(Mathf.Max(cardW, MinTapSize), Mathf.Max(CardHeight, MinTapSize));
             rt.anchoredPosition = new Vector2(startX + i * (cardW + gap), 0f);
@@ -1879,16 +2012,25 @@ public class SkillSelectionUI : MonoBehaviour
         // Luôn rebuild nếu thiếu UI mới (scene cũ chỉ có Rarity/Title)
         if (index >= 0 && index < cardRefs.Length && cardRefs[index] != null
             && cardRefs[index].title != null && cardRefs[index].typeBadge != null
-            && cardRefs[index].statLine != null && cardRefs[index].levelBadge != null)
+            && cardRefs[index].statLine != null && cardRefs[index].levelBadge != null
+            && cardRefs[index].icon != null && cardRefs[index].iconBg != null
+            && cardRefs[index].chromeReady)
+        {
+            ApplyCardLayout(cardRefs[index]);
             return cardRefs[index];
+        }
 
         SkillCardRefs refs = new SkillCardRefs();
         Transform root = button.transform;
 
+        ApplyCardButtonColors(button.GetComponent<Button>());
+
         refs.background = button.GetComponent<Image>();
         if (refs.background != null)
         {
-            refs.background.color = new Color(0.94f, 0.94f, 0.97f, 1f);
+            refs.background.sprite = null;
+            refs.background.type = Image.Type.Simple;
+            refs.background.color = new Color(0.08f, 0.09f, 0.14f, 1f);
             refs.background.preserveAspect = false;
         }
 
@@ -1909,16 +2051,17 @@ public class SkillSelectionUI : MonoBehaviour
         borderRt.anchorMax = Vector2.one;
         borderRt.offsetMin = new Vector2(-2f, -2f);
         borderRt.offsetMax = new Vector2(2f, 2f);
-        refs.border.transform.SetAsLastSibling(); // viền nằm trên cùng để không bị icon/nền che
 
         refs.synergyGlow = GetOrCreateChildImage(root, "SynergyGlow");
         refs.synergyGlow.raycastTarget = false;
+        refs.synergyGlow.sprite = null;
         RectTransform glowRt = refs.synergyGlow.rectTransform;
         glowRt.anchorMin = Vector2.zero;
         glowRt.anchorMax = Vector2.one;
-        glowRt.offsetMin = new Vector2(-4f, -4f);
-        glowRt.offsetMax = new Vector2(4f, 4f);
-        refs.synergyGlow.color = new Color(1f, 0.85f, 0.2f, 0f);
+        glowRt.offsetMin = new Vector2(-10f, -10f);
+        glowRt.offsetMax = new Vector2(10f, 10f);
+        refs.synergyGlow.color = new Color(1f, 1f, 1f, 0f);
+        refs.synergyGlow.enabled = false;
 
         refs.typeBadge = GetOrCreateChildText(root, "TypeBadge");
         RectTransform typeRt = refs.typeBadge.rectTransform;
@@ -1935,8 +2078,8 @@ public class SkillSelectionUI : MonoBehaviour
         lvlRt.anchorMin = new Vector2(1f, 1f);
         lvlRt.anchorMax = new Vector2(1f, 1f);
         lvlRt.pivot = new Vector2(1f, 1f);
-        lvlRt.anchoredPosition = new Vector2(-10f, -8f);
-        lvlRt.sizeDelta = new Vector2(92f, 22f);
+        lvlRt.anchoredPosition = new Vector2(-10f, -32f);
+        lvlRt.sizeDelta = new Vector2(72f, 20f);
         refs.levelBadge.fontSize = 11f;
         refs.levelBadge.alignment = TextAlignmentOptions.TopRight;
         refs.levelBadge.fontStyle = FontStyles.Bold;
@@ -1968,25 +2111,20 @@ public class SkillSelectionUI : MonoBehaviour
         priceBgRt.anchorMin = new Vector2(0.5f, 0f);
         priceBgRt.anchorMax = new Vector2(0.5f, 0f);
         priceBgRt.pivot = new Vector2(0.5f, 0f);
-        priceBgRt.anchoredPosition = new Vector2(0f, 8f);
-        priceBgRt.sizeDelta = new Vector2(168f, 30f);
-        refs.priceBg.color = new Color(0.05f, 0.06f, 0.1f, 0.88f);
+        priceBgRt.anchoredPosition = new Vector2(0f, 14f);
+        priceBgRt.sizeDelta = new Vector2(184f, 34f);
+        refs.priceBg.color = new Color(0.42f, 0.1f, 0.08f, 0.96f);
         refs.priceBg.raycastTarget = false;
-        if (GuiArtLibrary.ButtonSecondary != null)
-        {
-            refs.priceBg.sprite = GuiArtLibrary.ButtonSecondary;
-            refs.priceBg.type = Image.Type.Sliced;
-            refs.priceBg.color = new Color(0.12f, 0.1f, 0.08f, 0.94f);
-        }
+        refs.priceBg.sprite = null;
 
         refs.priceLabel = GetOrCreateChildText(root, "PriceLabel");
         RectTransform priceRt = refs.priceLabel.rectTransform;
         priceRt.anchorMin = new Vector2(0.5f, 0f);
         priceRt.anchorMax = new Vector2(0.5f, 0f);
         priceRt.pivot = new Vector2(0.5f, 0f);
-        priceRt.anchoredPosition = new Vector2(0f, 8f);
-        priceRt.sizeDelta = new Vector2(160f, 30f);
-        refs.priceLabel.fontSize = 15f;
+        priceRt.anchoredPosition = new Vector2(0f, 14f);
+        priceRt.sizeDelta = new Vector2(204f, 34f);
+        refs.priceLabel.fontSize = 18f;
         refs.priceLabel.fontStyle = FontStyles.Bold;
         refs.priceLabel.alignment = TextAlignmentOptions.Center;
 
@@ -1995,16 +2133,18 @@ public class SkillSelectionUI : MonoBehaviour
         iconBgRt.anchorMin = iconBgRt.anchorMax = new Vector2(0.5f, 0.55f);
         iconBgRt.pivot = new Vector2(0.5f, 0.5f);
         iconBgRt.sizeDelta = new Vector2(104f, 104f);
-        refs.iconBg.color = new Color(0.04f, 0.05f, 0.08f, 0.72f);
+        refs.iconBg.color = new Color(0.06f, 0.07f, 0.11f, 0.9f);
         refs.iconBg.raycastTarget = false;
+        refs.iconBg.sprite = null;
 
         refs.icon = GetOrCreateChildImage(root, "Icon");
         RectTransform iconRt = refs.icon.rectTransform;
         iconRt.anchorMin = iconRt.anchorMax = new Vector2(0.5f, 0.55f);
         iconRt.pivot = new Vector2(0.5f, 0.5f);
-        iconRt.sizeDelta = new Vector2(96f, 96f);
+        iconRt.sizeDelta = new Vector2(104f, 104f);
         refs.icon.preserveAspect = true;
         refs.icon.raycastTarget = false;
+        refs.icon.type = Image.Type.Simple;
 
         refs.title = GetOrCreateChildText(root, "Title");
         RectTransform titleRt = refs.title.rectTransform;
@@ -2066,6 +2206,9 @@ public class SkillSelectionUI : MonoBehaviour
         Transform legacyLabel = root.Find("Label");
         if (legacyLabel != null)
             legacyLabel.gameObject.SetActive(false);
+        Transform legacyText = root.Find("Text");
+        if (legacyText != null)
+            legacyText.gameObject.SetActive(false);
 
         refs.interaction = button.GetComponent<SkillCardInteraction>();
         if (refs.interaction == null)
@@ -2074,8 +2217,193 @@ public class SkillSelectionUI : MonoBehaviour
         if (index >= 0 && index < cardRefs.Length)
             cardRefs[index] = refs;
 
+        ApplyCardLayout(refs);
+        ArrangeCardLayerOrder(refs);
         StyleCardTypography(refs);
         return refs;
+    }
+
+    /// <summary>Bố cục thẻ: badge trên → icon lớn → tên → stat → mô tả → giá (anchor từ mép trên).</summary>
+    private static void ApplyCardLayout(SkillCardRefs refs)
+    {
+        if (refs == null)
+            return;
+
+        // Layout từ trên xuống trong thẻ 280×390px
+        // Row 0: AccentBar (top strip)
+        // Row 1: TypeBadge (top-left) | LevelBadge (top-right) @ y=-8
+        // Row 2: Rarity label centered @ y=-26
+        // Row 3: Icon 130×130 centered, top @ y=-46 → center @ y=-111
+        // Row 4: Title @ y=-188 (sau icon)
+        // Row 5: StatLine @ y=-216
+        // Row 6: Description fill còn lại đến y=58 từ bottom
+        // Row 7: SynergyLabel @ y=56 from bottom
+        // Row 8: PriceBg + PriceLabel @ y=14 from bottom
+
+        const float iconTop = 46f;
+        float iconCenterY = -(iconTop + CardIconSize * 0.5f);  // ≈ -111
+        float textStart = iconTop + CardIconSize + 12f;        // ≈ 188
+
+        if (refs.accentBar != null)
+        {
+            RectTransform r = refs.accentBar.rectTransform;
+            r.anchorMin = new Vector2(0f, 1f);
+            r.anchorMax = new Vector2(1f, 1f);
+            r.pivot = new Vector2(0.5f, 1f);
+            r.anchoredPosition = Vector2.zero;
+            r.sizeDelta = new Vector2(0f, 5f);
+        }
+
+        if (refs.typeBadge != null)
+        {
+            RectTransform r = refs.typeBadge.rectTransform;
+            r.anchorMin = r.anchorMax = new Vector2(0f, 1f);
+            r.pivot = new Vector2(0f, 1f);
+            r.anchoredPosition = new Vector2(10f, -8f);
+            r.sizeDelta = new Vector2(84f, 20f);
+        }
+
+        if (refs.levelBadge != null)
+        {
+            RectTransform r = refs.levelBadge.rectTransform;
+            r.anchorMin = r.anchorMax = new Vector2(1f, 1f);
+            r.pivot = new Vector2(1f, 1f);
+            r.anchoredPosition = new Vector2(-10f, -8f);
+            r.sizeDelta = new Vector2(68f, 20f);
+        }
+
+        if (refs.rarity != null)
+        {
+            RectTransform r = refs.rarity.rectTransform;
+            r.anchorMin = r.anchorMax = new Vector2(0.5f, 1f);
+            r.pivot = new Vector2(0.5f, 1f);
+            r.anchoredPosition = new Vector2(0f, -26f);
+            r.sizeDelta = new Vector2(240f, 20f);
+        }
+
+        if (refs.iconBg != null)
+        {
+            RectTransform r = refs.iconBg.rectTransform;
+            r.anchorMin = r.anchorMax = new Vector2(0.5f, 1f);
+            r.pivot = new Vector2(0.5f, 0.5f);
+            r.anchoredPosition = new Vector2(0f, iconCenterY);
+            r.sizeDelta = new Vector2(CardIconSize + 12f, CardIconSize + 12f);
+        }
+
+        if (refs.icon != null)
+        {
+            RectTransform r = refs.icon.rectTransform;
+            r.anchorMin = r.anchorMax = new Vector2(0.5f, 1f);
+            r.pivot = new Vector2(0.5f, 0.5f);
+            r.anchoredPosition = new Vector2(0f, iconCenterY);
+            r.sizeDelta = new Vector2(CardIconSize, CardIconSize);
+        }
+
+        if (refs.title != null)
+        {
+            RectTransform r = refs.title.rectTransform;
+            r.anchorMin = new Vector2(0f, 1f);
+            r.anchorMax = new Vector2(1f, 1f);
+            r.pivot = new Vector2(0.5f, 1f);
+            r.anchoredPosition = new Vector2(0f, -textStart);
+            r.sizeDelta = new Vector2(-20f, 28f);
+        }
+
+        if (refs.statLine != null)
+        {
+            RectTransform r = refs.statLine.rectTransform;
+            r.anchorMin = new Vector2(0f, 1f);
+            r.anchorMax = new Vector2(1f, 1f);
+            r.pivot = new Vector2(0.5f, 1f);
+            r.anchoredPosition = new Vector2(0f, -(textStart + 30f));
+            r.sizeDelta = new Vector2(-20f, 22f);
+        }
+
+        if (refs.description != null)
+        {
+            RectTransform r = refs.description.rectTransform;
+            r.anchorMin = new Vector2(0f, 0f);
+            r.anchorMax = new Vector2(1f, 1f);
+            r.offsetMin = new Vector2(14f, 58f);
+            r.offsetMax = new Vector2(-14f, -(textStart + 56f));
+        }
+
+        if (refs.synergyLabel != null)
+        {
+            RectTransform r = refs.synergyLabel.rectTransform;
+            r.anchorMin = new Vector2(0f, 0f);
+            r.anchorMax = new Vector2(1f, 0f);
+            r.pivot = new Vector2(0.5f, 0f);
+            r.anchoredPosition = new Vector2(0f, 52f);
+            r.sizeDelta = new Vector2(-16f, 18f);
+        }
+
+        if (refs.priceBg != null)
+        {
+            RectTransform r = refs.priceBg.rectTransform;
+            r.anchorMin = r.anchorMax = new Vector2(0.5f, 0f);
+            r.pivot = new Vector2(0.5f, 0f);
+            r.anchoredPosition = new Vector2(0f, 12f);
+            r.sizeDelta = new Vector2(216f, 34f);
+        }
+
+        if (refs.priceLabel != null)
+        {
+            RectTransform r = refs.priceLabel.rectTransform;
+            r.anchorMin = r.anchorMax = new Vector2(0.5f, 0f);
+            r.pivot = new Vector2(0.5f, 0f);
+            r.anchoredPosition = new Vector2(0f, 12f);
+            r.sizeDelta = new Vector2(204f, 34f);
+        }
+
+        if (refs.lockIcon != null)
+        {
+            RectTransform r = refs.lockIcon.rectTransform;
+            r.anchorMin = r.anchorMax = new Vector2(1f, 1f);
+            r.pivot = new Vector2(1f, 1f);
+            r.anchoredPosition = new Vector2(-8f, -26f);
+            r.sizeDelta = new Vector2(34f, 34f);
+        }
+    }
+
+    /// <summary>Sắp xếp sibling: icon trên IconBg; chữ/nút giá trên khung viền (sprite khung có nền tối).</summary>
+    private static void ArrangeCardLayerOrder(SkillCardRefs refs)
+    {
+        if (refs == null || refs.background == null)
+            return;
+
+        Component[] backToFront =
+        {
+            refs.synergyGlow,
+            refs.accentBar,
+            refs.progressFill,
+            refs.priceBg,
+            refs.border,
+            refs.iconBg,
+            refs.icon,
+            refs.typeBadge,
+            refs.levelBadge,
+            refs.rarity,
+            refs.title,
+            refs.statLine,
+            refs.description,
+            refs.synergyLabel,
+            refs.progressText,
+            refs.priceLabel,
+            refs.stack,
+            refs.lockIcon
+        };
+
+        int idx = 0;
+        for (int i = 0; i < backToFront.Length; i++)
+        {
+            Component c = backToFront[i];
+            if (c == null)
+                continue;
+            if (c == refs.lockIcon && refs.lockIcon != null && !refs.lockIcon.enabled)
+                continue;
+            c.transform.SetSiblingIndex(idx++);
+        }
     }
 
     private static Image GetOrCreateChildImage(Transform parent, string childName)
@@ -2086,7 +2414,6 @@ public class SkillSelectionUI : MonoBehaviour
             GameObject go = new GameObject(childName, typeof(RectTransform));
             go.transform.SetParent(parent, false);
             child = go.transform;
-            go.transform.SetAsFirstSibling();
         }
 
         Image img = child.GetComponent<Image>();
@@ -2127,37 +2454,20 @@ public class SkillSelectionUI : MonoBehaviour
         refs.interaction?.Bind(choice);
 
         SkillRarity rarity = SkillPurchasePricing.ResolveRarity(choice);
-        Color borderColor = GetRarityBorderColor(rarity);
+        Color rarityColor = GetRarityBorderColor(rarity);
         Color typeColor = GetTypeBadgeColor(choice.kind);
         bool synergy = SkillSelectionSynergy.HasSynergy(choice);
 
-        if (refs.background != null)
-            refs.background.color = new Color(0.12f, 0.13f, 0.18f, 0.98f);
+        ApplyCardChrome(refs, rarity, synergy);
 
-        if (refs.border != null)
-        {
-            refs.border.enabled = true;
-            // Dùng sprite khung 9-slice theo độ hiếm (xanh lá/lam/tím/vàng). Fallback: viền màu trơn.
-            Sprite frameSprite = GuiArtLibrary.CardFrame(rarity);
-            if (frameSprite != null)
-            {
-                refs.border.sprite = frameSprite;
-                refs.border.type = Image.Type.Sliced;
-                refs.border.color = Color.white;
-            }
-            else
-            {
-                refs.border.sprite = null;
-                refs.border.color = borderColor;
-            }
-        }
-
+        // AccentBar trên cùng = màu type (Skill/Weapon/Passive)
         if (refs.accentBar != null)
         {
             refs.accentBar.enabled = true;
             refs.accentBar.color = typeColor;
         }
 
+        // Type badge
         if (refs.typeBadge != null)
         {
             refs.typeBadge.text = GetTypeBadgeLabel(choice.kind);
@@ -2170,19 +2480,19 @@ public class SkillSelectionUI : MonoBehaviour
         ApplyLevelBadge(refs, curLevel, maxLevel);
         ApplyProgressBar(refs, curLevel, maxLevel);
 
-        if (refs.synergyGlow != null)
-            refs.synergyGlow.color = new Color(1f, 0.85f, 0.2f, synergy ? 0.45f : 0f);
-
+        // Rarity label (chỉ hiện khi có giá mua)
         int coinCost = SkillPurchasePricing.GetCost(choice);
         bool showPrice = SkillPurchasePricing.IsPurchasable(choice) && coinCost > 0;
 
         if (refs.rarity != null)
         {
-            refs.rarity.gameObject.SetActive(showPrice);
+            refs.rarity.gameObject.SetActive(!showPrice);
             refs.rarity.text = GetRarityLabel(rarity);
-            refs.rarity.color = SkillPurchasePricing.GetPriceColor(rarity);
+            refs.rarity.color = rarityColor;
+            refs.rarity.fontStyle = FontStyles.Bold;
         }
 
+        // Price badge: nền đỏ đậm + chữ vàng (kiểu shop Knightfall)
         if (refs.priceBg != null)
             refs.priceBg.gameObject.SetActive(showPrice);
 
@@ -2191,23 +2501,30 @@ public class SkillSelectionUI : MonoBehaviour
             refs.priceLabel.gameObject.SetActive(showPrice);
             if (showPrice)
             {
-                refs.priceLabel.text = choice.note == "locked_purchase"
-                    ? "ĐÃ KHÓA · " + coinCost + " XU"
-                    : coinCost + " XU";
-                refs.priceLabel.color = SkillPurchasePricing.GetPriceColor(rarity);
+                string priceText = choice.note == "locked_purchase"
+                    ? "KHÓA  " + coinCost + " xu"
+                    : coinCost + " xu";
+                refs.priceLabel.text = priceText;
+                refs.priceLabel.color = new Color(1f, 0.9f, 0.4f, 1f);
+                refs.priceLabel.fontStyle = FontStyles.Bold;
             }
         }
 
+        refs.chromeReady = true;
         if (refs.synergyLabel != null)
         {
             if (choice.note == "locked_purchase")
+            {
                 refs.synergyLabel.text = "Mua để nhận thẻ này";
+                refs.synergyLabel.color = new Color(1f, 0.75f, 0.3f, 1f);
+            }
             else
             {
                 string evolve = SkillSelectionSynergy.GetEvolutionLabel(choice);
                 refs.synergyLabel.text = !string.IsNullOrEmpty(evolve)
                     ? evolve
-                    : (synergy ? "Có thể evolve!" : string.Empty);
+                    : (synergy ? "✦ Có thể evolve!" : string.Empty);
+                refs.synergyLabel.color = new Color(1f, 0.88f, 0.35f, 1f);
             }
         }
 
@@ -2220,9 +2537,10 @@ public class SkillSelectionUI : MonoBehaviour
                 if (refs.statLine != null)
                 {
                     int copies = WeaponManager.Instance != null ? WeaponManager.Instance.GetWeaponCopies(choice.weaponType) : 0;
-                    refs.statLine.text = copies > 0 ? "Nâng cấp x" + (copies + 1) : "Vũ khí mới";
+                    refs.statLine.text = copies > 0 ? "▲ Nâng cấp x" + (copies + 1) : "✦ Vũ khí mới";
+                    refs.statLine.color = copies > 0 ? new Color(0.4f, 0.9f, 1f, 1f) : new Color(0.55f, 1f, 0.55f, 1f);
                 }
-                SetIcon(refs, GameIconLibrary.WeaponSprite(choice.weaponType), GameIconLibrary.WeaponTint(choice.weaponType));
+                SetIcon(refs, GameIconLibrary.WeaponSprite(choice.weaponType), Color.white);
                 break;
 
             case SkillSelectionChoiceKind.PassiveItem:
@@ -2232,9 +2550,11 @@ public class SkillSelectionUI : MonoBehaviour
                     if (refs.description != null)
                         refs.description.text = TruncateLines(choice.passiveItem.description, 2);
                     if (refs.statLine != null)
+                    {
                         refs.statLine.text = FormatPassiveStat(choice.passiveItem, curLevel + 1);
-                    SetIcon(refs, GameIconLibrary.PassiveSprite(choice.passiveItem),
-                        GameIconLibrary.PassiveTint(choice.passiveItem));
+                        refs.statLine.color = new Color(0.55f, 1f, 0.7f, 1f);
+                    }
+                    SetIcon(refs, GameIconLibrary.PassiveSprite(choice.passiveItem), Color.white);
                 }
                 break;
 
@@ -2246,7 +2566,8 @@ public class SkillSelectionUI : MonoBehaviour
                 if (refs.statLine != null)
                 {
                     float hp = choice.bonusHp > 0 ? choice.bonusHp : SkillSelectionConfig.Get().allMaxedHealHp;
-                    refs.statLine.text = "+" + Mathf.RoundToInt(hp) + " HP";
+                    refs.statLine.text = "♥ +" + Mathf.RoundToInt(hp) + " HP";
+                    refs.statLine.color = new Color(1f, 0.45f, 0.45f, 1f);
                 }
                 SetIcon(refs, null, SkillBadgeColor);
                 break;
@@ -2254,7 +2575,11 @@ public class SkillSelectionUI : MonoBehaviour
             case SkillSelectionChoiceKind.BonusCoin:
                 if (refs.title != null) refs.title.text = "+Xu";
                 if (refs.description != null) refs.description.text = "Nhận xu ngay trong run.";
-                if (refs.statLine != null) refs.statLine.text = "+" + choice.bonusCoins + " xu";
+                if (refs.statLine != null)
+                {
+                    refs.statLine.text = "✦ +" + choice.bonusCoins + " xu";
+                    refs.statLine.color = new Color(1f, 0.88f, 0.35f, 1f);
+                }
                 SetIcon(refs, null, new Color(1f, 0.85f, 0.35f));
                 break;
 
@@ -2264,13 +2589,18 @@ public class SkillSelectionUI : MonoBehaviour
                     break;
                 if (refs.title != null) refs.title.text = skill.skillName;
                 if (refs.description != null) refs.description.text = TruncateLines(skill.description, 2);
-                if (refs.statLine != null) refs.statLine.text = FormatSkillStat(skill);
-                SetIcon(refs, GameIconLibrary.SkillSprite(skill.skillType), GameIconLibrary.SkillTint(skill.skillType));
+                if (refs.statLine != null)
+                {
+                    refs.statLine.text = FormatSkillStat(skill);
+                    refs.statLine.color = GetStatColor(rarity);
+                }
+                SetIcon(refs, GameIconLibrary.SkillSprite(skill.skillType), Color.white);
                 break;
         }
 
         StyleCardTypography(refs);
         ApplyCardLockState(cardIndex, refs);
+        ArrangeCardLayerOrder(refs);
     }
 
     private static void ClearCard(SkillCardRefs refs)
@@ -2315,9 +2645,98 @@ public class SkillSelectionUI : MonoBehaviour
     {
         switch (kind)
         {
-            case SkillSelectionChoiceKind.WeaponPickup: return "WEAPON";
-            case SkillSelectionChoiceKind.PassiveItem: return "PASSIVE";
-            default: return "SKILL";
+            case SkillSelectionChoiceKind.WeaponPickup: return "VŨ KHÍ";
+            case SkillSelectionChoiceKind.PassiveItem: return "BỔ TRỢ";
+            default: return "KỸ NĂNG";
+        }
+    }
+
+    private static void ApplyCardChrome(SkillCardRefs refs, SkillRarity rarity, bool synergy)
+    {
+        if (refs == null)
+            return;
+
+        Color rarityColor = GetRarityBorderColor(rarity);
+        Sprite frame = GuiArtLibrary.CardFrame(rarity);
+
+        if (refs.background != null)
+        {
+            Sprite inner = GuiArtLibrary.CardBackground;
+            if (inner != null)
+            {
+                refs.background.sprite = inner;
+                refs.background.type = Image.Type.Simple;
+                refs.background.preserveAspect = false;
+                refs.background.color = new Color(0.38f, 0.4f, 0.46f, 1f);
+            }
+            else
+            {
+                refs.background.sprite = null;
+                refs.background.color = new Color(
+                    0.07f + rarityColor.r * 0.04f,
+                    0.08f + rarityColor.g * 0.04f,
+                    0.12f + rarityColor.b * 0.05f, 1f);
+            }
+        }
+
+        if (refs.border != null)
+        {
+            refs.border.enabled = true;
+            if (frame != null)
+            {
+                refs.border.sprite = frame;
+                refs.border.type = Image.Type.Simple;
+                refs.border.preserveAspect = false;
+                refs.border.color = Color.white;
+            }
+            else
+            {
+                refs.border.sprite = null;
+                refs.border.color = new Color(rarityColor.r, rarityColor.g, rarityColor.b, 0.85f);
+            }
+        }
+
+        if (refs.synergyGlow != null)
+        {
+            float glowAlpha = synergy ? 0.42f : GetRarityGlowAlpha(rarity);
+            if (frame != null && glowAlpha > 0.02f)
+            {
+                refs.synergyGlow.enabled = true;
+                refs.synergyGlow.sprite = frame;
+                refs.synergyGlow.type = Image.Type.Simple;
+                refs.synergyGlow.preserveAspect = false;
+                refs.synergyGlow.color = synergy
+                    ? new Color(1f, 0.85f, 0.2f, glowAlpha)
+                    : new Color(rarityColor.r, rarityColor.g, rarityColor.b, glowAlpha);
+            }
+            else
+            {
+                refs.synergyGlow.sprite = null;
+                refs.synergyGlow.enabled = false;
+            }
+        }
+
+        if (refs.iconBg != null)
+        {
+            refs.iconBg.sprite = null;
+            refs.iconBg.color = new Color(
+                rarityColor.r * 0.1f + 0.04f,
+                rarityColor.g * 0.1f + 0.04f,
+                rarityColor.b * 0.12f + 0.05f, 0.88f);
+        }
+
+        if (refs.priceBg != null)
+        {
+            Sprite priceSprite = GuiArtLibrary.ButtonDanger ?? GuiArtLibrary.ButtonSecondary;
+            if (priceSprite != null)
+            {
+                refs.priceBg.sprite = priceSprite;
+                refs.priceBg.type = Image.Type.Simple;
+                refs.priceBg.preserveAspect = false;
+            }
+            else
+                refs.priceBg.sprite = null;
+            refs.priceBg.color = new Color(0.5f, 0.14f, 0.1f, 0.98f);
         }
     }
 
@@ -2325,10 +2744,32 @@ public class SkillSelectionUI : MonoBehaviour
     {
         switch (rarity)
         {
-            case SkillRarity.Rare: return new Color(0.2f, 0.75f, 0.35f, 1f);
-            case SkillRarity.Epic: return new Color(0.55f, 0.28f, 0.85f, 1f);
-            case SkillRarity.Legendary: return new Color(0.95f, 0.72f, 0.15f, 1f);
-            default: return new Color(0.55f, 0.55f, 0.58f, 1f);
+            case SkillRarity.Rare:      return new Color(0.20f, 0.82f, 0.40f, 1f);
+            case SkillRarity.Epic:      return new Color(0.62f, 0.28f, 0.92f, 1f);
+            case SkillRarity.Legendary: return new Color(0.98f, 0.78f, 0.12f, 1f);
+            default:                    return new Color(0.52f, 0.56f, 0.65f, 1f);
+        }
+    }
+
+    private static float GetRarityGlowAlpha(SkillRarity rarity)
+    {
+        switch (rarity)
+        {
+            case SkillRarity.Rare:      return 0.22f;
+            case SkillRarity.Epic:      return 0.30f;
+            case SkillRarity.Legendary: return 0.42f;
+            default:                    return 0.08f;
+        }
+    }
+
+    private static Color GetStatColor(SkillRarity rarity)
+    {
+        switch (rarity)
+        {
+            case SkillRarity.Rare:      return new Color(0.35f, 0.95f, 0.5f, 1f);
+            case SkillRarity.Epic:      return new Color(0.75f, 0.55f, 1f, 1f);
+            case SkillRarity.Legendary: return new Color(1f, 0.86f, 0.32f, 1f);
+            default:                    return new Color(0.45f, 0.92f, 0.55f, 1f);
         }
     }
 
@@ -2368,24 +2809,30 @@ public class SkillSelectionUI : MonoBehaviour
         if (refs.levelBadge == null)
             return;
 
-        bool vsStyle = SurvivalRunManager.IsSurvivalMode();
-
         if (current >= max && max > 0)
-            refs.levelBadge.text = vsStyle ? "level: MAX" : "MAX";
+            refs.levelBadge.text = "MAX";
         else if (current <= 0)
-            refs.levelBadge.text = vsStyle ? "level: 1" : "MỚI!";
+            refs.levelBadge.text = "MỚI";
         else
-            refs.levelBadge.text = vsStyle
-                ? "level: " + (current + 1)
-                : "Lv " + current + " → Lv " + (current + 1);
+            refs.levelBadge.text = "Lv." + (current + 1);
+
+        refs.levelBadge.color = new Color(0.72f, 0.78f, 0.9f, 0.95f);
     }
 
     private void ApplyProgressBar(SkillCardRefs refs, int current, int max)
     {
+        bool showProgress = !SurvivalRunManager.IsSurvivalMode() && max > 1;
         if (refs.progressText != null)
-            refs.progressText.text = Mathf.Clamp(current, 0, max) + "/" + Mathf.Max(1, max);
+        {
+            refs.progressText.gameObject.SetActive(showProgress);
+            if (showProgress)
+                refs.progressText.text = Mathf.Clamp(current, 0, max) + " / " + Mathf.Max(1, max);
+        }
 
-        if (refs.progressFill == null || refs.background == null)
+        if (refs.progressFill != null)
+            refs.progressFill.gameObject.SetActive(showProgress);
+
+        if (!showProgress || refs.progressFill == null || refs.background == null)
             return;
 
         float width = (refs.background.rectTransform.rect.width - 28f) * Mathf.Clamp01((float)current / Mathf.Max(1, max));
@@ -2410,8 +2857,8 @@ public class SkillSelectionUI : MonoBehaviour
         if (skill == null)
             return string.Empty;
         if (skill.value > 0f)
-            return "+" + skill.value.ToString("0.#") + " power";
-        return GetRarityLabel(skill.rarity);
+            return "▲ +" + skill.value.ToString("0.#") + " sức mạnh";
+        return "✦ " + GetRarityLabel(skill.rarity);
     }
 
     private static string FormatPassiveStat(PassiveItemData passive, int nextLevel)
@@ -2444,6 +2891,24 @@ public class SkillSelectionUI : MonoBehaviour
         }
     }
 
+    /// <summary>Màu ColorTint của thẻ — nền tối, không bao giờ để Unity tô trắng mặc định.</summary>
+    private static void ApplyCardButtonColors(Button btn)
+    {
+        if (btn == null)
+            return;
+
+        btn.transition = Selectable.Transition.ColorTint;
+        ColorBlock cb = btn.colors;
+        cb.normalColor = Color.white;
+        cb.highlightedColor = new Color(0.92f, 0.95f, 1f, 1f);
+        cb.pressedColor = new Color(0.78f, 0.82f, 0.92f, 1f);
+        cb.selectedColor = new Color(0.95f, 0.97f, 1f, 1f);
+        // disabledColor tối (KHÔNG để mặc định xám-trắng) — thẻ chưa interactable vẫn tối.
+        cb.disabledColor = new Color(0.7f, 0.72f, 0.8f, 1f);
+        cb.colorMultiplier = 1f;
+        btn.colors = cb;
+    }
+
     private Button BuildRuntimeButton(int index)
     {
         GameObject buttonGO = new GameObject("SkillButton_" + index, typeof(RectTransform));
@@ -2452,17 +2917,21 @@ public class SkillSelectionUI : MonoBehaviour
         RectTransform rt = buttonGO.GetComponent<RectTransform>();
         float totalWidth = CardWidth * 3f + CardGap * 2f;
         float startX = -totalWidth * 0.5f + CardWidth * 0.5f;
-        rt.anchorMin = new Vector2(0.5f, 0.42f);
-        rt.anchorMax = new Vector2(0.5f, 0.42f);
+        rt.anchorMin = new Vector2(0.5f, 0.5f);
+        rt.anchorMax = new Vector2(0.5f, 0.5f);
         rt.pivot = new Vector2(0.5f, 0.5f);
         rt.sizeDelta = new Vector2(CardWidth, CardHeight);
         rt.anchoredPosition = new Vector2(startX + index * (CardWidth + CardGap), 0f);
 
         Image bg = buttonGO.AddComponent<Image>();
-        bg.color = new Color(0.1f, 0.11f, 0.16f, 0.98f);
+        bg.sprite = null;
+        bg.color = new Color(0.08f, 0.09f, 0.14f, 1f);
 
         Button btn = buttonGO.AddComponent<Button>();
         btn.targetGraphic = bg;
+        // Set ColorBlock NGAY để tránh ColorTint mặc định (normalColor/disabledColor trắng-xám)
+        // tô trắng cả thẻ trong các frame trước khi EnsureCardRefs/ApplyChoiceToCard kịp chạy.
+        ApplyCardButtonColors(btn);
         EnsureCardRefs(btn, index);
 
         return btn;
@@ -2489,6 +2958,10 @@ public class SkillSelectionUI : MonoBehaviour
             refs.icon.sprite = sprite;
             refs.icon.color = tint;
             refs.icon.enabled = true;
+            refs.icon.type = Image.Type.Simple;
+            if (refs.iconBg != null)
+                refs.iconBg.enabled = true;
+            ArrangeCardLayerOrder(refs);
         }
         else
         {

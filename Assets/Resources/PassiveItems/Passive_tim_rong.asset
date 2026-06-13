@@ -15,7 +15,7 @@ MonoBehaviour:
   id: tim_rong
   displayName: Tim Rỗng
   description: Tăng HP tối đa +20 mỗi cấp.
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: f23b353563fe4edf91bb3ec09f085cdd, type: 3}
   statModifierType: 1
   valuePerLevel:
   - 20

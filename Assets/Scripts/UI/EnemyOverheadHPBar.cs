@@ -81,7 +81,10 @@ public class EnemyOverheadHPBar : MonoBehaviour
             CacheLayout();
 
         float ratio = Mathf.Clamp01(health.CurrentHP / Mathf.Max(1f, health.MaxHP));
-        if (health.CurrentHP <= 0f)
+
+        // Chỉ hiện bar khi quái ĐÃ bị thương (kiểu Vampire Survivors) — quái mới spawn
+        // không vẽ bar, tránh hàng chục viền tối đè nhau thành khối đen khi quái dồn cục.
+        if (health.CurrentHP <= 0f || ratio >= 0.999f)
         {
             barRoot.gameObject.SetActive(false);
             return;
@@ -102,7 +105,7 @@ public class EnemyOverheadHPBar : MonoBehaviour
 
     private void BuildBar()
     {
-        GameObject root = new GameObject("OverheadHP");
+        GameObject root = RuntimeSpawnGuard.Mark(new GameObject("OverheadHP"));
         root.transform.SetParent(transform, false);
         barRoot = root.transform;
 

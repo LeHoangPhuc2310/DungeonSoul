@@ -64,7 +64,7 @@ public class LevelUpEffect : MonoBehaviour
 
     private void CreateFloatingText(Transform playerTransform, int currentLevel, float hpIncrease, float damageIncrease)
     {
-        GameObject floatingTextObject = new GameObject("LevelUpFloatingText");
+        GameObject floatingTextObject = RuntimeSpawnGuard.Mark(new GameObject("LevelUpFloatingText"));
         floatingTextObject.transform.position = playerTransform.position + Vector3.up * 1.5f;
 
         TextMeshPro text = floatingTextObject.AddComponent<TextMeshPro>();
@@ -111,7 +111,7 @@ public class LevelUpEffect : MonoBehaviour
 
     private static void CreateParticleRing(Vector3 worldPosition)
     {
-        GameObject ringObject = new GameObject("LevelUpParticleRing");
+        GameObject ringObject = RuntimeSpawnGuard.Mark(new GameObject("LevelUpParticleRing"));
         ringObject.transform.position = worldPosition;
         ParticleSystem ps = ringObject.AddComponent<ParticleSystem>();
 

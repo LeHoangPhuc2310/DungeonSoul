@@ -247,12 +247,7 @@ public class GameOverUI : MonoBehaviour
         canvasGO.AddComponent<GraphicRaycaster>();
         canvas.gameObject.SetActive(false);
 
-        if (UnityEngine.EventSystems.EventSystem.current == null)
-        {
-            GameObject esGO = new GameObject("EventSystem");
-            esGO.AddComponent<UnityEngine.EventSystems.EventSystem>();
-            esGO.AddComponent<UnityEngine.EventSystems.StandaloneInputModule>();
-        }
+        EnsureEventSystem();
 
         // Nền tối phủ kín.
         GameObject overlay = MakeRect("Overlay", canvasGO.transform, Vector2.zero, Vector2.zero);
@@ -409,6 +404,37 @@ public class GameOverUI : MonoBehaviour
             SceneManager.LoadScene("CharacterSelectScene");
         else
             SceneManager.LoadScene(0);
+    }
+
+    /// <summary>
+    /// Đảm bảo có đúng MỘT EventSystem hợp lệ trong scene. Nếu thiếu thì tạo mới
+    /// với input module khớp với cấu hình Input System của dự án — tạo nhầm module
+    /// (hoặc tạo EventSystem thứ 2) sẽ làm EventSystem.current = null và mọi nút UI
+    /// ngừng nhận click (đây chính là nguyên nhân nút "Chơi lại" bị liệt trước đây).
+    /// </summary>
+    private static void EnsureEventSystem()
+    {
+        var existing = Object.FindObjectsByType<UnityEngine.EventSystems.EventSystem>(
+            FindObjectsInactive.Include, FindObjectsSortMode.None);
+
+        // Dọn EventSystem trùng để không bao giờ có 2 cái cùng active.
+        if (existing.Length > 1)
+        {
+            for (int i = 1; i < existing.Length; i++)
+                Destroy(existing[i].gameObject);
+        }
+
+        if (existing.Length >= 1)
+            return;
+
+        GameObject esGO = new GameObject("EventSystem");
+        esGO.AddComponent<UnityEngine.EventSystems.EventSystem>();
+
+        // Dùng StandaloneInputModule (Input Manager cũ). Dự án bật Active Input Handling =
+        // "Both" nên module này luôn hoạt động. InputSystemUIInputModule (Input System mới)
+        // tạo bằng AddComponent thuần KHÔNG có InputActionAsset nên không bao giờ activate
+        // (EventSystem.currentInputModule = null) → chuột không click được nút.
+        esGO.AddComponent<UnityEngine.EventSystems.StandaloneInputModule>();
     }
 
     private void OnDestroy()
